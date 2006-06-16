@@ -1,0 +1,3 @@
+useDynLib(lhs)
+
+export(improvedLHS, maximinLHS, randomLHS)
