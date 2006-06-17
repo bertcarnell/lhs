@@ -1,26 +1,44 @@
 \name{optSeededLHS}
 \alias{optSeededLHS}
-\docType{data}
-\title{ ~~ data name/kind ... ~~}
+\title{Optimum Seeded Latin Hypercube Sample}
 \description{
-  ~~ A concise (1-5 lines) description of the dataset. ~~
+Augments an existing Latin Hypercube Sample, adding points to the design, while
+maintaining the \dquote{latin} properties of the design.  This function then uses the
+column-wise pair-wise algoritm to optimize the design.  The original design
+is not necessarily maintained.
 }
-\usage{data(optSeededLHS)}
-\format{
-  The format is:
- chr "optSeededLHS"
+\usage{optSeededLHS(seed, m=1, maxSweeps=2, eps=.1)}
+\arguments{
+  \item{seed}{The number of partitions (simulations or design points)}
+  \item{m}{The number of additional points to add to matrix \code{seed}}
+  \item{maxSweeps}{The maximum number of times the CP algorithm is applied to all the columns.}
+  \item{eps}{The optimal stopping criterion}
 }
 \details{
-  ~~ If necessary, more details than the __description__ above ~~
+Augments an existing Latin Hypercube Sample, adding points to the design, while
+maintaining the \dquote{latin} properties of the design.  This function then uses the
+column-wise pair-wise algoritm to optimize the design.  The original design
+is not necessarily maintained.
 }
-\source{
-  ~~ reference to a publication or URL from which the data were obtained ~~
+\value{
+An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
 }
 \references{
-  ~~ possibly secondary sources and usages ~~
+  Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
+  \emph{The New S Language}.
+  Wadsworth \& Brooks/Cole.
+}
+\author{Rob Carnell}
+\seealso{
+  \code{\link{randomLHS}}, \code{\link{geneticLHS}},
+  \code{\link{improvedLHS}}, \code{\link{maximinLHS}}, and
+  \code{\link{optimumLHS}} to generate Latin Hypercube Samples.
+  \code{\link{optAugmentLHS}} and
+  \code{\link{augmentLHS}} to modify and augment existing designs.
 }
 \examples{
-data(optSeededLHS)
-## maybe str(optSeededLHS) ; plot(optSeededLHS) ...
+  a <- randomLHS(4,3)
+  a
+  optSeededLHS(a, 2, 2, .1)
 }
-\keyword{datasets}
+\keyword{design}

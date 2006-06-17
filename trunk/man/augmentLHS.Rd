@@ -1,26 +1,52 @@
 \name{augmentLHS}
 \alias{augmentLHS}
-\docType{data}
-\title{ ~~ data name/kind ... ~~}
+\title{Augment a Latin Hypercube Design}
 \description{
-  ~~ A concise (1-5 lines) description of the dataset. ~~
+Augments an existing Latin Hypercube Sample, adding points to the design, while
+maintaining the \dquote{latin} properties of the design.
 }
-\usage{data(augmentLHS)}
-\format{
-  The format is:
- chr "augmentLHS"
+\usage{augmentLHS(lhs, m=1)}
+\arguments{
+  \item{lhs}{The Latin Hypercube Design to which points are to be added}
+  \item{m}{The number of additional points to add to matrix \code{lhs}}
 }
 \details{
-  ~~ If necessary, more details than the __description__ above ~~
+Augments an existing Latin Hypercube Sample, adding points to the design, while
+maintaining the \dquote{latin} properties of the design.  Augmentation is perfomed
+in a random manner.
+
+First, create a new matrix to hold the candidate points after the design has
+been re-partitioned into \eqn{(n+m)^{2}}{(n+m)^2} cells, where n is number of
+points in the original \code{lhs} matrix.  Then randomly sweep through each
+column (1\ldots\code{K}) in the repartitioned design to find the missing cells.
+For each column (variable), randomly search for an empty row, generate a
+random value that fits in that row, record the value in the new matrix.
+The new matrix can contain more filled cells than \code{m} unles \eqn{m = 2n},
+in which case the new matrix will contain exactly \code{m} filled cells.
+Finally, keep only the first m rows of the new matrix, since it is guaranteed to
+have \code{m} full rows in the new matrix.  The deleted rows are partially full.
+The candidate points are already selected randomly due to the random search
+for empty cells.
 }
-\source{
-  ~~ reference to a publication or URL from which the data were obtained ~~
+\value{
+An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
 }
 \references{
-  ~~ possibly secondary sources and usages ~~
+  Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
+  \emph{The New S Language}.
+  Wadsworth \& Brooks/Cole.
+}
+\author{Rob Carnell}
+\seealso{
+  \code{\link{randomLHS}}, \code{\link{geneticLHS}},
+  \code{\link{improvedLHS}}, \code{\link{maximinLHS}}, and
+  \code{\link{optimumLHS}} to generate Latin Hypercube Samples.
+  \code{\link{optAugmentLHS}} and \code{\link{optSeededLHS}}
+  to modify and augment existing designs.
 }
 \examples{
-data(augmentLHS)
-## maybe str(augmentLHS) ; plot(augmentLHS) ...
+  a <- randomLHS(4,3)
+  a
+  augmentLHS(a, 2)
 }
-\keyword{datasets}
+\keyword{design}

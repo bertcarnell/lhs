@@ -1,3 +1,4 @@
 useDynLib(lhs)
 
-export(improvedLHS, maximinLHS, randomLHS)
+export(improvedLHS, maximinLHS, randomLHS, optimumLHS, augmentLHS,
+       geneticLHS, optAugmentLHS, optSeededLHS)

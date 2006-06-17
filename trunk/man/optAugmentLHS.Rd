@@ -1,26 +1,44 @@
 \name{optAugmentLHS}
 \alias{optAugmentLHS}
-\docType{data}
-\title{ ~~ data name/kind ... ~~}
+\title{Optimal Augmented Latin Hypercube Sample}
 \description{
-  ~~ A concise (1-5 lines) description of the dataset. ~~
+Augments an existing Latin Hypercube Sample, adding points to the design, while
+maintaining the \dquote{latin} properties of the design.  This function attempts to
+add the points to the design in an optimal way.
 }
-\usage{data(optAugmentLHS)}
-\format{
-  The format is:
- chr "optAugmentLHS"
+\usage{optAugmentLHS(lhs, m=1, mult=2)}
+\arguments{
+  \item{lhs}{The Latin Hypercube Design to which points are to be added}
+  \item{m}{The number of additional points to add to matrix \code{lhs}}
+  \item{mult}{\code{m*mult} random candidate points will be created.}
 }
 \details{
-  ~~ If necessary, more details than the __description__ above ~~
+Augments an existing Latin Hypercube Sample, adding points to the design, while
+maintaining the \dquote{latin} properties of the design.  This function attempts to
+add the points to the design in a way that maximizes S optimality.
+
+S-optimality seeks to maximize the mean distance from each design point to all
+the other points in the design, so the points are as spread out as possible.
 }
-\source{
-  ~~ reference to a publication or URL from which the data were obtained ~~
+\value{
+An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
 }
 \references{
-  ~~ possibly secondary sources and usages ~~
+  Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
+  \emph{The New S Language}.
+  Wadsworth \& Brooks/Cole.
+}
+\author{Rob Carnell}
+\seealso{
+  \code{\link{randomLHS}}, \code{\link{geneticLHS}},
+  \code{\link{improvedLHS}}, \code{\link{maximinLHS}}, and
+  \code{\link{optimumLHS}} to generate Latin Hypercube Samples.
+  \code{\link{optSeededLHS}} and
+  \code{\link{augmentLHS}} to modify and augment existing designs.
 }
 \examples{
-data(optAugmentLHS)
-## maybe str(optAugmentLHS) ; plot(optAugmentLHS) ...
+  a <- randomLHS(4,3)
+  a
+  optAugmentLHS(a, 2, 3)
 }
-\keyword{datasets}
+\keyword{design}

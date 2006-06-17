@@ -14,8 +14,6 @@
 #            m is the number of addtional points to augment the design with
 #              (default=1, must be a positive integer)
 #
-# Required function: ranperm.R
-#
 # Explanation:
 #   First, create a matrix B to hold the candidate points after the design has
 #   been re-partitioned into (N+m)^2 cells

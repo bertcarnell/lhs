@@ -9,8 +9,6 @@
 #           John Burkardt
 # Created:  May 05
 #
-# Required function:
-#
 # Discussion:
 #    n Points in an k dimensional Latin hypercube are to be selected.
 #    This algorithm tries to pick a solution which has the property that the
