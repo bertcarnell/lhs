@@ -3,7 +3,7 @@
 \title{Optimal Augmented Latin Hypercube Sample}
 \description{
 Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the \dquote{latin} properties of the design.  This function attempts to
+maintaining the \emph{latin} properties of the design.  This function attempts to
 add the points to the design in an optimal way.
 }
 \usage{optAugmentLHS(lhs, m=1, mult=2)}
@@ -14,7 +14,7 @@ add the points to the design in an optimal way.
 }
 \details{
 Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the \dquote{latin} properties of the design.  This function attempts to
+maintaining the \emph{latin} properties of the design.  This function attempts to
 add the points to the design in a way that maximizes S optimality.
 
 S-optimality seeks to maximize the mean distance from each design point to all

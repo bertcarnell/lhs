@@ -3,7 +3,7 @@
 \title{Augment a Latin Hypercube Design}
 \description{
 Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the \dquote{latin} properties of the design.
+maintaining the \emph{latin} properties of the design.
 }
 \usage{augmentLHS(lhs, m=1)}
 \arguments{
@@ -12,7 +12,7 @@ maintaining the \dquote{latin} properties of the design.
 }
 \details{
 Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the \dquote{latin} properties of the design.  Augmentation is perfomed
+maintaining the \emph{latin} properties of the design.  Augmentation is perfomed
 in a random manner.
 
 First, create a new matrix to hold the candidate points after the design has

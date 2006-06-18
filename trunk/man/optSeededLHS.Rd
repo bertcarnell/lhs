@@ -3,7 +3,7 @@
 \title{Optimum Seeded Latin Hypercube Sample}
 \description{
 Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the \dquote{latin} properties of the design.  This function then uses the
+maintaining the \emph{latin} properties of the design.  This function then uses the
 column-wise pair-wise algoritm to optimize the design.  The original design
 is not necessarily maintained.
 }
@@ -16,7 +16,7 @@ is not necessarily maintained.
 }
 \details{
 Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the \dquote{latin} properties of the design.  This function then uses the
+maintaining the \emph{latin} properties of the design.  This function then uses the
 column-wise pair-wise algoritm to optimize the design.  The original design
 is not necessarily maintained.
 }
