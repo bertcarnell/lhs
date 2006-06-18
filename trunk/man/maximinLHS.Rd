@@ -40,7 +40,13 @@ satisfied.
 An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
 }
 \references{
-  This program is motivated by the MATLAB program written by John Burkardt
+  Iman, R.L., J.C. Helton, J.E. Campbell. 1981. An approach to sensitivity analysis of computer
+  models, Part 1. Introduction, input variable selection and preliminary variable assessment. Journal
+  of Quality Technology 13:174-183.
+
+  This program is based on the MATLAB program written by
+  John Burkardt and modified 16 Feb 2005
+  \url{http://www.csit.fsu.edu/~burkardt/m_src/ihs/ihs.m}
 }
 \author{Rob Carnell}
 \seealso{

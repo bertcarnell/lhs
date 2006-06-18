@@ -47,7 +47,7 @@ An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly dist
   
   This program is based on the MATLAB program written by
   John Burkardt and modified 16 Feb 2005
-  http://www.csit.fsu.edu/~burkardt/m_src/ihs/ihs.m
+  \url{http://www.csit.fsu.edu/~burkardt/m_src/ihs/ihs.m}
 }
 \author{Rob Carnell}
 \seealso{
