@@ -24,9 +24,10 @@ the other points in the design, so the points are as spread out as possible.
 An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
 }
 \references{
-  Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
-  \emph{The New S Language}.
-  Wadsworth \& Brooks/Cole.
+  Stein, M.  (1987)
+  Large Sample Properties of Simulations Using Latin Hypercube Sampling.
+  \emph{Technometrics}.
+  \bold{29}, 143--151.
 }
 \author{Rob Carnell}
 \seealso{

@@ -4,7 +4,7 @@
 \description{
 Augments an existing Latin Hypercube Sample, adding points to the design, while
 maintaining the \emph{latin} properties of the design.  This function then uses the
-column-wise pair-wise algoritm to optimize the design.  The original design
+columnwise pairwise (\acronym{CP}) algoritm to optimize the design.  The original design
 is not necessarily maintained.
 }
 \usage{optSeededLHS(seed, m=1, maxSweeps=2, eps=.1)}
@@ -17,16 +17,17 @@ is not necessarily maintained.
 \details{
 Augments an existing Latin Hypercube Sample, adding points to the design, while
 maintaining the \emph{latin} properties of the design.  This function then uses the
-column-wise pair-wise algoritm to optimize the design.  The original design
+\acronym{CP} algoritm to optimize the design.  The original design
 is not necessarily maintained.
 }
 \value{
 An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
 }
 \references{
-  Becker, R. A., Chambers, J. M. and Wilks, A. R. (1988)
-  \emph{The New S Language}.
-  Wadsworth \& Brooks/Cole.
+  Stein, M.  (1987)
+  Large Sample Properties of Simulations Using Latin Hypercube Sampling.
+  \emph{Technometrics}.
+  \bold{29}, 143--151.
 }
 \author{Rob Carnell}
 \seealso{

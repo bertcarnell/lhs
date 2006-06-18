@@ -13,23 +13,23 @@ algorithm.
   \item{k}{The number of replications (variables)}
   \item{pop}{The number of designs in the initial population}
   \item{gen}{The number of generations over which the algorithm is applied}
-  \item{pMut}{The probability with wich a mutation occurs in a column of the progeny}
+  \item{pMut}{The probability with which a mutation occurs in a column of the progeny}
 }
 \details{
-Latin hypercube sampling (LHS) was developed to generate a distribution of
-collections of parameter values from a multidimensional distribution.  A square
-grid containing possible sample points is a Latin square iff there is only one
-sample in each row and each column. A Latin hypercube is the generalisation of
-this concept to an arbitrary number of dimensions.  When sampling a function of
-k variables, the range of each variable is divided into n equally probable
-intervals. n sample points are then drawn such that a Latin Hypercube is
-created.  Latin Hypercube sampling generates more efficient estimates of
-desired parameters than simple Monte Carlo sampling.
+Latin hypercube sampling (LHS) was developed to generate a distribution
+of collections of parameter values from a multidimensional distribution.
+A square grid containing possible sample points is a Latin square iff there
+is only one sample in each row and each column. A Latin hypercube is the
+generalisation of this concept to an arbitrary number of dimensions.  When
+sampling a function of \code{k} variables, the range of each variable is divided
+into \code{n} equally probable intervals. \code{n} sample points are then drawn such that a
+Latin Hypercube is created.  Latin Hypercube sampling generates more efficient
+estimates of desired parameters than simple Monte Carlo sampling.
 
 This program generates a Latin Hypercube Sample by creating random permutations
-of the first n integers in each of k columns and then transforming those
+of the first \code{n} integers in each of \code{k} columns and then transforming those
 integers into n sections of a standard uniform distribution.  Random values are
-then sample from within each of the n sections.  Once the sample is generated,
+then sampled from within each of the n sections.  Once the sample is generated,
 the uniform sample from a column can be transformed to any distribution by
 using the quantile functions, e.g. qnorm().  Different columns can have
 different distributions.
@@ -39,7 +39,7 @@ the other points in the design, so the points are as spread out as possible.
 
 Genetic Algorithm:
 \enumerate{
-  \item Generate pop random latin hypercube designs of size n by k
+  \item Generate \code{pop} random latin hypercube designs of size \code{n} by \code{k}
   \item Calculate the S optimality measure of each design
   \item Keep the best design in the first position and throw away half of the
     rest of the population
@@ -47,21 +47,23 @@ Genetic Algorithm:
     random column of each of the other matricies, and take a random column
     out of each of the other matricies and put it in copies of the best
     matrix thereby causing the progeny
-  \item For each of the progeny, cause a genetic mutation pMut percent of the
-    time by swtching two elements in each column
+  \item For each of the progeny, cause a genetic mutation \code{pMut} percent of the
+    time.  The mutation is accomplished by swtching two elements in a column
   }
 }
 \value{
 An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
 }
 \references{
-  Stocki, Rafal. "A method to improve design reliability using optimal Latin hypercube sampling"
-  Institute of Fundamental Technological Research, Polish Academy of Sciences,
-  ul. Swietokrzyska 21, 00-049 Warsaw, Poland
+  Stocki, R. (2005)
+  A method to improve design reliability using optimal Latin hypercube sampling
+  \emph{Computer Assisted Mechanics and Engineering Sciences}
+  \bold{12}, 87--105.
 
-  Iman, R.L., J.C. Helton, J.E. Campbell. 1981. An approach to sensitivity analysis of computer
-  models, Part 1. Introduction, input variable selection and preliminary variable assessment. Journal
-  of Quality Technology 13:174-183.
+  Stein, M.  (1987)
+  Large Sample Properties of Simulations Using Latin Hypercube Sampling.
+  \emph{Technometrics}.
+  \bold{29}, 143--151.
 }
 \author{Rob Carnell}
 \seealso{
