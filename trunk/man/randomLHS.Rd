@@ -1,7 +1,6 @@
 \name{randomLHS}
 \alias{randomLHS}
-\alias{latin}
-\alias{hypercube}
+\alias{latin hypercube}
 \title{Random Latin Hypercube}
 \description{
 Draws a Latin Hypercube Sample from a set of uniform distributions for use in
