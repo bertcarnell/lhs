@@ -60,7 +60,9 @@ augmentLHS <- function(lhs, m=1)
     }
   }
 
-  E <- rbind(lhs, B[1:m, ])
+  if(is.matrix(B[1:m,])){
+    E <- rbind(lhs, B[1:m, ])
+  } else E <- rbind(lhs, matrix(B[1:m,], nrow=m, ncol=1))
   row.names(E) <- NULL
   return(E)
 }

@@ -1,0 +1,8 @@
+Version 0.1
+
+Version 0.2
+  Bug suggested by Bjarne Hansen fixed 7/20/06.  Bug involved augmenting lhs
+  samples with one paramter.  Example a <- randomlhs(4, 1); augmentLHS(a, 2).
+  RUnit test added to check this bug.  All RUnit tests satisfactory.
+  - RC
+  

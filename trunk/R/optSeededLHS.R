@@ -69,26 +69,26 @@ optSeededLHS <- function(seed, m=1, maxSweeps=2, eps=.1)
     stop("The seed design must be uniformly distributed on [0,1]\n")
 
   k <- ncol(seed)
-  n <- m + nrow(seed)
+  N <- m + nrow(seed)
 
   Pold <- augmentLHS(seed, m)
   
   if(m==1) return(Pold)
 
-  Pold <- c(t(Pold)) # changes to an n*k length vector
+  Pold <- c(t(Pold)) # changes to an N*k length vector
 
-  jLen <- choose(n, 2) + 1
+  jLen <- choose(N, 2) + 1
   J1 <- numeric(jLen)
   J2 <- numeric(jLen)
   J3 <- numeric(jLen)
-  Pnew <- numeric(n*k)
+  Pnew <- numeric(N*k)
 
-  resultList <- .C("optSeededLHS_C", as.integer(n), as.integer(k),
+  resultList <- .C("optSeededLHS_C", as.integer(N), as.integer(k),
                      as.integer(maxSweeps), as.double(eps), as.double(Pold),
                      as.double(J1), as.integer(J2), as.integer(J3),
                      as.integer(jLen), as.double(Pnew))
 
   result <- resultList[[5]]
 
-  return(matrix(result, nrow=n, ncol=k, byrow=TRUE))
+  return(matrix(result, nrow=N, ncol=k, byrow=TRUE))
 }
