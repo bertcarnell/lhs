@@ -1,7 +1,7 @@
 ################################################################################
 #
-# Program Name:  runitTestSuite_triangle.R
-# Purpose:       To provide test functions for teh triangle package
+# Program Name:  runitTestSuite_lhs.R
+# Purpose:       To provide test functions for the lhs package
 # Author:        Rob Carnell
 # Date:          June 2006
 #
@@ -19,29 +19,32 @@ require(RUnit)
 #defaultPath <- chartr("/", "//", paste(.path.package("lhs"), "/RUnit", sep=""))
 
 ################# used in development ##########################################
-defaultPath <- "c:////program files//r//lhs//RUnit"                            #
-source("c:////program files//r//lhs//R//randomLHS.R")                          #
-source("c:////program files//r//lhs//R//improvedLHS.R")                        #
-source("c:////program files//r//lhs//R//maximinLHS.R")                         #
-source("c:////program files//r//lhs//R//optimumLHS.R")                         #
-source("c:////program files//r//lhs//R//geneticLHS.R")                         #
-source("c:////program files//r//lhs//R//augmentLHS.R")                         #
-source("c:////program files//r//lhs//R//optAugmentLHS.R")                      #
-source("c:////program files//r//lhs//R//optSeededLHS.R")                       #
+defaultPath <- file.path("c:", "program files", "r", "lhs")
+source(file.path(defaultPath, "R", "randomLHS.R"))
+source(file.path(defaultPath, "R", "improvedLHS.R"))
+source(file.path(defaultPath, "R", "maximinLHS.R"))
+source(file.path(defaultPath, "R", "optimumLHS.R"))
+source(file.path(defaultPath, "R", "geneticLHS.R"))
+source(file.path(defaultPath, "R", "augmentLHS.R"))
+source(file.path(defaultPath, "R", "optAugmentLHS.R"))
+source(file.path(defaultPath, "R", "optSeededLHS.R"))
 
-dyn.load("c:/program files/R/lhs/src/lhs.dll")
+dllFileName <- file.path(defaultPath, "src", "lhs.dll")
 
-testSuite.lhs <- defineTestSuite("lhs", dirs=defaultPath)
+dyn.load(dllFileName)
+
+testSuite.lhs <- defineTestSuite("lhs", dirs=file.path(defaultPath, "RUnit"),
+                  testFileRegexp="^runit_[[:alnum:]]+LHS\.[rR]$")
 
 testResult <- runTestSuite(testSuite.lhs)
 
 ################# used in development ##########################################
-                                                                               #
-## warning expected about gcc compiler                                         #
-suppressWarnings(printHTMLProtocol(testResult,                                 #
-  fileName=paste(defaultPath, "//Test Results.html", sep="")))                 #
-                                                                               #
-browseURL(paste(defaultPath, "//Test Results.html",sep=""),                    #
-          browser=getOption("browser"))                                        #
 
-dyn.unload("c:/program files/R/lhs/src/lhs.dll")
+htmlFile <- file.path(defaultPath, "RUnit", "Test Results.html")
+
+## warning expected about gcc compiler
+suppressWarnings(printHTMLProtocol(testResult, fileName=htmlFile))
+
+browseURL(htmlFile, browser=getOption("browser"))
+
+dyn.unload(dllFileName)
