@@ -21,8 +21,6 @@ test.augmentLHS <- function(){
                 0.7480675, 0.76678826, 0.1023604, 0.2140764, 0.03091406,
                 0.8472311, 0.5447051, 0.50013043),
                 nrow=6, ncol=3, byrow=TRUE)
-  #d <- matrix(c(0.8563343, 0.2321231, 0.3426021, 0.6052802, 0.1022039,
-  #              0.7157418), nrow=6, ncol=1)
   d <- matrix(c(0.9611208, 0.4325798, 0.6336407, 0.1508501, 0.2604750,
                 0.7897173), nrow=6, ncol=1)
 
@@ -51,7 +49,11 @@ test.augmentLHS <- function(){
                       set.seed(1977)
                       augmentLHS(randomLHS(4, 1), 2)
                       }, d, tolerance=1E-7)
-
+  # this test addresses a bug where an error ocurred on adding 1 row in
+  #   augmentLHS
+  checkEquals({temp <- randomLHS(7, 2)
+             temp <- augmentLHS(temp,1)
+             nrow(temp)}, 8)
 }
 
 

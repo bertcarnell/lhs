@@ -27,6 +27,9 @@
 #   rows in B.  The deleted rows are partially full.  The candidate
 #   points are selected randomly due to the random search for empty cells
 #
+# 10/21/06
+#   augmentLHS functions where one row was added had an error - fixed
+#
 ################################################################################
 
 augmentLHS <- function(lhs, m=1)
@@ -62,7 +65,7 @@ augmentLHS <- function(lhs, m=1)
 
   if(is.matrix(B[1:m,])){
     E <- rbind(lhs, B[1:m, ])
-  } else E <- rbind(lhs, matrix(B[1:m,], nrow=m, ncol=1))
+  } else E <- rbind(lhs, matrix(B[1:m,], nrow=m, ncol=K))
   row.names(E) <- NULL
   return(E)
 }
