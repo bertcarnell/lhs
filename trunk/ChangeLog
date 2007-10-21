@@ -12,3 +12,7 @@ Version 0.3
   to check this bug.  All RUnit tests satisfactory.  Also added documentation
   consisting of an augmentation example.  Added a lhs package help page.
   
+Version 0.4
+  Changed the license to GPL >= 2 according to a Kurt Hornik email
+ 
+  
