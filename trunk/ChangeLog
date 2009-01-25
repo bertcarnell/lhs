@@ -14,5 +14,9 @@ Version 0.3
   
 Version 0.4
   Changed the license to GPL >= 2 according to a Kurt Hornik email
+
+Version 0.5
+  Change output filenames to be portable
+  
  
   
