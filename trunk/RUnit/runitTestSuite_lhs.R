@@ -40,7 +40,7 @@ testResult <- runTestSuite(testSuite.lhs)
 
 ################# used in development ##########################################
 
-htmlFile <- file.path(defaultPath, "RUnit", "Test Results.html")
+htmlFile <- file.path(defaultPath, "RUnit", "Test_Results.html")
 
 ## warning expected about gcc compiler
 suppressWarnings(printHTMLProtocol(testResult, fileName=htmlFile))
