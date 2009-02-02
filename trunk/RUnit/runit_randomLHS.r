@@ -11,13 +11,8 @@
 #
 ################################################################################
 
-test.randomLHS <- function(){
-  a <- matrix(c(0.07163446, 0.1449906, 0.53135074, 0.6487661, 0.48832575,
-                0.2959244, 0.83849428, 0.9994098), nrow=4, ncol=2, byrow=TRUE)
-  b <- matrix(c(0.5138222, 0.1538120, 0.8542834, 0.7515563, 0.9306291,
-                0.2461012, 0.2022003, 0.4902523, 0.4670436),
-                nrow=3, ncol=3, byrow=TRUE)
-
+test.randomLHS <- function()
+{
   checkException(randomLHS(10.1, 2), silent=TRUE)
   checkException(randomLHS(-1, 2), silent=TRUE)
   checkException(randomLHS(10, 2.5), silent=TRUE)
@@ -28,8 +23,28 @@ test.randomLHS <- function(){
   checkException(randomLHS(10, NA), silent=TRUE)
   checkException(randomLHS(10, NaN), silent=TRUE)
   checkException(randomLHS(10, Inf), silent=TRUE)
-  checkEqualsNumeric({set.seed(1976); randomLHS(4, 2)}, a, tolerance=1E-7)
-  checkEqualsNumeric({set.seed(1977); randomLHS(3, 3)}, b, tolerance=1E-7)
+  A <- randomLHS(4,2)
+  checkTrue(all(A > 0 & A < 1))
+
+  checkException(randomLHS(10.1, 2, preserveDraw=TRUE), silent=TRUE)
+  checkException(randomLHS(-1, 2, preserveDraw=TRUE), silent=TRUE)
+  checkException(randomLHS(10, 2.5, preserveDraw=TRUE), silent=TRUE)
+  checkException(randomLHS(10, -30, preserveDraw=TRUE), silent=TRUE)
+  checkException(randomLHS(NA, 2, preserveDraw=TRUE), silent=TRUE)
+  checkException(randomLHS(NaN, 2, preserveDraw=TRUE), silent=TRUE)
+  checkException(randomLHS(Inf, 2, preserveDraw=TRUE), silent=TRUE)
+  checkException(randomLHS(10, NA, preserveDraw=TRUE), silent=TRUE)
+  checkException(randomLHS(10, NaN, preserveDraw=TRUE), silent=TRUE)
+  checkException(randomLHS(10, Inf, preserveDraw=TRUE), silent=TRUE)
+  checkException(randomLHS(10, 10, preserveDraw=8), silent=TRUE)
+  A <- randomLHS(4, 2, preserveDraw=TRUE)
+  checkTrue(all(A > 0 & A < 1))
+
+  set.seed(4)
+  A <- randomLHS(5, 3, preserveDraw=TRUE)
+  set.seed(4)
+  B <- randomLHS(5, 5, preserveDraw=TRUE)
+  checkEqualsNumeric(A, B[,1:3], tolerance=1E-12)
 }
 
 

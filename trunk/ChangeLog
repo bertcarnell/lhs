@@ -18,5 +18,10 @@ Version 0.4
 Version 0.5
   Change output filenames to be portable
   
+Version 0.6
+  Added a new option to randomLHS to allow for similar lhs's when
+  the seed is set and columns are added
+
+  
  
   

@@ -1,7 +1,7 @@
 Package: lhs
 Type: Package
 Title: Latin Hypercube Samples
-Version: 0.5
+Version: 0.6
 Date: 2009-01-25
 Author: Rob Carnell <carnellr@battelle.org>
 Maintainer: Rob Carnell <carnellr@battelle.org>

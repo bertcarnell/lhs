@@ -9,6 +9,9 @@
 # Variables:
 #   N is the number of partitions (simulations or design points)
 #   K is the number of replication (variables)
+#   preserveDraw = TRUE ensures that two subsequent draws with the same
+#     N, but one with k and one with m variables (k<m), will have the same
+#     first k columns if the seed is the same
 #
 # Ex:  randomLHS(4,3) returns a 4x3 matrix with
 #      each column constructed as follows
@@ -33,25 +36,28 @@
 #
 #########################################################################
 
-randomLHS <- function(n, k)
+randomLHS <- function(n, k, preserveDraw=FALSE)
 {
   if(length(n)!=1 |length(k)!=1) stop("n and k may not be vectors")
   if(any(is.na(c(n,k)))) stop("n and k may not be NA or NaN")
   if(any(is.infinite(c(n,k)))) stop("n and k may not be infinite")
   if(floor(n)!=n | n<1) stop("n must be a positive integer\n")
   if(floor(k)!=k | k<1) stop("k must be a positive integer\n")
+  if(!(preserveDraw %in% c(TRUE, FALSE)))
+    stop("preserveDraw must be TRUE/FALSE")
 
-  ranperm <- function(X, N){
-    return(order(runif(N)))
+  if (preserveDraw)
+  {
+    f <- function(X, N) order(runif(N)) - 1 + runif(N)
+    P <- sapply(1:k, f, N=n)
+  } else
+  {
+    ranperm <- function(X, N) order(runif(N))
+    P <- matrix(nrow=n, ncol=k)
+    P <- apply(P, 2, ranperm, N=n)
+    P <- P - 1 + matrix(runif(n*k), nrow=n, ncol=k)
   }
-
-  P <- matrix(nrow=n, ncol=k)
-  P <- apply(P, 2, ranperm, N=n)
   
-  eps <- matrix(runif(n*k), nrow=n, ncol=k)
-
-  P <- P - 1 + eps
-
   return(P/n)
 }
 

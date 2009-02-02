@@ -7,10 +7,14 @@ Draws a Latin Hypercube Sample from a set of uniform distributions for use in
 creating a Latin Hypercube Design.  This sample is taken in a random
 manner without regard to optimization.
 }
-\usage{randomLHS(n, k)}
+\usage{randomLHS(n, k, preserveDraw)}
 \arguments{
   \item{n}{The number of partitions (simulations or design points)}
   \item{k}{The number of replications (variables)}
+  \item{preserveDraw}{Default:FALSE.  Ensures that two subsequent draws
+     with the same \code{n}, but one with \code{k} and one with \code{m}
+     variables \code{(k<m)}, will have the same first k columns
+     if the seed is the same.
 }
 \details{
 Latin hypercube sampling (LHS) was developed to generate a distribution
@@ -49,6 +53,20 @@ An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly dist
   \code{\link{augmentLHS}} to modify and augment existing designs.
 }
 \examples{
+  # draw a Latin hypercube
   randomLHS(4, 3)
+  
+  # transform a Latin hypercube
+  X <- randomLHS(5, 2)
+  Y <- matrix(0, nrow=5, ncol=2)
+  Y[,1] <- qnorm(X[,1], mean=3, sd=0.1)
+  Y[,2] <- qbeta(X[,2], shape1=2, shape2=3)
+  
+  # check the preserveDraw option
+  set.seed(1976)
+  X <- randomLHS(6,3,preserveDraw=TRUE)
+  set.seed(1976)
+  Y <- randomLHS(6,5,preserveDraw=TRUE)
+  all(abs(X - Y[,1:3]) < 1E-12) # TRUE
 }
 \keyword{design}
