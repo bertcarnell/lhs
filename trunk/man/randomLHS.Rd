@@ -14,7 +14,7 @@ manner without regard to optimization.
   \item{preserveDraw}{Default:FALSE.  Ensures that two subsequent draws
      with the same \code{n}, but one with \code{k} and one with \code{m}
      variables \code{(k<m)}, will have the same first k columns
-     if the seed is the same.
+     if the seed is the same.}
 }
 \details{
 Latin hypercube sampling (LHS) was developed to generate a distribution
