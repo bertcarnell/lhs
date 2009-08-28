@@ -14,12 +14,9 @@
 
 require(RUnit)
 
-## used as part of package
-#require(lhs)
-#defaultPath <- chartr("/", "//", paste(.path.package("lhs"), "/RUnit", sep=""))
-
 ################# used in development ##########################################
-defaultPath <- file.path("c:", "program files", "r", "lhs")
+defaultPath <- file.path("c:", "Documents and Settings", "carnellr",
+  "My Documents", "Repositories", "lhs", "developerTrunk", "lhs")
 source(file.path(defaultPath, "R", "randomLHS.R"))
 source(file.path(defaultPath, "R", "improvedLHS.R"))
 source(file.path(defaultPath, "R", "maximinLHS.R"))
@@ -34,7 +31,7 @@ dllFileName <- file.path(defaultPath, "src", "lhs.dll")
 dyn.load(dllFileName)
 
 testSuite.lhs <- defineTestSuite("lhs", dirs=file.path(defaultPath, "RUnit"),
-                  testFileRegexp="^runit_[[:alnum:]]+LHS\.[rR]$")
+                  testFileRegexp="^runit_[[:alnum:]]+LHS[.][rR]$")
 
 testResult <- runTestSuite(testSuite.lhs)
 
