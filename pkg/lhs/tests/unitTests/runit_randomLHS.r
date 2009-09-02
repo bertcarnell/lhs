@@ -23,8 +23,10 @@ test.randomLHS <- function()
   checkException(randomLHS(10, NA), silent=TRUE)
   checkException(randomLHS(10, NaN), silent=TRUE)
   checkException(randomLHS(10, Inf), silent=TRUE)
+
   A <- randomLHS(4,2)
   checkTrue(all(A > 0 & A < 1))
+  checkTrue(checkLatinHypercube(A))
 
   checkException(randomLHS(10.1, 2, preserveDraw=TRUE), silent=TRUE)
   checkException(randomLHS(-1, 2, preserveDraw=TRUE), silent=TRUE)
@@ -37,14 +39,18 @@ test.randomLHS <- function()
   checkException(randomLHS(10, NaN, preserveDraw=TRUE), silent=TRUE)
   checkException(randomLHS(10, Inf, preserveDraw=TRUE), silent=TRUE)
   checkException(randomLHS(10, 10, preserveDraw=8), silent=TRUE)
+
   A <- randomLHS(4, 2, preserveDraw=TRUE)
   checkTrue(all(A > 0 & A < 1))
+  checkTrue(checkLatinHypercube(A))
 
   set.seed(4)
   A <- randomLHS(5, 3, preserveDraw=TRUE)
   set.seed(4)
   B <- randomLHS(5, 5, preserveDraw=TRUE)
   checkEqualsNumeric(A, B[,1:3], tolerance=1E-12)
+  checkTrue(checkLatinHypercube(A))
+  checkTrue(checkLatinHypercube(B))
 }
 
 

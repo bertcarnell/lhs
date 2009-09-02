@@ -12,12 +12,20 @@
 ################################################################################
 
 test.maximinLHS <- function(){
-  a <- matrix(c(0.79592441, 0.1431093, 0.74940985, 0.6248918, 0.41694528,
-                0.8659861, 0.09153965, 0.4520949), nrow=4, ncol=2, byrow=TRUE)
-  b <- matrix(c(0.07222432, 0.8658036, 0.1136544, 0.65092346, 0.1791829,
-                0.3870314, 0.88729741, 0.5094480, 0.8063272),
-                nrow=3, ncol=3, byrow=TRUE)
-  d <- c(7, 9, 10, 4, 3, 2, 1, 5, 6, 8, 6, 3, 9, 4, 7, 10, 2, 1, 8, 5)
+  a <- matrix(c(
+    0.07555028, 0.2306772,
+    0.49711298, 0.5012294,
+    0.52791861, 0.9600331,
+    0.92798023, 0.3731828
+    ), nrow=4, ncol=2, byrow=TRUE)
+  b <- matrix(c(
+    0.2825281, 0.08782156, 0.4314198,
+    0.8011583, 0.90780705, 0.1439918,
+    0.5437211, 0.34970794, 0.8586682
+    ), nrow=3, ncol=3, byrow=TRUE)
+  d <- c(
+    7, 1, 9, 3, 8, 4, 6, 10, 5, 2, 8, 2, 6, 4, 9, 10, 5, 3, 1, 7
+    )
 
   checkException(improvedLHS(10.1, 2), silent=TRUE)
   checkException(improvedLHS(-1, 2), silent=TRUE)
@@ -34,14 +42,31 @@ test.maximinLHS <- function(){
   checkException(randomLHS(10, 2, NA), silent=TRUE)
   checkException(randomLHS(10, 2, NaN), silent=TRUE)
   checkException(randomLHS(10, 2, Inf), silent=TRUE)
-  checkEqualsNumeric({set.seed(1976); maximinLHS(4, 2)}, a, tolerance=1E-7)
-  checkEqualsNumeric({set.seed(1977); maximinLHS(3, 3, 5)}, b, tolerance=1E-7)
-  checkEqualsNumeric({
-                      set.seed(1978)
-                      .C("maximinLHS_C", as.integer(10), as.integer(2),
-                      as.integer(3), integer(2*10), integer(2*10),
-                      integer(2*3*(10-1)), integer(3*(10-1)), integer(2))[[4]]
-                      }, d, tolerance=1E-7)
+  
+  f <- function()
+  {
+    set.seed(1976)
+    maximinLHS(4, 2)
+  }
+  checkEqualsNumeric(f(), a, tolerance=1E-7)
+  checkTrue(checkLatinHypercube(f()))
+  
+  f <- function()
+  {
+    set.seed(1977)
+    maximinLHS(3, 3, 5)
+  }
+  checkEqualsNumeric(f(), b, tolerance=1E-7)
+  checkTrue(checkLatinHypercube(f()))
+
+  f <- function()
+  {
+    set.seed(1978)
+    .C("maximinLHS_C", as.integer(10), as.integer(2),
+      as.integer(3), integer(2*10), integer(2*10),
+      integer(2*3*(10-1)), integer(3*(10-1)), integer(2))[[4]]
+  }
+  checkEqualsNumeric(f(), d, tolerance=1E-7)
 }
 
 

@@ -20,9 +20,7 @@
  *
  */
 
-#include <R.h>
-#include <Rmath.h>
-#include <math.h>
+#include "defines.h"
 
 /*
  * Arrays are passed into this routine to allow R to allocate and deallocate
@@ -48,38 +46,6 @@
  *
  */
 
-#define printResult 0
-
-/*
- * Function to return the sum of the inverse of the distances between each
- * point in the matrix
- *
- */
-double sumInvDistanceD(double* matrix, int* nr, int* nc){
-  int i, j, k;
-  double oneDistance;
-  double totalInvDistance = 0.0;
-  /* iterate the row of the first point from 0 to N-2 */
-  for(i = 0; i < (*nr - 1); i++)
-  {
-    /* iterate the row the second point from i+1 to N-1 */
-    for(j = (i + 1); j < *nr; j++)
-    {
-      oneDistance = 0;
-      /* iterate through the columns, summing the squared differences */
-      for(k = 0; k < *nc; k++)
-      {
-        /* calculate the square of the difference in one dimension between the
-         * points */
-        oneDistance += (matrix[i * (*nc) + k] - matrix[j * (*nc) + k]) * (matrix[i * (*nc) + k] - matrix[j * (*nc) + k]);
-      }
-      /* sum the inverse distances */
-      totalInvDistance += (1.0 / sqrt(oneDistance));
-    }
-  }
-  return(totalInvDistance);
-}
-
 /*
  * Return an optimized hypercube according to the criteria given
  *
@@ -87,167 +53,152 @@ double sumInvDistanceD(double* matrix, int* nr, int* nc){
 void optSeededLHS_C(int* N, int* K, int* MAXSWEEPS, double* EPS, double* pOld,
                   double* J1, int* J2, int* J3, int* jLen, double* pNew)
 {
-  double gOld;
-  double deltag1 = 0.0;
-  double deltag;
-  int test, iter, i, j, k, r, posit, row, col;
-  
-  /* find the initial optimality measure */
-  gOld = sumInvDistanceD(pOld, N, K);
+	double gOld;
+	double deltag1 = 0.0;
+	double deltag;
+	int test, iter, i, j, k, r, posit, row, col;
 
-  Rprintf("Beginning Optimality Criterion %f \n", gOld);
+	/* find the initial optimality measure */
+	//gOld = sumInvDistanceD(pOld, N, K);
+	gOld = sumInvDistance_double(pOld, N, K);
 
-#if printResult
+	PRINT_MACRO("Beginning Optimality Criterion %f \n", gOld);
 
-  for(row = 0; row < *N; row++)
-  {
-	  for(col = 0; col < *K; col++)
-	  {
-		  Rprintf("%f ", pOld[row * (*K) + col]);
-	  }
-	  Rprintf("\n");
-  }
-
+#if PRINT_RESULT
+	lhsPrint_double(N, K, pOld);
 #endif
 
-  test = 0;
-  iter = 0;
+	test = 0;
+	iter = 0;
+	j = 0;
 
-  while(test==0)
-  {
-    if(iter==*MAXSWEEPS) break;
-    iter++;
-    /* iterate over the columns */
-    for(j = 0; j < *K; j++)
-    {
-      r = 0;
-      /* iterate over the rows for the first point from 0 to N-2 */
-      for(i = 0; i < (*N - 1); i++)
-      {
-        /* iterate over the rows for the second point from i+1 to N-1 */
-        for(k = (i + 1); k < *N; k++)
-        {
-          /* put the values from pOld into pNew */
-          for(row = 0; row < *N; row++)
-          {
-            for(col = 0; col < *K; col++)
-            {
-              pNew[row * (*K) + col] = pOld[row * (*K) + col];
-            }
-          }
-          /* exchange two values (from the ith and kth rows) in the jth column
-           * and place them in the new matrix */
-          pNew[i * (*K) + j] = pOld[k * (*K) + j];
-          pNew[k * (*K) + j] = pOld[i * (*K) + j];
-          
-          /* store the optimality of the newly created matrix and the rows that
-           * were interchanged */
-          J1[r] = sumInvDistanceD(pNew, N, K);
-          J2[r] = i;
-          J3[r] = k;
-          r++;
-        }
-      }
-      /* once all combinations of the row interchanges have been completed for
-       * the current column j, store the old optimality measure (the one we are
-       * trying to beat) */
-      J1[r] = gOld;
-      J2[r] = 0;
-      J3[r] = 0;
-      
-      /* Find which optimality measure is the lowest for the current column.
-       * In other words, which two row interchanges made the hypercube better in
-       * this column */
-      posit = 0;
-      for(k = 0; k < *jLen; k++)
-      {
-        if(J1[k] < J1[posit]) posit = k;
-      }
+	while (test == 0)
+	{
+		if (iter == *MAXSWEEPS) break;
+		iter++;
+		/* iterate over the columns */
+		for (j = 0; j < *K; j++)
+		{
+			r = 0;
+			/* iterate over the rows for the first point from 0 to N-2 */
+			for (i = 0; i < (*N - 1); i++)
+			{
+				/* iterate over the rows for the second point from i+1 to N-1 */
+				for (k = (i + 1); k < *N; k++)
+				{
+					/* put the values from pOld into pNew */
+					for (row = 0; row < *N; row++)
+					{
+						for (col = 0; col < *K; col++)
+						{
+							pNew[row * (*K) + col] = pOld[row * (*K) + col];
+						}
+					}
+					/* exchange two values (from the ith and kth rows) in the jth column
+					* and place them in the new matrix */
+					pNew[i * (*K) + j] = pOld[k * (*K) + j];
+					pNew[k * (*K) + j] = pOld[i * (*K) + j];
 
-      /* If the new minimum optimality measure is better than the old measure */
-      if(J1[posit] < gOld)
-      {
-        /* put pOld in pNew */
-        for(row = 0; row < *N; row++)
-        {
-          for(col = 0; col < *K; col++)
-          {
-            pNew[row * (*K) + col] = pOld[row * (*K) + col];
-          }
-        }
-        /* Interchange the rows that were the best for this column */
-        pNew[J2[posit] * (*K) + j] = pOld[J3[posit] * (*K) + j];
-        pNew[J3[posit] * (*K) + j] = pOld[J2[posit] * (*K) + j];
-        
-        /* put pNew back in pOld for the next iteration */
-        for(row = 0; row < *N; row++)
-        {
-          for(col = 0; col < *K; col++)
-          {
-            pOld[row * (*K) + col] = pNew[row * (*K) + col];
-          }
-        }
-        
-        /* if this is not the first column we have used for this sweep */
-        if(j > 0)
-        {
-          /* check to see how much benefit we gained from this sweep */
-          deltag = abs(J1[posit] - gOld);
-          if(deltag < ((*EPS) * deltag1))
-          {
-            test = 1;
-            Rprintf("Algorithm stopped when the change in the inverse distance measure was smaller than %f \n", ((*EPS) * deltag1));
-          }
-        }
-        /* if this is first column of the sweep, then store the benefit gained */
-        else
-        {
-          deltag1 = abs(J1[posit] - gOld);
-        }
-        
-        /* replace the old optimality measure with the current one */
-        gOld = J1[posit];
-      }
-      /* if the new and old optimality measures are equal */
-      else if(J1[posit] == gOld)
-      {
-        test = 1;
-        Rprintf("Algorithm stopped when changes did not impove design optimality\n");
-      }
-      /* if the new optimality measure is worse */
-      else if(J1[posit] > gOld)
-      {
-        error("Unexpected Result: Algorithm produced a less optimal design\n");
-        test = 1;
-      }
-      /* if there is a reason to exit... */
-      if(test==1) break;
-    }
-  }
+					/* store the optimality of the newly created matrix and the rows that
+					* were interchanged */
+					//J1[r] = sumInvDistanceD(pNew, N, K);
+					J1[r] = sumInvDistance_double(pNew, N, K);
+					J2[r] = i;
+					J3[r] = k;
+					r++;
+				}
+			}
+			/* once all combinations of the row interchanges have been completed for
+			* the current column j, store the old optimality measure (the one we are
+			* trying to beat) */
+			J1[r] = gOld;
+			J2[r] = 0;
+			J3[r] = 0;
+
+			/* Find which optimality measure is the lowest for the current column.
+			* In other words, which two row interchanges made the hypercube better in
+			* this column */
+			posit = 0;
+			for (k = 0; k < *jLen; k++)
+			{
+				if (J1[k] < J1[posit]) posit = k;
+			}
+
+			/* If the new minimum optimality measure is better than the old measure */
+			if (J1[posit] < gOld)
+			{
+				/* put pOld in pNew */
+				for (row = 0; row < *N; row++)
+				{
+					for (col = 0; col < *K; col++)
+					{
+						pNew[row * (*K) + col] = pOld[row * (*K) + col];
+					}
+				}
+				/* Interchange the rows that were the best for this column */
+				pNew[J2[posit] * (*K) + j] = pOld[J3[posit] * (*K) + j];
+				pNew[J3[posit] * (*K) + j] = pOld[J2[posit] * (*K) + j];
+
+				/* put pNew back in pOld for the next iteration */
+				for (row = 0; row < *N; row++)
+				{
+					for (col = 0; col < *K; col++)
+					{
+						pOld[row * (*K) + col] = pNew[row * (*K) + col];
+					}
+				}
+
+				/* if this is not the first column we have used for this sweep */
+				if (j > 0)
+				{
+					/* check to see how much benefit we gained from this sweep */
+					deltag = fabs(J1[posit] - gOld);
+					if (deltag < ((*EPS) * deltag1))
+					{
+						test = 1;
+						PRINT_MACRO("Algorithm stopped when the change in the inverse distance measure was smaller than %f \n", ((*EPS) * deltag1));
+					}
+				}
+				/* if this is first column of the sweep, then store the benefit gained */
+				else
+				{
+					deltag1 = fabs(J1[posit] - gOld);
+				}
+
+				/* replace the old optimality measure with the current one */
+				gOld = J1[posit];
+			}
+			/* if the new and old optimality measures are equal */
+			else if (J1[posit] == gOld)
+			{
+				test = 1;
+				PRINT_MACRO("Algorithm stopped when changes did not impove design optimality\n");
+			}
+			/* if the new optimality measure is worse */
+			else if (J1[posit] > gOld)
+			{
+				ERROR_MACRO("Unexpected Result: Algorithm produced a less optimal design\n");
+				test = 1;
+			}
+			/* if there is a reason to exit... */
+			if (test == 1) break;
+		}
+	}
   
-  /* if we made it through all the sweeps */
-  if(iter==*MAXSWEEPS)
-  {
-    Rprintf("%d full sweeps completed\n", *MAXSWEEPS);
-  }
-  /* if we didn't make it through all of them */
-  else
-  {
-    Rprintf("Algorithm used %d sweep(s) and %d extra column(s)\n", iter-1, j);
-  }
+	/* if we made it through all the sweeps */
+	if (iter == *MAXSWEEPS)
+	{
+		PRINT_MACRO("%d full sweeps completed\n", *MAXSWEEPS);
+	}
+	/* if we didn't make it through all of them */
+	else
+	{
+		PRINT_MACRO("Algorithm used %d sweep(s) and %d extra column(s)\n", iter-1, j);
+	}
 
-  Rprintf("Final Optimality Criterion %f \n", gOld);
+	PRINT_MACRO("Final Optimality Criterion %f \n", gOld);
 
-#if printResult
-
-  for(row = 0; row < *N; row++)
-  {
-	  for(col = 0; col < *K; col++)
-	  {
-		  Rprintf("%f ", pOld[row * (*K) + col]);
-	  }
-	  Rprintf("\n");
-  }
-
+#if PRINT_RESULT
+	lhsPrint_double(N, K, pOld);
 #endif
 }

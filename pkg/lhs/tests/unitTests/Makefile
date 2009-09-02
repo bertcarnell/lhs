@@ -13,8 +13,8 @@ all: inst test
 inst:
 	cd ${TOP};\
 	R CMD BUILD ${PKG};\
-	R CMD INSTALL ${PKG}_*;\
-	rm ${PKG}_*
+	R CMD INSTALL ${PKG}_*.tar.gz;\
+	rm ${PKG}_*.tar.gz
 
 # Run unit tests
 #   First export a symbol to be read in SUITE

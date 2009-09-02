@@ -1,9 +1,24 @@
 ## file is copied from http://wiki.r-project.org/rwiki/doku.php?id=developers:runit
 ##  with minor modifications
 
-## unit tests will not be done if RUnit is not available
-if(require("RUnit", quietly=TRUE)) {
+checkLatinHypercube <- function(X)
+{
+  # check that the matrix is a latin hypercube
+  g <- function(Y)
+  {
+    # check that this column contains all the cells
+    breakpoints <- seq(0,1,length=length(Y)+1)
+    h <- hist(Y, plot=FALSE, breaks=breakpoints)
+    all(h$counts == 1)
+  }
+  # check all the columns
+  all(apply(X, 2, g))
+}
 
+
+## unit tests will not be done if RUnit is not available
+if(require("RUnit", quietly=TRUE))
+{
   ## --- Setup ---
 
   pkg <- "lhs"
@@ -30,8 +45,11 @@ if(require("RUnit", quietly=TRUE)) {
   ## --- Testing ---
 
   ## Define tests
-  testSuite <- defineTestSuite(name=paste(pkg, "unit testing"),
-                                          dirs=path)
+  ## The default RNG for RUnit is rngKind = "Marsaglia-Multicarry",
+  ##  rngNormalKind = "Kinderman-Ramage")
+  ## This sets the default to the R default 2.9.2
+  testSuite <- defineTestSuite(name=paste(pkg, "unit testing"), dirs=path,
+    rngKind="Mersenne-Twister", rngNormalKind="Inversion")
   ## Run
   tests <- runTestSuite(testSuite)
 

@@ -12,14 +12,24 @@
 ################################################################################
 
 test.geneticLHS <- function(){
-  a <- matrix(c(0.3462578, 0.1823516, 0.5145790, 0.9282432, 0.9128999,
-                0.2713718, 0.2219954, 0.6256428), nrow=4, ncol=2, byrow=TRUE)
-  b <- matrix(c(0.58555300, 0.3212979, 0.8961190, 0.72281982, 0.9449718,
-                0.3572891, 0.03827732, 0.5074375, 0.2484802),
-                nrow=3, ncol=3, byrow=TRUE)
-  f <- matrix(c(0.1344930, 0.6663035, 0.4644433, 0.9991624, 0.9921650,
-                0.4117803, 0.7134739, 0.1992269, 0.3106196, 0.3502558),
-                nrow=5, ncol=2, byrow=TRUE)
+  a <- matrix(c(
+    0.4137913, 0.004286313,
+    0.5290463, 0.866422933,
+    0.2091800, 0.523384498,
+    0.9041168, 0.340987296
+    ), nrow=4, ncol=2, byrow=TRUE)
+  b <- matrix(c(
+    0.9092260, 0.1063563, 0.5931998,
+    0.3674236, 0.9118653, 0.2013260,
+    0.1838634, 0.6143440, 0.6896409
+    ), nrow=3, ncol=3, byrow=TRUE)
+  d <- matrix(c(
+    0.75663344, 0.1033584,
+    0.84292532, 0.5872683,
+    0.41514455, 0.9170010,
+    0.01262253, 0.7645178,
+    0.30541787, 0.3835217
+    ), nrow=5, ncol=2, byrow=TRUE)
 
   checkException(geneticLHS(10.1, 2), silent=TRUE)
   checkException(geneticLHS(-1, 2), silent=TRUE)
@@ -46,18 +56,30 @@ test.geneticLHS <- function(){
   checkException(geneticLHS(10, 2, 2, 4, NA), silent=TRUE)
   checkException(geneticLHS(10, 2, 2, 4, NaN), silent=TRUE)
   checkException(geneticLHS(10, 2, 2, 4, Inf), silent=TRUE)
-  checkEqualsNumeric({
-                      set.seed(1976)
-                      suppressMessages(geneticLHS(4, 2))
-                      }, a, tolerance=1E-7)
-  checkEqualsNumeric({
-                      set.seed(1977)
-                      suppressMessages(geneticLHS(3, 3, 6))
-                      }, b, tolerance=1E-7)
-  checkEqualsNumeric({
-                      set.seed(1978)
-                      suppressMessages(geneticLHS(5, 2, 6, 4, .5))
-                      }, f, tolerance=1E-7)
+  
+  f <- function()
+  {
+    set.seed(1976)
+    suppressMessages(geneticLHS(4, 2))
+  }
+  checkEqualsNumeric(f(), a, tolerance=1E-7)
+  checkTrue(checkLatinHypercube(f()))
+  
+  f <- function()
+  {
+    set.seed(1977)
+    suppressMessages(geneticLHS(3, 3, 6))
+  }
+  checkEqualsNumeric(f(), b, tolerance=1E-7)
+  checkTrue(checkLatinHypercube(f()))
+
+  f <- function()
+  {
+    set.seed(1978)
+    suppressMessages(geneticLHS(5, 2, 6, 4, .5))
+  }
+  checkEqualsNumeric(f(), d, tolerance=1E-7)
+  checkTrue(checkLatinHypercube(f()))
 }
 
 
