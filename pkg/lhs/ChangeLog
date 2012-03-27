@@ -21,6 +21,10 @@ Version 0.5
 Version 0.6
   Added a new option to randomLHS to allow for similar lhs's when
   the seed is set and columns are added
+  
+Version 0.7
+  Removed test directories to fix them for the proper package structure.
+ 
 
   
  
