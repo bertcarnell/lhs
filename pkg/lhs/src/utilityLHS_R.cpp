@@ -1,4 +1,4 @@
-#include <cmath>
+#include "defines.h"
 /* VISUAL_STUDIO is defined as a preprocessor directive in the build */
 #ifndef VISUAL_STUDIO
 #include <R.h>
@@ -15,7 +15,7 @@
 #endif
 
 
-extern "C" int lhsCheck(int * N, int * K, int * result, int bTranspose)
+int lhsCheck(int * N, int * K, int * result, int bTranspose)
 {
 	int total = 0;
 	/*
@@ -54,7 +54,7 @@ extern "C" int lhsCheck(int * N, int * K, int * result, int bTranspose)
 	return 1;
 }
 
-extern "C" void lhsPrint(int * N, int * K, int * result, int bTranspose)
+void lhsPrint(int * N, int * K, int * result, int bTranspose)
 {
 	if (bTranspose == 0)
 	{
@@ -80,7 +80,7 @@ extern "C" void lhsPrint(int * N, int * K, int * result, int bTranspose)
 	}
 }
 
-extern "C" void lhsPrint_double(int * N, int * K, double * result)
+void lhsPrint_double(int * N, int * K, double * result)
 {
 	// always bTranspose == 1
 	for (int row = 0; row < *N; row++)
@@ -93,45 +93,49 @@ extern "C" void lhsPrint_double(int * N, int * K, double * result)
 	}
 }
 
-/*
- * Function to return the sum of the inverse of the distances between each
- * point in the matrix
- *
- * Can't have a template in C, so use the template in c++ and expose the functions using extern "C"
- */
-template <class T>
-double sumInvDistance(T * matrix, int* nr, int* nc) 
-{ 
-	T oneDistance = (T) 0;
-	double totalInvDistance = 0.0;
-	/* iterate the row of the first point from 0 to N-2 */
-	for (int i = 0; i < (*nr - 1); i++)
+void rank(std::vector<double> & toRank, std::vector<int> & ranks)
+{
+	size_t len = toRank.size();
+#ifdef _DEBUG
+	if (toRank.size() != ranks.size())
+		throw new std::exception("illegal call in rank");
+#endif
+	for (size_t i = 0; i < len; i++)
 	{
-		/* iterate the row the second point from i+1 to N-1 */
-		for (int j = (i + 1); j < *nr; j++)
+		ranks[i] = 0;
+		for (size_t j = 0; j < len; j++)
 		{
-			oneDistance = 0;
-			/* iterate through the columns, summing the squared differences */
-			for (int k = 0; k < *nc; k++)
-			{
-				/* calculate the square of the difference in one dimension between the
-				* points */
-				oneDistance += (matrix[i * (*nc) + k] - matrix[j * (*nc) + k]) * (matrix[i * (*nc) + k] - matrix[j * (*nc) + k]);
-			}
-			/* sum the inverse distances */
-			totalInvDistance += (1.0 / sqrt((double) oneDistance));
+			if (toRank[i] < toRank[j])
+				ranks[i]++;
 		}
 	}
-	return(totalInvDistance);
 }
 
-extern "C" double sumInvDistance_double(double * matrix, int * nr, int * nc)
+void rankColumns(std::vector<double> & toRank, std::vector<int> & ranks, int nrow)
 {
-	return sumInvDistance(matrix, nr, nc);
-}
-
-extern "C" double sumInvDistance_int(int * matrix, int * nr, int * nc)
-{
-	return sumInvDistance(matrix, nr, nc);
+	size_t n = static_cast<size_t>(nrow);
+	std::vector<double> column = std::vector<double>(n);
+	size_t len = toRank.size();
+	int offset;
+#ifdef _DEBUG
+	if (toRank.size() != ranks.size())
+		throw new std::exception("illegal call in rank");
+#endif
+	for (size_t i = 0; i < len; i+=n)
+	{
+		// copy the first nrow
+		for (size_t j = 0; j < n; j++)
+		{
+			column[j] = toRank[i+j];
+		}
+		// sort
+		std::sort(column.begin(), column.end(), std::less<double>());
+		// find the sorted number that is the same as the number to rank
+		for (size_t j = 0; j < n; j++)
+		{
+			offset = static_cast<int>(i);
+			ranks[i+j] = std::find(toRank.begin()+offset, toRank.begin()+offset+nrow, column[j]) - (toRank.begin()+offset);
+		}
+	}
 }
 

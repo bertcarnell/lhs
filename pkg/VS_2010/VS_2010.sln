@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EA634E1B-9728-402D-8276-536B9452D10B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lhsStaticLib", "lhsStaticLib\lhsStaticLib.vcxproj", "{36232620-EC22-4EFF-95D1-A05C902DFF26}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lhsTest", "lhsTest\lhsTest.vcxproj", "{6EB41B3C-CB36-46DA-8017-CA61104FC0BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36232620-EC22-4EFF-95D1-A05C902DFF26}.Debug|Win32.ActiveCfg = Debug|Win32
+		{36232620-EC22-4EFF-95D1-A05C902DFF26}.Debug|Win32.Build.0 = Debug|Win32
+		{36232620-EC22-4EFF-95D1-A05C902DFF26}.Release|Win32.ActiveCfg = Release|Win32
+		{36232620-EC22-4EFF-95D1-A05C902DFF26}.Release|Win32.Build.0 = Release|Win32
+		{6EB41B3C-CB36-46DA-8017-CA61104FC0BA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6EB41B3C-CB36-46DA-8017-CA61104FC0BA}.Debug|Win32.Build.0 = Debug|Win32
+		{6EB41B3C-CB36-46DA-8017-CA61104FC0BA}.Release|Win32.ActiveCfg = Release|Win32
+		{6EB41B3C-CB36-46DA-8017-CA61104FC0BA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
