@@ -74,18 +74,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lhs\src\improvedLHS_R.cpp" />
-    <ClCompile Include="..\..\lhs\src\maximinLHS_R.cpp" />
-    <ClCompile Include="..\..\lhs\src\optimumLHS_R.cpp" />
-    <ClCompile Include="..\..\lhs\src\optSeededLHS_R.cpp" />
-    <ClCompile Include="..\..\lhs\src\utilityLHS_R.cpp" />
+    <ClCompile Include="..\..\..\..\pkg\lhs\src\improvedLHS_R.cpp" />
+    <ClCompile Include="..\..\..\..\pkg\lhs\src\maximinLHS_R.cpp" />
+    <ClCompile Include="..\..\..\..\pkg\lhs\src\optimumLHS_R.cpp" />
+    <ClCompile Include="..\..\..\..\pkg\lhs\src\optSeededLHS_R.cpp" />
+    <ClCompile Include="..\..\..\..\pkg\lhs\src\utilityLHS_R.cpp" />
     <ClCompile Include="sunif.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\Rdevel\R-2.15.0\src\include\Rmath.h" />
-    <ClInclude Include="..\..\lhs\src\defines.h" />
-    <ClInclude Include="..\..\lhs\src\simpleMatrix.h" />
-    <ClInclude Include="..\..\lhs\src\utilityLHS_R.h" />
+    <ClInclude Include="..\..\..\..\pkg\lhs\src\defines.h" />
+    <ClInclude Include="..\..\..\..\pkg\lhs\src\simpleMatrix.h" />
+    <ClInclude Include="..\..\..\..\pkg\lhs\src\utilityLHS_R.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
