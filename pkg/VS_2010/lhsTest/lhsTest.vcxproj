@@ -85,6 +85,7 @@
     <ClCompile Include="maximinLHS_RTest.cpp" />
     <ClCompile Include="optimumLHS_RTest.cpp" />
     <ClCompile Include="optSeededLHS_RTest.cpp" />
+    <ClCompile Include="simpleMatrixTest.cpp" />
     <ClCompile Include="TestClass.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +93,7 @@
     <ClInclude Include="maximinLHS_RTest.h" />
     <ClInclude Include="optimumLHS_RTest.h" />
     <ClInclude Include="optSeededLHS_RTest.h" />
+    <ClInclude Include="simpleMatrixTest.h" />
     <ClInclude Include="TestClass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

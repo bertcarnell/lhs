@@ -50,6 +50,9 @@
 #       AVAIL are valid points.
 #   8.  There is only one choice for the last point
 #
+# 6/30/2012
+#   Changed the C function call
+#
 ################################################################################
 
 improvedLHS <- function(n, k, dup=1){
@@ -63,14 +66,9 @@ improvedLHS <- function(n, k, dup=1){
     stop("The DUPLICATION (dup) factor must be a positive integer\n")
 
   result <- numeric(k*n)
-  avail <- numeric(k*n)
-  point1 <- numeric(k*(dup*(n-1)))
-  list1 <- numeric(dup*(n-1))
-  vec <- numeric(k)
 
   result2 <- .C("improvedLHS_C", as.integer(n), as.integer(k), as.integer(dup),
-                as.integer(result), as.integer(avail), as.integer(point1),
-                as.integer(list1), as.integer(vec))[[4]]
+                as.integer(result))[[4]]
 
   eps <- runif(n*k)
 

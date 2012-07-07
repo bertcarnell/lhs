@@ -15,4 +15,11 @@ For a complete list of functions, use library(help="lhs").
 Rob Carnell
 }
 \keyword{design}
+\seealso{
+  \code{\link{randomLHS}}, \code{\link{geneticLHS}},
+  \code{\link{improvedLHS}}, \code{\link{maximinLHS}}, and
+  \code{\link{optimumLHS}} to generate Latin Hypercube Samples.
+  \code{\link{optAugmentLHS}}, \code{\link{optSeededLHS}}, and
+  \code{\link{augmentLHS}} to modify and augment existing designs.
+}
 

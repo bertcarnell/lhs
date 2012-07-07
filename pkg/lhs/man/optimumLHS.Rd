@@ -7,12 +7,13 @@ creating a Latin Hypercube Design.  This function uses the Columnwise
 Pairwise (\acronym{CP}) algorithm to generate an optimal design with respect to the S
 optimality criterion.
 }
-\usage{optimumLHS(n=10, k=2, maxSweeps=2, eps=.1)}
+\usage{optimumLHS(n=10, k=2, maxSweeps=2, eps=.1, verbose=FALSE)}
 \arguments{
   \item{n}{The number of partitions (simulations or design points)}
   \item{k}{The number of replications (variables)}
   \item{maxSweeps}{The maximum number of times the CP algorithm is applied to all the columns.}
   \item{eps}{The optimal stopping criterion}
+  \item{verbose}{Print informational messages}
 }
 \details{
 Latin hypercube sampling (LHS) was developed to generate a distribution

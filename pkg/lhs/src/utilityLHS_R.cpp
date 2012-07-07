@@ -1,21 +1,28 @@
+/*
+ *
+ * utilityLHS_R.cpp: A C++ routine of utilities used in the LHS package
+ * Copyright (C) 2012  Robert Carnell
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ */
+
 #include "defines.h"
-/* VISUAL_STUDIO is defined as a preprocessor directive in the build */
-#ifndef VISUAL_STUDIO
-#include <R.h>
-#else
-#include <stdio.h>
-#endif
+#include "utilityLHS_R.h"
 
-#ifndef VISUAL_STUDIO
-#define PRINT_MACRO Rprintf
-#define ERROR_MACRO error
-#else
-#define PRINT_MACRO printf
-#define ERROR_MACRO printf
-#endif
-
-
-int lhsCheck(int * N, int * K, int * result, int bTranspose)
+int utilityLHS::lhsCheck(int N, int K, int * result, int bTranspose)
 {
 	int total = 0;
 	/*
@@ -29,71 +36,32 @@ int lhsCheck(int * N, int * K, int * result, int bTranspose)
 	*/
 	if (bTranspose == 0)
 	{
-		for (int row = 0; row < *K; row++)
+		for (int row = 0; row < K; row++)
 		{
 			total = 0;
-			for (int col = 0; col < *N; col++)
+			for (int col = 0; col < N; col++)
 			{
-				total += result[row * (*N) + col];
+				total += result[row * N + col];
 			}
-			if (total != (*N) * ((*N) + 1) / 2) return 0;
+			if (total != N * (N + 1) / 2) return 0;
 		}
 	}
 	else
 	{
-		for (int col = 0; col < *K; col++)
+		for (int col = 0; col < K; col++)
 		{
 			total = 0;
-			for (int row = 0; row < *N; row++)
+			for (int row = 0; row < N; row++)
 			{
-				total += result[row * (*K) + col];
+				total += result[row * K + col];
 			}
-			if (total != (*N) * ((*N) + 1) / 2) return 0;
+			if (total != N * (N + 1) / 2) return 0;
 		}
 	}
 	return 1;
 }
 
-void lhsPrint(int * N, int * K, int * result, int bTranspose)
-{
-	if (bTranspose == 0)
-	{
-		for (int row = 0; row < *K; row++)
-		{
-			for (int col = 0; col < *N; col++)
-			{
-				PRINT_MACRO("%d ", result[row * (*N) + col]);
-			}
-			PRINT_MACRO("\n");
-		}
-	}
-	else
-	{
-		for (int row = 0; row < *N; row++)
-		{
-			for (int col = 0; col < *K; col++)
-			{
-				PRINT_MACRO("%d ", result[row * (*K) + col]);
-			}
-			PRINT_MACRO("\n");
-		}
-	}
-}
-
-void lhsPrint_double(int * N, int * K, double * result)
-{
-	// always bTranspose == 1
-	for (int row = 0; row < *N; row++)
-	{
-		for (int col = 0; col < *K; col++)
-		{
-			PRINT_MACRO("%g ", result[row * (*K) + col]);
-		}
-		PRINT_MACRO("\n");
-	}
-}
-
-void rank(std::vector<double> & toRank, std::vector<int> & ranks)
+void utilityLHS::rank(std::vector<double> & toRank, std::vector<int> & ranks)
 {
 	size_t len = toRank.size();
 #ifdef _DEBUG
@@ -111,7 +79,7 @@ void rank(std::vector<double> & toRank, std::vector<int> & ranks)
 	}
 }
 
-void rankColumns(std::vector<double> & toRank, std::vector<int> & ranks, int nrow)
+void utilityLHS::rankColumns(std::vector<double> & toRank, std::vector<int> & ranks, int nrow)
 {
 	size_t n = static_cast<size_t>(nrow);
 	std::vector<double> column = std::vector<double>(n);

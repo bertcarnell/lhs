@@ -9,5 +9,6 @@ namespace lhsTest {
 	{
 		void Run();
 		void testOptimumLHS_R();
+		void testStress();
 	};
 }

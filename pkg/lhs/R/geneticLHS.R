@@ -38,9 +38,12 @@
 # The dist function calculates the distance between each row of a matrix
 #   and places the answer in a k*k half diagonal matrix
 #
+# 6/30/2012
+#	Added verbose argument
+#
 ################################################################################
 
-geneticLHS <- function(n=10, k=2, pop=100, gen=4, pMut=.1)
+geneticLHS <- function(n=10, k=2, pop=100, gen=4, pMut=.1, verbose=FALSE)
 {
   if(length(n)!=1 |length(k)!=1 | length(pop)!=1 |length(gen)!=1 | length(pMut)!=1)
     stop("no parameters may be vectors")
@@ -56,16 +59,8 @@ geneticLHS <- function(n=10, k=2, pop=100, gen=4, pMut=.1)
   if(pMut<=0 | pMut>=1) stop("pMut must be on the interval (0,1)")
 
   if(n==1) {
-    message("Design is already optimal\n")
+	if (verbose) message("Design is already optimal\n")
     return(rep(1,k))
-  }
-
-  runifint <- function(N=1, A=0, B=1)
-  {
-    r <- runif(N, min=0, max=1)
-    int <- A + floor(r*(B+1-A))
-    int[which(int>B)] <- B
-    return(int)
   }
 
   A <- array(0, dim=c(n, k, pop),
@@ -120,10 +115,10 @@ geneticLHS <- function(n=10, k=2, pop=100, gen=4, pMut=.1)
 
     A <- J
 
-    if(v!=gen) message(paste("Generation ", v, " completed",sep=""))
+    if(v!=gen && verbose) message(paste("Generation ", v, " completed",sep=""))
   }
   
-  message("Last generation completed")
+  if (verbose) message("Last generation completed")
   P <- as.matrix(J[ , , 1])
   
   test <- apply(P, 2, sum)

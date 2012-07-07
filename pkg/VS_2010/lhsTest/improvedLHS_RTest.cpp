@@ -5,6 +5,8 @@ namespace lhsTest{
 	{
 		printf("\timprovedLHS_RTest...");
 		testImprovedLHS_R();
+		testStress();
+		printf("passed\n");
 	}
 
 	void improvedLHS_RTest::testImprovedLHS_R()
@@ -19,11 +21,15 @@ namespace lhsTest{
 		int * vec = new int[k];
 
 		set_seed(1976, 1968);
-		improvedLHS_C(&n, &k, &DUP, result, avail, point1, list1, vec);
-		int expected[12] = {1,4,2,3,1,3,4,2,1,4,3,2};
-		for (int i = 0; i < n*k; i++)
+		improvedLHS_C(&n, &k, &DUP, result);
+		
+		matrix<int> result_temp = matrix<int>(k, n, result);
+		result_temp.transpose();
+
+		int expected[12] = {1,4,2,3,3,1,4,2,3,4,1,2};
+		for (size_t i = 0; i < static_cast<size_t>(n*k); i++)
 		{
-			Assert(expected[i] == result[i], "Failed 1");
+			Assert(expected[i] == result_temp.values[i], "Failed 1");
 		}
 
 		unsigned int a, b;
@@ -35,13 +41,11 @@ namespace lhsTest{
 		Assert(a == 73050744 && b == 35424000, "failed RNG test2");
 
 		set_seed(1976, 1968);
-		improvedLHS_C(&n, &k, &DUP, result, avail, point1, list1, vec);
+		improvedLHS_C(&n, &k, &DUP, result);
 		get_seed(&a, &b);
 		Assert(a == 1399152289 && b == 766747565, "failed RNG test3");
-
-		printf("passed\n");
 	}
-}
+
 
 /*
 require(lhs)
@@ -60,3 +64,22 @@ floor(4*improvedLHS(4,3,5))+1
 print(runif(1), 20)
 .Random.seed
 */
+
+	void improvedLHS_RTest::testStress()
+	{
+		int n = 4;
+		int k = 3;
+		int DUP = 5;
+		int * result = new int[n*k];
+		int * avail = new int[n*k];
+		int * point1 = new int[k*DUP*(n-1)];
+		int * list1 = new int[DUP*(n-1)];
+		int * vec = new int[k];
+
+		set_seed(1976, 1968);
+		for (int i = 0; i < 10000; i++)
+			improvedLHS_C(&n, &k, &DUP, result);
+
+	}
+
+}

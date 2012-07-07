@@ -37,9 +37,12 @@
 # Run Time and computer resources:  Stocki asserts that processing time
 #   increases proportional to K^5 for constant N and N^5 for constant K
 #
+# 6/30/2012
+#   Changed C function call.  Added verbose parameter.
+#
 ################################################################################
 
-optimumLHS <- function(n=10, k=2, maxSweeps=2, eps=.1)
+optimumLHS <- function(n=10, k=2, maxSweeps=2, eps=.1, verbose=FALSE)
 {
   if(length(n)!=1 |length(k)!=1 | length(maxSweeps)!=1 |length(eps)!=1)
     stop("n, k, eps, and maxSweeps may not be vectors")
@@ -57,7 +60,7 @@ optimumLHS <- function(n=10, k=2, maxSweeps=2, eps=.1)
   for(j in 1:k) {
     Pold[ ,j] <- order(runif(n))
   }
-  Pold <- c(t(Pold)) # changes to an n*k length vector
+  Pold <- c(t(Pold)) # changes to an k*n length vector
 
   if(n==1) {
     message("Design is already optimal\n")
@@ -65,15 +68,10 @@ optimumLHS <- function(n=10, k=2, maxSweeps=2, eps=.1)
   }
 
   jLen <- choose(n, 2) + 1
-  J1 <- numeric(jLen)
-  J2 <- numeric(jLen)
-  J3 <- numeric(jLen)
-  Pnew <- numeric(n*k)
 
   resultList <- .C("optimumLHS_C", as.integer(n), as.integer(k),
                      as.integer(maxSweeps), as.double(eps), as.integer(Pold),
-                     as.double(J1), as.integer(J2), as.integer(J3),
-                     as.integer(jLen), as.integer(Pnew))
+                     as.integer(jLen), as.integer(verbose))
 
   result <- resultList[[5]]
 

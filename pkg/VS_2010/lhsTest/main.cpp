@@ -6,6 +6,10 @@
 #include "maximinLHS_RTest.h"
 #include "optimumLHS_RTest.h"
 #include "optSeededLHS_RTest.h"
+#include "simpleMatrixTest.h"
+
+#define CREATE_TEST(x) \
+	tests.push_back(dynamic_cast<TestClass*>(new x()))
 
 using namespace lhsTest;
 
@@ -13,10 +17,11 @@ int main(int argc, const char* argv[] )
 {
 	printf("Starting lhsTest...\n");
 	std::vector<TestClass*> tests = std::vector<TestClass*>();
-	tests.push_back(dynamic_cast<TestClass*>(new improvedLHS_RTest()));
-	tests.push_back(dynamic_cast<TestClass*>(new maximinLHS_RTest()));
-	tests.push_back(dynamic_cast<TestClass*>(new optimumLHS_RTest()));
-	tests.push_back(dynamic_cast<TestClass*>(new optSeededLHS_RTest()));
+	CREATE_TEST(simpleMatrixTest);
+	CREATE_TEST(improvedLHS_RTest);
+	CREATE_TEST(maximinLHS_RTest);
+	CREATE_TEST(optimumLHS_RTest);
+	CREATE_TEST(optSeededLHS_RTest);
 
 	for (size_t i = 0; i < tests.size(); i++)
 	{

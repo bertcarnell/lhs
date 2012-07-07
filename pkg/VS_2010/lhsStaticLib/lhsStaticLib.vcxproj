@@ -84,6 +84,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\Rdevel\R-2.15.0\src\include\Rmath.h" />
     <ClInclude Include="..\..\lhs\src\defines.h" />
+    <ClInclude Include="..\..\lhs\src\simpleMatrix.h" />
+    <ClInclude Include="..\..\lhs\src\utilityLHS_R.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

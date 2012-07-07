@@ -1,8 +1,8 @@
 /*
  *
- * improvedLHS_R.c: A C routine for creating Improved Latin Hypercube Samples
+ * improvedLHS_R.cpp: A C routine for creating Improved Latin Hypercube Samples
  *                  used in the LHS package
- * Copyright (C) 2006  Robert Carnell
+ * Copyright (C) 2012  Robert Carnell
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,8 +20,6 @@
  *
  */
 
-#include <float.h>
-#include <limits.h>
 #include "defines.h"
 
 /*
@@ -30,8 +28,6 @@
  * The R internal random numer generator is used so that R can set.seed for
  * testing the functions.
  * This code uses ISO C90 comment styles and layout
- * "result", "avail", and "point1" are matricies but are treated as one
- * dimensional arrays to facilitate passing them from R.
  * Dimensions:  result  K x N
  *              avail   K x N
  *              point1  K x DUP(N-1)
@@ -46,21 +42,28 @@
  *
  */
 
-void improvedLHS_C(int* N, int* K, int* dup, int* result, int* avail,
-                   int* point1, int* list1, int* vec)
+void improvedLHS_C(int* N, int* K, int* dup, int* result)
 {
-	int duplication = *dup;
-	int nsamples = *N;
-	int nparameters = *K;
+	size_t nsamples = static_cast<size_t>(*N);
+	size_t nparameters = static_cast<size_t>(*K);
+	size_t duplication = static_cast<size_t>(*dup);
+	matrix_unsafe<int> m_result = matrix_unsafe<int>(nparameters, nsamples, result);
+	/* the length of the point1 columns and the list1 vector */
+	size_t len = duplication * (nsamples - 1);
+	/* create memory space for computations */
+	matrix<int> avail_new = matrix<int>(nparameters, nsamples);
+	matrix<int> point1_new = matrix<int>(nparameters, len);
+	std::vector<int> list1_new = std::vector<int>(len);
+	std::vector<int> vec_new = std::vector<int>(nparameters);
 	/* optimum spacing between points */
 	double opt = static_cast<double>(nsamples) / ( std::pow(static_cast<double>(nsamples), (1.0 / static_cast<double>(nparameters))));
 	/* the square of the optimum spacing between points */
 	double opt2 = opt * opt;
 
 	/* index of the current candidate point */
-	int point_index;
+	size_t point_index;
 	/* index of the optimum point */
-	int best;
+	size_t best;
 	/* the squared distance between points */
 	unsigned int distSquared;
 	/*
@@ -68,19 +71,15 @@ void improvedLHS_C(int* N, int* K, int* dup, int* result, int* avail,
 	* optimum distance
 	*/
 	double min_all;
-	/*  The minumum candidate squared difference between points */
+	/*  The minumum candidate squared distance between points */
 	unsigned int min_candidate;
-	/* the length of the point1 columns and the list1 vector */
-	int len = duplication * (nsamples - 1);
-	/* used in testing the output */
-	int test = 1;
 
 	/* initialize the avail matrix */
-	for (int row = 0; row < nparameters; row++)
+	for (size_t row = 0; row < nparameters; row++)
 	{
-		for (int col = 0; col < nsamples; col++)
+		for (size_t col = 0; col < nsamples; col++)
 		{
-			avail[arrayLocation(row, col, nsamples, nsamples*nparameters)] = col + 1;
+			avail_new(row, col) = static_cast<int>(col + 1);
 		}
 	}
 
@@ -92,60 +91,58 @@ void improvedLHS_C(int* N, int* K, int* dup, int* result, int* avail,
 	GetRNGstate();
 #endif
 
-	for (int row = 0; row < nparameters; row++)
+	for (size_t row = 0; row < nparameters; row++)
 	{
-		//result[row * (nsamples) + ((nsamples) - 1)] = static_cast<int>(floor(unif_rand() * (nsamples) + 1));
-		result[arrayLocation(row, nsamples-1, nsamples, nsamples*nparameters)] = static_cast<int>(std::floor(unif_rand() * static_cast<double>(nsamples) + 1.0));
+		m_result(row, nsamples-1) = static_cast<int>(std::floor(unif_rand() * static_cast<double>(nsamples) + 1.0));
 	}
 
 	/*
 	* use the random integers from the last column of result to place an N value
 	* randomly through the avail matrix
 	*/
-	for (int row = 0; row < nparameters; row++)
+	for (size_t row = 0; row < nparameters; row++)
 	{
-		avail[row * (nsamples) + (result[row * (nsamples) + ((nsamples) - 1)] - 1)] = nsamples;
+		avail_new(row, static_cast<size_t>(m_result(row, nsamples-1) - 1)) = static_cast<int>(nsamples);
 	}
 
 	/* move backwards through the result matrix columns */
-	for (int count = nsamples - 1; count > 0; count--)
+	for (size_t count = nsamples - 1; count > 0; count--)
 	{
-		for (int row = 0; row < nparameters; row++)
+		for (size_t row = 0; row < nparameters; row++)
 		{
-			for (int col = 0; col < duplication; col++)
+			for (size_t col = 0; col < duplication; col++)
 			{
 				/* create the list1 vector */
-				for (int j = 0; j < count; j++)
+				for (size_t j = 0; j < count; j++)
 				{
-					//list1[(j + count*col)] = avail[row * (nsamples) + j];
-					list1[(j + count*col)] = avail[arrayLocation(row, j, nsamples, nsamples*nparameters)];
+					list1_new[j + count*col] = avail_new(row, j);
 				}
 			}
 			/* create a set of points to choose from */
-			for (int col = count * duplication; col > 0; col--)
+			for (size_t col = count * duplication; col > 0; col--)
+			/* Note: can't do col = count*duplication - 1; col >= 0 because it throws a warning at W4 */
 			{
-				point_index = static_cast<int>(std::floor(unif_rand() * static_cast<double>(col) + 1.0));
-				point1[row * len + (col-1)] = list1[point_index];
-				list1[point_index] = list1[(col-1)];
+				point_index = static_cast<size_t>(std::floor(unif_rand() * static_cast<double>(col)));
+				point1_new(row, col-1) = list1_new[point_index];
+				list1_new[point_index] = list1_new[col-1];
 			}
 		}
 		min_all = DBL_MAX;
 		best = 0;
-		for (int col = 0; col < duplication * count - 1; col++)
+		for (size_t col = 0; col < duplication * count - 1; col++)
 		{
 			min_candidate = UINT_MAX;
-			for (int j = count; j < nsamples; j++)
+			for (size_t j = count; j < nsamples; j++)
 			{
 				distSquared = 0;
 				/*
 				* find the distance between candidate points and the points already
 				* in the sample
 				*/
-				for (int k = 0; k < nparameters; k++)
+				for (size_t k = 0; k < nparameters; k++)
 				{
-					//vec[k] = point1[k * len + col] - result[k * (nsamples) + j];
-					vec[k] = point1[arrayLocation(k, col, len, nparameters*duplication*(nsamples-1))] - result[arrayLocation(k, j, nsamples, nsamples*nparameters)];
-					distSquared += vec[k] * vec[k];
+					vec_new[k] = point1_new(k, col) - m_result(k, j);
+					distSquared += vec_new[k] * vec_new[k];
 				}
 				/* original code compared dist1 to opt, but using the squareroot
 				* function and recasting distSquared to a double was unncessary.
@@ -163,7 +160,7 @@ void improvedLHS_C(int* N, int* K, int* dup, int* result, int* avail,
 			* if the difference between min candidate and opt2 is the smallest so
 			* far, then keep that point as the best.
 			*/
-			if (fabs(static_cast<double>(min_candidate) - opt2) < min_all)
+			if (std::fabs(static_cast<double>(min_candidate) - opt2) < min_all)
 			{
 				min_all = std::fabs(static_cast<double>(min_candidate) - opt2);
 				best = col;
@@ -171,20 +168,18 @@ void improvedLHS_C(int* N, int* K, int* dup, int* result, int* avail,
 		}
 
 		/* take the best point out of point1 and place it in the result */
-		for (int row = 0; row < nparameters; row++)
+		for (size_t row = 0; row < nparameters; row++)
 		{
-			//result[row * (nsamples) + (count-1)] = point1[row * len + best];
-			result[arrayLocation(row, count-1, nsamples, nsamples*nparameters)] = point1[arrayLocation(row, best, len, nparameters*duplication*(nsamples-1))];
+			m_result(row, count - 1) = point1_new(row, best);
 		}
 		/* update the numbers that are available for the future points */
-		for (int row = 0; row < nparameters; row++)
+		for (size_t row = 0; row < nparameters; row++)
 		{
-			for (int col = 0; col < nsamples; col++)
+			for (size_t col = 0; col < nsamples; col++)
 			{
-				if (avail[row * (nsamples) + col]==result[row * (nsamples) + (count-1)])
+				if (avail_new(row, col) == m_result(row, count - 1))
 				{
-					//avail[row * (nsamples) + col] = avail[row * (nsamples) + (count-1)];
-					avail[arrayLocation(row, col, nsamples, nsamples*nparameters)] = avail[arrayLocation(row, count-1, nsamples, nsamples*nparameters)];
+					avail_new(row, col) = avail_new(row, count-1);
 				}
 			}
 		}
@@ -194,14 +189,13 @@ void improvedLHS_C(int* N, int* K, int* dup, int* result, int* avail,
 	* once all but the last points of result are filled in, there is only
 	* one choice left
 	*/
-	for (int row = 0; row < nparameters; row++)
+	for (size_t row = 0; row < nparameters; row++)
 	{
-		//result[row * (nsamples) + 0] = avail[row * (nsamples) + 0];
-		result[arrayLocation(row, 0, nsamples, nsamples*nparameters)] = avail[arrayLocation(row, 0, nsamples, nsamples*nparameters)];
+		m_result(row, 0u) = avail_new(row, 0u);
 	}
 
 #if _DEBUG
-	test = lhsCheck(N, K, result, 0);
+	int test = utilityLHS::lhsCheck(static_cast<int>(nsamples), static_cast<int>(nparameters), m_result.values, 1);
 
 	if (test == 0)
 	{
@@ -211,7 +205,7 @@ void improvedLHS_C(int* N, int* K, int* dup, int* result, int* avail,
 #endif
 
 #if PRINT_RESULT
-	lhsPrint(N, K, result, 0);
+	utilityLHS<int>::lhsPrint(N, K, m_result.values, 0);
 #endif
 
 #ifndef VISUAL_STUDIO

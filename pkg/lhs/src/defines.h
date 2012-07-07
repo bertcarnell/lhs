@@ -1,3 +1,24 @@
+/*
+ *
+ * defines.h: A C++ header used in the LHS package
+ * Copyright (C) 2012  Robert Carnell
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ */
+
 #pragma once
 
 #include <cstdlib>
@@ -6,6 +27,8 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
+#include <cfloat>
+#include <climits>
 /* VISUAL_STUDIO is defined as a preprocessor directive in the build */
 #ifndef VISUAL_STUDIO
 #include "R.h"
@@ -17,6 +40,7 @@
 #include "Rmath.h"
 #endif
 #endif
+#include "simpleMatrix.h"
 
 #define PRINT_RESULT 0
 
@@ -28,61 +52,13 @@
 #define ERROR_MACRO printf
 #endif
 
-int lhsCheck(int * N, int * K, int * result, int bTranspose);
-void lhsPrint(int * N, int * K, int * result, int bTranspose);
-void lhsPrint_double(int * N, int * K, double * result);
+/* include after PRINT_MACRO is defined */
+#include "utilityLHS_R.h"
 
 extern "C" {
-	void improvedLHS_C(int* N, int* K, int* DUP, int* result, int* avail,
-                   int* point1, int* list1, int* vec);
-	void maximinLHS_C(int* N, int* K, int* DUP, int* result, int* avail,
-                  int* point1, int* list1, int* vec);
-	void optimumLHS_C(int* N, int* K, int* MAXSWEEPS, double* EPS, int* pOld,
-                  double* J1, int* J2, int* J3, int* jLen, int* pNew, int* bVerbose);
-	void optSeededLHS_C(int* N, int* K, int* MAXSWEEPS, double* EPS, double* pOld,
-                  double* J1, int* J2, int* J3, int* jLen, double* pNew, int* bVerbose);
+	void improvedLHS_C(int* N, int* K, int* DUP, int* result);
+	void maximinLHS_C(int* N, int* K, int* DUP, int* result);
+	void optimumLHS_C(int* N, int* K, int* MAXSWEEPS, double* EPS, int* pOld, int* JLen, int* bVerbose);
+	void optSeededLHS_C(int* N, int* K, int* MAXSWEEPS, double* EPS, double* pOld, int* JLen, int* bVerbose);
 }
 
-/*
- * Function to return the sum of the inverse of the distances between each
- * point in the matrix
- */
-template <class T>
-double sumInvDistance(T * matrix, int nr, int nc) 
-{ 
-	T oneDistance = (T) 0;
-	double totalInvDistance = 0.0;
-	/* iterate the row of the first point from 0 to N-2 */
-	for (int i = 0; i < (nr - 1); i++)
-	{
-		/* iterate the row the second point from i+1 to N-1 */
-		for (int j = (i + 1); j < nr; j++)
-		{
-			oneDistance = 0;
-			/* iterate through the columns, summing the squared differences */
-			for (int k = 0; k < nc; k++)
-			{
-				/* calculate the square of the difference in one dimension between the
-				* points */
-				oneDistance += (matrix[i * (nc) + k] - matrix[j * (nc) + k]) * (matrix[i * (nc) + k] - matrix[j * (nc) + k]);
-			}
-			/* sum the inverse distances */
-			totalInvDistance += (1.0 / sqrt((double) oneDistance));
-		}
-	}
-	return(totalInvDistance);
-}
-
-inline
-int arrayLocation(int dim1Index, int dim2Index, int dim2Length, int max)
-{
-	int result = dim1Index * dim2Length + dim2Index;
-#ifdef _DEBUG
-	if (result >= max)
-		throw new std::exception("arrayLocation out of bounds");
-#endif
-	return result;
-}
-
-void rank(std::vector<double> & toRank, std::vector<int> & ranks);
-void rankColumns(std::vector<double> & toRank, std::vector<int> & ranks, int nrow);

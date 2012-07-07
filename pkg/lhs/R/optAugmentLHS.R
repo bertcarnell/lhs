@@ -54,14 +54,6 @@ optAugmentLHS <- function(lhs, m=1, mult=2)
   if(any(lhs<0 | lhs>1))
     stop("Input Design must have entries on the interval [0,1]\n")
 
-  runifint <- function(N=1, A=0, B=1)
-  {
-    r <- runif(N, min=0, max=1)
-    int <- A + floor(r*(B+1-A))
-    int[which(int>B)] <- B
-    return(int)
-  }
-
   K <- ncol(lhs)
   N <- nrow(lhs)
 

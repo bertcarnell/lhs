@@ -45,9 +45,12 @@
 # The dist function calculates the distance between each row of a matrix
 #   and places the answer in a k*k half diagonal matrix
 #
+# 6/30/2012
+#   Changed the C function call.  Added the verbose argument.
+#
 ################################################################################
 
-optSeededLHS <- function(seed, m=1, maxSweeps=2, eps=.1)
+optSeededLHS <- function(seed, m=1, maxSweeps=2, eps=.1, verbose=FALSE)
 {
   if(is.matrix(seed)==FALSE)
     stop("Input seed Design must be in the Matrix class\n")
@@ -78,15 +81,10 @@ optSeededLHS <- function(seed, m=1, maxSweeps=2, eps=.1)
   Pold <- c(t(Pold)) # changes to an N*k length vector
 
   jLen <- choose(N, 2) + 1
-  J1 <- numeric(jLen)
-  J2 <- numeric(jLen)
-  J3 <- numeric(jLen)
-  Pnew <- numeric(N*k)
 
   resultList <- .C("optSeededLHS_C", as.integer(N), as.integer(k),
                      as.integer(maxSweeps), as.double(eps), as.double(Pold),
-                     as.double(J1), as.integer(J2), as.integer(J3),
-                     as.integer(jLen), as.double(Pnew))
+                     as.integer(jLen), as.integer(verbose))
 
   result <- resultList[[5]]
 

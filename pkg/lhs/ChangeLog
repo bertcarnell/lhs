@@ -25,7 +25,11 @@ Version 0.6
 Version 0.7
   Removed test directories to fix them for the proper package structure.
  
-
+Version 0.8
+  Refactored the underlying C code into C++ to add range checks
+  for internal arrays.  Corrected a bug suggested by XXXX on DATE.  
+  Corrected the bug suggested by Prof Ripley on DATE with the
+  range checking.
   
  
   
