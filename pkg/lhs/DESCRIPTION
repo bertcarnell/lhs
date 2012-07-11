@@ -1,6 +1,6 @@
 Package: lhs
-Version: 0.8
-Date: 2012-07-01
+Version: 0.9
+Date: 2012-07-11
 Title: Latin Hypercube Samples
 Authors@R: c(person("Rob", "Carnell", role=c("aut","cre"),
   email="carnellr@battelle.org"))

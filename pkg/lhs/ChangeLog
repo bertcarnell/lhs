@@ -31,5 +31,7 @@ Version 0.8
   Corrected the bug suggested by Prof Ripley on DATE with the
   range checking.
   
- 
+ Version 0.9
+  Removed non-portable code introduced in Version 0.8
+  
   

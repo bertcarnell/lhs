@@ -64,10 +64,10 @@ void optimumLHS_C(int* N, int* K, int* maxSweeps, double* eps, int* oldHypercube
 	size_t iter, posit, optimalityRecordIndex;
 
 	matrix_unsafe<int> oldHypercube_new = matrix_unsafe<int>(nsamples, nparameters, oldHypercube, true);
-	matrix<int> newHypercube_new = matrix<int>(nsamples, nparameters, true);
-	std::vector<double> optimalityRecord_new = std::vector<double>(nOptimalityRecordLength);
-	std::vector<size_t> interchangeRow1_new = std::vector<size_t>(nOptimalityRecordLength);
-	std::vector<size_t> interchangeRow2_new = std::vector<size_t>(nOptimalityRecordLength);
+	matrix<int> newHypercube = matrix<int>(nsamples, nparameters, true);
+	std::vector<double> optimalityRecord = std::vector<double>(nOptimalityRecordLength);
+	std::vector<size_t> interchangeRow1 = std::vector<size_t>(nOptimalityRecordLength);
+	std::vector<size_t> interchangeRow2 = std::vector<size_t>(nOptimalityRecordLength);
 
 	/* find the initial optimality measure */
 	gOptimalityOld = utilityLHS::sumInvDistance<int>(oldHypercube_new.values, static_cast<int>(nsamples), static_cast<int>(nparameters));
@@ -101,28 +101,28 @@ void optimumLHS_C(int* N, int* K, int* maxSweeps, double* eps, int* oldHypercube
 					{
 						for (size_t col = 0; col < nparameters; col++)
 						{
-							newHypercube_new(row, col) = oldHypercube_new(row, col);
+							newHypercube(row, col) = oldHypercube_new(row, col);
 						}
 					}
 					/* exchange two values (from the ith and kth rows) in the jth column
 					* and place them in the new matrix */
-					newHypercube_new(i, j) = oldHypercube_new(k, j);
-					newHypercube_new(k, j) = oldHypercube_new(i, j);
+					newHypercube(i, j) = oldHypercube_new(k, j);
+					newHypercube(k, j) = oldHypercube_new(i, j);
 
 					/* store the optimality of the newly created matrix and the rows that
 					* were interchanged */
-					optimalityRecord_new[optimalityRecordIndex] = utilityLHS::sumInvDistance<int>(newHypercube_new.values, nsamples, nparameters);
-					interchangeRow1_new[optimalityRecordIndex] = i;
-					interchangeRow2_new[optimalityRecordIndex] = k;
+					optimalityRecord[optimalityRecordIndex] = utilityLHS::sumInvDistance<int>(newHypercube.values, nsamples, nparameters);
+					interchangeRow1[optimalityRecordIndex] = i;
+					interchangeRow2[optimalityRecordIndex] = k;
 					optimalityRecordIndex++;
 				}
 			}
 			/* once all combinations of the row interchanges have been completed for
 			* the current column j, store the old optimality measure (the one we are
 			* trying to beat) */
-			optimalityRecord_new[optimalityRecordIndex] = gOptimalityOld;
-			interchangeRow1_new[optimalityRecordIndex] = 0;
-			interchangeRow2_new[optimalityRecordIndex] = 0;
+			optimalityRecord[optimalityRecordIndex] = gOptimalityOld;
+			interchangeRow1[optimalityRecordIndex] = 0;
+			interchangeRow2[optimalityRecordIndex] = 0;
 
 			/* Find which optimality measure is the lowest for the current column.
 			* In other words, which two row interchanges made the hypercube better in
@@ -130,30 +130,30 @@ void optimumLHS_C(int* N, int* K, int* maxSweeps, double* eps, int* oldHypercube
 			posit = 0;
 			for (size_t k = 0; k < nOptimalityRecordLength; k++)
 			{
-				if (optimalityRecord_new[k] < optimalityRecord_new[posit]) posit = k;
+				if (optimalityRecord[k] < optimalityRecord[posit]) posit = k;
 			}
 
 			/* If the new minimum optimality measure is better than the old measure */
-			if (optimalityRecord_new[posit] < gOptimalityOld)
+			if (optimalityRecord[posit] < gOptimalityOld)
 			{
 				/* put oldHypercube in newHypercube */
 				for (size_t row = 0; row < nsamples; row++)
 				{
 					for (size_t col = 0; col < nparameters; col++)
 					{
-						newHypercube_new(row, col) = oldHypercube_new(row, col);
+						newHypercube(row, col) = oldHypercube_new(row, col);
 					}
 				}
 				/* Interchange the rows that were the best for this column */
-				newHypercube_new(interchangeRow1_new[posit], j) = oldHypercube_new(interchangeRow2_new[posit], j);
-				newHypercube_new(interchangeRow2_new[posit], j) = oldHypercube_new(interchangeRow1_new[posit], j);
+				newHypercube(interchangeRow1[posit], j) = oldHypercube_new(interchangeRow2[posit], j);
+				newHypercube(interchangeRow2[posit], j) = oldHypercube_new(interchangeRow1[posit], j);
 
 				/* put newHypercube back in oldHypercube for the next iteration */
 				for (size_t row = 0; row < nsamples; row++)
 				{
 					for (size_t col = 0; col < nparameters; col++)
 					{
-						oldHypercube_new(row, col) = newHypercube_new(row, col);
+						oldHypercube_new(row, col) = newHypercube(row, col);
 					}
 				}
 
@@ -161,7 +161,7 @@ void optimumLHS_C(int* N, int* K, int* maxSweeps, double* eps, int* oldHypercube
 				if (j > 0)
 				{
 					/* check to see how much benefit we gained from this sweep */
-					optimalityChange = std::fabs(optimalityRecord_new[posit] - gOptimalityOld);
+					optimalityChange = std::fabs(optimalityRecord[posit] - gOptimalityOld);
 					if (optimalityChange < eps_change * optimalityChangeOld)
 					{
 						test = 1;
@@ -172,21 +172,21 @@ void optimumLHS_C(int* N, int* K, int* maxSweeps, double* eps, int* oldHypercube
 				/* if this is first column of the sweep, then store the benefit gained */
 				else
 				{
-					optimalityChangeOld = std::fabs(optimalityRecord_new[posit] - gOptimalityOld);
+					optimalityChangeOld = std::fabs(optimalityRecord[posit] - gOptimalityOld);
 				}
 
 				/* replace the old optimality measure with the current one */
-				gOptimalityOld = optimalityRecord_new[posit];
+				gOptimalityOld = optimalityRecord[posit];
 			}
 			/* if the new and old optimality measures are equal */
-			else if (optimalityRecord_new[posit] == gOptimalityOld)
+			else if (optimalityRecord[posit] == gOptimalityOld)
 			{
 				test = 1;
 				if (isVerbose)
 					PRINT_MACRO("Algorithm stopped when changes did not impove design optimality\n");
 			}
 			/* if the new optimality measure is worse */
-			else if (optimalityRecord_new[posit] > gOptimalityOld)
+			else if (optimalityRecord[posit] > gOptimalityOld)
 			{
 				ERROR_MACRO("Unexpected Result: Algorithm produced a less optimal design\n");
 				test = 1;
