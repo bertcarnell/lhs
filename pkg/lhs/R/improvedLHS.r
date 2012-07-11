@@ -74,6 +74,7 @@ improvedLHS <- function(n, k, dup=1){
 
   result2 <- (result2 - 1 + eps) / n
 
-  return(t(matrix(result2, nrow=k, ncol=n, byrow=TRUE)))
+  #return(t(matrix(result2, nrow=k, ncol=n, byrow=TRUE)))
+  return(matrix(result2, nrow=n, ncol=k, byrow=TRUE))
 }
 
