@@ -111,7 +111,7 @@ void optimumLHS_C(int* N, int* K, int* maxSweeps, double* eps, int* oldHypercube
 
 					/* store the optimality of the newly created matrix and the rows that
 					* were interchanged */
-					optimalityRecord_new[optimalityRecordIndex] = utilityLHS::sumInvDistance<int>(newHypercube_new.values.data(), static_cast<int>(nsamples), static_cast<int>(nparameters));
+					optimalityRecord_new[optimalityRecordIndex] = utilityLHS::sumInvDistance<int>(newHypercube_new.values, nsamples, nparameters);
 					interchangeRow1_new[optimalityRecordIndex] = i;
 					interchangeRow2_new[optimalityRecordIndex] = k;
 					optimalityRecordIndex++;

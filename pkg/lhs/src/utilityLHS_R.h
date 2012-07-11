@@ -21,6 +21,8 @@
 
 #pragma once
 
+#include <vector>
+
 class utilityLHS 
 {
 public:
@@ -33,6 +35,9 @@ public:
 
 	template <class T>
 	static double sumInvDistance(T * matrix, int nr, int nc);
+
+	template <class T>
+	static double sumInvDistance(std::vector<T> & matrix, size_t nr, size_t nc);
 };
 
 template <class T>
@@ -65,7 +70,7 @@ void utilityLHS::lhsPrint(int N, int K, T* result, int bTranspose)
 template <class T>
 double utilityLHS::sumInvDistance(T * matrix, int nr, int nc) 
 { 
-	T oneDistance = (T) 0;
+	T oneDistance = static_cast<T>(0);
 	double totalInvDistance = 0.0;
 	/* iterate the row of the first point from 0 to N-2 */
 	for (int i = 0; i < nr - 1; i++)
@@ -82,7 +87,33 @@ double utilityLHS::sumInvDistance(T * matrix, int nr, int nc)
 				oneDistance += (matrix[i * nc + k] - matrix[j * nc + k]) * (matrix[i * nc + k] - matrix[j * nc + k]);
 			}
 			/* sum the inverse distances */
-			totalInvDistance += (1.0 / sqrt((double) oneDistance));
+			totalInvDistance += (1.0 / std::sqrt(static_cast<double>(oneDistance)));
+		}
+	}
+	return(totalInvDistance);
+}
+
+template <class T>
+double utilityLHS::sumInvDistance(std::vector<T> & matrix, size_t nr, size_t nc) 
+{ 
+	T oneDistance = static_cast<T>(0);
+	double totalInvDistance = 0.0;
+	/* iterate the row of the first point from 0 to N-2 */
+	for (size_t i = 0; i < nr - 1; i++)
+	{
+		/* iterate the row the second point from i+1 to N-1 */
+		for (size_t j = (i + 1); j < nr; j++)
+		{
+			oneDistance = 0;
+			/* iterate through the columns, summing the squared differences */
+			for (size_t k = 0; k < nc; k++)
+			{
+				/* calculate the square of the difference in one dimension between the
+				* points */
+				oneDistance += (matrix[i * nc + k] - matrix[j * nc + k]) * (matrix[i * nc + k] - matrix[j * nc + k]);
+			}
+			/* sum the inverse distances */
+			totalInvDistance += (1.0 / std::sqrt(static_cast<double>(oneDistance)));
 		}
 	}
 	return(totalInvDistance);
