@@ -87,6 +87,7 @@
     <ClCompile Include="optSeededLHS_RTest.cpp" />
     <ClCompile Include="simpleMatrixTest.cpp" />
     <ClCompile Include="TestClass.cpp" />
+    <ClCompile Include="utilityLHS_RTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="improvedLHS_RTest.h" />
@@ -95,6 +96,7 @@
     <ClInclude Include="optSeededLHS_RTest.h" />
     <ClInclude Include="simpleMatrixTest.h" />
     <ClInclude Include="TestClass.h" />
+    <ClInclude Include="utilityLHS_RTest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

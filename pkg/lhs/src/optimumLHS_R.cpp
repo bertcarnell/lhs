@@ -52,7 +52,7 @@ void optimumLHS_C(int* N, int* K, int* maxSweeps, double* eps, int* oldHypercube
 	size_t nOptimalityRecordLength = static_cast<size_t>(*optimalityRecordLength);
 	size_t nsamples = static_cast<size_t>(*N);
 	size_t nparameters = static_cast<size_t>(*K);
-	bool isVerbose = static_cast<bool>(*bVerbose);
+	bool isVerbose = (*bVerbose == 0)? false : true; 
 	size_t nMaxSweeps = static_cast<size_t>(*maxSweeps);
 	double eps_change = *eps;
 

@@ -47,9 +47,10 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;VISUAL_STUDIO;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\carnellr\Documents\Repositories\Rdevel\R-2.15.0\src\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>4514; 4710; 4820; 4800; 4986</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4820; 4710; 4514</DisableSpecificWarnings>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
+      <DisableLanguageExtensions>true</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

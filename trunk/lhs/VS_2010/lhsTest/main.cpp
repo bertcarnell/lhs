@@ -7,6 +7,7 @@
 #include "optimumLHS_RTest.h"
 #include "optSeededLHS_RTest.h"
 #include "simpleMatrixTest.h"
+#include "utilityLHS_RTest.h"
 
 #define CREATE_TEST(x) \
 	tests.push_back(dynamic_cast<TestClass*>(new x()))
@@ -22,6 +23,7 @@ int main(int argc, const char* argv[] )
 	CREATE_TEST(maximinLHS_RTest);
 	CREATE_TEST(optimumLHS_RTest);
 	CREATE_TEST(optSeededLHS_RTest);
+	CREATE_TEST(utilityLHSTest);
 
 	for (size_t i = 0; i < tests.size(); i++)
 	{

@@ -20,6 +20,9 @@
  *
  */
 
+#ifndef SIMPLEMATRIX
+#define SIMPLEMATRIX
+
 #pragma once
 
 #ifdef VISUAL_STUDIO
@@ -336,3 +339,5 @@ matrix_unsafe<T>::~matrix_unsafe()
 	// release the pointer, but do not delete
 	values = 0;
 }
+
+#endif

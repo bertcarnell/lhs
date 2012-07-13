@@ -19,7 +19,8 @@
  *
  */
 
-#pragma once
+#ifndef DEFINES
+#define DEFINES
 
 #include <cstdlib>
 #include <cmath>
@@ -29,7 +30,12 @@
 #include <functional>
 #include <cfloat>
 #include <climits>
-/* VISUAL_STUDIO is defined as a preprocessor directive in the build */
+/* VISUAL_STUDIO is defined as a preprocessor directive in the Visual Studio build */
+/* in visual studio, the following warnings are disabled
+ * 4514 "unreferenced inline function has been removed"
+ * 4820 "2 bytes padding added after data member"
+ * 4710 "function not inlined"
+ */
 #ifndef VISUAL_STUDIO
 #include "R.h"
 #include "Rmath.h"
@@ -62,3 +68,4 @@ extern "C" {
 	void optSeededLHS_C(int* N, int* K, int* MAXSWEEPS, double* EPS, double* pOld, int* JLen, int* bVerbose);
 }
 
+#endif

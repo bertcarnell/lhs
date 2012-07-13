@@ -22,6 +22,9 @@
     <ClCompile Include="TestClass.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="utilityLHS_RTest.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="improvedLHS_RTest.h">
@@ -40,6 +43,9 @@
       <Filter>Header</Filter>
     </ClInclude>
     <ClInclude Include="TestClass.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="utilityLHS_RTest.h">
       <Filter>Header</Filter>
     </ClInclude>
   </ItemGroup>

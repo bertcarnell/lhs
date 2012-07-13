@@ -34,4 +34,8 @@ Version 0.8
  Version 0.9
   Removed non-portable code introduced in Version 0.8
   
+ Version 0.10
+  Changed static template method definitions to be included in the 
+  definition of the utilityLHS class, instead of in the header below the class.
+  
   
