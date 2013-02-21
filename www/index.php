@@ -43,7 +43,12 @@ echo $contents; } ?>
 
 <!-- end of project description -->
 
-<p> No content added. </p>
+<h1> R-Help Examples of using the LHS package </h1>
+<p><a href="http://article.gmane.org/gmane.comp.lang.r.general/77642">Latin hyper cube sampling from expand.grid()</a></p>
+<p><a href="http://article.gmane.org/gmane.comp.lang.r.general/231062">Latin Hypercube Sampling with a condition</a></p>
+<p><a href="http://article.gmane.org/gmane.comp.lang.r.general/132615">Latin Hypercube with condition sum = 1</a></p>
+<p><a href="http://article.gmane.org/gmane.comp.lang.r.general/287278">latin hypercube sampling</a></p>
+
 
 <p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
 
