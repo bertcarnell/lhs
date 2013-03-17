@@ -3,7 +3,7 @@ Version: 0.10
 Date: 2012-07-12
 Title: Latin Hypercube Samples
 Authors@R: c(person("Rob", "Carnell", role=c("aut","cre"),
-  email="carnellr@battelle.org"))
+  email="bertcarnell@gmail.com"))
 Depends: R (>= 2.14.2)
 Description:  This package provides a number of methods for creating and augmenting Latin Hypercube Samples
 License: GPL (>= 2)
