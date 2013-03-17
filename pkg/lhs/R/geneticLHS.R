@@ -43,7 +43,7 @@
 #
 ################################################################################
 
-geneticLHS <- function(n=10, k=2, pop=100, gen=4, pMut=.1, verbose=FALSE)
+geneticLHS <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", verbose=FALSE)
 {
   if(length(n)!=1 |length(k)!=1 | length(pop)!=1 |length(gen)!=1 | length(pMut)!=1)
     stop("no parameters may be vectors")
@@ -76,8 +76,15 @@ geneticLHS <- function(n=10, k=2, pop=100, gen=4, pMut=.1, verbose=FALSE)
 
     B <- numeric(pop)
 
-    for(i in 1:pop) {
-      B[i] <- sum(dist(A[ , ,i]))
+    for(i in 1:pop) 
+    {
+      if (criterium=="S")
+      {
+        B[i] <- 1/sum(1/dist(A[, , i]))
+      } else if (criterium == "Maximin")
+      {
+        B[i] <- min(dist(A[, , i]))
+      } else stop("Criterium not recognized")
     }
 
     H <- order(B, decreasing=TRUE)

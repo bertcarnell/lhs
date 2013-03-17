@@ -7,14 +7,15 @@ creating a Latin Hypercube Design.  This function attempts to optimize the
 sample with respect to the S optimality criterion through a genetic type
 algorithm.
 }
-\usage{geneticLHS(n=10, k=2, pop=100, gen=4, pMut=.1, verbose=FALSE)}
+\usage{geneticLHS(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", verbose=FALSE)}
 \arguments{
   \item{n}{The number of partitions (simulations or design points)}
   \item{k}{The number of replications (variables)}
   \item{pop}{The number of designs in the initial population}
   \item{gen}{The number of generations over which the algorithm is applied}
   \item{pMut}{The probability with which a mutation occurs in a column of the progeny}
-  \item{verbose}{Print informational messages}
+  \item{criterium}{The optimality criterium of the algorithm.  Default is \code{S}.  \code{Maximin} is also supported}
+  \item{verbose}{Print informational messages.  Default is \code{FALSE}}
 }
 \details{
 Latin hypercube sampling (LHS) was developed to generate a distribution
