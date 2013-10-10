@@ -47,10 +47,14 @@ echo $contents; } ?>
 <p><a href="http://article.gmane.org/gmane.comp.lang.r.general/77642">Latin hyper cube sampling from expand.grid()</a></p>
 <p><a href="http://article.gmane.org/gmane.comp.lang.r.general/231062">Latin Hypercube Sampling with a condition</a></p>
 <p><a href="http://article.gmane.org/gmane.comp.lang.r.general/132615">Latin Hypercube with condition sum = 1</a></p>
-<p><a href="http://article.gmane.org/gmane.comp.lang.r.general/287278">latin hypercube sampling</a></p>
+<p><a href="http://article.gmane.org/gmane.comp.lang.r.general/287278">Latin hypercube sampling</a></p>
+<p><a href="http://article.gmane.org/gmane.comp.lang.r.general/300684">Latin Hypercube Sample and transformation to uniformly distributed integers or classes</a></p>
 
+<h1> lhs package announcement </h1>
+<p><a href="http://article.gmane.org/gmane.comp.lang.r.general/65701">[R-pkgs] New R-Packages: Triangle and LHS</a></p>
 
-<p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
+<h3>Project Summary Page</h3>
+<p> You can find the project summary page <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
 
 </body>
 </html>
