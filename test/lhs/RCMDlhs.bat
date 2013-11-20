@@ -2,25 +2,22 @@ rem build and install lhs
 
 echo off
 
-set Rversion=R-2.14.2
+set Rversion=R-3.0.1
 
 set Rcommand="C:\Program Files\R\%Rversion%\bin\R.exe"
 rem set Rcommand32="C:\Program Files\R\%Rversion%\bin\i386\R.exe"
 rem set Rcommand64="C:\Program Files\R\%Rversion%\bin\x64\R.exe"
+:: %Rcommand% CMD INSTALL --build lhs_*.tar.gz
 
 if "%1" == "check" (
-	cd ..\..\pkg
-	%Rcommand% CMD check lhs
-	cd ..\trunk\lhs
+	%Rcommand% CMD check ..\..\pkg\lhs
 ) else if "%1" == "build" (
-	cd ..\..\pkg
-	%Rcommand% CMD build lhs
-	%Rcommand% CMD INSTALL --build *.tar.gz
-	cd ..\trunk\lhs
+	echo **** R CMD build lhs ****
+	%Rcommand% CMD build ..\..\pkg\lhs
+	echo **** R CMD install --build
+	%Rcommand% CMD INSTALL --build ..\..\pkg\lhs
 ) else if "%1" == "install" (
-	cd ..\..\pkg
-	%Rcommand% CMD INSTALL lhs
-	cd ..\trunk\lhs
+	%Rcommand% CMD INSTALL ..\..\pkg\lhs
 )
 
 PAUSE
