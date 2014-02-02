@@ -55,26 +55,10 @@
 #
 ################################################################################
 
-improvedLHS <- function(n, k, dup=1){
-  if(length(n)!=1 |length(k)!=1 | length(dup)!=1)
-    stop("n, k, and dup may not be vectors")
-  if(any(is.na(c(n,k,dup)))) stop("n, k, and dup may not be NA or NaN")
-  if(any(is.infinite(c(n,k,dup)))) stop("n, k, and dup may not be infinite")
-  if(n!=floor(n) | n<1) stop("n must be a positive integer\n")
-  if(k!=floor(k) | k<1) stop("k must be a positive integer\n")
-  if(dup!=floor(dup) | dup<1)
-    stop("The DUPLICATION (dup) factor must be a positive integer\n")
+improvedLHS <- function(n, k, dup=1)
+{
+  result <- .Call("improvedLHS_cpp", as.integer(n), as.integer(k), as.integer(dup))
 
-  result <- numeric(k*n)
-
-  result2 <- .C("improvedLHS_C", as.integer(n), as.integer(k), as.integer(dup),
-                as.integer(result))[[4]]
-
-  eps <- runif(n*k)
-
-  result2 <- (result2 - 1 + eps) / n
-
-  #return(t(matrix(result2, nrow=k, ncol=n, byrow=TRUE)))
-  return(matrix(result2, nrow=n, ncol=k, byrow=TRUE))
+  return(result)
 }
 

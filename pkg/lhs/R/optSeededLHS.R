@@ -52,41 +52,17 @@
 
 optSeededLHS <- function(seed, m=1, maxSweeps=2, eps=.1, verbose=FALSE)
 {
-  if(is.matrix(seed)==FALSE)
-    stop("Input seed Design must be in the Matrix class\n")
-  if(length(m)!=1 | length(maxSweeps)!=1 |length(eps)!=1)
-    stop("m, eps, and maxSweeps may not be vectors")
-  if(any(is.na(c(m,maxSweeps,eps))))
-    stop("m, eps, and maxSweeps may not be NA or NaN")
-  if(any(is.infinite(c(m,eps,maxSweeps))))
-    stop("m, eps, and maxSweeps may not be infinite")
-  if(eps>=1 | eps<=0) stop("eps must fall in the interval (0,1)\n")
-  if(floor(maxSweeps)!=maxSweeps | maxSweeps<1)
-    stop("maxSweeps must be a positive integer\n")
-  if(floor(m)!=m | m<1) stop("m must be a positive integer\n")
-  if(try(is.function(augmentLHS), silent=TRUE)!=TRUE)
-    stop("The augmentLHS.R function must be sourced\n")
-  if(any(is.na(seed)==TRUE))
-    stop("Input Design cannot contain any NA entries\n")
-  if(max(seed)>1 | min(seed)<0)
-    stop("The seed design must be uniformly distributed on [0,1]\n")
-
   k <- ncol(seed)
   N <- m + nrow(seed)
 
   Pold <- augmentLHS(seed, m)
   
-  if(m==1) return(Pold)
+  if (m==1)
+  {
+    return(Pold)
+  }
 
-  Pold <- c(t(Pold)) # changes to an N*k length vector
+  result <- .Call("optSeededLHS_cpp", as.integer(N), as.integer(k), as.integer(maxSweeps), eps, Pold, as.logical(verbose))
 
-  jLen <- choose(N, 2) + 1
-
-  resultList <- .C("optSeededLHS_C", as.integer(N), as.integer(k),
-                     as.integer(maxSweeps), as.double(eps), as.double(Pold),
-                     as.integer(jLen), as.integer(verbose))
-
-  result <- resultList[[5]]
-
-  return(matrix(result, nrow=N, ncol=k, byrow=TRUE))
+  return(result)
 }

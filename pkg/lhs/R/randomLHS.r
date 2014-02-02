@@ -38,26 +38,6 @@
 
 randomLHS <- function(n, k, preserveDraw=FALSE)
 {
-  if(length(n)!=1 |length(k)!=1) stop("n and k may not be vectors")
-  if(any(is.na(c(n,k)))) stop("n and k may not be NA or NaN")
-  if(any(is.infinite(c(n,k)))) stop("n and k may not be infinite")
-  if(floor(n)!=n | n<1) stop("n must be a positive integer\n")
-  if(floor(k)!=k | k<1) stop("k must be a positive integer\n")
-  if(!(preserveDraw %in% c(TRUE, FALSE)))
-    stop("preserveDraw must be TRUE/FALSE")
-
-  if (preserveDraw)
-  {
-    f <- function(X, N) order(runif(N)) - 1 + runif(N)
-    P <- sapply(1:k, f, N=n)
-  } else
-  {
-    ranperm <- function(X, N) order(runif(N))
-    P <- matrix(nrow=n, ncol=k)
-    P <- apply(P, 2, ranperm, N=n)
-    P <- P - 1 + matrix(runif(n*k), nrow=n, ncol=k)
-  }
-  
-  return(P/n)
+  .Call("randomLHS_cpp", as.integer(n), as.integer(k), as.logical(preserveDraw))
 }
 

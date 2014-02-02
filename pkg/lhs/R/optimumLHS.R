@@ -44,40 +44,7 @@
 
 optimumLHS <- function(n=10, k=2, maxSweeps=2, eps=.1, verbose=FALSE)
 {
-  if(length(n)!=1 |length(k)!=1 | length(maxSweeps)!=1 |length(eps)!=1)
-    stop("n, k, eps, and maxSweeps may not be vectors")
-  if(any(is.na(c(n,k,maxSweeps,eps))))
-    stop("n, k, eps, and maxSweeps may not be NA or NaN")
-  if(any(is.infinite(c(n,k,eps,maxSweeps))))
-    stop("n, k, eps, and maxSweeps may not be infinite")
-  if(eps>=1 | eps<=0) stop("eps must fall in the interval (0,1)\n")
-  if(floor(maxSweeps)!=maxSweeps | maxSweeps<1)
-    stop("maxSweeps must be a positive integer\n")
-  if(floor(n)!=n | n<1) stop("n must be a positive integer\n")
-  if(floor(k)!=k | k<1) stop("k must be a positive integer\n")
+  result <- .Call("optimumLHS_cpp", as.integer(n), as.integer(k), as.integer(maxSweeps), eps, as.logical(verbose))
 
-  Pold <- matrix(0, nrow=n, ncol=k)
-  for(j in 1:k) {
-    Pold[ ,j] <- order(runif(n))
-  }
-  Pold <- c(t(Pold)) # changes to an k*n length vector
-
-  if(n==1) {
-    message("Design is already optimal\n")
-    return(matrix(Pold, nrow=n, ncol=k, byrow=TRUE))
-  }
-
-  jLen <- choose(n, 2) + 1
-
-  resultList <- .C("optimumLHS_C", as.integer(n), as.integer(k),
-                     as.integer(maxSweeps), as.double(eps), as.integer(Pold),
-                     as.integer(jLen), as.integer(verbose))
-
-  result <- resultList[[5]]
-
-  z <- runif(n*k)
-
-  result <- (result - 1 + z) / n
-
-  return(matrix(result, nrow=n, ncol=k, byrow=TRUE))
+  return(result)
 }

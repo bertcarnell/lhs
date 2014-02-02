@@ -1,0 +1,11 @@
+
+## Use the R_HOME indirection to support installations of multiple R version
+PKG_LIBS = $(shell "${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" -e "Rcpp:::LdFlags()")
+
+SOURCES=$(wildcard *.cpp)
+OBJECTS=$(SOURCES:.cpp=.o)
+PKG_CPPFLAGS=-I. -DRCOMPILE $(shell "${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" -e "Rcpp:::CxxFlags()")
+all: $(SHLIB)
+$(SHLIB): $(OBJECTS)
+clean:
+	@rm -f $(OBJECTS)
