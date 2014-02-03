@@ -1,8 +1,21 @@
-/* 
- * File:   CommonDefines.h
- * Author: carnellr
- *
- * Created on November 22, 2013, 4:27 PM
+/**
+ * @file CommonDefines.h
+ * @author Robert Carnell
+ * @copyright Copyright (c) 2014, Robert Carnell
+ * 
+ * @license <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef COMMONDEFINES_H
@@ -32,15 +45,55 @@
 
 #define PRINT_RESULT 0
 
+/**
+ * LHS c++ Library namespace
+ */
 namespace lhslib 
 {
+    /**
+     * Improved Latin hypercube sample algorithm
+     * @param n number of rows / samples in the lha
+     * @param k number parameters / columns in the lhs
+     * @param dup A factor that determines the number of candidate points used in the search.
+     * @param result the result matrix
+     * @param oRandom the random number stream
+     */
     void improvedLHS(int n, int k, int dup, bclib::matrix<int> & result, 
             CRandom<double> & oRandom);
+    /**
+     * Latin hypercube sample algorithm with maximin criterion
+     * @param n number of rows / samples in the lha
+     * @param k number parameters / columns in the lhs
+     * @param dup A factor that determines the number of candidate points used in the search.
+     * @param result the result matrix
+     * @param oRandom the random number stream
+     */
     void maximinLHS(int n, int k, int dup, bclib::matrix<int> & result, 
             CRandom<double> & oRandom);
+    /**
+     * Optimum Latin hypercube sample algorithm
+     * @param n number of rows / samples in the lha
+     * @param k number parameters / columns in the lhs
+     * @param maxSweeps the maximum number of sweeps to use in the algorithm
+     * @param eps The optimal stopping criterion
+     * @param outlhs the resultant lhs
+     * @param optimalityRecordLength the length of a vector used in the calculations
+     * @param oRandom the random number stream
+     * @param bVerbose should messages be printed?
+     */
     void optimumLHS(int n, int k, int maxSweeps, double eps, 
             bclib::matrix<int> & outlhs, int optimalityRecordLength, 
             CRandom<double> & oRandom, bool bVerbose);
+    /**
+     * Application of the optimum lhs method to a seeded Latin hypercube
+     * @param n number of rows / samples in the lha
+     * @param k number parameters / columns in the lhs
+     * @param maxSweeps the maximum number of sweeps to use in the algorithm
+     * @param eps The optimal stopping criterion
+     * @param pOld the seeded lhs
+     * @param JLen the length of a vector used in the calculations
+     * @param bVerbose should messages be printed?
+     */
     void optSeededLHS(int n, int k, int maxSweeps, double eps, 
             bclib::matrix<double> & pOld, int JLen, bool bVerbose);
 

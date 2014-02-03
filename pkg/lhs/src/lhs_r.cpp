@@ -67,7 +67,7 @@ RcppExport SEXP /*double matrix*/ improvedLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k
     return ::R_NilValue;
 }
 
-RcppExport SEXP /*int matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
+RcppExport SEXP /*double matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
         SEXP /*int*/ dup)
 {
     if (TYPEOF(n) != INTSXP || TYPEOF(k) != INTSXP ||
@@ -114,8 +114,8 @@ RcppExport SEXP /*int matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
     return ::R_NilValue;
 }
 
-RcppExport SEXP /*int matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
-        SEXP /*int*/ maxsweeps, SEXP /*double*/ eps, SEXP /*int*/ bVerbose)
+RcppExport SEXP /*double matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
+        SEXP /*int*/ maxsweeps, SEXP /*double*/ eps, SEXP /*bool*/ bVerbose)
 {
     if (TYPEOF(n) != INTSXP || TYPEOF(k) != INTSXP || TYPEOF(maxsweeps) != INTSXP ||
             TYPEOF(eps) != REALSXP || TYPEOF(bVerbose) != LGLSXP)
@@ -165,9 +165,9 @@ RcppExport SEXP /*int matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
     return ::R_NilValue;
 }
 
-RcppExport SEXP /*int matrix*/ optSeededLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
+RcppExport SEXP /*double matrix*/ optSeededLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
         SEXP /*int*/ maxsweeps, SEXP /*double*/ eps, SEXP /*numeric matrix*/ inlhs,
-        SEXP /*int*/ bVerbose)
+        SEXP /*bool*/ bVerbose)
 {
     if (TYPEOF(n) != INTSXP || TYPEOF(k) != INTSXP || TYPEOF(maxsweeps) != INTSXP ||
             TYPEOF(eps) != REALSXP || TYPEOF(bVerbose) != LGLSXP)
@@ -230,17 +230,6 @@ RcppExport SEXP /*int matrix*/ optSeededLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
     return ::R_NilValue;
 }
 
-/**
- * @todo make sure that if n or k are passed as vectors or as doubles that an error is thrown
- * @todo what if n or k are na or nan or infinite?
- * @todo what if preserveDraw is not true or false?
- * @todo what if n or k are negative?
- * @todo check that the random numbers are the same as R for the R tests
- * @param n
- * @param k
- * @param preserveDraw
- * @return 
- */
 RcppExport SEXP randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw)
 {
     if (TYPEOF(n) != INTSXP || TYPEOF(k) != INTSXP ||

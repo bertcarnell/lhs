@@ -1,23 +1,36 @@
-rem build and install lhs
+:: build and install lhs
 
 echo off
+echo *******
+echo This check must be run as an administrator
+echo *******
+
+set CYGWIN=nodosfilewarning
 
 set Rversion=R-3.0.1
+set ACTION=%1
+set PACKAGE=lhs
 
 set Rcommand="C:\Program Files\R\%Rversion%\bin\R.exe"
-rem set Rcommand32="C:\Program Files\R\%Rversion%\bin\i386\R.exe"
-rem set Rcommand64="C:\Program Files\R\%Rversion%\bin\x64\R.exe"
-:: %Rcommand% CMD INSTALL --build lhs_*.tar.gz
 
-if "%1" == "check" (
-	%Rcommand% CMD check ..\..\pkg\lhs
-) else if "%1" == "build" (
-	echo **** R CMD build lhs ****
-	%Rcommand% CMD build ..\..\pkg\lhs
-	echo **** R CMD install --build
-	%Rcommand% CMD INSTALL --build ..\..\pkg\lhs
-) else if "%1" == "install" (
-	%Rcommand% CMD INSTALL ..\..\pkg\lhs
+echo ****
+echo **** removing old checks ****
+echo ****
+rm -rf ..\..\pkg\%PACKAGE%\src-i386
+rm -rf ..\..\pkg\%PACKAGE%\src-x64
+
+if "%ACTION%" == "check" (
+	%Rcommand% CMD check ..\..\pkg\%PACKAGE%
+) else if "%ACTION%" == "build" (
+	echo **** R CMD build %PACKAGE% ****
+	%Rcommand% CMD build ..\..\pkg\%PACKAGE%
+	echo **** R CMD install --build %PACKAGE%
+	%Rcommand% CMD INSTALL --build ..\..\pkg\%PACKAGE%
+) else if "%ACTION%" == "install" (
+	echo **** R CMD INSTALL %PACKAGE%
+	%Rcommand% CMD INSTALL ..\..\pkg\%PACKAGE%
 )
+
+echo on
 
 PAUSE

@@ -1,8 +1,21 @@
-/* 
- * File:   utilityLHS.h
- * Author: carnellr
- *
- * Created on November 22, 2013, 4:32 PM
+/**
+ * @file utilityLHS.h
+ * @author Robert Carnell
+ * @copyright Copyright (c) 2014, Robert Carnell
+ * 
+ * @license <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef UTILITYLHS_H
@@ -12,11 +25,36 @@
 
 namespace lhslib
 {
+    /**
+     * is the Latin hypercube sample valid
+     * @param result the latin hypercube sample
+     * @return the result of the validity check
+     */
 	bool isValidLHS(const bclib::matrix<int> & result);
+    /**
+     * rank a vector of doubles
+     * @param toRank the vector of values to rank
+     * @param ranks the ranks of the vector of values
+     */
 	void rank(std::vector<double> & toRank, std::vector<int> & ranks);
+    /**
+     * rank columns
+     * @param toRank the vector of values to rank
+     * @param ranks the ranks of the vector of values
+     * @param nrow the row that is being operated on
+     */
 	void rankColumns(std::vector<double> & toRank, std::vector<int> & ranks, int nrow);
+    /**
+     * Initialize the matrix of available points
+     * @param avail the matrix of available points
+     */
     void initializeAvailableMatrix(bclib::matrix<int> & avail);
 
+    /**
+     * print the Latin hypercube sample
+     * @param A the matrix to print
+     * @param T the type of matrix to print
+     */
 	template <class T>
 	void lhsPrint(const bclib::matrix<T> & A)
 	{
@@ -33,6 +71,11 @@ namespace lhslib
         }
 	}
 
+    /**
+     * Sum of the inverse distance between points
+     * @param A the matrix to sum
+     * @return the sum of the inverse distance between points
+     */
 	template <class T>
 	double sumInvDistance(const bclib::matrix<T> & A)
 	{ 
@@ -63,6 +106,11 @@ namespace lhslib
 		return totalInvDistance;
 	}
     
+    /**
+     * Copy a matrix
+     * @param copyTo the matrix to oopy to
+     * @param copyFrom the matrix to copy from
+     */
     template <class T>
     void copyMatrix(bclib::matrix<T> & copyTo, const bclib::matrix<T> & copyFrom)
     {

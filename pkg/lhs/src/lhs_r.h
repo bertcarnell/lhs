@@ -26,16 +26,67 @@
 #include "lhs_r_utilities.h"
 #include "RStandardUniform.h"
 
-RcppExport SEXP /*int matrix*/ improvedLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
+/**
+ * Improved Latin hypercube sample algorithm
+ * @param n number of rows / samples in the lhs
+ * @param k number parameters / columns in the lhs
+ * @param dup A factor that determines the number of candidate points used in the search.
+ * @return a NumericMatrix of an lhs
+ */
+RcppExport SEXP /*double matrix*/ improvedLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
         SEXP /*int*/ dup);
-RcppExport SEXP /*int matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
+/**
+ * Latin hypercube sample algorithm using the maximin algorithm
+ * @param n number of rows / samples in the lhs
+ * @param k number parameters / columns in the lhs
+ * @param dup A factor that determines the number of candidate points used in the search.
+ * @return a NumericMatrix of an lhs
+ */
+RcppExport SEXP /*double matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
         SEXP /*int*/ dup);
-RcppExport SEXP /*int matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
-        SEXP /*int*/ maxsweeps, SEXP /*double*/ eps, SEXP /*int*/ bVerbose);
-RcppExport SEXP /*int matrix*/ optSeededLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
+/**
+ * Optimal Latin hypercube sample algorithm
+ * @param n number of rows / samples in the lhs
+ * @param k number parameters / columns in the lhs
+ * @param maxSweeps the maximum number of sweeps to use in the algorithm
+ * @param eps The optimal stopping criterion
+ * @param bVerbose should messages be printed 
+ * @return a NumericMatrix of an lhs
+ */
+RcppExport SEXP /*double matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
+        SEXP /*int*/ maxsweeps, SEXP /*double*/ eps, SEXP /*bool*/ bVerbose);
+/**
+ * Optimum Latin hypercube sample with a seed sample 
+ * @param n number of rows / samples in the lhs
+ * @param k number parameters / columns in the lhs
+ * @param maxSweeps the maximum number of sweeps to use in the algorithm
+ * @param eps The optimal stopping criterion
+ * @param pOld a seed matrix
+ * @param bVerbose should messages be printed?
+ * @return a NumericMatrix of an lhs
+ */
+RcppExport SEXP /*double matrix*/ optSeededLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, 
         SEXP /*int*/ maxsweeps, SEXP /*double*/ eps, SEXP /*int**/ pOld,
-        SEXP /*int*/ bVerbose);
+        SEXP /*bool*/ bVerbose);
+/**
+ * a simple random Latin hypercube sample
+ * @param n number of rows / samples in the lhs
+ * @param k number parameters / columns in the lhs
+ * @param preserveDraw should be same draw be taken regardless of the number of parameters selected
+ * @return a NumericMatrix of an lhs
+ */
 RcppExport SEXP randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw);
+/**
+ * A Latin hypercube sample using a genetic algorithm
+ * @param n number of rows / samples in the lhs
+ * @param k number parameters / columns in the lhs
+ * @param pop
+ * @param gen
+ * @param pMut
+ * @param criterium
+ * @param bVerbose
+ * @return a NumericMatrix of an lhs
+ */
 RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
         SEXP /*int*/ gen, SEXP /*double*/ pMut, SEXP criterium,
         SEXP /*bool*/ bVerbose);
