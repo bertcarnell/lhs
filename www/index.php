@@ -63,9 +63,15 @@
       <li><a href="http://article.gmane.org/gmane.comp.lang.r.general/65701">[R-pkgs] New R-Packages: Triangle and LHS</a></li>
     </ul>
 
-    <h3>Project Summary Page</h3>
+    <h3>R-Forge Project Summary Page</h3>
     <ul>
-      <li> You can find the project summary page <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </li>
+      <li>You can find the project summary page <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </li>
+    </ul>
+
+    <h3>Connections</h3>
+    <ul>
+      <li>You can find the C++ lhs project on <a href="https://github.com/">github</a> <a href="https://github.com/bertcarnell/lhs">here</a></li>
+      <li><a href="http://www.rcpp.org/">Rcpp</a> is used in the project</li>
     </ul>
 
   </body>

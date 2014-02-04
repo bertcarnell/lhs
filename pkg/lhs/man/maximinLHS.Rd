@@ -8,8 +8,8 @@ sample by maximizing the minium distance between design points (maximin criteria
 }
 \usage{maximinLHS(n, k, dup=1)}
 \arguments{
-  \item{n}{The number of partitions (simulations or design points)}
-  \item{k}{The number of replications (variables)}
+  \item{n}{The number of partitions (simulations or design points or rows)}
+  \item{k}{The number of replications (variables or columns)}
   \item{dup}{A factor that determines the number of candidate points used in the
              search. A multiple of the number of remaining points than can be
              added.}

@@ -9,8 +9,8 @@ manner without regard to optimization.
 }
 \usage{randomLHS(n, k, preserveDraw)}
 \arguments{
-  \item{n}{The number of partitions (simulations or design points)}
-  \item{k}{The number of replications (variables)}
+  \item{n}{The number of partitions (simulations or design points or rows)}
+  \item{k}{The number of replications (variables or columns)}
   \item{preserveDraw}{Default:FALSE.  Ensures that two subsequent draws
      with the same \code{n}, but one with \code{k} and one with \code{m}
      variables \code{(k<m)}, will have the same first k columns
@@ -44,7 +44,7 @@ An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly dist
   \emph{Technometrics}.
   \bold{29}, 143--151.
 }
-\author{Rob Carnell and D. Mooney}
+\author{Rob Carnell}
 \seealso{
   \code{\link{geneticLHS}},
   \code{\link{improvedLHS}}, \code{\link{maximinLHS}}, and

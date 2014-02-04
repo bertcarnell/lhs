@@ -22,4 +22,5 @@ Rob Carnell
   \code{\link{optAugmentLHS}}, \code{\link{optSeededLHS}}, and
   \code{\link{augmentLHS}} to modify and augment existing designs.
 }
-
+\note{\url{http://lhs.r-forge.r-project.org}}
+\note{\url{https://github.com/bertcarnell/lhs}}

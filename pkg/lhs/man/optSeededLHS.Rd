@@ -4,13 +4,12 @@
 \description{
 Augments an existing Latin Hypercube Sample, adding points to the design, while
 maintaining the \emph{latin} properties of the design.  This function then uses the
-columnwise pairwise (\acronym{CP}) algoritm to optimize the design.  The original design
-is not necessarily maintained.
+columnwise pairwise (\acronym{CP}) algoritm to optimize the design.  The original design is not necessarily maintained.
 }
 \usage{optSeededLHS(seed, m=1, maxSweeps=2, eps=.1, verbose=FALSE)}
 \arguments{
   \item{seed}{The number of partitions (simulations or design points)}
-  \item{m}{The number of additional points to add to matrix \code{seed}}
+  \item{m}{The number of additional points to add to the seed matrix \code{seed}.  default value is zero.  If m is zero then the seed design is optimized.}
   \item{maxSweeps}{The maximum number of times the CP algorithm is applied to all the columns.}
   \item{eps}{The optimal stopping criterion}
   \item{verbose}{Print informational messages}

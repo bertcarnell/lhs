@@ -9,10 +9,11 @@ optimality criterion.
 }
 \usage{optimumLHS(n=10, k=2, maxSweeps=2, eps=.1, verbose=FALSE)}
 \arguments{
-  \item{n}{The number of partitions (simulations or design points)}
-  \item{k}{The number of replications (variables)}
+  \item{n}{The number of partitions (simulations or design points or rows)}
+  \item{k}{The number of replications (variables or columns)}
   \item{maxSweeps}{The maximum number of times the CP algorithm is applied to all the columns.}
-  \item{eps}{The optimal stopping criterion}
+  \item{eps}{The optimal stopping criterion.  Algorithm stops when the change in
+  optimality measure is less than eps*100\% of the previous value.}
   \item{verbose}{Print informational messages}
 }
 \details{

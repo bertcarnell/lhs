@@ -9,8 +9,8 @@ algorithm.
 }
 \usage{geneticLHS(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", verbose=FALSE)}
 \arguments{
-  \item{n}{The number of partitions (simulations or design points)}
-  \item{k}{The number of replications (variables)}
+  \item{n}{The number of partitions (simulations or design points or rows)}
+  \item{k}{The number of replications (variables or columns)}
   \item{pop}{The number of designs in the initial population}
   \item{gen}{The number of generations over which the algorithm is applied}
   \item{pMut}{The probability with which a mutation occurs in a column of the progeny}

@@ -50,18 +50,21 @@
 #
 ################################################################################
 
-optSeededLHS <- function(seed, m=1, maxSweeps=2, eps=.1, verbose=FALSE)
+optSeededLHS <- function(seed, m=0, maxSweeps=2, eps=.1, verbose=FALSE)
 {
   k <- ncol(seed)
-  N <- m + nrow(seed)
-
-  Pold <- augmentLHS(seed, m)
-  
-  if (m==1)
+  if (m == 0)
   {
-    return(Pold)
+    N <- nrow(seed)
+    Pold <- seed
   }
+  else
+  {
+    N <- m + nrow(seed)
 
+    Pold <- augmentLHS(seed, m)
+  }
+  
   result <- .Call("optSeededLHS_cpp", as.integer(N), as.integer(k), as.integer(maxSweeps), eps, Pold, as.logical(verbose))
 
   return(result)
