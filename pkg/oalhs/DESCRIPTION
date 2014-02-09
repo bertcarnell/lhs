@@ -1,0 +1,23 @@
+Package: oalhs
+Type: Package
+Title: Create Orthogonal Array Latin Hypercube Samples
+Version: 0.1
+Date: 2013-10-28
+Authors@R: c(person("Rob", "Carnell", role=c("aut","cre"),
+    email="bertcarnell@gmail.com"))
+Author: Rob Carnell
+Maintainer: Rob Carnell <bertcarnell@gmail.com>
+Description: Creates orthogonal array Latin hypercube samples
+License: GPL-2
+Depends:
+    Rcpp (>= 0.10.4),
+    R (>= 2.14.2),
+    lhs (>= 0.10)
+Suggests:
+    RUnit,
+    DoE.base
+LinkingTo: Rcpp
+URL: http://lhs.r-forge.r-project.org
+BugReports: https://r-forge.r-project.org/tracker?/group_id=510
+Collate:
+    'createOA.R'
