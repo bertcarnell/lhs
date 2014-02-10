@@ -20,12 +20,13 @@
 \examples{
 A <- createBush(3, 3, FALSE)
 B <- createBush(4, 5, TRUE)
-\\code{\\link{createBoseBush}},
-\\code{\\link{creatBose}},
-\\code{\\link{createAddelKemp}},
-\\code{\\link{createAddelKemp3}},
-\\code{\\link{createAddelKempN}},
-\\code{\\link{createBusht}},
-\\code{\\link{createBoseBushl}}
+}
+\seealso{
+  Other methods to create orthogonal arrays
+  \code{\link{createBoseBush}}, \code{\link{creatBose}},
+  \code{\link{createAddelKemp}},
+  \code{\link{createAddelKemp3}},
+  \code{\link{createAddelKempN}},
+  \code{\link{createBusht}}, \code{\link{createBoseBushl}}
 }
 

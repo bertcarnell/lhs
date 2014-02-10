@@ -24,12 +24,13 @@
 A <- createBusht(3, 4, 2, TRUE)
 B <- createBusht(3, 4, 3, FALSE)
 G <- createBusht(3, 4, 4, TRUE)
-\\code{\\link{createBoseBush}},
-\\code{\\link{creatBose}},
-\\code{\\link{createBush}},
-\\code{\\link{createAddelKemp}},
-\\code{\\link{createAddelKempN}},
-\\code{\\link{createAddelKemp3}},
-\\code{\\link{createBoseBushl}}
+}
+\seealso{
+  Other methods to create orthogonal arrays
+  \code{\link{createBoseBush}}, \code{\link{creatBose}},
+  \code{\link{createBush}}, \code{\link{createAddelKemp}},
+  \code{\link{createAddelKempN}},
+  \code{\link{createAddelKemp3}},
+  \code{\link{createBoseBushl}}
 }
 
