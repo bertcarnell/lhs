@@ -6,7 +6,10 @@ Authors@R: c(person("Rob", "Carnell", role=c("aut","cre"),
   email="bertcarnell@gmail.com"))
 Author: Rob Carnell
 Maintainer: Rob Carnell <bertcarnell@gmail.com>
-Depends: R (>= 2.14.2)
+Depends: R (>= 2.14.2), Rcpp (>= 0.10.4)
 Suggests: RUnit
 Description:  This package provides a number of methods for creating and augmenting Latin Hypercube Samples
 License: GPL (>= 2)
+LinkingTo: Rcpp
+URL: http://lhs.r-forge.r-project.org
+BugReports: https://r-forge.r-project.org/tracker?/group_id=510
