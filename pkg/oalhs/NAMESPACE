@@ -1,3 +1,5 @@
+useDynLib(oalhs)
+
 export(createAddelKemp)
 export(createAddelKemp3)
 export(createAddelKempN)
