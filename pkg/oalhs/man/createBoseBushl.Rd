@@ -26,7 +26,7 @@ B <- createBoseBushl(4, 4, 16, TRUE)
 }
 \seealso{
   Other methods to create orthogonal arrays
-  \code{\link{createBoseBush}}, \code{\link{creatBose}},
+  \code{\link{createBoseBush}}, \code{\link{createBose}},
   \code{\link{createBush}}, \code{\link{createAddelKemp}},
   \code{\link{createAddelKempN}},
   \code{\link{createAddelKemp3}}, \code{\link{createBusht}}

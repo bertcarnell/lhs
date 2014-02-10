@@ -27,7 +27,7 @@ G <- createBusht(3, 4, 4, TRUE)
 }
 \seealso{
   Other methods to create orthogonal arrays
-  \code{\link{createBoseBush}}, \code{\link{creatBose}},
+  \code{\link{createBoseBush}}, \code{\link{createBose}},
   \code{\link{createBush}}, \code{\link{createAddelKemp}},
   \code{\link{createAddelKempN}},
   \code{\link{createAddelKemp3}},

@@ -24,7 +24,7 @@ B <- createAddelKemp(3, 5, FALSE)
 }
 \seealso{
   Other methods to create orthogonal arrays
-  \code{\link{createBoseBush}}, \code{\link{creatBose}},
+  \code{\link{createBoseBush}}, \code{\link{createBose}},
   \code{\link{createBush}}, \code{\link{createAddelKemp3}},
   \code{\link{createAddelKempN}},
   \code{\link{createBusht}}, \code{\link{createBoseBushl}}

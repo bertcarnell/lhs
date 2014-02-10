@@ -23,7 +23,7 @@ B <- createBoseBush(3, 3, TRUE)
 }
 \seealso{
   Other methods to create orthogonal arrays
-  \code{\link{createBush}}, \code{\link{creatBose}},
+  \code{\link{createBush}}, \code{\link{createBose}},
   \code{\link{createAddelKemp}},
   \code{\link{createAddelKemp3}},
   \code{\link{createAddelKempN}},

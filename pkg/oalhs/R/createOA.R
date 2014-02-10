@@ -10,7 +10,7 @@
 #' B <- createBose(5, 4, TRUE)
 #' @seealso Other methods to create orthogonal arrays 
 #' \code{\link{createBush}}, 
-#' \code{\link{creatBoseBush}}, 
+#' \code{\link{createBoseBush}}, 
 #' \code{\link{createAddelKemp}}, 
 #' \code{\link{createAddelKemp3}}, 
 #' \code{\link{createAddelKempN}}, 
@@ -33,7 +33,7 @@ createBose <- function(q, ncol, bRandom)
 #' B <- createBoseBush(3, 3, TRUE)
 #' @seealso Other methods to create orthogonal arrays 
 #' \code{\link{createBush}}, 
-#' \code{\link{creatBose}}, 
+#' \code{\link{createBose}}, 
 #' \code{\link{createAddelKemp}}, 
 #' \code{\link{createAddelKemp3}}, 
 #' \code{\link{createAddelKempN}}, 
@@ -56,7 +56,7 @@ createBoseBush <- function(q, ncol, bRandom)
 #' B <- createBush(4, 5, TRUE)
 #' @seealso Other methods to create orthogonal arrays 
 #' \code{\link{createBoseBush}}, 
-#' \code{\link{creatBose}}, 
+#' \code{\link{createBose}}, 
 #' \code{\link{createAddelKemp}}, 
 #' \code{\link{createAddelKemp3}}, 
 #' \code{\link{createAddelKempN}}, 
@@ -79,7 +79,7 @@ createBush <- function(q, ncol, bRandom)
 #' B <- createAddelKemp(3, 5, FALSE)
 #' @seealso Other methods to create orthogonal arrays 
 #' \code{\link{createBoseBush}}, 
-#' \code{\link{creatBose}}, 
+#' \code{\link{createBose}}, 
 #' \code{\link{createBush}}, 
 #' \code{\link{createAddelKemp3}}, 
 #' \code{\link{createAddelKempN}}, 
@@ -103,7 +103,7 @@ createAddelKemp <- function(q, ncol, bRandom)
 #' B <- createAddelKemp3(3, 5, FALSE)
 #' @seealso Other methods to create orthogonal arrays 
 #' \code{\link{createBoseBush}}, 
-#' \code{\link{creatBose}}, 
+#' \code{\link{createBose}}, 
 #' \code{\link{createBush}}, 
 #' \code{\link{createAddelKemp}}, 
 #' \code{\link{createAddelKempN}}, 
@@ -129,7 +129,7 @@ createAddelKemp3 <- function(q, ncol, bRandom)
 #' G <- createBusht(3, 4, 4, TRUE)
 #' @seealso Other methods to create orthogonal arrays 
 #' \code{\link{createBoseBush}}, 
-#' \code{\link{creatBose}}, 
+#' \code{\link{createBose}}, 
 #' \code{\link{createBush}}, 
 #' \code{\link{createAddelKemp}}, 
 #' \code{\link{createAddelKempN}}, 
@@ -153,7 +153,7 @@ createBusht <- function(q, ncol, strength, bRandom)
 #' B <- createBoseBushl(4, 4, 16, TRUE)
 #' @seealso Other methods to create orthogonal arrays 
 #' \code{\link{createBoseBush}}, 
-#' \code{\link{creatBose}}, 
+#' \code{\link{createBose}}, 
 #' \code{\link{createBush}}, 
 #' \code{\link{createAddelKemp}}, 
 #' \code{\link{createAddelKempN}}, 
@@ -178,7 +178,7 @@ createBoseBushl <- function(q, ncol, lambda, bRandom)
 #' B <- createAddelKempN(3, 4, 4, TRUE)
 #' @seealso Other methods to create orthogonal arrays 
 #' \code{\link{createBoseBush}}, 
-#' \code{\link{creatBose}}, 
+#' \code{\link{createBose}}, 
 #' \code{\link{createBush}}, 
 #' \code{\link{createAddelKemp}}, 
 #' \code{\link{createBusht}}, 
