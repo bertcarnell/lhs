@@ -26,7 +26,7 @@ PKG_LIBS = `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"`
 
 SOURCES=$(wildcard *.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
-PKG_CPPFLAGS=-I. -DRCOMPILE
+PKG_CPPFLAGS=-I. -DRCOMPILE $(shell "${R_HOME}/bin${R_ARCH_BIN}/Rscript" -e "Rcpp:::CxxFlags()")
 all: $(SHLIB)
 $(SHLIB): $(OBJECTS)
 clean:
