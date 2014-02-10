@@ -9,6 +9,8 @@
 
   \item{ncol}{number of parameters or columns}
 
+  \item{strength}{the strength of the array to be created}
+
   \item{bRandom}{should the array be randomized}
 }
 \value{

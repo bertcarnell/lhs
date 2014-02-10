@@ -10,6 +10,8 @@ alternate strength}
 
   \item{ncol}{number of parameters or columns}
 
+  \item{exponent}{the exponent on q}
+
   \item{bRandom}{should the array be randomized}
 }
 \value{

@@ -9,6 +9,8 @@
 
   \item{ncol}{number of parameters or columns}
 
+  \item{lambda}{the lambda of the BoseBush algorithm}
+
   \item{bRandom}{should the array be randomized}
 }
 \value{

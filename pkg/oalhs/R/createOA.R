@@ -19,7 +19,7 @@
 createBose <- function(q, ncol, bRandom)
 {
   return (.Call("oa_type1", "bose", as.integer(q), as.integer(ncol), 
-               as.logical(bRandom)))
+               as.logical(bRandom), PACKAGE="oalhs"))
 }
 
 #' Create an orthogonal array using the Bose-Bush algorithm
@@ -42,7 +42,7 @@ createBose <- function(q, ncol, bRandom)
 createBoseBush <- function(q, ncol, bRandom)
 {
   return (.Call("oa_type1", "bosebush", as.integer(q), as.integer(ncol), 
-               as.logical(bRandom)))
+               as.logical(bRandom), PACKAGE="oalhs"))
 }
 
 #' Create an orthogonal array using the Bush algorithm
@@ -64,7 +64,7 @@ createBoseBush <- function(q, ncol, bRandom)
 createBush <- function(q, ncol, bRandom)
 {
   return (.Call("oa_type1", "bush", as.integer(q), as.integer(ncol),  
-               as.logical(bRandom)))
+               as.logical(bRandom), PACKAGE="oalhs"))
 }
 
 #' Create an orthogonal array using the Addelman-Kempthorne algorithm
@@ -86,7 +86,7 @@ createBush <- function(q, ncol, bRandom)
 createAddelKemp <- function(q, ncol, bRandom)
 {
   return (.Call("oa_type1", "addelkemp", as.integer(q), as.integer(ncol),  
-               as.logical(bRandom)))
+               as.logical(bRandom), PACKAGE="oalhs"))
 }
 
 #' Create an orthogonal array using the Addelman-Kempthorne algorithm
@@ -109,7 +109,7 @@ createAddelKemp <- function(q, ncol, bRandom)
 createAddelKemp3 <- function(q, ncol, bRandom)
 {
   return (.Call("oa_type1", "addelkemp3", as.integer(q), as.integer(ncol), 
-               as.logical(bRandom)))
+               as.logical(bRandom), PACKAGE="oalhs"))
 }
 
 
@@ -117,6 +117,7 @@ createAddelKemp3 <- function(q, ncol, bRandom)
 #'
 #' @param q the number of symbols in the array
 #' @param ncol number of parameters or columns
+#' @param strength the strength of the array to be created
 #' @param bRandom should the array be randomized
 #' @return an orthogonal array
 #' @export
@@ -133,13 +134,14 @@ createAddelKemp3 <- function(q, ncol, bRandom)
 createBusht <- function(q, ncol, strength, bRandom)
 {
   return (.Call("oa_type2", "busht", as.integer(strength), as.integer(q), 
-               as.integer(ncol), as.logical(bRandom)))
+               as.integer(ncol), as.logical(bRandom), PACKAGE="oalhs"))
 }
 
 #' Create an orthogonal array using the Bose-Bush algorithm with alternate strength >= 3
 #'
 #' @param q the number of symbols in the array
 #' @param ncol number of parameters or columns
+#' @param lambda the lambda of the BoseBush algorithm
 #' @param bRandom should the array be randomized
 #' @return an orthogonal array
 #' @export
@@ -155,7 +157,7 @@ createBusht <- function(q, ncol, strength, bRandom)
 createBoseBushl <- function(q, ncol, lambda, bRandom)
 {
   return (.Call("oa_type2", "bosebushl", as.integer(lambda), as.integer(q), 
-               as.integer(ncol), as.logical(bRandom)))
+               as.integer(ncol), as.logical(bRandom), PACKAGE="oalhs"))
 }
 
 #' Create an orthogonal array using the Addelman-Kempthorne algorithm with 
@@ -163,6 +165,7 @@ createBoseBushl <- function(q, ncol, lambda, bRandom)
 #'
 #' @param q the number of symbols in the array
 #' @param ncol number of parameters or columns
+#' @param exponent the exponent on q
 #' @param bRandom should the array be randomized
 #' @return an orthogonal array
 #' @export
@@ -178,5 +181,5 @@ createBoseBushl <- function(q, ncol, lambda, bRandom)
 createAddelKempN <- function(q, ncol, exponent, bRandom)
 {
   return (.Call("oa_type2", "addelkempn", as.integer(exponent), as.integer(q), 
-               as.integer(ncol), as.logical(bRandom)))
+               as.integer(ncol), as.logical(bRandom), PACKAGE="oalhs"))
 }
