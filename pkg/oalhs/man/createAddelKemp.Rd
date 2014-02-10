@@ -21,12 +21,12 @@
 \examples{
 A <- createAddelKemp(3, 3, TRUE)
 B <- createAddelKemp(3, 5, FALSE)
-\\code(\\link{createBoseBush}),
-\\code(\\link{creatBose}),
-\\code(\\link{createBush}),
-\\code(\\link{createAddelKemp3}),
-\\code(\\link{createAddelKempN}),
-\\code(\\link{createBusht}),
-\\code(\\link{createBoseBushl})
+\\code{\\link{createBoseBush}},
+\\code{\\link{creatBose}},
+\\code{\\link{createBush}},
+\\code{\\link{createAddelKemp3}},
+\\code{\\link{createAddelKempN}},
+\\code{\\link{createBusht}},
+\\code{\\link{createBoseBushl}}
 }
 

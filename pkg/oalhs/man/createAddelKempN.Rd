@@ -22,12 +22,12 @@ alternate strength}
 \examples{
 A <- createAddelKempN(3, 4, 3, TRUE)
 B <- createAddelKempN(3, 4, 4, TRUE)
-\\code(\\link{createBoseBush}),
-\\code(\\link{creatBose}),
-\\code(\\link{createBush}),
-\\code(\\link{createAddelKemp}),
-\\code(\\link{createBusht}),
-\\code(\\link{createAddelKemp3}),
-\\code(\\link{createBoseBushl})
+\\code{\\link{createBoseBush}},
+\\code{\\link{creatBose}},
+\\code{\\link{createBush}},
+\\code{\\link{createAddelKemp}},
+\\code{\\link{createBusht}},
+\\code{\\link{createAddelKemp3}},
+\\code{\\link{createBoseBushl}}
 }
 

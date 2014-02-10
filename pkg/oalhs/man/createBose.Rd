@@ -23,10 +23,10 @@ B <- createBose(5, 4, TRUE)
 }
 \seealso{
   Other methods to create orthogonal arrays
-  \code(\link{createBush}), \code(\link{creatBoseBush}),
-  \code(\link{createAddelKemp}),
-  \code(\link{createAddelKemp3}),
-  \code(\link{createAddelKempN}),
-  \code(\link{createBusht}), \code(\link{createBoseBushl})
+  \code{\link{createBush}}, \code{\link{creatBoseBush}},
+  \code{\link{createAddelKemp}},
+  \code{\link{createAddelKemp3}},
+  \code{\link{createAddelKempN}},
+  \code{\link{createBusht}}, \code{\link{createBoseBushl}}
 }
 

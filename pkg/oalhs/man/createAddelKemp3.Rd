@@ -22,12 +22,12 @@ with 2*q^3 rows}
 \examples{
 A <- createAddelKemp3(3, 3, TRUE)
 B <- createAddelKemp3(3, 5, FALSE)
-\\code(\\link{createBoseBush}),
-\\code(\\link{creatBose}),
-\\code(\\link{createBush}),
-\\code(\\link{createAddelKemp}),
-\\code(\\link{createAddelKempN}),
-\\code(\\link{createBusht}),
-\\code(\\link{createBoseBushl})
+\\code{\\link{createBoseBush}},
+\\code{\\link{creatBose}},
+\\code{\\link{createBush}},
+\\code{\\link{createAddelKemp}},
+\\code{\\link{createAddelKempN}},
+\\code{\\link{createBusht}},
+\\code{\\link{createBoseBushl}}
 }
 
