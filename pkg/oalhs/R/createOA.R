@@ -30,7 +30,7 @@ createBose <- function(q, ncol, bRandom)
 #' @return an orthogonal array
 #' @export
 #' @examples A <- createBoseBush(4, 3, FALSE)
-#' B <- createBoseBush(3, 3, TRUE)
+#' B <- createBoseBush(8, 3, TRUE)
 #' @seealso Other methods to create orthogonal arrays 
 #' \code{\link{createBush}}, 
 #' \code{\link{createBose}}, 

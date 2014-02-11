@@ -24,7 +24,7 @@ RcppExport SEXP /*int matrix*/ oa_type1(SEXP /*char*/ type, SEXP /*int*/ q,
         SEXP /*int*/ ncol, SEXP /*bool*/ bRandom)
 {
     SEXP output = R_NilValue;
-    Rcpp::IntegerMatrix rcppA;
+    Rcpp::IntegerMatrix rcppA(1,1); // need to initialize
     oacpp::COrthogonalArray oa;
 
     if (TYPEOF(q) != INTSXP || TYPEOF(ncol) != INTSXP)
@@ -106,7 +106,7 @@ RcppExport SEXP /*int matrix*/ oa_type1(SEXP /*char*/ type, SEXP /*int*/ q,
 RcppExport SEXP /*int matrix*/ oa_type2(SEXP /*char*/ type, SEXP /*int*/ int1, 
         SEXP /*int*/ q, SEXP /*int*/ ncol, SEXP /*bool*/ bRandom)
 {
-    Rcpp::IntegerMatrix rcppA;
+    Rcpp::IntegerMatrix rcppA(1,1); // need to initialize
     oacpp::COrthogonalArray oa;
     SEXP output = R_NilValue;
 

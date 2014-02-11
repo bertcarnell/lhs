@@ -7,11 +7,11 @@ echo *******
 
 set CYGWIN=nodosfilewarning
 
-set Rversion=R-3.0.1
+set Rversion=R-3.0.2
 set ACTION=%1
 set PACKAGE=oalhs
 
-set Rcommand="C:\Program Files\R\%Rversion%\bin\R.exe"
+set Rcommand="F:\ProgramFiles\R\%Rversion%\bin\R.exe"
 
 echo ****
 echo **** removing old checks ****

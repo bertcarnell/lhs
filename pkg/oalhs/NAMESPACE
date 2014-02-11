@@ -8,3 +8,5 @@ export(createBoseBush)
 export(createBoseBushl)
 export(createBush)
 export(createBusht)
+
+importFrom(Rcpp)
