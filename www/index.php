@@ -48,6 +48,13 @@
       <li><a href="http://cran.cnr.berkeley.edu/web/packages/lhs/index.html">Berkeley Mirror</a></li>
       <li><a href="http://lib.stat.cmu.edu/R/CRAN/web/packages/lhs/index.html">Statlib, Carnegie Mellon Mirror</a></li>
     </ul>
+	
+	<h3>lhs package vignettes</h3>
+	<p>All package vignettes are created using RMarkdown and knitr</p>
+	<ul>
+	  <li><a href="lhs_basics.html">LHS Basic Operations</a></li>
+	  <li><a href="augmentLHS_Example.html">Augmenting a LHS</a></li>
+	</ul>
 
     <h3>R-Help Examples of using the LHS package</h3>
     <ul>

@@ -8,9 +8,10 @@ Author: Rob Carnell
 Maintainer: Rob Carnell <bertcarnell@gmail.com>
 Depends: R (>= 3.0.2)
 Imports: Rcpp (>= 0.11.0)
-Suggests: RUnit
+Suggests: RUnit, knitr
 Description:  This package provides a number of methods for creating and augmenting Latin Hypercube Samples
 License: GPL (>= 2)
 LinkingTo: Rcpp
 URL: http://lhs.r-forge.r-project.org
 BugReports: https://r-forge.r-project.org/tracker?/group_id=510
+VignetteBuilder: knitr

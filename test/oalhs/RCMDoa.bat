@@ -3,6 +3,7 @@
 echo off
 echo *******
 echo This check must be run as an administrator
+echo check, build, install, roxygen
 echo *******
 
 set CYGWIN=nodosfilewarning
@@ -29,6 +30,9 @@ if "%ACTION%" == "check" (
 ) else if "%ACTION%" == "install" (
 	echo **** R CMD INSTALL %PACKAGE%
 	%Rcommand% CMD INSTALL ..\..\pkg\%PACKAGE%
+) else if "%ACTION%" == "roxygen" (
+	echo **** R roxygen
+	%Rcommand% --arch x64 --vanilla -f roxygen_oalhs.R
 )
 
 echo on
