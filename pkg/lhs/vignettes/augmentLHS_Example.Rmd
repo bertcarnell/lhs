@@ -1,7 +1,10 @@
 <!-- % Comment required to put the vignette into the package index
+%\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{An Example of Augmenting a Latin Hypercube}
 %\VignetteKeyword{lhs}
-%\VignetteKeyword{latin hypercube} -->
+%\VignetteKeyword{latin hypercube} 
+%\VignetteKeyword{augment} 
+-->
 
 ```{r start, echo=FALSE, message=FALSE}
 # the working directory is set when the file is knitted (I think)

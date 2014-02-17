@@ -1,6 +1,8 @@
 <!--
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{Basic Latin hypercube samples/designs with package lhs}
+%\VignetteKeyword{lhs}
+%\VignetteKeyword{latin hypercube} 
 -->
 
 ```{r start, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
