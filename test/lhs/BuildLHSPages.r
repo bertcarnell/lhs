@@ -24,8 +24,14 @@ stopifnot(all(sapply(filenames, function(x){
 
 ### knit the files to html
 dummy <- sapply(pages, function(x) {
-  knitr::knit2html(file.path(vignettePath, x), 
-                   output=file.path(webPath, gsub("[.]Rmd", ".md", x)), quiet=FALSE)
+  #knitr::knit2html(file.path(vignettePath, x), 
+  #                 output=file.path(webPath, gsub("[.]Rmd", ".md", x)), quiet=FALSE)
+  setwd(file.path(webPath))
+  knitr::knit(file.path(vignettePath, x),
+              output=file.path(webPath, gsub("[.]Rmd", ".md", x)),
+              quiet=FALSE)
+  markdownToHTML(file.path(webPath, gsub("[.]Rmd", ".md", x)),
+                        output=file.path(webPath, gsub("[.]Rmd", ".html", x)))
 })
 
 if (!is.null(pdfs))
