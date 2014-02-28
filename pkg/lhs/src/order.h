@@ -1,8 +1,21 @@
-/* 
- * File:   order.h
- * Author: carnellr
- *
- * Created on November 26, 2013, 2:59 PM
+/**
+ * @file order.h
+ * @author Robert Carnell
+ * @copyright Copyright (c) 2013, Robert Carnell
+ * 
+ * @license <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (GPL v3)</a>
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef ORDER_H
@@ -28,8 +41,8 @@ namespace bclib
     /**
      * Find the order of each vector element (zero based)
      * @tparam T numeric argument that can be ordered
-     * @param v the vector to be ranked
-     * @param indx the ranks of the elements
+     * @param v the vector to be ordered
+     * @param order the order of the elements
      */
     template <class T>
     void findorder_zero(const std::vector<T> & v, std::vector<int> & order)
@@ -66,6 +79,12 @@ namespace bclib
         }
     }
     
+    /**
+     * Find the order of each vector element (one based)
+     * @tparam T numeric argument that can be ordered
+     * @param v the vector to be ranked
+     * @param order the order of the elements
+     */
     template <class T>
     void findorder(const std::vector<T> & v, std::vector<int> & order)
     {

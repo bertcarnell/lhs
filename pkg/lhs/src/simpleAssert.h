@@ -1,8 +1,21 @@
-/* 
- * File:   simpleAssert.h
- * Author: carnellr
- *
- * Created on December 6, 2013, 6:14 PM
+/**
+ * @file simpleAssert.h
+ * @author Robert Carnell
+ * @copyright Copyright (c) 2013, Robert Carnell
+ * 
+ * @license <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (GPL v3)</a>
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef SIMPLEASSERT_H
@@ -14,6 +27,9 @@
 #include <stdexcept>
 #include <limits>
 
+/**
+ * Assert that the expression does not thrown an error derived from std::exception
+ */
 #define ASSERT_NOTHROW(exp) \
     try \
     { \
@@ -24,6 +40,10 @@
         throw bclib::assertion_error("Failed: an exception was thrown in assert_nothrow"); \
     }
 
+/**
+ * Assert that the expression throws an error.  It is caught if is derived from
+ * std::runtime_error or from std::logic_error
+ */
 #define ASSERT_THROW(exp) \
     try \
     { \
@@ -38,6 +58,10 @@
     { \
     }
 
+/**
+ * Assert that the expression throws an assertion error.  Used primarily in
+ * testing the assert methods
+ */
 #define ASSERT_ASSERTIONERROR(exp) \
     try \
     { \
@@ -51,24 +75,39 @@
 
 namespace bclib
 {
+    /**
+     * a class to create assertion errors
+     */
     class assertion_error : public std::exception 
     {
     private:
         std::string m_msg;
 
     public:
-        /** Takes a character string describing the error.  */
+        /**
+         * constructor
+         */
         explicit 
         assertion_error(const std::string & arg) : m_msg(arg)
         {
         };
         
+        /**
+         * constructor
+         */
         explicit assertion_error(const char * arg) : m_msg(arg)
         {
         };
 
+        /**
+         * destructor
+         */
         ~assertion_error() throw(){};
 
+        /**
+         * return the message associated with the exception
+         * @return the message
+         */
         const char * what() const throw()
         {
             return m_msg.c_str();
@@ -152,10 +191,10 @@ namespace bclib
             testlre = -1.0 * log10(abs(actual-expected)) + log10(abs(expected));
         }
         
-        if (isinf(testlre)) // C99 only
-        {
-            return;
-        }
+        //if (std::isinf(testlre)) // C99 only
+        //{
+        //    return;
+        //}
         if (testlre >= (double) std::numeric_limits<int>::max())
         {
             return;

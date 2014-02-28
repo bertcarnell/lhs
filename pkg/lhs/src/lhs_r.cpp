@@ -44,7 +44,7 @@ RcppExport SEXP /*double matrix*/ improvedLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k
         }
 
         bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
-        RStandardUniform oRStandardUniform = RStandardUniform();
+        lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
         lhslib::improvedLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
         Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
 
@@ -91,7 +91,7 @@ RcppExport SEXP /*double matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
         }
 
         bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
-        RStandardUniform oRStandardUniform = RStandardUniform();
+        lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
         lhslib::maximinLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
         Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
 
@@ -137,7 +137,7 @@ RcppExport SEXP /*double matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
         }
         
         Rcpp::RNGScope tempRNG;
-        RStandardUniform oRStandardUniform = RStandardUniform();
+        lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
         int jLen = static_cast<int>(::Rf_choose(static_cast<double>(m_n), 2.0) + 1.0);
         bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
 
@@ -251,49 +251,21 @@ RcppExport SEXP randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw)
         {
             return lhs_r::degenerateCase(m_k);
         }
+        
+        lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
+        bclib::matrix<double> result = bclib::matrix<double>(m_n, m_k);
+        lhslib::randomLHS(m_n, m_k, bPreserveDraw, result, oRStandardUniform);
 
-        Rcpp::NumericMatrix result(m_n, m_k);
-        Rcpp::NumericVector randomunif1(m_n);
-        Rcpp::NumericVector randomunif2(m_n);
-        Rcpp::IntegerVector orderVector(n);
-
-        if (bPreserveDraw)
+        Rcpp::NumericMatrix rresult(m_n, m_k);
+        for (int irow = 0; irow < m_n; irow++)
         {
             for (int jcol = 0; jcol < m_k; jcol++)
             {
-                randomunif1 = Rcpp::runif(m_n);
-                randomunif2 = Rcpp::runif(m_n);
-                lhs_r::findorder_zero(randomunif1, orderVector);
-                for (int irow = 0; irow < m_n; irow++)
-                {
-                    result(irow,jcol) = orderVector[irow] + randomunif2[irow];
-                    result(irow,jcol) /= static_cast<double>(m_n);
-                }
+                rresult(irow, jcol) = result(irow, jcol);
             }
         }
-        else
-        {
-            for (int jcol = 0; jcol < m_k; jcol++)
-            {
-                randomunif1 = Rcpp::runif(m_n);
-                lhs_r::findorder_zero(randomunif1, orderVector);
-                for (int irow = 0; irow < m_n; irow++)
-                {
-                    result(irow,jcol) = orderVector[irow];
-                }
-            }
-            randomunif2 = Rcpp::runif(m_n*m_k);
-            Rcpp::NumericMatrix randomMatrix(m_n, m_k, randomunif2.begin());
-            for (int jcol = 0; jcol < m_k; jcol++)
-            {
-                for (int irow = 0; irow < m_n; irow++)
-                {
-                    result(irow,jcol) += randomMatrix(irow,jcol);
-                    result(irow,jcol) /= static_cast<double>(m_n);
-                }
-            }
-        }
-        return result;
+
+        return rresult;
     }
     catch (Rcpp::not_compatible & nc)
     {
@@ -329,21 +301,6 @@ RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
         bool m_bVerbose = Rcpp::as<bool>(bVerbose);
 
         lhs_r::checkArguments(m_n, m_k);
-        // lengths should be 1 because of the cast
-        // TODO:  are NA's stopped?
-        // TODO:  are infitities stopped?
-        if (m_pop < 1 || m_gen < 1)
-        {
-            throw std::invalid_argument("pop, and gen should be integers greater than 0");
-        }
-        if (m_pMut <= 0 || m_pMut >= 1)
-        {
-            throw std::invalid_argument("pMut should be between 0 and 1");
-        }
-        if (m_pop % 2 != 0)
-        {
-            throw std::invalid_argument("pop should be an even number");
-        }
         if (m_n == 1)
         {
             if (m_bVerbose)
@@ -352,150 +309,21 @@ RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
             }
             return lhs_r::degenerateCase(m_k);
         }
+        
+        lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
+        bclib::matrix<double> mat = bclib::matrix<double>(m_n, m_k);
+        lhslib::geneticLHS(m_n, m_k, m_pop, m_gen, m_pMut, m_criterium, m_bVerbose, mat, oRStandardUniform);
 
-        std::vector<Rcpp::IntegerMatrix> A = std::vector<Rcpp::IntegerMatrix>(m_pop);
-        for (unsigned int i = 0; i < static_cast<unsigned int>(m_pop); i++)
+        Rcpp::NumericMatrix rresult(m_n, m_k);
+        for (int irow = 0; irow < m_n; irow++)
         {
-            // Auto fills with zeros
-            A[i] = Rcpp::IntegerMatrix(m_n, m_k);
-        }
-
-        for (int i = 0; i < m_pop; i++)
-        {
-            for (int j = 0; j < m_k; j++)
+            for (int jcol = 0; jcol < m_k; jcol++)
             {
-                Rcpp::NumericVector temp = Rcpp::runif(m_n);
-                Rcpp::IntegerVector tempord;
-                lhs_r::findorder_zero(temp, tempord);
-                for (int x = 0; x < m_n; x++)
-                {
-                    A[i](x, j) = tempord[x];
-                }
-            }
-        }
-        Rcpp::NumericVector B;
-        std::vector<Rcpp::IntegerMatrix> J;
-        for (int v = 0; v < m_gen; v++)
-        {
-            B <- Rcpp::NumericVector(m_pop);
-            for (int i = 0; i < m_pop; i++)
-            {
-                if (m_criterium == "S")
-                {
-                    B[i] = lhs_r::calculateSOptimal<INTSXP>(A[i]);
-                }
-                else if (m_criterium == "Maximin")
-                {
-                    //B[i] <- min(dist(A[, , i]))
-                    Rcpp::NumericMatrix dist = lhs_r::calculateDistance<INTSXP>(A[i]);
-                    Rcpp::NumericMatrix::iterator it = std::min_element(dist.begin(), dist.end());
-                    B[i] = *it;
-                } 
-                else 
-                {
-                    std::stringstream msg;
-                    msg << "Criterium not recognized: S and Maximin are available: " << m_criterium.c_str() << " was provided.\n";
-                    throw std::invalid_argument(msg.str().c_str());
-                }
-            }
-            Rcpp::IntegerVector H(B.size());
-            lhs_r::findorder_zero(B, H);
-            int posit = std::max_element(B.begin(), B.end()) - B.begin();
-
-            J = std::vector<Rcpp::IntegerMatrix>(m_pop);
-            for (std::vector<Rcpp::IntegerMatrix>::iterator i = J.begin(); i != J.end(); ++i)
-            {
-                *i = Rcpp::IntegerMatrix(m_n, m_k);
-            }
-
-            for (unsigned int i = 0; i < static_cast<unsigned int>(m_pop / 2); i++)
-            {
-                J[i] = A[posit];
-            }
-            if (m_pop / 2 == 1)
-            {
-                break;
-            }
-            for (unsigned int i = 0; i < static_cast<unsigned int>(m_pop / 2); i++)
-            {
-                J[i + m_pop / 2] = A[H[i]];
-            }
-        /*for(i in 2:(pop/2)) {
-          J[ , runifint(1, 1, k), i] <- J[ , runifint(1, 1, k), (i + pop/2)]
-        }*/
-            for (unsigned int i = 1; i < static_cast<unsigned int>(m_pop / 2); i++)
-            {
-                Rcpp::IntegerVector temp1 = lhs_r::runifint(1,0,m_k-1);
-                Rcpp::IntegerVector temp2 = lhs_r::runifint(1,0,m_k-1);
-                for (unsigned int irow = 0; irow < static_cast<unsigned int>(m_n); irow++)
-                {
-                    J[i](irow, temp1[0]) = J[i + m_pop / 2](irow,temp2[0]);
-                }
-            }
-        /*for(i in (pop/2+1):pop) {
-          J[ , runifint(1, 1, k), i] <- A[ , runifint(1, 1, k), posit]
-        }*/
-            for (unsigned int i = m_pop / 2; i < static_cast<unsigned int>(m_pop); i++)
-            {
-                Rcpp::IntegerVector temp1 = lhs_r::runifint(1,0,m_k-1);
-                Rcpp::IntegerVector temp2 = lhs_r::runifint(1,0,m_k-1);
-                for (unsigned int irow = 0; irow < static_cast<unsigned int>(m_n); irow++)
-                {
-                    J[i](irow, temp1[0]) = A[posit](irow,temp2[0]);
-                }
-            }
-        /*for(i in 2:pop) {
-          y <- runif(k)
-          for(j in 1:k) {
-            if(y[j] <= pMut) {
-              z <- runifint(2, 1, n)
-              a <- J[z[1], j, i]
-              b <- J[z[2], j, i]
-              J[z[1], j, i] <- b
-              J[z[2], j, i] <- a
-            }
-          }
-        }*/
-            for (unsigned int i = 1; i < static_cast<unsigned int>(m_pop); i++)
-            {
-                Rcpp::NumericVector y = Rcpp::runif(m_k);
-                for (unsigned int j = 0; j < static_cast<unsigned int>(m_k); j++)
-                {
-                    if (y[j] <= m_pMut)
-                    {
-                        Rcpp::IntegerVector z = lhs_r::runifint(2, 0, m_n - 1);
-                        int a = J[i](z[0], j);
-                        int b = J[i](z[1], j);
-                        J[i](z[0], j) = b;
-                        J[i](z[1], j) = a;
-                    }
-                }
-            }
-            A = J;
-            if (v != m_gen && m_bVerbose)
-            {
-                Rprintf("Generation %d completed", v);
+                rresult(irow, jcol) = mat(irow, jcol);
             }
         }
 
-        if (m_bVerbose)
-        {
-            Rprintf("Last generation completed");
-        }
-
-        Rcpp::NumericVector eps  = Rcpp::runif(m_n*m_k);
-        Rcpp::NumericMatrix result(m_n, m_k);
-        unsigned int count = 0;
-        for (unsigned int j = 0; j < static_cast<unsigned int>(m_k); j++)
-        {
-            for (unsigned int i = 0; i < static_cast<unsigned int>(m_n); i++)
-            {
-                result(i,j) += (J[0](i,j) - 1.0 + eps[count]) / static_cast<double>(m_n);
-                count++;
-            }
-        }
-
-        return result;
+        return rresult;
     }
     catch (Rcpp::not_compatible & nc)
     {

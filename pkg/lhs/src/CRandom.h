@@ -46,7 +46,7 @@ namespace lhslib
 {
     /**
      * Pseudorandom number abstract class
-     * @param T the type that the random number generator will generate
+     * @tparam the type that the random number generator will generate
      */
     template <class T>
     class CRandom

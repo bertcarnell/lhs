@@ -27,52 +27,71 @@
 #include <sstream>
 
 /**
- * @namespace The bertcarnell template library namespace
+ * @namespace bclib The bertcarnell template library namespace
  */
 namespace bclib {
 
+// forward declare the iterator
+template <class T, bool ISROWWISE> class matrixIter;
+template <class T, bool ISROWWISE> class matrixConstIter;
+    
 /**
  * Matrix Class
- * @tparam a generic type of the kind that can be used in std::vector
+ * @tparam T a generic type of the kind that can be used in std::vector
  */
 template<class T>
 class matrix 
 {
-   public:
-      /**
-       * Define the size_type the same as it is defined for std::vector
-       */
-      typedef typename std::vector<T>::size_type size_type;
-   private:
+    friend class matrixIter<T, true>; /**< make the class a friend of the row-wise iterator */
+    friend class matrixIter<T, false>; /**< make the class a friend of the column-wise iterator */
+    friend class matrixConstIter<T, true>; /**< make the class a friend of the row-wise iterator */
+    friend class matrixConstIter<T, false>; /**< make the class a friend of the column-wise iterator */
+public:
+    typedef typename std::vector<T>::size_type size_type; /**< define the size_type as std::vector */
+    typedef typename std::vector<T>::iterator iterator; /**< define iterator from the std::vector internals */
+    typedef typename std::vector<T>::const_iterator const_iterator; /**< define the const iterator from the std::vector */
+    typedef matrixIter<T, true> rowwise_iterator; /**< an iterator that iterates across rows then down columns */
+    typedef matrixIter<T, false> columnwise_iterator; /**< an iterator that iterates down columns then across rows */
+    typedef matrixConstIter<T, true> const_rowwise_iterator; /**< a const row-wise iterator */
+    typedef matrixConstIter<T, false> const_columnwise_iterator; /**< a const column-wise iterator */
+    typedef ptrdiff_t difference_type; /**< define difference_type for consistency with stdlib */
+    typedef T value_type; /**< define value_type for consistency with stdlib */
+    typedef T * pointer; /**< define a pointer type for consistency with stdlib */
+    typedef T & reference; /**< define a reference type for consistency with stdlib */
+      
+private:
       size_type rows;  /**< number of rows */
       size_type cols;  /**< number of columns */
       std::vector<T> elements; /**< array of elements */
       bool bTranspose; /**< is the matrix transposed from creation */
+
+      /**
+       * calculate tne location of the value in the vector holding the matrix values
+       * @param row the row location
+       * @param col the column location
+       * @return the location of the value in the vector holding the matrix values
+       */
       size_type calcLocation(const size_type row, const size_type col)
       {
           return (!bTranspose) ? (row*cols + col) : (col*rows + row);
       }
+      
+      /**
+       * calculate tne location of the value in the vector holding the matrix values
+       * @param row the row location
+       * @param col the column location
+       * @return the location fo the value in the vector holding the matrix values
+       */
       size_type calcLocation(const size_type row, const size_type col) const
       {
           return (!bTranspose) ? (row*cols + col) : (col*rows + row);
       }
    public:
-       /**
-        * row size
-        * @return the number of rows in the matrix
-        */
-       size_type rowsize() const 
-       {
-           return rows;
-       }
-       /**
-        * column size
-        * @return the number of columns in the matrix
-        */
-       size_type colsize() const 
-       {
-           return cols;
-       }
+       /// The number of rows in the matrix
+       size_type rowsize() const {return rows;};
+       
+       /// The number of columns in the matrix 
+       size_type colsize() const {return cols;};
       
       /**
        * matrix element access
@@ -85,6 +104,7 @@ class matrix
       {
           return elements[calcLocation(row, col)];
       }
+      
       /**
        * matrix element access
        * @note does not check for arguments out of range
@@ -96,6 +116,7 @@ class matrix
       {
          return elements[calcLocation(row, col)];
       }
+      
       /**
        * matrix element access
        * @throws std::out_of_range from the internal std::vector
@@ -107,6 +128,7 @@ class matrix
       {
          return elements.at(calcLocation(row, col));
       }
+      
       /**
        * matrix element access
        * @throws std::out_of_range from the internal std::vector
@@ -118,6 +140,7 @@ class matrix
       {
          return elements.at(calcLocation(row,col));
       }
+      
       /**
        * matrix element access
        * @throws std::out_of_range from the internal std::vector
@@ -128,6 +151,7 @@ class matrix
       {
           return elements.at(loc);
       }
+      
       /**
        * matrix element access
        * @throws std::out_of_range from the internal std::vector
@@ -138,32 +162,23 @@ class matrix
       {
           return elements.at(loc);
       }
-      /**
-       * a pointer to the internal data array
-       * @return a pointer
-       */
-      T* data()
-      {
-          return elements.data();
-      }
-      /**
-       * Get the data vector
-       * @return 
-       */
-      std::vector<T> getDataVector() const
-      {
-          return elements;
-      }
-      /**
-       * Default Constructor with zero rows and zero columns
-       */
+      
+      /// a pointer to the internal data array
+      T* data() {return elements.data();};
+      
+      /// get the internal data vector
+      std::vector<T> getDataVector() const {return elements;};
+      
+      /// Default Constructor with zero rows and zero columns 
       matrix();
+      
       /**
        * Constructor
        * @param rows the number of rows in the matrix
        * @param cols the number of columns in the matrix
        */
       matrix(size_type rows, size_type cols);
+      
       /**
        * Constructor
        * @param rows the number of rows in the matrix
@@ -171,6 +186,7 @@ class matrix
        * @param elementArray an array to use as the initial values
        */
       matrix(size_type rows, size_type cols, const T* elementArray);
+      
       /**
        * Constructor
        * @param rows the number of rows in the matrix
@@ -178,14 +194,14 @@ class matrix
        * @param elementVector a std::vector to use as the initial values
        */
       matrix(size_type rows, size_type cols, const std::vector<T> & elementVector);
+      
       /**
        * Copy Constructor
        * @param the matrix to be copied
        */
       matrix(const matrix<T> &);
-      /**
-       * Destructor
-       */
+      
+      /// Destructor
       ~matrix();
 
       /**
@@ -197,10 +213,17 @@ class matrix
 
       /**
        * Equality comparison operator
-       * @param the right hand side matrix
+       * @param rhs the right hand side matrix
        * @return true if the matrices are equivalent
        */
-      bool operator==( const matrix<T> &) const;
+      bool operator==(const matrix<T> & rhs) const;
+      
+      /**
+       * Inequality comparison operator
+       * @param rhs the right hand side matrix
+       * @return true if the matrices are not equivalent
+       */
+      bool operator!=(const matrix<T> & rhs) const;
 
       /**
        * Get a row of the matrix as a std::vector
@@ -209,6 +232,7 @@ class matrix
        * @return a vector representation of that row
        */
       std::vector<T> getrow(size_type row) const;
+      
       /**
        * Get a row of the matrix as a std::vector
        * @throws std::out_of_range when the row is not in range
@@ -216,6 +240,7 @@ class matrix
        * @return a vector representation of that row
        */
       std::vector<T> getrow_at(size_type row) const;
+      
       /**
        * Get a row of the matrix as a row matrix
        * @note does not check to ensure argument is in range
@@ -223,6 +248,7 @@ class matrix
        * @return a matrix representation of that row
        */
       matrix<T> getRowMatrix(size_type row) const;
+      
       /**
        * Get a row of the matrix as a row matrix
        * @throws an out of range exception for an argument out of range
@@ -238,6 +264,7 @@ class matrix
        * @return a vector of the requested column
        */
       std::vector<T> getcol(size_type col) const;
+      
       /**
        * Get a column of the matrix as a vector
        * @throws out_of_range error if the column requested is out of bounds
@@ -245,6 +272,7 @@ class matrix
        * @return a vector of the requested column
        */
       std::vector<T> getcol_at(size_type col) const;
+      
       /**
        * Get a column of the matrix as a column matrix
        * @note does not check if the requested column is in bounds
@@ -252,6 +280,7 @@ class matrix
        * @return a column matrix of the requested column
        */
       matrix<T> getColumnMatrix(size_type col) const;
+      
       /**
        * Get a column of the matrix as a column matrix
        * @throws if the requested column is out of range
@@ -278,40 +307,174 @@ class matrix
           elements.assign(rows*cols, x);
       };
       
-      /**
-       * clear the matrix to zero rows and columns
-       */
+      /// Clear the matrix to zero rows and columns
       void clear();
 
-      /**
-       * Check if the matrix is empty
-       * @return true if the matrix is empty
-       */
-      bool isEmpty()
-      {
-          return elements.empty();
-      };
+      /// return true if the matrix is empty
+      bool isEmpty() const {return elements.empty();};
 
-      /**
-       * change the matrix to a string
-       * @return 
-       */
+      /// return a string representation of the matrix
       const char* toString();
       
-      /**
-       * Transpose the matrix
-       */
+      /// Transpose the matrix
       void transpose();
       
+      /// return true if this matrix is operating as a transposed matrix from the original definition
+      bool isTransposed() const {return bTranspose;};
+      
+      /********* Matrix Iterators *********/
+      
+      /// an iterator for the beginning of the internal vector
+      iterator begin() {return elements.begin();};
+      const_iterator begin() const {return elements.begin();};
+
+      /// An iterator for one iteration past the end of the internal vector
+      iterator end() {return elements.end();};
+      const_iterator end() const {return elements.end();};
+
+      /// An iterator that operates along the matrix rows 
+      rowwise_iterator rowwisebegin() {return rowwise_iterator(*this, 0, 0);};
+      const_rowwise_iterator rowwisebegin() const {return const_rowwise_iterator(*this, 0, 0);};
+      
       /**
-       * is this matrix operating as a transposed matrix from the original definition
-       * @return true if tranposed
+       * return a row wise iterator for the beginning of the ith row (0 based)
+       * @param irow
        */
-      bool isTransposed()
-      {
-          return bTranspose;
-      }
+      rowwise_iterator rowwisebegin(size_type irow) {return rowwise_iterator(*this, irow, 0);};
+      const_rowwise_iterator rowwisebegin(size_type irow) const {return const_rowwise_iterator(*this, irow, 0);};
+      
+      /// An iterator that operates along the matrix row
+      rowwise_iterator rowwiseend() {return rowwise_iterator(*this, rows, 0);};
+      const_rowwise_iterator rowwiseend() const {return const_rowwise_iterator(*this, rows, 0);};
+
+      /**
+       * return a row wise iterator for the end of the ith row (0 based)
+       * @param irow
+       */
+      rowwise_iterator rowwiseend(size_type irow) {return rowwise_iterator(*this, irow+1, 0);};
+      const_rowwise_iterator rowwiseend(size_type irow) const {return const_rowwise_iterator(*this, irow+1, 0);};
+      
+      /// An iterator that operates along the matrix columns
+      columnwise_iterator columnwisebegin() {return columnwise_iterator(*this, 0, 0);};
+      const_columnwise_iterator columnwisebegin() const {return const_columnwise_iterator(*this, 0, 0);};
+      
+      /**
+       * return a column wise iterator for the beginning of the jth column (0 based)
+       * @param irow
+       */
+      columnwise_iterator columnwisebegin(size_type jcol) {return columnwise_iterator(*this, 0, jcol);};
+      const_columnwise_iterator columnwisebegin(size_type jcol) const {return const_columnwise_iterator(*this, 0, jcol);};
+
+      /// An iterator that operates along the matrix columns
+      columnwise_iterator columnwiseend() {return columnwise_iterator(*this, 0, cols);};
+      const_columnwise_iterator columnwiseend() const {return const_columnwise_iterator(*this, 0, cols);};
+
+      /**
+       * return a column wise iterator for the end of the jth column (0 based)
+       * @param irow
+       */
+      columnwise_iterator columnwiseend(size_type jcol) {return columnwise_iterator(*this, 0, jcol+1);};
+      const_columnwise_iterator columnwiseend(size_type jcol) const {return const_columnwise_iterator(*this, 0, jcol+1);};
 };
+
+/******************************************************************************/
+
+/**
+ * An iterator class for the <code>matrix</code> class
+ * @tparam T the type of object stored in the matrix
+ * @tparam ISROWWISE a boolean to indicate if the matrix is iterated row-wise
+ */
+template <class T, bool ISROWWISE>
+class matrixIter : public std::iterator<std::forward_iterator_tag, T>
+{
+    friend class matrixConstIter<T, ISROWWISE>;
+private:
+    matrix<T> & myMatrix; /**< The object that the iterator is referencing */
+    typename matrix<T>::size_type rows; /**< the row being pointed to */
+    typename matrix<T>::size_type cols; /**< the column being pointed to */
+public:
+    /**
+     * Constructor
+     * @param mat the matrix being indexed
+     * @param r the row location of the iterator
+     * @param c the column location of the iterator
+     */
+    matrixIter(matrix<T> & mat, typename matrix<T>::size_type r, 
+            typename matrix<T>::size_type c)
+        : myMatrix(mat), rows(r), cols(c) {}
+    /// Equality operator
+    bool operator==(const matrixIter<T, ISROWWISE> & other) const;
+    /// Inequality operator
+    bool operator!=(const matrixIter<T, ISROWWISE> & other) const
+    {
+        return !(*this == other);
+    }
+    /// pre-increment operator
+    matrixIter<T, ISROWWISE> & operator++();
+    /// post-increment operator
+    matrixIter<T, ISROWWISE> operator++(int);
+    /// assignment operator
+    matrixIter<T, ISROWWISE> & operator=(const matrixIter<T, ISROWWISE> & rhs);
+    /// de-reference operator
+    T & operator*() 
+    { 
+        return myMatrix(rows, cols); 
+    }
+};
+
+/**
+ * An const_iterator class for the <code>matrix</code> class
+ * @tparam T the type of object stored in the matrix
+ * @tparam ISROWWISE a boolean to indicate if the matrix is iterated row-wise
+ */
+template <class T, bool ISROWWISE>
+class matrixConstIter : public std::iterator<std::forward_iterator_tag, T>
+{
+    friend class matrixIter<T, ISROWWISE>;
+private:
+    const matrix<T> & myMatrix; /**< The object that the iterator is referencing */
+    typename matrix<T>::size_type rows; /**< the row being pointed to */
+    typename matrix<T>::size_type cols; /**< the column being pointed to */
+public:
+    /**
+     * Constructor
+     * @param mat the matrix being indexed
+     * @param r the row location of the iterator
+     * @param c the column location of the iterator
+     */
+    matrixConstIter(const matrix<T> & mat, typename matrix<T>::size_type r, 
+            typename matrix<T>::size_type c)
+        : myMatrix(mat), rows(r), cols(c) {}
+    /**
+     * Copy constructor from non-const to const
+     * @param mi the matrix being copied
+     */
+    matrixConstIter(const matrixIter<T, ISROWWISE> & mi)
+        : myMatrix(mi.myMatrix), rows(mi.rows), cols(mi.cols){}
+    /// Equality operator
+    bool operator==(const matrixConstIter<T, ISROWWISE> & other) const;
+    /// Inequality operator
+    bool operator!=(const matrixConstIter<T, ISROWWISE> & other) const
+    {
+        return !(*this == other);
+    }
+    /// pre-increment operator
+    matrixConstIter<T, ISROWWISE> & operator++();
+    /// post-increment operator
+    matrixConstIter<T, ISROWWISE> operator++(int);
+    /// Assignment operator
+    /** @TODO:  does an assignment operator make sense for a const iterator? */
+    matrixConstIter<T, ISROWWISE> & operator=(const matrixConstIter<T, ISROWWISE> & rhs);
+    /// de-reference operator
+    const T & operator*() 
+    { 
+        return myMatrix(rows, cols); 
+    }
+};
+
+// heavily influenced by:  http://www.sj-vs.net/c-implementing-const_iterator-and-non-const-iterator-without-code-duplication/
+
+/******************************************************************************/
 
 template<class T>
 matrix<T>::matrix(size_type rows, size_type cols)
@@ -374,12 +537,9 @@ matrix<T>& matrix<T>::operator=( const matrix<T>& cp )
    {
        rows = cp.rows;
        cols = cp.cols;
-       elements.resize(rows*cols);
    }
-   for (size_type i = 0; i < rows*cols; i++)
-   {
-      elements[i] = cp.elements[i];
-   }
+   elements = cp.elements;
+   bTranspose = cp.bTranspose;
    return *this;
 }
 
@@ -390,12 +550,15 @@ bool matrix<T>::operator==(const matrix<T>& cp) const
     {
         return false;
     }
-    for (size_type i = 0; i < rows*cols; i++)
+    return std::equal(elements.begin(), elements.end(), cp.elements.begin());
+}
+
+template<class T>
+bool matrix<T>::operator!=(const matrix<T> & cp) const
+{
+    if (*this == cp)
     {
-        if (elements[i] != cp.elements[i])
-        {
-            return false;
-        }
+        return false;
     }
     return true;
 }
@@ -501,6 +664,7 @@ void matrix<T>::clear()
     elements.clear();
     rows = 0;
     cols = 0;
+    bTranspose = false;
 }
 
 template<class T>
@@ -509,6 +673,7 @@ matrix<T>::matrix()
     rows = 0; 
     cols = 0; 
     elements = std::vector<T>();
+    bTranspose = false;
 }
 
 template<class T>
@@ -538,6 +703,150 @@ void matrix<T>::transpose()
     size_type oldRows = rows;
     rows = cols;
     cols = oldRows;
+}
+
+/******************************************************************************/
+
+template<class T, bool ISROWWISE>
+bool matrixIter<T, ISROWWISE>::operator==(const matrixIter<T, ISROWWISE> & other) const
+{
+    if (this->myMatrix == other.myMatrix &&
+            this->rows == other.rows &&
+            this->cols == other.cols)
+    {
+        return true;
+    }
+    return false;
+}
+
+template<class T, bool ISROWWISE>
+matrixIter<T, ISROWWISE> & matrixIter<T, ISROWWISE>::operator++() 
+{
+    if (ISROWWISE)
+    {
+        if (cols < myMatrix.cols - 1)
+        {
+            cols++;
+            return *this;
+        }
+        else
+        {
+            cols = 0;
+            rows++;
+            return *this;
+        }
+    }
+    else // ISROWWISE = false
+    {
+        if (rows < myMatrix.rows - 1)
+        {
+            rows++;
+            return *this;
+        }
+        else
+        {
+            rows = 0;
+            cols++;
+            return *this;
+        }
+    }
+}
+
+template<class T, bool ISROWWISE>
+matrixIter<T, ISROWWISE> & matrixIter<T, ISROWWISE>::operator=(const matrixIter<T, ISROWWISE> & rhs)
+{
+    // Check for self-assignment
+    if (this == &rhs)
+    {
+        return *this;
+    }
+    else
+    {
+        this->myMatrix = rhs.myMatrix;
+        this->rows = rhs.rows;
+        this->cols = rhs.cols;
+        return *this;
+    }
+}
+
+template<class T, bool ISROWWISE>
+matrixIter<T, ISROWWISE> matrixIter<T, ISROWWISE>::operator++(int) 
+{
+    const matrixIter<T, ISROWWISE> clone( *this );
+    ++(*this);
+    return clone;
+}
+
+/******************************************************************************/
+
+template<class T, bool ISROWWISE>
+bool matrixConstIter<T, ISROWWISE>::operator==(const matrixConstIter<T, ISROWWISE> & other) const
+{
+    if (this->myMatrix == other.myMatrix &&
+            this->rows == other.rows &&
+            this->cols == other.cols)
+    {
+        return true;
+    }
+    return false;
+}
+
+template<class T, bool ISROWWISE>
+matrixConstIter<T, ISROWWISE> & matrixConstIter<T, ISROWWISE>::operator++() 
+{
+    if (ISROWWISE)
+    {
+        if (cols < myMatrix.cols - 1)
+        {
+            cols++;
+            return *this;
+        }
+        else
+        {
+            cols = 0;
+            rows++;
+            return *this;
+        }
+    }
+    else // ISROWWISE = false
+    {
+        if (rows < myMatrix.rows - 1)
+        {
+            rows++;
+            return *this;
+        }
+        else
+        {
+            rows = 0;
+            cols++;
+            return *this;
+        }
+    }
+}
+
+template<class T, bool ISROWWISE>
+matrixConstIter<T, ISROWWISE> & matrixConstIter<T, ISROWWISE>::operator=(const matrixConstIter<T, ISROWWISE> & rhs)
+{
+    // Check for self-assignment
+    if (this == &rhs)
+    {
+        return *this;
+    }
+    else
+    {
+        this->myMatrix = rhs.myMatrix;
+        this->rows = rhs.rows;
+        this->cols = rhs.cols;
+        return *this;
+    }
+}
+
+template<class T, bool ISROWWISE>
+matrixConstIter<T, ISROWWISE> matrixConstIter<T, ISROWWISE>::operator++(int) 
+{
+    const matrixConstIter<T, ISROWWISE> clone( *this );
+    ++(*this);
+    return clone;
 }
 
 } // end namespace

@@ -24,21 +24,24 @@
 #include <Rcpp.h>
 #include "CRandom.h"
 
-/**
- * Standard Uniform random number generator using R
- */
-class RStandardUniform : public lhslib::CRandom<double>
+namespace lhs_r
 {
-public:
     /**
-     * get the next random number
-     * @return the random deviate
+     * Standard Uniform random number generator using R
      */
-    double getNextRandom() 
+    class RStandardUniform : public lhslib::CRandom<double>
     {
-        return Rcpp::as<double>(Rcpp::runif(1));
+    public:
+        /**
+         * get the next random number
+         * @return the random deviate
+         */
+        double getNextRandom() 
+        {
+            return Rcpp::as<double>(Rcpp::runif(1));
+        };
     };
-};
+}
 
 #endif	/* RSTANDARDUNIFORM_H */
 

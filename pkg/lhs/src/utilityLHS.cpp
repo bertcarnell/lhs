@@ -18,7 +18,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "CommonDefines.h"
 #include "utilityLHS.h"
 
 namespace lhslib
@@ -60,55 +59,22 @@ namespace lhslib
         }
         return true;
     }
-
-    void rank(std::vector<double> & toRank, std::vector<int> & ranks)
-    {
-        unsigned int len = toRank.size();
-        if (toRank.size() != ranks.size())
-        {
-            ranks.resize(len, 0);
-        }
-        for (unsigned int i = 0; i < len; i++)
-        {
-            ranks[i] = 0;
-            for (unsigned int j = 0; j < len; j++)
-            {
-                if (toRank[i] < toRank[j])
-                {
-                    ranks[i]++;
-                }
-            }
-        }
-    }
-
-    void rankColumns(std::vector<double> & toRank, std::vector<int> & ranks, int nrow)
-    {
-        unsigned int n = static_cast<unsigned int>(nrow);
-        std::vector<double> column = std::vector<double>(n);
-        unsigned int len = toRank.size();
-        int offset;
-        if (toRank.size() != ranks.size())
-        {
-            ranks.resize(len, 0);
-        }
-        for (unsigned int i = 0; i < len; i+=n)
-        {
-            // copy the first nrow
-            for (unsigned int j = 0; j < n; j++)
-            {
-                column[j] = toRank[i+j];
-            }
-            // sort
-            std::sort(column.begin(), column.end(), std::less<double>());
-            // find the sorted number that is the same as the number to rank
-            for (unsigned int j = 0; j < n; j++)
-            {
-                offset = static_cast<int>(i);
-                ranks[i+j] = std::find(toRank.begin()+offset, toRank.begin()+offset+nrow, column[j]) - (toRank.begin()+offset);
-            }
-        }
-    }
     
+    bool isValidLHS(const bclib::matrix<double> & result)
+    {
+        msize_type n = result.rowsize();
+        msize_type k = result.colsize();
+        bclib::matrix<int> resultint = bclib::matrix<int>(n, k);
+        bclib::matrix<double>::const_iterator it = result.begin();
+        bclib::matrix<int>::iterator iti = resultint.begin();
+        for (;it != result.end(); ++it, ++iti)
+        {
+            *iti = 1 + floor(static_cast<double>(n) * (*it));
+        }
+        bool ret = isValidLHS(resultint);        
+        return ret;
+    }
+
     void initializeAvailableMatrix(bclib::matrix<int> & avail)
     {
         // avail is k x n
@@ -120,4 +86,17 @@ namespace lhslib
             }
         }
     }
+    
+    void runif_std(unsigned int n, std::vector<double> & output, CRandom<double> & oRandom)
+    {
+        if (output.size() != n)
+        {
+            output.resize(n);
+        }
+        for (unsigned int i = 0; i < n; i++)
+        {
+            output[i] = oRandom.getNextRandom();
+        }
+    }
+
 } // end namespace

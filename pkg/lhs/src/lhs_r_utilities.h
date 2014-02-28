@@ -24,6 +24,9 @@
 #include <Rcpp.h>
 #include "CommonDefines.h"
 
+/**
+ * @namespace lhs_r a namespace for the lhs methods used in the R interface
+ */
 namespace lhs_r
 {
     /**
@@ -96,8 +99,8 @@ namespace lhs_r
             {
                 typename Rcpp::Matrix<RTYPE>::Row rowi = mat.row(i);
                 typename Rcpp::Matrix<RTYPE>::Row rowj = mat.row(j);
-                int sum = Rcpp::sum((rowi - rowj) * (rowi - rowj));
-                result(i,j) = sqrt(static_cast<double>(sum));
+                double sum = static_cast<double>(Rcpp::sum((rowi - rowj) * (rowi - rowj)));
+                result(i,j) = sqrt(sum);
             }
         }
         return result;
@@ -129,7 +132,7 @@ namespace lhs_r
         }
         else
         {
-            throw Rcpp::exception("problem with calculateSOptimal");
+            throw std::runtime_error("problem with calculateSOptimal");
         }
     }
 }

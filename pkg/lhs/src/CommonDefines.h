@@ -27,6 +27,7 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
+#include <numeric>
 #include <cfloat>
 #include <climits>
 #include <cstdio>
@@ -46,7 +47,7 @@
 #define PRINT_RESULT 0
 
 /**
- * LHS c++ Library namespace
+ * @namespace lhslib LHS c++ Library namespace
  */
 namespace lhslib 
 {
@@ -86,7 +87,7 @@ namespace lhslib
             CRandom<double> & oRandom, bool bVerbose);
     /**
      * Application of the optimum lhs method to a seeded Latin hypercube
-     * @param n number of rows / samples in the lha
+     * @param n number of rows / samples in the lhs
      * @param k number parameters / columns in the lhs
      * @param maxSweeps the maximum number of sweeps to use in the algorithm
      * @param eps The optimal stopping criterion
@@ -107,6 +108,40 @@ namespace lhslib
      * @note the type of the vector (i.e. int) is irrelevant for size_type
      */
     typedef std::vector<int>::size_type vsize_type;
+    
+    /**
+     * Create a random latin hypercube sample
+     * @param n number of rows / samples in the lhs
+     * @param k number parameters / columns in the lhs
+     * @param bPreserveDraw should the order of the draw be preserved if less columns are selected
+     * @param result the lhs
+     * @param oRandom the random number stream
+     */
+    void randomLHS(int n, int k, bool bPreserveDraw, bclib::matrix<double> & result, CRandom<double> & oRandom);
+
+    /**
+     * Create a random latin hypercube sample with integer values
+     * @param n number of rows / samples in the lhs
+     * @param k number parameters / columns in the lhs
+     * @param result the lhs
+     * @param oRandom the random number stream
+     */
+    void randomLHS(int n, int k, bclib::matrix<int> & result, CRandom<double> & oRandom);
+    
+    /**
+     * Create a latin hypercube sample optimized by some criteria with a genetic algorithm
+     * @param n number of rows / samples in the lhs
+     * @param k number parameters / columns in the lhs
+     * @param pop the population of the genetic algorithm in each iteration
+     * @param gen the number of generations to use
+     * @param pMut the mutation rate
+     * @param criterium the optimization criterium
+     * @param bVerbose should messages be printed?
+     * @param result the lhs
+     * @param oRandom the random number stream
+     */
+    void geneticLHS(int n, int k, int pop, int gen, double pMut, std::string criterium,
+            bool bVerbose, bclib::matrix<double> & result, CRandom<double> & oRandom);
 }
 
 #endif	/* COMMONDEFINES_H */
