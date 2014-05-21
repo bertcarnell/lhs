@@ -54,6 +54,7 @@
 	<ul>
 	  <li><a href="lhs_basics.html">LHS Basic Operations</a></li>
 	  <li><a href="augmentLHS_Example.html">Augmenting a LHS</a></li>
+	  <li><a href="lhs_questions.html">Other LHS Questions and Answers</a></li>
 	</ul>
 
     <h3>R-Help Examples of using the LHS package</h3>
