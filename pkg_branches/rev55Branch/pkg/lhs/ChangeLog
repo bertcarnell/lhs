@@ -39,5 +39,7 @@ Version 0.8
   definition of the utilityLHS class, instead of in the header below the class.
   
  Version 0.11
-  Fixed a bug in the geneticLHS code and added Maximin to the optmization criteria
+  Fixed a bug in the geneticLHS code and added Maximin to the optimization criteria.  Fixed a caused by a change in R2.3.3 that 
+  requires a matrix dimnames to be a list.  Added an importFrom to
+  the namespace.
   
