@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="improvedLHS_RTest.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="maximinLHS_RTest.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="optimumLHS_RTest.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="optSeededLHS_RTest.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="simpleMatrixTest.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TestClass.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="utilityLHS_RTest.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="improvedLHS_RTest.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="maximinLHS_RTest.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="optimumLHS_RTest.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="optSeededLHS_RTest.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="simpleMatrixTest.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TestClass.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="utilityLHS_RTest.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{30f7b9d4-80d7-447f-a48a-18d28399ff45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{bde4ca2e-4932-417a-9161-dd0688643619}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
