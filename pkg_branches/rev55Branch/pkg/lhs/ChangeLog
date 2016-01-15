@@ -43,3 +43,6 @@ Version 0.8
   requires a matrix dimnames to be a list.  Added an importFrom to
   the namespace.
   
+ Version 0.12
+  Fixed a bug in the Description file.
+  

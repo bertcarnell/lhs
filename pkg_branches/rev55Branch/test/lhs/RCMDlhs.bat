@@ -2,7 +2,7 @@ rem build and install lhs
 
 echo off
 
-set Rversion=R-3.0.2
+set Rversion=R-3.2.3
 
 set Rcommand="C:\Program Files\R\%Rversion%\bin\R.exe"
 set Rcommand32="C:\Program Files\R\%Rversion%\bin\i386\R.exe"
