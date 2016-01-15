@@ -1,0 +1,48 @@
+Version 0.1
+
+Version 0.2
+  Bug suggested by Bjarne Hansen fixed 7/20/06.  Bug involved augmenting lhs
+  samples with one paramter.  Example a <- randomlhs(4, 1); augmentLHS(a, 2).
+  RUnit test added to check this bug.  All RUnit tests satisfactory.
+  - RC
+
+Version 0.3
+  Another bug reported by Bjarne Hansen on 7/23/06, and fixed on 10/21/06.
+  The bug involved augmenting a hypercube with one point.  RUnit test added
+  to check this bug.  All RUnit tests satisfactory.  Also added documentation
+  consisting of an augmentation example.  Added a lhs package help page.
+  
+Version 0.4
+  Changed the license to GPL >= 2 according to a Kurt Hornik email
+
+Version 0.5
+  Change output filenames to be portable
+  
+Version 0.6
+  Added a new option to randomLHS to allow for similar lhs's when
+  the seed is set and columns are added
+  
+Version 0.7
+  Removed test directories to fix them for the proper package structure.
+ 
+Version 0.8
+  Refactored the underlying C code into C++ to add range checks
+  for internal arrays.  Corrected a bug suggested by XXXX on DATE.  
+  Corrected the bug suggested by Prof Ripley on DATE with the
+  range checking.
+  
+ Version 0.9
+  Removed non-portable code introduced in Version 0.8
+  
+ Version 0.10
+  Changed static template method definitions to be included in the 
+  definition of the utilityLHS class, instead of in the header below the class.
+  
+ Version 0.11
+  Fixed a bug in the geneticLHS code and added Maximin to the optimization criteria.  Fixed a caused by a change in R2.3.3 that 
+  requires a matrix dimnames to be a list.  Added an importFrom to
+  the namespace.
+  
+ Version 0.12
+  Fixed a bug in the Description file.
+  
