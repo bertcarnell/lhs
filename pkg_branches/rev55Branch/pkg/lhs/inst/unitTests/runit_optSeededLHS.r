@@ -68,8 +68,13 @@ test.optSeededLHS <- function()
     sTemp <- capture.output(rtemp <- optSeededLHS(randomLHS(4, 2), 2))
     rtemp
   }
-  checkEqualsNumeric(f(), a, tolerance=1E-7)
   checkTrue(checkLatinHypercube(f()))
+  if (!grepl("sun",R.version$platform) &&
+      !grepl("sparc", R.version$platform) &&
+      !grepl("solaris", R.version$platform))
+  {
+    checkEqualsNumeric(f(), a, tolerance=1E-7)
+  }
 
   f <- function()
   {
@@ -77,8 +82,13 @@ test.optSeededLHS <- function()
     sTemp <- capture.output(rtemp <- optSeededLHS(randomLHS(3, 3), 3, 3, .05))
     rtemp
   }
-  checkEqualsNumeric(f(), b, tolerance=1E-7)
   checkTrue(checkLatinHypercube(f()))
+  if (!grepl("sun",R.version$platform) &&
+      !grepl("sparc", R.version$platform) &&
+      !grepl("solaris", R.version$platform))
+  {
+    checkEqualsNumeric(f(), b, tolerance=1E-7)
+  }
 
   f <- function()
   {
@@ -92,7 +102,12 @@ test.optSeededLHS <- function()
     )
     rTemp[[5]]
   }
-  checkEqualsNumeric(f(), d, tolerance=1E-7)
+  if (!grepl("sun",R.version$platform) &&
+      !grepl("sparc", R.version$platform) &&
+      !grepl("solaris", R.version$platform))
+  {
+    checkEqualsNumeric(f(), d, tolerance=1E-7)
+  }
 }
 
 

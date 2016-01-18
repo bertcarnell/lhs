@@ -45,4 +45,7 @@ Version 0.8
   
  Version 0.12
   Fixed a bug in the Description file.
+ 
+ Version 0.13
+  Numerical accuracy checks on the Solaris 10 systems was failing.  Unable to reproduce this error easily, but it is limited to the numerical accuracy tests.  Eliminated the numerical tests for Solaris/Sun/Sparc.
   

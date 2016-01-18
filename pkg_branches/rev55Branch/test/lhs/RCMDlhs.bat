@@ -10,7 +10,7 @@ set Rcommand64="C:\Program Files\R\%Rversion%\bin\x64\R.exe"
 :: %Rcommand% CMD INSTALL --build lhs_*.tar.gz
 
 if "%1" == "check" (
-	%Rcommand% CMD check ..\..\pkg\lhs
+	%Rcommand% CMD check ..\..\pkg\lhs --as-cran
 ) else if "%1" == "build" (
 	echo **** R CMD build lhs ****
 	%Rcommand% CMD build ..\..\pkg\lhs
