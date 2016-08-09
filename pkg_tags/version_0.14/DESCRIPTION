@@ -1,0 +1,14 @@
+Package: lhs
+Version: 0.14
+Date: 2016-08-08
+Title: Latin Hypercube Samples
+Authors@R: c(person("Rob", "Carnell", role=c("aut","cre"),
+  email="bertcarnell@gmail.com"))
+Author: Rob Carnell [aut, cre]
+Maintainer: Rob Carnell <bertcarnell@gmail.com>
+Depends: R (>= 2.14.2)
+Suggests: RUnit
+Description:  Provides a number of methods for creating and augmenting Latin Hypercube Samples.
+License: GPL (>= 2)
+URL: http://lhs.r-forge.r-project.org
+BugReports: http://r-forge.r-project.org/projects/lhs/
