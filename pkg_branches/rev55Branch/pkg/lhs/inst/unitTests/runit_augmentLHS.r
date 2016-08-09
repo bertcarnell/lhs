@@ -111,6 +111,13 @@ test.augmentLHS <- function(){
   {
     checkEquals(f(), 8)
   }
+  
+  # this test addresses a bug submitted on 8/8/2016
+  A <- matrix(c(0.0625000,0.3750000,0.9166667,0.5208333,0.7500000,0.2083333,
+                0.04166667,0.66666667,0.37500000,0.97916667,0.52083333,0.27083333), 
+              nrow=6, ncol=2)
+  checkTrue(all(!is.na(augmentLHS(A, m=10))))
+
 }
 
 

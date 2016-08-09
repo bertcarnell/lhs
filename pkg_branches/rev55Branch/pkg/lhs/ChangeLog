@@ -2,9 +2,8 @@ Version 0.1
 
 Version 0.2
   Bug suggested by Bjarne Hansen fixed 7/20/06.  Bug involved augmenting lhs
-  samples with one paramter.  Example a <- randomlhs(4, 1); augmentLHS(a, 2).
+  samples with one parameter.  Example a <- randomLHS(4, 1); augmentLHS(a, 2).
   RUnit test added to check this bug.  All RUnit tests satisfactory.
-  - RC
 
 Version 0.3
   Another bug reported by Bjarne Hansen on 7/23/06, and fixed on 10/21/06.
@@ -39,8 +38,8 @@ Version 0.8
   definition of the utilityLHS class, instead of in the header below the class.
   
  Version 0.11
-  Fixed a bug in the geneticLHS code and added Maximin to the optimization criteria.  Fixed a caused by a change in R2.3.3 that 
-  requires a matrix dimnames to be a list.  Added an importFrom to
+  Fixed a bug in the geneticLHS code and added Maximin to the optimization criteria.  
+  Fixed a bug caused by a change in R2.3.3 that requires a matrix dimnames to be a list.  Added an importFrom to
   the namespace.
   
  Version 0.12
@@ -48,4 +47,6 @@ Version 0.8
  
  Version 0.13
   Numerical accuracy checks on the Solaris 10 systems was failing.  Unable to reproduce this error easily, but it is limited to the numerical accuracy tests.  Eliminated the numerical tests for Solaris/Sun/Sparc.
-  
+
+ Version 0.14
+  Fixed a bug suggested by Roland Lowe on 8/4/2016.

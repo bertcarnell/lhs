@@ -14,8 +14,6 @@ if "%1" == "check" (
 ) else if "%1" == "build" (
 	echo **** R CMD build lhs ****
 	%Rcommand% CMD build ..\..\pkg\lhs
-	echo **** R CMD install --build
-	%Rcommand% CMD INSTALL --build ..\..\pkg\lhs
 ) else if "%1" == "install" (
 	%Rcommand% CMD INSTALL ..\..\pkg\lhs
 )
