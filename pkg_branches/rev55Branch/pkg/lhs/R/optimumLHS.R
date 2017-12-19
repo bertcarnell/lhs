@@ -69,7 +69,7 @@ optimumLHS <- function(n=10, k=2, maxSweeps=2, eps=.1, verbose=FALSE)
 
   jLen <- choose(n, 2) + 1
 
-  resultList <- .C("optimumLHS_C", as.integer(n), as.integer(k),
+  resultList <- .C(C_optimumLHS_C, as.integer(n), as.integer(k),
                      as.integer(maxSweeps), as.double(eps), as.integer(Pold),
                      as.integer(jLen), as.integer(verbose))
 

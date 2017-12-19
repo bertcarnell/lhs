@@ -56,7 +56,7 @@ maximinLHS <- function(n, k, dup=1)
 
   result <- numeric(k*n)
 
-  result2 <- .C("maximinLHS_C", as.integer(n), as.integer(k), as.integer(dup),
+  result2 <- .C(C_maximinLHS_C, as.integer(n), as.integer(k), as.integer(dup),
                 as.integer(result))[[4]]
 
   eps <- runif(n*k)

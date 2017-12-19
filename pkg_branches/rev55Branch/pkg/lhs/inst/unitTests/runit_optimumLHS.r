@@ -99,28 +99,6 @@ test.optimumLHS <- function()
   {
     checkEqualsNumeric(f(), g, tolerance=1E-7)
   }
-
-  f <- function()
-  {
-    set.seed(1979)
-    temp <- matrix(0, nrow=10, ncol=2)
-    for(j in 1:2)
-    {
-      temp[ ,j] <- order(runif(10))
-    }
-    temp <- c(t(temp))
-    sTemp <- capture.output(
-    rTemp <- .C("optimumLHS_C", as.integer(10), as.integer(2),
-       as.integer(3), as.double(0.1), as.integer(temp),
-       as.integer(choose(10,2)+1), as.integer(TRUE)))
-    rTemp[[5]]
-  }
-  if (!grepl("sun",R.version$platform) &&
-      !grepl("sparc", R.version$platform) &&
-      !grepl("solaris", R.version$platform))
-  {
-    checkEqualsNumeric(f(), d, tolerance=1E-7)
-  }
 }
 
 

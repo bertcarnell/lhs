@@ -67,7 +67,7 @@ improvedLHS <- function(n, k, dup=1){
 
   result <- numeric(k*n)
 
-  result2 <- .C("improvedLHS_C", as.integer(n), as.integer(k), as.integer(dup),
+  result2 <- .C(C_improvedLHS_C, as.integer(n), as.integer(k), as.integer(dup),
                 as.integer(result))[[4]]
 
   eps <- runif(n*k)

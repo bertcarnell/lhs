@@ -89,25 +89,6 @@ test.optSeededLHS <- function()
   {
     checkEqualsNumeric(f(), b, tolerance=1E-7)
   }
-
-  f <- function()
-  {
-    set.seed(1979)
-    temp2 <- augmentLHS(randomLHS(10,2), 5)
-    temp2 <- c(t(temp2))
-    sTemp <- capture.output(
-      rTemp <- .C("optSeededLHS_C", as.integer(15), as.integer(2),
-         as.integer(3), as.double(0.1), as.double(temp2),
-         as.integer(choose(15,2)+1), as.integer(TRUE))
-    )
-    rTemp[[5]]
-  }
-  if (!grepl("sun",R.version$platform) &&
-      !grepl("sparc", R.version$platform) &&
-      !grepl("solaris", R.version$platform))
-  {
-    checkEqualsNumeric(f(), d, tolerance=1E-7)
-  }
 }
 
 

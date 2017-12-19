@@ -50,3 +50,6 @@ Version 0.8
 
  Version 0.14
   Fixed a bug suggested by Roland Lowe on 8/4/2016.
+
+ Version 0.15
+  Added registration of native routines.

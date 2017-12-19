@@ -82,7 +82,7 @@ optSeededLHS <- function(seed, m=1, maxSweeps=2, eps=.1, verbose=FALSE)
 
   jLen <- choose(N, 2) + 1
 
-  resultList <- .C("optSeededLHS_C", as.integer(N), as.integer(k),
+  resultList <- .C(C_optSeededLHS_C, as.integer(N), as.integer(k),
                      as.integer(maxSweeps), as.double(eps), as.double(Pold),
                      as.integer(jLen), as.integer(verbose))
 

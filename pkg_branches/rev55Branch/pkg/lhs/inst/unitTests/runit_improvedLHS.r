@@ -60,14 +60,6 @@ test.improvedLHS <- function(){
   }
   #checkEqualsNumeric(f(), b, tolerance=1E-7)
   checkTrue(checkLatinHypercube(f()))
-
-  f <- function()
-  {
-    set.seed(1978)
-    .C("improvedLHS_C", as.integer(10), as.integer(2),
-      as.integer(3), integer(2*10))[[4]]
-  }
-  #checkEqualsNumeric(f(), d, tolerance=1E-7)
 }
 
 

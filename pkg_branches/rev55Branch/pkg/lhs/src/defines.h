@@ -39,6 +39,8 @@
 #ifndef VISUAL_STUDIO
 #include "R.h"
 #include "Rmath.h"
+#include "R_ext/Rdynload.h"
+#include "Rinternals.h"
 #else
 #include <cstdio>
 #ifndef MATHLIB_STANDALONE
@@ -66,6 +68,7 @@ extern "C" {
 	void maximinLHS_C(int* N, int* K, int* DUP, int* result);
 	void optimumLHS_C(int* N, int* K, int* MAXSWEEPS, double* EPS, int* pOld, int* JLen, int* bVerbose);
 	void optSeededLHS_C(int* N, int* K, int* MAXSWEEPS, double* EPS, double* pOld, int* JLen, int* bVerbose);
+	void R_init_lhs(DllInfo *dll);
 }
 
 #endif
