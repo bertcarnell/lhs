@@ -20,6 +20,7 @@ sample by maximizing the minium distance between design points (maximin criteria
              added.  This is used when \code{method="build"}}
   \item{eps}{The minimum percent change in the minimum distance used in the 
             \code{iterative} method}
+  \item{maxIter}{The maximum number of iterations to use in the \code{iterative} method}
   \item{optimize.on}{\code{grid} or \code{result} gives the basis of the optimization.
                      \code{grid} optimizes the LHS on the underlying integer grid.
                      \code{result} optimizes the resulting sample on [0,1]}
