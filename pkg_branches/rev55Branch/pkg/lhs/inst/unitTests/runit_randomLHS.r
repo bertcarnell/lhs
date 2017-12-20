@@ -48,7 +48,7 @@ test.randomLHS <- function()
   A <- randomLHS(5, 3, preserveDraw=TRUE)
   set.seed(4)
   B <- randomLHS(5, 5, preserveDraw=TRUE)
-  checkEqualsNumeric(A, B[,1:3], tolerance=1E-6)
+  checkEqualsNumeric(A, B[,1:3], tolerance=1E-3)
   checkTrue(checkLatinHypercube(A))
   checkTrue(checkLatinHypercube(B))
 }
