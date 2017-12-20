@@ -6,13 +6,24 @@ Draws a Latin Hypercube Sample from a set of uniform distributions for use in
 creating a Latin Hypercube Design.  This function attempts to optimize the
 sample by maximizing the minium distance between design points (maximin criteria).
 }
-\usage{maximinLHS(n, k, dup=1)}
+\usage{maximinLHS(n, k, method="build", dup=1, eps=0.05, maxIter=100, 
+                  optimize.on="grid", debug=FALSE)}
 \arguments{
   \item{n}{The number of partitions (simulations or design points)}
   \item{k}{The number of replications (variables)}
+  \item{method}{\code{build} or \code{iterative} is the method of LHS creation.
+                \code{build} finds the next best point while constructing the LHS.
+                \code{iterative} optimizes the resulting sample on [0,1] or sample 
+                grid on [1,N]}
   \item{dup}{A factor that determines the number of candidate points used in the
              search. A multiple of the number of remaining points than can be
-             added.}
+             added.  This is used when \code{method="build"}}
+  \item{eps}{The minimum percent change in the minimum distance used in the 
+            \code{iterative} method}
+  \item{optimize.on}{\code{grid} or \code{result} gives the basis of the optimization.
+                     \code{grid} optimizes the LHS on the underlying integer grid.
+                     \code{result} optimizes the resulting sample on [0,1]}
+  \item{debug}{prints additional information about the process of the optimization}
 }
 \details{
 Latin hypercube sampling (LHS) was developed to generate a distribution
@@ -58,6 +69,9 @@ An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly dist
   \code{\link{augmentLHS}} to modify and augment existing designs.
 }
 \examples{
-  maximinLHS(4, 3, 2)
+  maximinLHS(4, 3, dup=2)
+  maximinLHS(4, 3, method="build", dup=2)
+  maximinLHS(4, 3, method="iterative", eps=0.05, maxIter=100, optimize.on="grid")
+  maximinLHS(4, 3, method="iterative", eps=0.05, maxIter=100, optimize.on="result")
 }
 \keyword{design}
