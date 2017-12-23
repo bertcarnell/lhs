@@ -2,7 +2,7 @@
 # from this web page in 2013, http://master.bioconductor.org/developers/how-to/unitTesting-guidelines/
 # however, I copied it to eliminate the dependency on bioconductor
 
-testPackage <- function (pkgname, subdir = "unitTests", pattern = "^runit_.*\\.[Rr]$") 
+testPackage <- function (pkgname, subdir = "unitTests", pattern = "^runit_.*\\.[Rr]$", outputHTML=FALSE) 
 {
     .failure_details <- function(result) 
     {
@@ -37,23 +37,17 @@ testPackage <- function (pkgname, subdir = "unitTests", pattern = "^runit_.*\\.[
         dirs = dir, testFileRegexp = pattern, rngKind = "Mersenne-Twister", 
         rngNormalKind = "Inversion")
     
-    #suite <- defineTestSuite(name = paste(pkgname, "RUnit Tests"), 
-    #    dirs = dir, testFileRegexp = pattern, rngKind = "default", 
-    #    rngNormalKind = "default")
-    
     result <- runTestSuite(suite)
     cat("\n\n")
-    printTextProtocol(result, showDetails = FALSE)
+    printTextProtocol(result, showDetails = TRUE)
 
-  ## Default report name
-  pathReport <- file.path(dir, "Result")
+    if (outputHTML)
+    {
+      ## Default report name
+      pathReport <- file.path(dir, "Result")
 
-  ## Report to stdout and text files and html
-  printTextProtocol(result, showDetails=FALSE,
-                    fileName=paste(pathReport, "Summary.txt", sep=""))
-  printTextProtocol(result, showDetails=TRUE,
-                    fileName=paste(pathReport, ".txt", sep=""))
-  printHTMLProtocol(result, fileName=paste(pathReport, ".html", sep=""))
+      printHTMLProtocol(result, fileName=paste(pathReport, ".html", sep=""))
+    }
 
     
     if (length(details <- .failure_details(result)) > 0) 
@@ -70,7 +64,6 @@ testPackage <- function (pkgname, subdir = "unitTests", pattern = "^runit_.*\\.[
         cat("\n\n")
         stop("unit tests failed for package ", pkgname)
     }
-    result
 }
 
 checkLatinHypercube <- function(X)
