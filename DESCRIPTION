@@ -1,0 +1,21 @@
+Package: lhs
+Title: Latin Hypercube Samples
+Version: 0.16
+Authors@R: 
+    person(given = "Rob",
+           family = "carnell",
+           role = c("aut", "cre"),
+           email = "bertcarnell@gmail.com")
+Description: Provides a number of methods for creating and augmenting Latin Hypercube Samples.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.4.0)
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp
+Suggests: 
+    testthat
+URL: https://github.com/bertcarnell/lhs
+BugReports: https://github.com/bertcarnell/lhs/issues
