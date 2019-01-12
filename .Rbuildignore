@@ -8,5 +8,5 @@
 ^test
 ^www
 ^CMakeLists.txt$
-^build$
+^build
 ^developmentBuild.bat$
