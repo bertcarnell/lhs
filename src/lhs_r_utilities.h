@@ -22,7 +22,7 @@
 #define	LHS_R_UTILITIES_H
 
 #include <Rcpp.h>
-#include "CommonDefines.h"
+#include "LHSCommonDefines.h"
 
 /**
  * @namespace lhs_r a namespace for the lhs methods used in the R interface

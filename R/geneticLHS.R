@@ -1,84 +1,46 @@
-################################################################################
-#
-# Function: geneticLHS.R
-# Purpose:  To create a nearly optimal latin hypercube design with respect to
-#           the S optimality criterion using a Genetic Algorithm
-# Author:   Rob Carnell
-# Created:  26 May 05
-#
-# Variables:
-#   n is the number of partitions (simulations or design points)
-#   k is the number of replication (variables)
-#   pop is the number of designs in the initial population
-#   gen is the number of generations over which the algorithm is applied
-#   pMut is the probability with wich a mutation occurs in a column of the
-#      progeny
-#
-# Reference:
-#   This code was motivated by the work of Rafal Stocki
-#   "A method to improve design reliability using optimal Latin hypercube
-#    sampling" Institute of Fundamental Technological Research, Polish
-#    Academy of Sciences, ul. Swietokrzyska 21, 00-049 Warsaw, Poland
-#
-# Explanation:
-#  S optimality seeks to maximize the inverse of the sum of the inverse
-#  distances from each point in the design to all other points
-# Algorithm:
-#  1. Generate pop random latin hypercube designs of size n by k
-#  2. Calculate the S optimality of each design
-#  3. Keep the best design in the first position and throw away half of the
-#     rest of the population
-#  4. Take a random column out of the best matrix and place it in a
-#     random column of each of the other matricies, and take a random column
-#     out of each of the other matricies and put it in copy of the best
-#     matrix thereby causing the progeny
-#  5. For each of the progeny, cause a genetic mutation pMut percent of the
-#     time by swtching two elements in each column
-#
-# The dist function calculates the distance between each row of a matrix
-#   and places the answer in a k*k half diagonal matrix
-#
-# 6/30/2012
-#	Added verbose argument
-#
-################################################################################
+# Copyright 2019 Robert Carnell
 
 geneticLHS_old <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", verbose=FALSE)
 {
-  if(length(n)!=1 |length(k)!=1 | length(pop)!=1 |length(gen)!=1 | length(pMut)!=1)
+  if (length(n) != 1 | length(k) != 1 | length(pop) != 1 | length(gen) != 1 | length(pMut) != 1)
     stop("no parameters may be vectors")
-  if(any(is.na(c(n,k,pop,gen,pMut))))
+  if (any(is.na(c(n,k,pop,gen,pMut))))
     stop("no paramters may be NA or NaN")
-  if(any(is.infinite(c(n,k,pop,gen,pMut))))
+  if (any(is.infinite(c(n,k,pop,gen,pMut))))
     stop("no parameters may be infinite")
-  if(floor(n)!=n | n<1) stop("n must be a positive integer\n")
-  if(floor(k)!=k | k<1) stop("k must be a positive integer\n")
-  if(floor(pop)!=pop | pop<1 | pop%%2!=0)
+  if (floor(n) != n | n < 1)
+    stop("n must be a positive integer\n")
+  if (floor(k) != k | k < 1)
+    stop("k must be a positive integer\n")
+  if (floor(pop) != pop | pop < 1 | pop %% 2 != 0)
     stop("pop must be an even positive integer\n")
-  if(floor(gen)!=gen | gen<1) stop("gen must be a positive integer\n")
-  if(pMut<=0 | pMut>=1) stop("pMut must be on the interval (0,1)")
+  if (floor(gen) != gen | gen < 1)
+    stop("gen must be a positive integer\n")
+  if (pMut <= 0 | pMut >= 1)
+    stop("pMut must be on the interval (0,1)")
 
-  if(n==1) {
-	if (verbose) message("Design is already optimal\n")
+  if (n == 1) {
+	  if (verbose)
+	    message("Design is already optimal\n")
     return(rep(1,k))
   }
 
-  A <- array(0, dim=c(n, k, pop),
-             dimnames=c("points", "variables", "hypercubes"))
+  A <- array(0, dim = c(n, k, pop),
+             dimnames = c("points", "variables", "hypercubes"))
 
-  for(i in 1:pop) {
-    for(j in 1:k) {
+  for (i in 1:pop) {
+    for (j in 1:k) {
       A[ , j, i] <- order(runif(n))
     }
   }
 
-  for(v in 1:gen) {
+  for (v in 1:gen) {
 
     B <- numeric(pop)
 
-    for(i in 1:pop) 
+    for (i in 1:pop)
     {
-      if (criterium=="S")
+      if (criterium == "S")
       {
         B[i] <- 1/sum(1/dist(A[, , i]))
       } else if (criterium == "Maximin")
@@ -87,30 +49,31 @@ geneticLHS_old <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", ve
       } else stop("Criterium not recognized")
     }
 
-    H <- order(B, decreasing=TRUE)
+    H <- order(B, decreasing = TRUE)
     posit <- which.max(B)
-    J <- array(NA, dim=c(n, k, pop),
-               dimnames=c("points", "variables", "hypercubes"))
+    J <- array(NA, dim = c(n, k, pop),
+               dimnames = c("points", "variables", "hypercubes"))
     J[ , , 1:(pop/2)] <- A[ , , posit]
-    if((pop/2)==1) break
+    if ((pop/2) == 1)
+      break
 
-    for(i in 1:(pop/2)) {
-      J[ , , (i+pop/2)] <- A[ , , H[i]]
+    for (i in 1:(pop/2)) {
+      J[ , , (i + pop/2)] <- A[ , , H[i]]
     }
 
     J <- na.fail(J)
-  
-    for(i in 2:(pop/2)) {
+
+    for (i in 2:(pop/2)) {
       J[ , runifint(1, 1, k), i] <- J[ , runifint(1, 1, k), (i + pop/2)]
     }
-    for(i in (pop/2+1):pop) {
+    for (i in (pop/2 + 1):pop) {
       J[ , runifint(1, 1, k), i] <- A[ , runifint(1, 1, k), posit]
     }
 
-    for(i in 2:pop) {
+    for (i in 2:pop) {
       y <- runif(k)
-      for(j in 1:k) {
-        if(y[j] <= pMut) {
+      for (j in 1:k) {
+        if (y[j] <= pMut) {
           z <- runifint(2, 1, n)
           a <- J[z[1], j, i]
           b <- J[z[2], j, i]
@@ -122,23 +85,88 @@ geneticLHS_old <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", ve
 
     A <- J
 
-    if(v!=gen && verbose) message(paste("Generation ", v, " completed",sep=""))
+    if (v != gen && verbose)
+      message(paste("Generation ", v, " completed", sep = ""))
   }
-  
-  if (verbose) message("Last generation completed")
+
+  if (verbose)
+    message("Last generation completed")
   P <- as.matrix(J[ , , 1])
-  
+
   test <- apply(P, 2, sum)
-  if(all(test!=(n*(n+1)/2)))
+  if (all(test != (n*(n + 1)/2)))
     stop("Unexpected Result: A Latin Hypercube was not created\n")
 
-  eps <- matrix(runif(n*k), nrow=n, ncol=k)
+  eps <- matrix(runif(n*k), nrow = n, ncol = k)
 
   P <- P - 1 + eps
 
   return(P/n)
 }
 
+#' Latin Hypercube Sampling with a Genetic Algorithm
+#'
+#' Draws a Latin Hypercube Sample from a set of uniform distributions for use in
+#' creating a Latin Hypercube Design.  This function attempts to optimize the
+#' sample with respect to the S optimality criterion through a genetic type
+#' algorithm.
+#'
+#' @details Latin hypercube sampling (LHS) was developed to generate a distribution
+#' of collections of parameter values from a multidimensional distribution.
+#' A square grid containing possible sample points is a Latin square iff there
+#' is only one sample in each row and each column. A Latin hypercube is the
+#' generalisation of this concept to an arbitrary number of dimensions.  When
+#' sampling a function of \code{k} variables, the range of each variable is divided
+#' into \code{n} equally probable intervals. \code{n} sample points are then drawn such that a
+#' Latin Hypercube is created.  Latin Hypercube sampling generates more efficient
+#' estimates of desired parameters than simple Monte Carlo sampling.
+#'
+#' This program generates a Latin Hypercube Sample by creating random permutations
+#' of the first \code{n} integers in each of \code{k} columns and then transforming those
+#' integers into n sections of a standard uniform distribution.  Random values are
+#' then sampled from within each of the n sections.  Once the sample is generated,
+#' the uniform sample from a column can be transformed to any distribution by
+#' using the quantile functions, e.g. qnorm().  Different columns can have
+#' different distributions.
+#'
+#' S-optimality seeks to maximize the mean distance from each design point to all
+#' the other points in the design, so the points are as spread out as possible.
+#'
+#' Genetic Algorithm:
+#' \enumerate{
+#' \item Generate \code{pop} random latin hypercube designs of size \code{n} by \code{k}
+#' \item Calculate the S optimality measure of each design
+#' \item Keep the best design in the first position and throw away half of the rest of the population
+#' \item Take a random column out of the best matrix and place it in a random column of each of the other matricies, and take a random column out of each of the other matricies and put it in copies of the best matrix thereby causing the progeny
+#' \item For each of the progeny, cause a genetic mutation \code{pMut} percent of the time.  The mutation is accomplished by swtching two elements in a column
+#' }
+#'
+#' @param n The number of partitions (simulations or design points or rows)
+#' @param k The number of replications (variables or columns)
+#' @param pop The number of designs in the initial population
+#' @param gen The number of generations over which the algorithm is applied
+#' @param pMut The probability with which a mutation occurs in a column of the progeny
+#' @param criterium The optimality criterium of the algorithm.  Default is \code{S}.  \code{Maximin} is also supported
+#' @param verbose Print informational messages.  Default is \code{FALSE}
+#'
+#' @return An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
+#' @export
+#' @references
+#' Stocki, R. (2005) A method to improve design reliability using optimal Latin hypercube sampling
+#' \emph{Computer Assisted Mechanics and Engineering Sciences} \bold{12}, 87--105.
+#'
+#' Stein, M.  (1987) Large Sample Properties of Simulations Using Latin Hypercube Sampling.
+#' \emph{Technometrics}.  \bold{29}, 143--151.
+#'
+#' @seealso [randomLHS()], [improvedLHS()], [maximinLHS()],
+#' and [optimumLHS()] to generate Latin Hypercube Samples.  [optAugmentLHS()]
+#' [optSeededLHS()], and [augtmentLHS()]  to modify and augment existing designs.
+#'
+#' @keywords design
+#' @author Rob Carnell
+#'
+#' @examples
+#' geneticLHS(4, 3, 50, 5, .25)
 geneticLHS <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", verbose=FALSE)
 {
   .Call("geneticLHS_cpp", as.integer(n), as.integer(k), as.integer(pop), as.integer(gen),

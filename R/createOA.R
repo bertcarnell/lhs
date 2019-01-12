@@ -1,3 +1,4 @@
+# Copyright 2019 Robert Carnell
 
 #' Create an orthogonal array using the Bose algorithm
 #'
@@ -8,18 +9,13 @@
 #' @export
 #' @examples A <- createBose(3, 3, FALSE)
 #' B <- createBose(5, 4, TRUE)
-#' @seealso Other methods to create orthogonal arrays 
-#' \code{\link{createBush}}, 
-#' \code{\link{createBoseBush}}, 
-#' \code{\link{createAddelKemp}}, 
-#' \code{\link{createAddelKemp3}}, 
-#' \code{\link{createAddelKempN}}, 
-#' \code{\link{createBusht}}, 
-#' \code{\link{createBoseBushl}}
+#' @seealso Other methods to create orthogonal arrays [createBush()],
+#' [createBoseBush()], [createAddelKemp()], [createAddelKemp3()],
+#' [createAddelKempN()], [createBusht()], [createBoseBushl()]
 createBose <- function(q, ncol, bRandom)
 {
-  return (.Call("oa_type1", "bose", as.integer(q), as.integer(ncol), 
-               as.logical(bRandom), PACKAGE="oalhs"))
+  return(.Call("oa_type1", "bose", as.integer(q), as.integer(ncol),
+               as.logical(bRandom), PACKAGE = "lhs"))
 }
 
 #' Create an orthogonal array using the Bose-Bush algorithm
@@ -31,18 +27,13 @@ createBose <- function(q, ncol, bRandom)
 #' @export
 #' @examples A <- createBoseBush(4, 3, FALSE)
 #' B <- createBoseBush(8, 3, TRUE)
-#' @seealso Other methods to create orthogonal arrays 
-#' \code{\link{createBush}}, 
-#' \code{\link{createBose}}, 
-#' \code{\link{createAddelKemp}}, 
-#' \code{\link{createAddelKemp3}}, 
-#' \code{\link{createAddelKempN}}, 
-#' \code{\link{createBusht}}, 
-#' \code{\link{createBoseBushl}}
+#' @seealso Other methods to create orthogonal arrays [createBush()],
+#' [createBose()], [createAddelKemp()], [createAddelKemp3()],
+#' [createAddelKempN()], [createBusht()], [createBoseBushl()]
 createBoseBush <- function(q, ncol, bRandom)
 {
-  return (.Call("oa_type1", "bosebush", as.integer(q), as.integer(ncol), 
-               as.logical(bRandom), PACKAGE="oalhs"))
+  return(.Call("oa_type1", "bosebush", as.integer(q), as.integer(ncol),
+               as.logical(bRandom), PACKAGE = "lhs"))
 }
 
 #' Create an orthogonal array using the Bush algorithm
@@ -54,18 +45,13 @@ createBoseBush <- function(q, ncol, bRandom)
 #' @export
 #' @examples A <- createBush(3, 3, FALSE)
 #' B <- createBush(4, 5, TRUE)
-#' @seealso Other methods to create orthogonal arrays 
-#' \code{\link{createBoseBush}}, 
-#' \code{\link{createBose}}, 
-#' \code{\link{createAddelKemp}}, 
-#' \code{\link{createAddelKemp3}}, 
-#' \code{\link{createAddelKempN}}, 
-#' \code{\link{createBusht}}, 
-#' \code{\link{createBoseBushl}}
+#' @seealso Other methods to create orthogonal arrays [createBoseBush()],
+#' [createBose()], [createAddelKemp()], [createAddelKemp3()],
+#' [createAddelKempN()], [createBusht()], [createBoseBushl()]
 createBush <- function(q, ncol, bRandom)
 {
-  return (.Call("oa_type1", "bush", as.integer(q), as.integer(ncol),  
-               as.logical(bRandom), PACKAGE="oalhs"))
+  return(.Call("oa_type1", "bush", as.integer(q), as.integer(ncol),
+               as.logical(bRandom), PACKAGE = "lhs"))
 }
 
 #' Create an orthogonal array using the Addelman-Kempthorne algorithm
@@ -77,18 +63,13 @@ createBush <- function(q, ncol, bRandom)
 #' @export
 #' @examples A <- createAddelKemp(3, 3, TRUE)
 #' B <- createAddelKemp(3, 5, FALSE)
-#' @seealso Other methods to create orthogonal arrays 
-#' \code{\link{createBoseBush}}, 
-#' \code{\link{createBose}}, 
-#' \code{\link{createBush}}, 
-#' \code{\link{createAddelKemp3}}, 
-#' \code{\link{createAddelKempN}}, 
-#' \code{\link{createBusht}}, 
-#' \code{\link{createBoseBushl}}
+#' @seealso Other methods to create orthogonal arrays [createBoseBush()],
+#' [createBose()], [createAddelKemp3()],
+#' [createAddelKempN()], [createBusht()], [createBoseBushl()]
 createAddelKemp <- function(q, ncol, bRandom)
 {
-  return (.Call("oa_type1", "addelkemp", as.integer(q), as.integer(ncol),  
-               as.logical(bRandom), PACKAGE="oalhs"))
+  return(.Call("oa_type1", "addelkemp", as.integer(q), as.integer(ncol),
+               as.logical(bRandom), PACKAGE = "lhs"))
 }
 
 #' Create an orthogonal array using the Addelman-Kempthorne algorithm
@@ -101,20 +82,14 @@ createAddelKemp <- function(q, ncol, bRandom)
 #' @export
 #' @examples A <- createAddelKemp3(3, 3, TRUE)
 #' B <- createAddelKemp3(3, 5, FALSE)
-#' @seealso Other methods to create orthogonal arrays 
-#' \code{\link{createBoseBush}}, 
-#' \code{\link{createBose}}, 
-#' \code{\link{createBush}}, 
-#' \code{\link{createAddelKemp}}, 
-#' \code{\link{createAddelKempN}}, 
-#' \code{\link{createBusht}}, 
-#' \code{\link{createBoseBushl}}
+#' @seealso Other methods to create orthogonal arrays [createBushBush()],
+#' [createBose()], [createAddelKemp()],
+#' [createAddelKempN()], [createBusht()], [createBoseBushl()]
 createAddelKemp3 <- function(q, ncol, bRandom)
 {
-  return (.Call("oa_type1", "addelkemp3", as.integer(q), as.integer(ncol), 
-               as.logical(bRandom), PACKAGE="oalhs"))
+  return(.Call("oa_type1", "addelkemp3", as.integer(q), as.integer(ncol),
+               as.logical(bRandom), PACKAGE = "lhs"))
 }
-
 
 #' Create an orthogonal array using the Bush algorithm with alternate strength
 #'
@@ -127,18 +102,13 @@ createAddelKemp3 <- function(q, ncol, bRandom)
 #' @examples A <- createBusht(3, 4, 2, TRUE)
 #' B <- createBusht(3, 4, 3, FALSE)
 #' G <- createBusht(3, 4, 4, TRUE)
-#' @seealso Other methods to create orthogonal arrays 
-#' \code{\link{createBoseBush}}, 
-#' \code{\link{createBose}}, 
-#' \code{\link{createBush}}, 
-#' \code{\link{createAddelKemp}}, 
-#' \code{\link{createAddelKempN}}, 
-#' \code{\link{createAddelKemp3}}, 
-#' \code{\link{createBoseBushl}}
+#' @seealso Other methods to create orthogonal arrays [createBoseBush()],
+#' [createBose()], [createAddelKemp()], [createAddelKemp3()],
+#' [createAddelKempN()], [createBoseBushl()]
 createBusht <- function(q, ncol, strength, bRandom)
 {
-  return (.Call("oa_type2", "busht", as.integer(strength), as.integer(q), 
-               as.integer(ncol), as.logical(bRandom), PACKAGE="oalhs"))
+  return(.Call("oa_type2", "busht", as.integer(strength), as.integer(q),
+               as.integer(ncol), as.logical(bRandom), PACKAGE = "lhs"))
 }
 
 #' Create an orthogonal array using the Bose-Bush algorithm with alternate strength >= 3
@@ -151,21 +121,16 @@ createBusht <- function(q, ncol, strength, bRandom)
 #' @export
 #' @examples A <- createBoseBushl(3, 3, 3, TRUE)
 #' B <- createBoseBushl(4, 4, 16, TRUE)
-#' @seealso Other methods to create orthogonal arrays 
-#' \code{\link{createBoseBush}}, 
-#' \code{\link{createBose}}, 
-#' \code{\link{createBush}}, 
-#' \code{\link{createAddelKemp}}, 
-#' \code{\link{createAddelKempN}}, 
-#' \code{\link{createAddelKemp3}}, 
-#' \code{\link{createBusht}}
+#' @seealso Other methods to create orthogonal arrays [createBoseBush()],
+#' [createBose()], [createBush()], [createAddelKemp()], [createAddelKemp3()],
+#' [createAddelKempN()], [createBusht()]
 createBoseBushl <- function(q, ncol, lambda, bRandom)
 {
-  return (.Call("oa_type2", "bosebushl", as.integer(lambda), as.integer(q), 
-               as.integer(ncol), as.logical(bRandom), PACKAGE="oalhs"))
+  return(.Call("oa_type2", "bosebushl", as.integer(lambda), as.integer(q),
+               as.integer(ncol), as.logical(bRandom), PACKAGE = "lhs"))
 }
 
-#' Create an orthogonal array using the Addelman-Kempthorne algorithm with 
+#' Create an orthogonal array using the Addelman-Kempthorne algorithm with
 #' alternate strength
 #'
 #' @param q the number of symbols in the array
@@ -176,16 +141,11 @@ createBoseBushl <- function(q, ncol, lambda, bRandom)
 #' @export
 #' @examples A <- createAddelKempN(3, 4, 3, TRUE)
 #' B <- createAddelKempN(3, 4, 4, TRUE)
-#' @seealso Other methods to create orthogonal arrays 
-#' \code{\link{createBoseBush}}, 
-#' \code{\link{createBose}}, 
-#' \code{\link{createBush}}, 
-#' \code{\link{createAddelKemp}}, 
-#' \code{\link{createBusht}}, 
-#' \code{\link{createAddelKemp3}}, 
-#' \code{\link{createBoseBushl}}
+#' @seealso Other methods to create orthogonal arrays [createBoseBush()],
+#' [createBose()], [createBush()], [createAddelKemp()], [createAddelKemp3()],
+#' [createBusht()], [createBoseBushl()]
 createAddelKempN <- function(q, ncol, exponent, bRandom)
 {
-  return (.Call("oa_type2", "addelkempn", as.integer(exponent), as.integer(q), 
-               as.integer(ncol), as.logical(bRandom), PACKAGE="oalhs"))
+  return(.Call("oa_type2", "addelkempn", as.integer(exponent), as.integer(q),
+               as.integer(ncol), as.logical(bRandom), PACKAGE = "lhs"))
 }

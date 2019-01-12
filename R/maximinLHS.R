@@ -1,48 +1,54 @@
-################################################################################
-#
-# Function: maximinLHS.R
-# Purpose:  To create an optimum Latin Hypercube Sampling algorithm that is
-#           implements the maximin criteria.  The maximin critera attemps to
-#           maximize the minimum distance between points
-# Author:   Rob Carnell
-#           This program is motivated by the MATLAB program written by
-#           John Burkardt
-# Created:  May 05
-#
-# Discussion:
-#    n Points in an k dimensional Latin hypercube are to be selected.
-#    This algorithm tries to pick a solution which has the property that the
-#    points are S optimal.
-#    It uses the dup (DUPLICATION) factor to limit the number of points available
-#    to choose from at each step.
-#
-#  Parameters:
-#    k= positive integer, the spatial dimension.
-#    n= positive integer, the number of points to be generated.
-#    dup= positive integer, the DUPLICATION factor.
-#      (default=1, a value of 5 is reasonable)
-#
-#  Steps
-#   1.  Select a random starting point and place it in the matrix X
-#   2.  Populate the matrix AVAIL with the integers from 1 to n
-#   3.  Replace the values in AVAIL which have already been used by the
-#       the first point in X with the value N
-#   4.  Generate the valid points for each row in a random manner by using
-#       the numbers in the rows of AVAIL
-#   5.  For each cadidate point, calculate the distance to the points already
-#       used in X.  Select the candidate point with the maximum minimum distance
-#       value and place it in X (actually squared distance is used to eliminate
-#       the square root processing step)
-#   7.  Having chosen the new point for X, update AVAIL to replace those
-#       numbers in each row that have been used.  The first "count" columns in
-#       AVAIL are valid points.
-#   8.  There is only one choice for the last point
-#
-# 6/30/2012
-#   Changed the C function call
-#
-################################################################################
+# Copyright 2019 Robert Carnell
 
+#' Maximin Latin Hypercube Sample
+#'
+#' Draws a Latin Hypercube Sample from a set of uniform distributions for use in
+#' creating a Latin Hypercube Design.  This function attempts to optimize the
+#' sample by maximizing the minium distance between design points (maximin criteria).
+#'
+#' @details Latin hypercube sampling (LHS) was developed to generate a distribution
+#' of collections of parameter values from a multidimensional distribution.
+#' A square grid containing possible sample points is a Latin square iff there
+#' is only one sample in each row and each column. A Latin hypercube is the
+#' generalisation of this concept to an arbitrary number of dimensions.  When
+#' sampling a function of \code{k} variables, the range of each variable is divided
+#' into \code{n} equally probable intervals. \code{n} sample points are then drawn such that a
+#' Latin Hypercube is created.  Latin Hypercube sampling generates more efficient
+#' estimates of desired parameters than simple Monte Carlo sampling.
+#'
+#' This program generates a Latin Hypercube Sample by creating random permutations
+#' of the first \code{n} integers in each of \code{k} columns and then transforming those
+#' integers into n sections of a standard uniform distribution.  Random values are
+#' then sampled from within each of the n sections.  Once the sample is generated,
+#' the uniform sample from a column can be transformed to any distribution by
+#' using the quantile functions, e.g. qnorm().  Different columns can have
+#' different distributions.
+#'
+#' Here, values are added to the design one by one such that the maximin criteria is
+#' satisfied.
+#'
+#' @param n The number of partitions (simulations or design points or rows)
+#' @param k The number of replications (variables or columns)
+#' @param dup A factor that determines the number of candidate points used in the
+#' search. A multiple of the number of remaining points than can be added.
+#'
+#' @return An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
+#' @export
+#' @keywords design
+#'
+#' @references
+#'   Stein, M.  (1987) Large Sample Properties of Simulations Using Latin Hypercube Sampling.
+#'   \emph{Technometrics}.  \bold{29}, 143--151.
+#'
+#'   This function is motivated by the MATLAB program written by John Burkardt and modified 16 Feb 2005
+#'   \url{http://www.csit.fsu.edu/~burkardt/m_src/ihs/ihs.m}
+#'
+#' @seealso [randomLHS()], [geneticLHS()], [improvedLHS()] and [optimumLHS()]
+#' to generate Latin Hypercube Samples.  [optAugmentLHS()], [optSeededLHS()], and
+#' [augmentLHS()] to modify and augment existing designs.
+#'
+#' @examples
+#' maximinLHS(4, 3, 2)
 maximinLHS <- function(n, k, dup=1)
 {
   result <- .Call("maximinLHS_cpp", as.integer(n), as.integer(k), as.integer(dup))

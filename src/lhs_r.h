@@ -22,7 +22,7 @@
 #define	LHS_R_H
 
 #include <Rcpp.h>
-#include "CommonDefines.h"
+#include "LHSCommonDefines.h"
 #include "lhs_r_utilities.h"
 #include "RStandardUniform.h"
 

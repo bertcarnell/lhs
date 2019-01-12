@@ -1,60 +1,54 @@
-################################################################################
-#
-# Function: improvedLHS.R
-# Purpose:  To implement the Improved distributed Hypercube Sampling Algorithm
-# Author:   This program is based on the MATLAB program written by
-#             John Burkardt and modified 16 Feb 2005
-#             http://www.csit.fsu.edu/~burkardt/m_src/ihs/
-#             ihs.m
-# R and C code Author:  Rob Carnell
-# Created:  May 05
-#
-# Required C function:  improvedLHS_R.c
-#
-# Discussion:
-#    N Points in an K dimensional Latin hypercube are to be selected.
-#    This algorithm tries to pick a solution which has the property that the
-#    points are "spread out" as evenly as possible.
-#    It does this by determining an optimal even spacing given by OPT
-#    It uses the DUPLICATION factor to limit the number of points available
-#    to choose from at each step.
-#
-#  Reference:
-#    Brian Beachkofski, Ramana Grandhi,
-#    Improved Distributed Hypercube Sampling,
-#    American Institute of Aeronautics and Astronautics Paper 2002-1274.
-#
-#  Parameters:
-#    k= positive integer, the spatial dimension.
-#    n= positive integer, the number of points to be generated.
-#    dup= positive integer, the DUPLICATION factor.
-#      (default=1, a value of 5 is reasonable according to Burkardt
-#
-#  Returns:
-#    A Latin Hypercube sample with N rows and K columns where each entry
-#    is on the interval [0,1]
-#
-#  Steps
-#   1.  Calculate the optimum spacing interval
-#   2.  Select a random starting point and place it in the matrix X
-#   3.  Populate the matrix AVAIL with the integers from 1 to N
-#   4.  Replace the values in AVAIL which have already been used by the
-#       the first point in X with the value N
-#   5.  Generate the valid points for each row in a random manner by using
-#       the numbers in the rows of AVAIL
-#   6.  For each cadidate point, calculate the distance to the points already
-#       used in X.  Select the candidate point with the distance value
-#       closest to the value of OPT and place it in X
-#   7.  Having chosen the new point for X, update AVAIL to replace those
-#       numbers in each row that have been used.  The first few columns in
-#       AVAIL are valid points.
-#   8.  There is only one choice for the last point
-#
-# 6/30/2012
-#   Changed the C function call
-#
-################################################################################
+# Copyright 2019 Robert Carnell
 
+#' Improved Latin Hypercube Sample
+#'
+#' Draws a Latin Hypercube Sample from a set of uniform distributions for use in
+#' creating a Latin Hypercube Design.  This function attempts to optimize the
+#' sample with respect to an optimum euclidean distance between design points.
+#'
+#' @details Latin hypercube sampling (LHS) was developed to generate a distribution
+#' of collections of parameter values from a multidimensional distribution.
+#' A square grid containing possible sample points is a Latin square iff there
+#' is only one sample in each row and each column. A Latin hypercube is the
+#' generalisation of this concept to an arbitrary number of dimensions.  When
+#' sampling a function of \code{k} variables, the range of each variable is divided
+#' into \code{n} equally probable intervals. \code{n} sample points are then drawn such that a
+#' Latin Hypercube is created.  Latin Hypercube sampling generates more efficient
+#' estimates of desired parameters than simple Monte Carlo sampling.
+#'
+#' This program generates a Latin Hypercube Sample by creating random permutations
+#' of the first \code{n} integers in each of \code{k} columns and then transforming those
+#' integers into n sections of a standard uniform distribution.  Random values are
+#' then sampled from within each of the n sections.  Once the sample is generated,
+#' the uniform sample from a column can be transformed to any distribution byusing the quantile functions, e.g. qnorm().  Different columns can have
+#' different distributions.
+#'
+#' This function attempts to optimize the sample with respect to an optimum
+#' euclidean distance between design points.
+#' \deqn{Optimum distance = frac{n}{n^{\frac{1.0}{k}}}}{Optimum distance = n/n^(1.0/k)}
+#'
+#' @param n The number of partitions (simulations or design points or rows)
+#' @param k The number of replications (variables or columns)
+#' @param dup A factor that determines the number of candidate points used in the
+#' search. A multiple of the number of remaining points than can be added.
+#'
+#' @return An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
+#' @export
+#' @keywords design
+#'
+#' @references
+#'   Beachkofski, B., Grandhi, R.  (2002) Improved Distributed Hypercube Sampling
+#'   \emph{American Institute of Aeronautics and Astronautics Paper} \bold{1274}.
+#'
+#'   This function is based on the MATLAB program written by John Burkardt and modified 16 Feb 2005
+#'   \url{http://www.csit.fsu.edu/~burkardt/m_src/ihs/ihs.m}
+#'
+#' @seealso [randomLHS()], [geneticLHS()], [maximinLHS()], and [optimumLHS()]
+#' to generate Latin Hypercube Samples.  [optAugmentLHS()], [optSeededLHS()], and
+#' [augmentLHS()] to modify and augment existing designs.
+#'
+#' @examples
+#' improvedLHS(4, 3, 2)
 improvedLHS <- function(n, k, dup=1)
 {
   result <- .Call("improvedLHS_cpp", as.integer(n), as.integer(k), as.integer(dup))
