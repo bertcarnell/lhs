@@ -48,7 +48,9 @@ optSeededLHS <- function(seed, m=0, maxSweeps=2, eps=.1, verbose=FALSE)
     Pold <- augmentLHS(seed, m)
   }
 
-  result <- .Call("optSeededLHS_cpp", as.integer(N), as.integer(k), as.integer(maxSweeps), eps, Pold, as.logical(verbose))
+  result <- .Call("optSeededLHS_cpp", as.integer(N), as.integer(k),
+                  as.integer(maxSweeps), eps, Pold, as.logical(verbose),
+                  PACKAGE = "lhs")
 
   return(result)
 }

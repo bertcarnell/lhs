@@ -51,7 +51,8 @@
 #' maximinLHS(4, 3, 2)
 maximinLHS <- function(n, k, dup=1)
 {
-  result <- .Call("maximinLHS_cpp", as.integer(n), as.integer(k), as.integer(dup))
+  result <- .Call("maximinLHS_cpp", as.integer(n), as.integer(k), as.integer(dup),
+                  PACKAGE = "lhs")
 
   return(result)
 }

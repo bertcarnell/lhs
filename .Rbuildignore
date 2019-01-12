@@ -9,3 +9,4 @@
 ^www
 ^CMakeLists.txt$
 ^build$
+^developmentBuild.bat$

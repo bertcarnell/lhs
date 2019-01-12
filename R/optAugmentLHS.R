@@ -24,6 +24,7 @@
 #'   [randomLHS()], [geneticLHS()], [improvedLHS()], [maximinLHS()], and
 #'   [optimumLHS()] to generate Latin Hypercube Samples.  [optSeededLHS()] and
 #'   [augmentLHS()] to modify and augment existing designs.
+#' @importFrom stats runif na.exclude na.omit
 #'
 #' @references
 #'   Stein, M.  (1987) Large Sample Properties of Simulations Using Latin Hypercube Sampling.

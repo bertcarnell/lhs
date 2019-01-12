@@ -33,6 +33,7 @@
 #' @return An \code{n} by \code{k} Latin Hypercube Sample matrix with values
 #' uniformly distributed on [0,1]
 #' @export
+#' @importFrom stats runif
 #'
 #' @author Rob Carnell
 #' @references

@@ -15,7 +15,11 @@
 #' @param preserveDraw should the draw be constructed so that it is the same for variable numbers of columns?
 #' @return a Latin hypercube sample
 #' @export
+#'
+#' @examples
+#' a <- randomLHS(5, 3)
 randomLHS <- function(n, k, preserveDraw=FALSE)
 {
-  .Call("randomLHS_cpp", as.integer(n), as.integer(k), as.logical(preserveDraw))
+  .Call("randomLHS_cpp", as.integer(n), as.integer(k), as.logical(preserveDraw),
+        PACKAGE = "lhs")
 }

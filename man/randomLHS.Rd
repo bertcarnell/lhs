@@ -25,3 +25,6 @@ example a random number between .5 and .75 is chosen, then one between
 0 and .25, then one between .25 and .5, finally one between
 .75 and 1.
 }
+\examples{
+a <- randomLHS(5, 3)
+}

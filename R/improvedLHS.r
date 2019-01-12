@@ -51,7 +51,8 @@
 #' improvedLHS(4, 3, 2)
 improvedLHS <- function(n, k, dup=1)
 {
-  result <- .Call("improvedLHS_cpp", as.integer(n), as.integer(k), as.integer(dup))
+  result <- .Call("improvedLHS_cpp", as.integer(n), as.integer(k), as.integer(dup),
+                  PACKAGE = "lhs")
 
   return(result)
 }

@@ -53,7 +53,9 @@
 #' optimumLHS(4, 3, 5, .05)
 optimumLHS <- function(n=10, k=2, maxSweeps=2, eps=.1, verbose=FALSE)
 {
-  result <- .Call("optimumLHS_cpp", as.integer(n), as.integer(k), as.integer(maxSweeps), eps, as.logical(verbose))
+  result <- .Call("optimumLHS_cpp", as.integer(n), as.integer(k),
+                  as.integer(maxSweeps), eps, as.logical(verbose),
+                  PACKAGE = "lhs")
 
   return(result)
 }

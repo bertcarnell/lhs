@@ -1,5 +1,7 @@
 # Copyright 2019 Robert Carnell
 
+#' @rdname geneticLHS
+#' @importFrom stats runif dist na.fail
 geneticLHS_old <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", verbose=FALSE)
 {
   if (length(n) != 1 | length(k) != 1 | length(pop) != 1 | length(gen) != 1 | length(pMut) != 1)
@@ -170,5 +172,5 @@ geneticLHS_old <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", ve
 geneticLHS <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", verbose=FALSE)
 {
   .Call("geneticLHS_cpp", as.integer(n), as.integer(k), as.integer(pop), as.integer(gen),
-        pMut, criterium, as.logical(verbose))
+        pMut, criterium, as.logical(verbose), PACKAGE = "lhs")
 }
