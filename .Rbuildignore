@@ -1,12 +1,9 @@
 ^LICENSE\.md$
 ^lhs\.Rproj$
 ^\.Rproj\.user$
-^doc
+^refs
 ^pkg
 ^pkg_branches
 ^pkg_tags
-^test
 ^www
-^CMakeLists.txt$
-^build
 ^developmentBuild.sh$
