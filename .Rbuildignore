@@ -9,4 +9,4 @@
 ^www
 ^CMakeLists.txt$
 ^build
-^developmentBuild.bat$
+^developmentBuild.sh$
