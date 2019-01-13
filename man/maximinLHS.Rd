@@ -4,15 +4,32 @@
 \alias{maximinLHS}
 \title{Maximin Latin Hypercube Sample}
 \usage{
-maximinLHS(n, k, dup = 1)
+maximinLHS(n, k, method = "build", dup = 1, eps = 0.05,
+  maxIter = 100, optimize.on = "grid", debug = FALSE)
 }
 \arguments{
 \item{n}{The number of partitions (simulations or design points or rows)}
 
 \item{k}{The number of replications (variables or columns)}
 
+\item{method}{\code{build} or \code{iterative} is the method of LHS creation.
+\code{build} finds the next best point while constructing the LHS.
+\code{iterative} optimizes the resulting sample on [0,1] or sample grid on [1,N]}
+
 \item{dup}{A factor that determines the number of candidate points used in the
-search. A multiple of the number of remaining points than can be added.}
+search. A multiple of the number of remaining points than can be
+added.  This is used when \code{method="build"}}
+
+\item{eps}{The minimum percent change in the minimum distance used in the
+\code{iterative} method}
+
+\item{maxIter}{The maximum number of iterations to use in the \code{iterative} method}
+
+\item{optimize.on}{\code{grid} or \code{result} gives the basis of the optimization.
+\code{grid} optimizes the LHS on the underlying integer grid.
+\code{result} optimizes the resulting sample on [0,1]}
+
+\item{debug}{prints additional information about the process of the optimization}
 }
 \value{
 An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
@@ -45,7 +62,10 @@ Here, values are added to the design one by one such that the maximin criteria i
 satisfied.
 }
 \examples{
-maximinLHS(4, 3, 2)
+maximinLHS(4, 3, dup=2)
+maximinLHS(4, 3, method="build", dup=2)
+maximinLHS(4, 3, method="iterative", eps=0.05, maxIter=100, optimize.on="grid")
+maximinLHS(4, 3, method="iterative", eps=0.05, maxIter=100, optimize.on="result")
 }
 \references{
 Stein, M.  (1987) Large Sample Properties of Simulations Using Latin Hypercube Sampling.

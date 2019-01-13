@@ -28,7 +28,7 @@ geneticLHS_old <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", ve
   }
 
   A <- array(0, dim = c(n, k, pop),
-             dimnames = c("points", "variables", "hypercubes"))
+             dimnames = list(points = 1:n, variables = 1:k, hypercubes = 1:pop))
 
   for (i in 1:pop) {
     for (j in 1:k) {
@@ -54,7 +54,7 @@ geneticLHS_old <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", ve
     H <- order(B, decreasing = TRUE)
     posit <- which.max(B)
     J <- array(NA, dim = c(n, k, pop),
-               dimnames = c("points", "variables", "hypercubes"))
+               dimnames = list(points = 1:n, variables = 1:k, hypercubes = 1:pop))
     J[ , , 1:(pop/2)] <- A[ , , posit]
     if ((pop/2) == 1)
       break

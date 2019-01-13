@@ -74,19 +74,25 @@ augmentLHS <- function(lhs, m=1)
 
   B <- matrix(nrow = (N + m), ncol = K)
 
-  for (j in colvec) {
+  for (j in colvec)
+  {
     newrow <- 0
-    for (i in rowvec) {
-      if ((any((i - 1)/(N + m) <= lhs[ ,j] & lhs[ ,j] <= i/(N + m))) == FALSE) {
+    for (i in rowvec)
+    {
+      if (!(any((i - 1)/(N + m) <= lhs[ ,j] & lhs[ ,j] <= i/(N + m)))) {
         newrow <- newrow + 1
         B[newrow, j] <- runif(1, (i - 1)/(N + m), i/(N + m))
       }
     }
   }
 
-  if (is.matrix(B[1:m,])) {
+  if (is.matrix(B[1:m,]))
+  {
     E <- rbind(lhs, B[1:m, ])
-  } else E <- rbind(lhs, matrix(B[1:m,], nrow = m, ncol = K))
+  } else
+  {
+    E <- rbind(lhs, matrix(B[1:m,], nrow = m, ncol = K))
+  }
   row.names(E) <- NULL
   return(E)
 }
