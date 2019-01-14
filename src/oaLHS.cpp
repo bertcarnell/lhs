@@ -7,10 +7,10 @@ namespace oalhslib
     typedef std::vector<int>::iterator viterator;
     typedef std::vector<int>::const_iterator vconstiterator;
     typedef std::vector<int>::size_type vsize_type;
-    
+
     // oa is provided in an arbitrary way (not necessarily all columns with the same q)
     void oaLHS(int n, int k, const bclib::matrix<int> & oa, bclib::matrix<int> & intlhs,
-            bclib::matrix<double> & lhs, bool bVerbose, 
+            bclib::matrix<double> & lhs, bool bVerbose,
             bclib::CRandom<double> & oRandom)
     {
         if (oa.rowsize() != static_cast<msize_type>(n) ||
@@ -29,16 +29,16 @@ namespace oalhslib
             lhs = bclib::matrix<double>(oa.rowsize(), oa.colsize());
         }
         // iterate over the columns and make a list of the unique elements in the column
-        std::vector<std::vector<int> > uniqueLevelsVector = std::vector<std::vector<int> >(oa.colsize());        
+        std::vector<std::vector<int> > uniqueLevelsVector = std::vector<std::vector<int> >(oa.colsize());
         oalhslib::findUniqueColumnElements<int>(oa, uniqueLevelsVector);
-        
+
         if (bVerbose)
         {
             printOAandUnique(oa, uniqueLevelsVector); // LCOV_EXCL_LINE
         }
-        
+
         replaceOAValues(oa, uniqueLevelsVector, intlhs, oRandom, true);
-        
+
         if (bVerbose)
         {
             printf("\ninteger lhs:\n%s\n", intlhs.toString()); // LCOV_EXCL_LINE
@@ -52,7 +52,7 @@ namespace oalhslib
                 lhs(irow, jcol) = static_cast<double>(intlhs(irow, jcol)) - 1.0;
             }
         }
-		int veclen = n * k;
+		    int veclen = n * k;
         std::vector<double> randomunif = std::vector<double>(veclen);
         for (vsize_type i = 0; i < static_cast<vsize_type>(veclen); i++)
         {
@@ -68,7 +68,7 @@ namespace oalhslib
             }
         }
     }
-    
+
     void printOAandUnique(const bclib::matrix<int> & oa, const std::vector<std::vector<int> > & uniqueLevelsVector) // LCOV_EXCL_START
     {
         printf("\ninitial oa:\n%s\n", oa.toString());
@@ -97,23 +97,23 @@ namespace oalhslib
             intlhs = bclib::matrix<int>(oa.rowsize(), oa.colsize());
         }
         // iterate over the columns and make a list of the unique elements in the column
-        std::vector<std::vector<int> > uniqueLevelsVector = std::vector<std::vector<int> >(oa.colsize());        
+        std::vector<std::vector<int> > uniqueLevelsVector = std::vector<std::vector<int> >(oa.colsize());
         oalhslib::findUniqueColumnElements<int>(oa, uniqueLevelsVector);
-        
+
         if (bVerbose)
         {
             printOAandUnique(oa, uniqueLevelsVector); // LCOV_EXCL_LINE
         }
-        
+
         bclib::CRandomStandardUniform oRandom;
         replaceOAValues(oa, uniqueLevelsVector, intlhs, oRandom, false);
-        
+
         if (bVerbose)
         {
             printf("\nintlhs:\n%s\n", intlhs.toString()); // LCOV_EXCL_LINE
         }
     }
-    
+
     void replaceOAValues(const bclib::matrix<int> & oa,
         const std::vector<std::vector<int> > & uniqueLevelsVector,
         bclib::matrix<int> & intlhs,
@@ -165,7 +165,7 @@ namespace oalhslib
             }
         }
     }
-    
+
     void generateOALHS(int n, int k, bclib::matrix<double> & oalhs,
         bool bChooseLargerDesign, bool bVerbose)
     {
@@ -191,7 +191,7 @@ namespace oalhslib
         {
             printf("Candidate OA:  AddelKemp with q=%d n=%d k=%d\n", q_addelkemp, n_addelkemp, k_addelkemp); // LCOV_EXCL_LINE
         }
-        
+
         int q_addelkemp3 = bChooseLargerDesign ? (int) ceil(pow((double) n / 2.0, 1.0/3.0)) : (int) floor(pow((double) n / 2.0, 1.0/3.0));
         while (oacpp::primes::isprimepow(q_addelkemp3) == 0 && q_addelkemp3 >= 2)
         {
@@ -248,7 +248,7 @@ namespace oalhslib
         {
             printf("Candidate OA:  BoseBush with q=%d n=%d k=%d\n", q_bosebush, n_bosebush, k_bosebush); // LCOV_EXCL_LINE
         }
-        
+
 		// Goal:  Find the n and k that are the closest with atleast the required n and k
         std::vector<std::string> types = std::vector<std::string>();
         std::vector<int> ndiffs = std::vector<int>();
@@ -281,12 +281,12 @@ namespace oalhslib
 			ndiffs.push_back(static_cast<int>(fabs(static_cast<double>(n) - static_cast<double>(n_bose))));
 			ndiffs.push_back(static_cast<int>(fabs(static_cast<double>(n) - static_cast<double>(n_bosebush))));
 		}
-        
+
         // which is the smallest?
         std::vector<int> norders = std::vector<int>(ndiffs.size());
         bclib::findorder_zero(ndiffs, norders);
         oacpp::COrthogonalArray coa = oacpp::COrthogonalArray();
-        
+
 		std::string selected = "";
 		if (ks[norders[0]] >= k)
 		{
