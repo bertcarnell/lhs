@@ -1,6 +1,6 @@
 Package: lhs
 Title: Latin Hypercube Samples
-Version: 0.16
+Version: 1.0
 Authors@R: 
     person(given = "Rob",
            family = "carnell",
