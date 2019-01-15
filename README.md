@@ -32,6 +32,7 @@ R-Help Examples of using the LHS package
 - [Latin hypercube sampling](http://r.789695.n4.nabble.com/latin-hypercube-sampling-tp4659028.html)
 - [Latin Hypercube Sample and transformation to uniformly distributed integers or classes](http://r.789695.n4.nabble.com/Latin-Hypercube-Sample-and-transformation-to-uniformly-distributed-integers-or-classes-tp4677804.html)
 - [Latin hypercube sampling from a non-uniform distribution](http://r.789695.n4.nabble.com/Latin-hypercube-sampling-from-a-non-uniform-distribution-tp4743686.html)
+- [Latin Hypercube Sampling when parameters are defined according to specific probability distributions](http://r.789695.n4.nabble.com/Latin-Hypercube-Sampling-when-parameters-are-defined-according-to-specific-probability-distributions-tp4734710.html)
 
 ## Other
 
