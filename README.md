@@ -2,6 +2,10 @@
 
 This package provides a number of methods for creating and augmenting Latin Hypercube Samples
 
+|<sub>Linux & MacOS</sub>|<sub>Windows</sub>|<sub>Code Coverage</sub>|<sub>CRAN Downloads</sub>|<sub>CRAN</sub>|
+|:---:|:---:|:---:|:---:|:---:|
+||||[![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs)|[![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs)|
+
 ## Installation
 
 You can install the released version of lhs from [CRAN](https://CRAN.R-project.org) with:
