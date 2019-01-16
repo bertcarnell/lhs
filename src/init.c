@@ -8,6 +8,7 @@
 */
 
 /* .Call calls */
+extern SEXP create_oalhs(SEXP, SEXP, SEXP, SEXP);
 extern SEXP geneticLHS_cpp(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP improvedLHS_cpp(SEXP, SEXP, SEXP);
 extern SEXP maximinLHS_cpp(SEXP, SEXP, SEXP);
@@ -19,6 +20,7 @@ extern SEXP optSeededLHS_cpp(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP randomLHS_cpp(SEXP, SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
+    {"create_oalhs",     (DL_FUNC) &create_oalhs,     4},
     {"geneticLHS_cpp",   (DL_FUNC) &geneticLHS_cpp,   7},
     {"improvedLHS_cpp",  (DL_FUNC) &improvedLHS_cpp,  3},
     {"maximinLHS_cpp",   (DL_FUNC) &maximinLHS_cpp,   3},

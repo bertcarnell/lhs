@@ -16,7 +16,7 @@ namespace oalhslib
         if (oa.rowsize() != static_cast<msize_type>(n) ||
                 oa.colsize() != static_cast<msize_type>(k))
         {
-            throw std::runtime_error("wrong size");
+            throw std::runtime_error("the size of the orthogonal array does not match the n and k parameters");
         }
         if (intlhs.rowsize() != oa.rowsize() ||
                 intlhs.colsize() != oa.colsize())
