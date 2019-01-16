@@ -48,6 +48,7 @@ RcppExport SEXP /*double matrix*/ oa_to_lhs(SEXP /*int*/ n, SEXP /*int*/ k,
     }
 
     bclib::matrix<int> oa_local = bclib::matrix<int>(m_n, m_k);
+    oarutils::convertToMatrix(intoa, oa_local);
     bclib::matrix<int> intlhs_local = bclib::matrix<int>(m_n, m_k);
     bclib::matrix<double> lhs_local = bclib::matrix<double>(m_n, m_k);
     lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();

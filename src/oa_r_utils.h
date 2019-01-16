@@ -61,7 +61,7 @@ namespace oarutils {
      * @tparam U an Rcpp matrix type
      * @param A a bclib matrix
      * @param rcppA a Rcpp matrix
-     * @return an integer matrix
+     * @return
      */
     template <class T, class U>
     void convertToRcppMatrix(const bclib::matrix<T> & A, U & rcppA)
@@ -77,6 +77,32 @@ namespace oarutils {
         for (size_t j = 0; j < ncols; j++)
         {
           rcppA(i,j) = A(i,j);
+        }
+      }
+    }
+
+    /**
+     * A method to convert a Rcpp::NumericMatrix or Rcpp::IntegerMatrix to a bclib::matrix
+     * @tparam T an atomic type that matches the Rcpp type
+     * @tparam U an Rcpp matrix type
+     * @param A a bclib::matrix
+     * @param rcppA a Rcpp matrix
+     * @return
+     */
+    template <class T, class U>
+    void convertToMatrix(const U & rcppA, bclib::matrix<T> & A)
+    {
+      int nrows = rcppA.rows();
+      int ncols = rcppA.cols();
+      if (nrows != static_cast<int>(A.rowsize()) || ncols != static_cast<int>(A.colsize()))
+      {
+        A = bclib::matrix<T>(static_cast<size_t>(nrows), static_cast<size_t>(ncols));
+      }
+      for (size_t i = 0; i < static_cast<size_t>(nrows); i++)
+      {
+        for (size_t j = 0; j < static_cast<size_t>(ncols); j++)
+        {
+          A(i,j) = rcppA(i,j);
         }
       }
     }

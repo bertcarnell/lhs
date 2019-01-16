@@ -11,6 +11,7 @@
 extern SEXP geneticLHS_cpp(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP improvedLHS_cpp(SEXP, SEXP, SEXP);
 extern SEXP maximinLHS_cpp(SEXP, SEXP, SEXP);
+extern SEXP oa_to_lhs(SEXP, SEXP, SEXP, SEXP);
 extern SEXP oa_type1(SEXP, SEXP, SEXP, SEXP);
 extern SEXP oa_type2(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP optimumLHS_cpp(SEXP, SEXP, SEXP, SEXP, SEXP);
@@ -21,6 +22,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"geneticLHS_cpp",   (DL_FUNC) &geneticLHS_cpp,   7},
     {"improvedLHS_cpp",  (DL_FUNC) &improvedLHS_cpp,  3},
     {"maximinLHS_cpp",   (DL_FUNC) &maximinLHS_cpp,   3},
+    {"oa_to_lhs",        (DL_FUNC) &oa_to_lhs,        4},
     {"oa_type1",         (DL_FUNC) &oa_type1,         4},
     {"oa_type2",         (DL_FUNC) &oa_type2,         5},
     {"optimumLHS_cpp",   (DL_FUNC) &optimumLHS_cpp,   5},
