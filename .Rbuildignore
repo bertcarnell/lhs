@@ -7,3 +7,5 @@
 ^pkg_tags
 ^www
 ^developmentBuild.sh$
+^CMakeLists.txt$
+^build

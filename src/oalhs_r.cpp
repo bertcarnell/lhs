@@ -73,7 +73,7 @@ RcppExport SEXP /*double matrix*/ create_oalhs(SEXP /*int*/ n, SEXP /*int*/ k,
     {
       Rcpp_error("n and k should be integers");
     }
-    if (TYPEOF(bverbose) != LGLSXP || TYPEOF(bChooseLargerDesign))
+    if (TYPEOF(bverbose) != LGLSXP || TYPEOF(bChooseLargerDesign) != LGLSXP)
     {
       Rcpp_error("bverbose should be a logical and bChooseLargerDesign should be logical");
     }

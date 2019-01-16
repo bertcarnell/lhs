@@ -11,8 +11,7 @@
 #' @export
 #'
 #' @examples
-#' oa <- createBose(3, 4, TRUE)
-#' oa_to_oalhs(9, 4, oa, TRUE)
+#' create_oalhs(9, 4, TRUE, TRUE)
 create_oalhs <- function(n, k, bChooseLargerDesign, bverbose)
 {
   return(.Call("create_oalhs", as.integer(n), as.integer(k),
