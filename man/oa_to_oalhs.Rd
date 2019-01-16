@@ -11,7 +11,7 @@ oa_to_oalhs(n, k, oa, bverbose = FALSE)
 
 \item{k}{the number of parameters or columns in the LHS (integer)}
 
-\item{oa}{the orthogonal array to be used as the basis for the LHS (matrix of integers)}
+\item{oa}{the orthogonal array to be used as the basis for the LHS (matrix of integers) or data.frame of factors}
 
 \item{bverbose}{should information be printed with execution}
 }

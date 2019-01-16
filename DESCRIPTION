@@ -17,6 +17,7 @@ Imports:
     Rcpp
 Suggests: 
     testthat,
+    DoE.base,
     knitr,
     rmarkdown
 URL: https://github.com/bertcarnell/lhs
