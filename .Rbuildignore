@@ -9,3 +9,4 @@
 ^developmentBuild.sh$
 ^CMakeLists.txt$
 ^build
+^\.travis\.yml
