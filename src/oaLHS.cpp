@@ -52,13 +52,15 @@ namespace oalhslib
                 lhs(irow, jcol) = static_cast<double>(intlhs(irow, jcol)) - 1.0;
             }
         }
-		    int veclen = n * k;
+		
+		int veclen = n * k;
         std::vector<double> randomunif = std::vector<double>(veclen);
         for (vsize_type i = 0; i < static_cast<vsize_type>(veclen); i++)
         {
             randomunif[i] = oRandom.getNextRandom();
         }
-        bclib::matrix<double> randomMatrix(n, k, randomunif);
+        
+		bclib::matrix<double> randomMatrix(n, k, randomunif);
         for (msize_type jcol = 0; jcol < static_cast<msize_type>(k); jcol++)
         {
             for (msize_type irow = 0; irow < static_cast<msize_type>(n); irow++)
@@ -167,7 +169,8 @@ namespace oalhslib
     }
 
     void generateOALHS(int n, int k, bclib::matrix<double> & oalhs,
-        bool bChooseLargerDesign, bool bVerbose)
+        bool bChooseLargerDesign, bool bVerbose,
+		bclib::CRandom<double> & oRandom)
     {
         if (bVerbose)
         {
@@ -309,15 +312,12 @@ namespace oalhslib
 			selected = types[norders[0]];
 		}
 
-        bclib::matrix<int> intoalhs;
         if (selected == "addelkemp")
         {
             if (bVerbose)
             {
                 printf("AddelKemp selected\n"); // LCOV_EXCL_LINE
             }
-            intoalhs = bclib::matrix<int>(n_addelkemp, k_addelkemp);
-            oalhs = bclib::matrix<double>(n_addelkemp, k_addelkemp);
             coa.addelkemp(q_addelkemp, k_addelkemp, &n_addelkemp);
         }
         else if (selected == "addelkemp3")
@@ -326,8 +326,6 @@ namespace oalhslib
             {
                 printf("AddelKemp3 selected\n"); // LCOV_EXCL_LINE
             }
-            intoalhs = bclib::matrix<int>(n_addelkemp3, k_addelkemp3);
-            oalhs = bclib::matrix<double>(n_addelkemp3, k_addelkemp3);
             coa.addelkemp3(q_addelkemp3, k_addelkemp3, &n_addelkemp3);
         }
         else if (selected == "bose")
@@ -336,8 +334,6 @@ namespace oalhslib
             {
                 printf("Bose selected\n"); // LCOV_EXCL_LINE
             }
-            intoalhs = bclib::matrix<int>(n_bose, k_bose);
-            oalhs = bclib::matrix<double>(n_bose, k_bose);
             coa.bose(q_bose, k_bose, &n_bose);
         }
         else if (selected == "bosebush")
@@ -346,12 +342,54 @@ namespace oalhslib
             {
                 printf("BoseBush selected\n"); // LCOV_EXCL_LINE
             }
-            intoalhs = bclib::matrix<int>(n_bosebush, k_bosebush);
-            oalhs = bclib::matrix<double>(n_bosebush, k_bosebush);
             coa.bosebush(q_bosebush, k_bosebush, &n_bosebush);
         }
 
-        // TODO: create information for other types of oa and then pick the closest to the desired
-    }
+		bclib::matrix<int> oa = coa.getoa();
+		bclib::matrix<int> intoalhs = bclib::matrix<int>(oa.rowsize(), oa.colsize());
+		oalhs = bclib::matrix<double>(oa.rowsize(), oa.colsize());
+
+		// iterate over the columns and make a list of the unique elements in the column
+		std::vector<std::vector<int> > uniqueLevelsVector = std::vector<std::vector<int> >(oa.colsize());
+		oalhslib::findUniqueColumnElements<int>(oa, uniqueLevelsVector);
+
+		if (bVerbose)
+		{
+			printOAandUnique(oa, uniqueLevelsVector); // LCOV_EXCL_LINE
+		}
+
+		replaceOAValues(oa, uniqueLevelsVector, intoalhs, oRandom, true);
+
+		if (bVerbose)
+		{
+			printf("\ninteger lhs:\n%s\n", intoalhs.toString()); // LCOV_EXCL_LINE
+		}
+
+		// transform integer hypercube to a double hypercube
+		for (msize_type jcol = 0; jcol < intoalhs.colsize(); jcol++)
+		{
+			for (msize_type irow = 0; irow < intoalhs.rowsize(); irow++)
+			{
+				oalhs(irow, jcol) = static_cast<double>(intoalhs(irow, jcol)) - 1.0;
+			}
+		}
+
+		size_t veclen = intoalhs.colsize() * intoalhs.rowsize();
+		std::vector<double> randomunif = std::vector<double>(veclen);
+		for (vsize_type i = 0; i < veclen; i++)
+		{
+			randomunif[i] = oRandom.getNextRandom();
+		}
+
+		bclib::matrix<double> randomMatrix(intoalhs.rowsize(), intoalhs.colsize(), randomunif);
+		for (msize_type jcol = 0; jcol < intoalhs.colsize(); jcol++)
+		{
+			for (msize_type irow = 0; irow < intoalhs.rowsize(); irow++)
+			{
+				oalhs(irow, jcol) += randomMatrix(irow, jcol);
+				oalhs(irow, jcol) /= static_cast<double>(intoalhs.rowsize());
+			}
+		}
+	}
 
 }

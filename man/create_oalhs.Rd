@@ -22,5 +22,7 @@ a numeric matrix which is an orthogonal array Latin hypercube sample
 Create an orthogonal array Latin hypercube
 }
 \examples{
-create_oalhs(9, 4, TRUE, TRUE)
+set.seed(34)
+create_oalhs(9, 4, TRUE, FALSE)
+create_oalhs(9, 4, TRUE, FALSE)
 }

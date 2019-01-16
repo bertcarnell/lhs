@@ -94,9 +94,10 @@ RcppExport SEXP /*double matrix*/ create_oalhs(SEXP /*int*/ n, SEXP /*int*/ k,
 
     bclib::matrix<double> oalhs_local = bclib::matrix<double>(m_n, m_k);
     Rcpp::NumericMatrix rcppA(nlocal, klocal);
+    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
 
     oalhslib::generateOALHS(nlocal, klocal, oalhs_local, bChooseLargerDesign_local,
-                            bverbose_local);
+                            bverbose_local, oRStandardUniform);
 
     oarutils::convertToRcppMatrix<double, Rcpp::NumericMatrix>(oalhs_local, rcppA);
     return(rcppA);

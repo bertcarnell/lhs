@@ -11,7 +11,9 @@
 #' @export
 #'
 #' @examples
-#' create_oalhs(9, 4, TRUE, TRUE)
+#' set.seed(34)
+#' create_oalhs(9, 4, TRUE, FALSE)
+#' create_oalhs(9, 4, TRUE, FALSE)
 create_oalhs <- function(n, k, bChooseLargerDesign, bverbose)
 {
   return(.Call("create_oalhs", as.integer(n), as.integer(k),

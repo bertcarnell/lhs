@@ -87,9 +87,11 @@ namespace oalhslib
      * @param oalhs the generated Latin hypercube sample
      * @param bChooseLargerDesign choose a larger design if the orthogonal array is not sufficient
      * @param bVerbose should messages be printed
+     * @param oRandom a random generator
      */
     void generateOALHS(int n, int k, bclib::matrix<double> & oalhs,
-        bool bChooseLargerDesign, bool bVerbose);
+        bool bChooseLargerDesign, bool bVerbose,
+		bclib::CRandom<double> & oRandom);
 }
 
 
