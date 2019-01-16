@@ -2,6 +2,10 @@
 
 This package provides a number of methods for creating and augmenting Latin Hypercube Samples
 
+|<sub>Linux & MacOS</sub>|<sub>Windows</sub>|<sub>Code Coverage</sub>|<sub>CRAN Downloads</sub>|<sub>CRAN</sub>|
+|:---:|:---:|:---:|:---:|:---:|
+||||[![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs)|[![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs)|
+
 ## Installation
 
 You can install the released version of lhs from [CRAN](https://CRAN.R-project.org) with:
@@ -27,6 +31,8 @@ R-Help Examples of using the LHS package
 - [Latin Hypercube with condition sum = 1](http://r.789695.n4.nabble.com/Latin-Hypercube-with-condition-sum-1-tp875487.html)
 - [Latin hypercube sampling](http://r.789695.n4.nabble.com/latin-hypercube-sampling-tp4659028.html)
 - [Latin Hypercube Sample and transformation to uniformly distributed integers or classes](http://r.789695.n4.nabble.com/Latin-Hypercube-Sample-and-transformation-to-uniformly-distributed-integers-or-classes-tp4677804.html)
+- [Latin hypercube sampling from a non-uniform distribution](http://r.789695.n4.nabble.com/Latin-hypercube-sampling-from-a-non-uniform-distribution-tp4743686.html)
+- [Latin Hypercube Sampling when parameters are defined according to specific probability distributions](http://r.789695.n4.nabble.com/Latin-Hypercube-Sampling-when-parameters-are-defined-according-to-specific-probability-distributions-tp4734710.html)
 
 ## Other
 
