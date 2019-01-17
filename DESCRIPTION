@@ -19,7 +19,8 @@ Suggests:
     testthat,
     DoE.base,
     knitr,
-    rmarkdown
+    rmarkdown,
+    covr
 URL: https://github.com/bertcarnell/lhs
 BugReports: https://github.com/bertcarnell/lhs/issues
 RoxygenNote: 6.1.1

@@ -13,12 +13,14 @@ matrix:
 #    - os: osx
 #      r: devel
 
-#r_github_packages:
-#  - r-lib/covr
+r_github_packages:
+  - r-lib/covr
 
-#after_success:
-#  - Rscript -e 'covr::codecov()'
+after_success:
+  - Rscript -e 'covr::codecov()'
 
 cache: packages
+warnings_are_errors: true
+r_check_args: "--as-cran"
 
 sudo: false
