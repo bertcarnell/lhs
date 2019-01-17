@@ -32,4 +32,9 @@ test_that("multiplication works", {
   #expect_error(geneticLHS(10, 2, 2, 4, NA))
   #expect_error(geneticLHS(10, 2, 2, 4, NaN))
 
-  expect_error(geneticLHS(10, 2, 2, 4, Inf))})
+  expect_error(geneticLHS(10, 2, 2, 4, Inf))
+
+  set.seed(1976)
+  expect_true(checkLatinHypercube(geneticLHS(20, 5, pop = 100, gen = 4,
+                                             pMut = 0.2, criterium = "S")))
+})

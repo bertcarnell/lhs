@@ -1,3 +1,5 @@
+# Copyright 2019 Robert Carnell
+
 context("test-create_oalhs")
 
 test_that("create_oalhs works", {

@@ -1,3 +1,5 @@
+# Copyright 2019 Robert Carnell
+
 context("test-improvedlhs")
 
 test_that("improvedLHS works", {

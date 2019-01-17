@@ -28,4 +28,7 @@ test_that("optseededLHS works", {
   set.seed(1977)
   B <- optSeededLHS(randomLHS(3, 3), 3, 3, .05)
   expect_true(checkLatinHypercube(B))
+
+  A <- optSeededLHS(randomLHS(10, 4), m = 0)
+  expect_true(checkLatinHypercube(A))
 })

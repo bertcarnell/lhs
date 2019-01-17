@@ -1,3 +1,5 @@
+# Copyright 2019 Robert Carnell
+
 checkLatinHypercube <- function(X)
 {
   # check that the matrix is a latin hypercube
@@ -10,4 +12,11 @@ checkLatinHypercube <- function(X)
   }
   # check all the columns
   all(apply(X, 2, g))
+}
+
+checkOA <- function(X)
+{
+  # check that the matrix is an orthogonal array
+  Y <- t(X) %*% X
+  all(abs(Y[upper.tri(Y)]) < 1E-9)
 }

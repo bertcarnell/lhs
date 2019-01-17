@@ -1,3 +1,5 @@
+# Copyright 2019 Robert Carnell
+
 context("test-oa_to_oalhs")
 
 test_that("oa_to_oalhs works with internal oa generation", {
@@ -19,6 +21,8 @@ test_that("oa_to_oalhs works with internal oa generation", {
   expect_error(oa_to_oalhs(128, 8, oa, FALSE))
   # check a wrong sized oa causes an error
   expect_error(oa_to_oalhs(128, 5, oa[1:100,1:3], FALSE))
+  # check wront type
+  expect_error(oa_to_oalhs(3, 5, matrix(1.2, nrow = 3, ncol = 5)))
 
   oa <- createAddelKemp(3, 4, FALSE)
   oalhs <- oa_to_oalhs(18, 4, oa, FALSE)

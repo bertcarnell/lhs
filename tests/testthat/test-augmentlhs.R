@@ -1,3 +1,5 @@
+# Copyright 2019 Robert Carnell
+
 context("test-augmentlhs")
 
 test_that("augment works", {
@@ -32,4 +34,11 @@ test_that("augment works", {
 
   expect_true(checkLatinHypercube(augmentLHS(randomLHS(7, 2), 7)))
   expect_true(checkLatinHypercube(augmentLHS(randomLHS(10, 5), 10)))
+
+  # test exceptions
+  expect_error(augmentLHS(c(1,2), 5))
+  expect_error(augmentLHS(randomLHS(10,3), c(5,9)))
+  expect_error(augmentLHS(randomLHS(10,3), -1))
+  expect_error(augmentLHS(randomLHS(10,3), 2.2))
+
 })
