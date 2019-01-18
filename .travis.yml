@@ -17,6 +17,7 @@ r_github_packages:
   - r-lib/covr
 
 # execute code coverage, but ignore files that are tested in their own packages
+#  these files from from bertcarnell/oa, bertcarnell/bclib, and bertcarnell/lhslib
 after_success:
   - Rscript -e 'covr::codecov(line_exclusions=list("src/COrthogonalArray.cpp",
   "src/COrthogonalArray.h", "src/CRandom.h", "src/RStandardUniform.h", "src/ak3.cpp",
