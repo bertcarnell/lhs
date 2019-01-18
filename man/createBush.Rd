@@ -4,7 +4,7 @@
 \alias{createBush}
 \title{Create an orthogonal array using the Bush algorithm}
 \usage{
-createBush(q, ncol, bRandom)
+createBush(q, ncol, bRandom = TRUE)
 }
 \arguments{
 \item{q}{the number of symbols in the array}

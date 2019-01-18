@@ -11,3 +11,6 @@
 ^CMakeLists.txt$
 ^build
 ^\.travis\.yml
+^revdep
+^appveyor.yml$
+^rev_dep_check.sh$

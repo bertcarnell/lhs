@@ -4,7 +4,7 @@
 \alias{createBose}
 \title{Create an orthogonal array using the Bose algorithm}
 \usage{
-createBose(q, ncol, bRandom)
+createBose(q, ncol, bRandom = TRUE)
 }
 \arguments{
 \item{q}{the number of symbols in the array}

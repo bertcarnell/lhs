@@ -12,7 +12,7 @@
 #' @seealso Other methods to create orthogonal arrays [createBush()],
 #' [createBoseBush()], [createAddelKemp()], [createAddelKemp3()],
 #' [createAddelKempN()], [createBusht()], [createBoseBushl()]
-createBose <- function(q, ncol, bRandom)
+createBose <- function(q, ncol, bRandom=TRUE)
 {
   return(.Call("oa_type1", "bose", as.integer(q), as.integer(ncol),
                as.logical(bRandom), PACKAGE = "lhs"))
@@ -30,7 +30,7 @@ createBose <- function(q, ncol, bRandom)
 #' @seealso Other methods to create orthogonal arrays [createBush()],
 #' [createBose()], [createAddelKemp()], [createAddelKemp3()],
 #' [createAddelKempN()], [createBusht()], [createBoseBushl()]
-createBoseBush <- function(q, ncol, bRandom)
+createBoseBush <- function(q, ncol, bRandom=TRUE)
 {
   return(.Call("oa_type1", "bosebush", as.integer(q), as.integer(ncol),
                as.logical(bRandom), PACKAGE = "lhs"))
@@ -48,7 +48,7 @@ createBoseBush <- function(q, ncol, bRandom)
 #' @seealso Other methods to create orthogonal arrays [createBoseBush()],
 #' [createBose()], [createAddelKemp()], [createAddelKemp3()],
 #' [createAddelKempN()], [createBusht()], [createBoseBushl()]
-createBush <- function(q, ncol, bRandom)
+createBush <- function(q, ncol, bRandom=TRUE)
 {
   return(.Call("oa_type1", "bush", as.integer(q), as.integer(ncol),
                as.logical(bRandom), PACKAGE = "lhs"))
@@ -66,7 +66,7 @@ createBush <- function(q, ncol, bRandom)
 #' @seealso Other methods to create orthogonal arrays [createBoseBush()],
 #' [createBose()], [createAddelKemp3()],
 #' [createAddelKempN()], [createBusht()], [createBoseBushl()]
-createAddelKemp <- function(q, ncol, bRandom)
+createAddelKemp <- function(q, ncol, bRandom=TRUE)
 {
   return(.Call("oa_type1", "addelkemp", as.integer(q), as.integer(ncol),
                as.logical(bRandom), PACKAGE = "lhs"))
@@ -85,7 +85,7 @@ createAddelKemp <- function(q, ncol, bRandom)
 #' @seealso Other methods to create orthogonal arrays [createBushBush()],
 #' [createBose()], [createAddelKemp()],
 #' [createAddelKempN()], [createBusht()], [createBoseBushl()]
-createAddelKemp3 <- function(q, ncol, bRandom)
+createAddelKemp3 <- function(q, ncol, bRandom=TRUE)
 {
   return(.Call("oa_type1", "addelkemp3", as.integer(q), as.integer(ncol),
                as.logical(bRandom), PACKAGE = "lhs"))
@@ -105,7 +105,7 @@ createAddelKemp3 <- function(q, ncol, bRandom)
 #' @seealso Other methods to create orthogonal arrays [createBoseBush()],
 #' [createBose()], [createAddelKemp()], [createAddelKemp3()],
 #' [createAddelKempN()], [createBoseBushl()]
-createBusht <- function(q, ncol, strength, bRandom)
+createBusht <- function(q, ncol, strength, bRandom=TRUE)
 {
   return(.Call("oa_type2", "busht", as.integer(strength), as.integer(q),
                as.integer(ncol), as.logical(bRandom), PACKAGE = "lhs"))
@@ -124,7 +124,7 @@ createBusht <- function(q, ncol, strength, bRandom)
 #' @seealso Other methods to create orthogonal arrays [createBoseBush()],
 #' [createBose()], [createBush()], [createAddelKemp()], [createAddelKemp3()],
 #' [createAddelKempN()], [createBusht()]
-createBoseBushl <- function(q, ncol, lambda, bRandom)
+createBoseBushl <- function(q, ncol, lambda, bRandom=TRUE)
 {
   return(.Call("oa_type2", "bosebushl", as.integer(lambda), as.integer(q),
                as.integer(ncol), as.logical(bRandom), PACKAGE = "lhs"))
@@ -144,7 +144,7 @@ createBoseBushl <- function(q, ncol, lambda, bRandom)
 #' @seealso Other methods to create orthogonal arrays [createBoseBush()],
 #' [createBose()], [createBush()], [createAddelKemp()], [createAddelKemp3()],
 #' [createBusht()], [createBoseBushl()]
-createAddelKempN <- function(q, ncol, exponent, bRandom)
+createAddelKempN <- function(q, ncol, exponent, bRandom=TRUE)
 {
   return(.Call("oa_type2", "addelkempn", as.integer(exponent), as.integer(q),
                as.integer(ncol), as.logical(bRandom), PACKAGE = "lhs"))

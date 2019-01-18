@@ -5,7 +5,7 @@
 \title{Create an orthogonal array using the Addelman-Kempthorne algorithm with
 alternate strength}
 \usage{
-createAddelKempN(q, ncol, exponent, bRandom)
+createAddelKempN(q, ncol, exponent, bRandom = TRUE)
 }
 \arguments{
 \item{q}{the number of symbols in the array}

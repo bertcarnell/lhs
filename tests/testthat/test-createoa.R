@@ -12,6 +12,18 @@ test_that("createBose works", {
   B[which(B == 1, arr.ind = TRUE)] <- 0
   B[which(B == 2, arr.ind = TRUE)] <- 1
   expect_true(checkOA(B))
+
+  B <- createBose(3, 3)
+  expect_equal(nrow(B), 3^2)
+  expect_equal(ncol(B), 3)
+
+  B <- createBose(3, 4)
+  expect_equal(nrow(B), 3^2)
+  expect_equal(ncol(B), 4)
+
+  B <- createBose(5, 4)
+  expect_equal(nrow(B), 5^2)
+  expect_equal(ncol(B), 4)
 })
 
 test_that("createBoseBush works", {
@@ -25,6 +37,18 @@ test_that("createBoseBush works", {
   B[which(B == 2, arr.ind = TRUE)] <- 1/3
   B[which(B == 3, arr.ind = TRUE)] <- 1
   expect_true(checkOA(B))
+
+  B <- createBoseBush(4, 5)
+  expect_equal(nrow(B), 2*4^2)
+  expect_equal(ncol(B), 5)
+
+  B <- createBoseBush(4, 4)
+  expect_equal(nrow(B), 2*4^2)
+  expect_equal(ncol(B), 4)
+
+  B <- createBoseBush(8, 3)
+  expect_equal(nrow(B), 2*8^2)
+  expect_equal(ncol(B), 3)
 })
 
 test_that("createBush works", {
@@ -34,12 +58,24 @@ test_that("createBush works", {
   B[which(B == 2, arr.ind = TRUE)] <- 1
   expect_true(checkOA(B))
 
-  B <- createBose(4, 5, FALSE)
+  B <- createBush(4, 5, FALSE)
   B[which(B == 0, arr.ind = TRUE)] <- -1
   B[which(B == 1, arr.ind = TRUE)] <- -1/3
   B[which(B == 2, arr.ind = TRUE)] <- 1/3
   B[which(B == 3, arr.ind = TRUE)] <- 1
   expect_true(checkOA(B))
+
+  B <- createBush(3, 3)
+  expect_equal(nrow(B), 3^3)
+  expect_equal(ncol(B), 3)
+
+  B <- createBush(3, 4)
+  expect_equal(nrow(B), 3^3)
+  expect_equal(ncol(B), 4)
+
+  B <- createBush(5, 4)
+  expect_equal(nrow(B), 5^3)
+  expect_equal(ncol(B), 4)
 })
 
 test_that("createAddelKemp works", {
@@ -52,6 +88,18 @@ test_that("createAddelKemp works", {
   B[which(B == 1, arr.ind = TRUE)] <- 0
   B[which(B == 2, arr.ind = TRUE)] <- 1
   expect_true(checkOA(B))
+
+  B <- createAddelKemp(4, 5)
+  expect_equal(nrow(B), 2*4^2)
+  expect_equal(ncol(B), 5)
+
+  B <- createAddelKemp(4, 4)
+  expect_equal(nrow(B), 2*4^2)
+  expect_equal(ncol(B), 4)
+
+  B <- createAddelKemp(5, 3)
+  expect_equal(nrow(B), 2*5^2)
+  expect_equal(ncol(B), 3)
 })
 
 test_that("createAddelKemp3 works", {
@@ -64,6 +112,18 @@ test_that("createAddelKemp3 works", {
   B[which(B == 1, arr.ind = TRUE)] <- 0
   B[which(B == 2, arr.ind = TRUE)] <- 1
   expect_true(checkOA(B))
+
+  B <- createAddelKemp3(4, 5)
+  expect_equal(nrow(B), 2*4^3)
+  expect_equal(ncol(B), 5)
+
+  B <- createAddelKemp3(4, 4)
+  expect_equal(nrow(B), 2*4^3)
+  expect_equal(ncol(B), 4)
+
+  B <- createAddelKemp3(5, 3)
+  expect_equal(nrow(B), 2*5^3)
+  expect_equal(ncol(B), 3)
 })
 
 test_that("createBusht works", {

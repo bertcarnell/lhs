@@ -4,7 +4,7 @@
 \alias{createBoseBushl}
 \title{Create an orthogonal array using the Bose-Bush algorithm with alternate strength >= 3}
 \usage{
-createBoseBushl(q, ncol, lambda, bRandom)
+createBoseBushl(q, ncol, lambda, bRandom = TRUE)
 }
 \arguments{
 \item{q}{the number of symbols in the array}

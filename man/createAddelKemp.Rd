@@ -4,7 +4,7 @@
 \alias{createAddelKemp}
 \title{Create an orthogonal array using the Addelman-Kempthorne algorithm}
 \usage{
-createAddelKemp(q, ncol, bRandom)
+createAddelKemp(q, ncol, bRandom = TRUE)
 }
 \arguments{
 \item{q}{the number of symbols in the array}

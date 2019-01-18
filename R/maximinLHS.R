@@ -46,6 +46,7 @@
 #' @return An \code{n} by \code{k} Latin Hypercube Sample matrix with values uniformly distributed on [0,1]
 #' @export
 #' @keywords design
+#' @importFrom stats dist
 #'
 #' @references
 #'   Stein, M.  (1987) Large Sample Properties of Simulations Using Latin Hypercube Sampling.

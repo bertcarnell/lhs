@@ -5,7 +5,7 @@
 \title{Create an orthogonal array using the Addelman-Kempthorne algorithm
 with 2*q^3 rows}
 \usage{
-createAddelKemp3(q, ncol, bRandom)
+createAddelKemp3(q, ncol, bRandom = TRUE)
 }
 \arguments{
 \item{q}{the number of symbols in the array}
