@@ -18,7 +18,7 @@ r_github_packages:
 
 # execute code coverage, but ignore files that are tested in their own packages
 after_success:
-  - Rscript -e 'covr::codecov(line_exclusions=list("COrthogonalArray.cpp", "COrthogonalArray.h"))'
+  - Rscript -e 'covr::codecov(line_exclusions=list("src/COrthogonalArray.cpp", "src/COrthogonalArray.h"))'
 
 cache: packages
 warnings_are_errors: true

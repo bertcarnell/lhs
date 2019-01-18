@@ -64,7 +64,7 @@ namespace lhslib
             // fill A with random hypercubes
             randomLHS(static_cast<int>(m_n), static_cast<int>(m_k), A[i], oRandom);
 #ifdef _DEBUG
-            if (!lhslib::isValidLHS(A[i])) printf("A is not valid at %d in randomLHS\n", static_cast<int>(i));
+            if (!lhslib::isValidLHS(A[i])) PRINT_MACRO("A is not valid at %d in randomLHS\n", static_cast<int>(i));
 #endif
         }
         std::vector<double> B;
@@ -116,7 +116,7 @@ namespace lhslib
                 *i = bclib::matrix<int>(m_n, m_k);
             }
 #ifdef _DEBUG
-            if (!lhslib::isValidLHS(A[posit])) printf("A is not valid at %d in randomLHS\n", static_cast<int>(posit));
+            if (!lhslib::isValidLHS(A[posit])) PRINT_MACRO("A is not valid at %d in randomLHS\n", static_cast<int>(posit));
 #endif
             // the first half of the next population gets the best hypercube from the first population
             for (msize_type i = 0; i < (m_pop / 2); i++)
@@ -134,17 +134,17 @@ namespace lhslib
 #ifdef _DEBUG                
                 if (!lhslib::isValidLHS(J[i + m_pop / 2]))
                 {
-                    printf("J is not valid at %d %d %d in 2nd half setup\n", static_cast<int>(i + m_pop / 2), static_cast<int>(i), static_cast<int>(m_pop/2));
-                    printf("J is equal to A[H[i]], 1 is true %d", (int)(J[i+m_pop/2] == A[H[i]]));
-                    printf("\n%s\n", J[i + m_pop / 2].toString());
+					PRINT_MACRO("J is not valid at %d %d %d in 2nd half setup\n", static_cast<int>(i + m_pop / 2), static_cast<int>(i), static_cast<int>(m_pop/2));
+					PRINT_MACRO("J is equal to A[H[i]], 1 is true %d", (int)(J[i+m_pop/2] == A[H[i]]));
+					PRINT_MACRO("\n%s\n", J[i + m_pop / 2].toString());
                     
-                    printf("\n%s\n", A[H[i]].toString());
-                    printf("H: ");
+					PRINT_MACRO("\n%s\n", A[H[i]].toString());
+					PRINT_MACRO("H: ");
                     for (vsize_type iv = 0; iv < H.size(); iv++)
                     {
-                        printf("%d,", H[iv]);
+						PRINT_MACRO("%d,", H[iv]);
                     }
-                    printf("\n");
+					PRINT_MACRO("\n");
                     return;
                 }
 #endif
@@ -163,8 +163,8 @@ namespace lhslib
 #ifdef _DEBUG
                 if (!lhslib::isValidLHS(J[i]))
                 {
-                    printf("J is not valid at %d in 1st half permute\n", static_cast<int>(i));
-                    printf("\n%s\n", J[i].toString());
+					PRINT_MACRO("J is not valid at %d in 1st half permute\n", static_cast<int>(i));
+					PRINT_MACRO("\n%s\n", J[i].toString());
                     return;
                 }
 #endif
@@ -178,7 +178,7 @@ namespace lhslib
                 {
                     J[i](irow, temp1) = A[posit](irow, temp2);
                 }
-                if (!lhslib::isValidLHS(J[i])) printf("J is not valid at %d in second half permute\n", static_cast<int>(i));
+                if (!lhslib::isValidLHS(J[i])) PRINT_MACRO("J is not valid at %d in second half permute\n", static_cast<int>(i));
             }
             // randomly exchange two numbers in pMut percent of columns
             std::vector<double> y = std::vector<double>(m_k);
@@ -202,16 +202,16 @@ namespace lhslib
             A = J;
             if (v != m_gen && bVerbose)
             {
-                printf("Generation %d completed\n", static_cast<int>(v)); // LCOV_EXCL_LINE
+				PRINT_MACRO("Generation %d completed\n", static_cast<int>(v)); // LCOV_EXCL_LINE
             }
         }
 
         if (bVerbose)
         {
-            printf("Last generation completed\n"); // LCOV_EXCL_LINE
+			PRINT_MACRO("Last generation completed\n"); // LCOV_EXCL_LINE
         }
 #ifdef _DEBUG
-        if (!lhslib::isValidLHS(J[0])) printf("J[0] is not valid\n");
+        if (!lhslib::isValidLHS(J[0])) PRINT_MACRO("J[0] is not valid\n");
 #endif
         std::vector<double> eps = std::vector<double>(m_n*m_k);
         runif_std(static_cast<unsigned int>(m_n * m_k), eps, oRandom);

@@ -1,7 +1,0 @@
-SOURCES=$(wildcard *.cpp)
-OBJECTS=$(SOURCES:.cpp=.o)
-PKG_CPPFLAGS=-I. -DRCOMPILE
-all: $(SHLIB)
-$(SHLIB): $(OBJECTS)
-clean:
-	@rm -f $(OBJECTS)

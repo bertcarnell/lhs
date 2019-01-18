@@ -41,7 +41,7 @@ namespace oalhslib
 
         if (bVerbose)
         {
-            printf("\ninteger lhs:\n%s\n", intlhs.toString()); // LCOV_EXCL_LINE
+			PRINT_OUTPUT("\ninteger lhs:\n%s\n", intlhs.toString()); // LCOV_EXCL_LINE
         }
 
         // transform integer hypercube to a double hypercube
@@ -73,15 +73,15 @@ namespace oalhslib
 
     void printOAandUnique(const bclib::matrix<int> & oa, const std::vector<std::vector<int> > & uniqueLevelsVector) // LCOV_EXCL_START
     {
-        printf("\ninitial oa:\n%s\n", oa.toString());
-        printf("unique values per row:\n");
+		PRINT_OUTPUT("\ninitial oa:\n%s\n", oa.toString());
+		PRINT_OUTPUT("unique values per row:\n");
         for (vsize_type vi = 0; vi < uniqueLevelsVector.size(); vi++)
         {
             for (vsize_type vvi = 0; vvi < uniqueLevelsVector[vi].size(); vvi++)
             {
-                printf("%d,", uniqueLevelsVector[vi][vvi]);
+				PRINT_OUTPUT("%d,", uniqueLevelsVector[vi][vvi]);
             }
-            printf("\n");
+			PRINT_OUTPUT("\n");
         }
     } // LCOV_EXCL_STOP
 
@@ -112,7 +112,7 @@ namespace oalhslib
 
         if (bVerbose)
         {
-            printf("\nintlhs:\n%s\n", intlhs.toString()); // LCOV_EXCL_LINE
+			PRINT_OUTPUT("\nintlhs:\n%s\n", intlhs.toString()); // LCOV_EXCL_LINE
         }
     }
 
@@ -174,7 +174,7 @@ namespace oalhslib
     {
         if (bVerbose)
         {
-            printf("\n"); // LCOV_EXCL_LINE
+			PRINT_OUTPUT("\n"); // LCOV_EXCL_LINE
         }
         int q_addelkemp = bChooseLargerDesign ? (int) ceil(sqrt((double) n / 2.0)) : (int) floor(sqrt((double) n / 2.0));
         while (oacpp::primes::isprimepow(q_addelkemp) == 0 && q_addelkemp >= 2)
@@ -192,7 +192,7 @@ namespace oalhslib
         int k_addelkemp = k < 2*q_addelkemp + 1 ? k : 2*q_addelkemp + 1;
         if (bVerbose)
         {
-            printf("Candidate OA:  AddelKemp with q=%d n=%d k=%d\n", q_addelkemp, n_addelkemp, k_addelkemp); // LCOV_EXCL_LINE
+			PRINT_OUTPUT("Candidate OA:  AddelKemp with q=%d n=%d k=%d\n", q_addelkemp, n_addelkemp, k_addelkemp); // LCOV_EXCL_LINE
         }
 
         int q_addelkemp3 = bChooseLargerDesign ? (int) ceil(pow((double) n / 2.0, 1.0/3.0)) : (int) floor(pow((double) n / 2.0, 1.0/3.0));
@@ -211,7 +211,7 @@ namespace oalhslib
         int k_addelkemp3 = k < 2*q_addelkemp3*q_addelkemp3 + 2*q_addelkemp3 + 1 ? k : 2*q_addelkemp3*q_addelkemp3 + 2*q_addelkemp3 + 1;
         if (bVerbose)
         {
-            printf("Candidate OA:  AddelKemp3 with q=%d n=%d k=%d\n", q_addelkemp3, n_addelkemp3, k_addelkemp3); // LCOV_EXCL_LINE
+			PRINT_OUTPUT("Candidate OA:  AddelKemp3 with q=%d n=%d k=%d\n", q_addelkemp3, n_addelkemp3, k_addelkemp3); // LCOV_EXCL_LINE
         }
 
         int q_bose = bChooseLargerDesign ? (int) ceil(sqrt((double) n)) : (int) floor(sqrt((double) n));
@@ -230,7 +230,7 @@ namespace oalhslib
         int k_bose = k < q_bose + 1 ? k : q_bose + 1;
         if (bVerbose)
         {
-            printf("Candidate OA:  Bose with q=%d n=%d k=%d\n", q_bose, n_bose, k_bose); // LCOV_EXCL_LINE
+			PRINT_OUTPUT("Candidate OA:  Bose with q=%d n=%d k=%d\n", q_bose, n_bose, k_bose); // LCOV_EXCL_LINE
         }
 
         int q_bosebush = bChooseLargerDesign ? (int) ceil(sqrt((double) n / 2.0)) : (int) floor(sqrt((double) n / 2.0));
@@ -249,7 +249,7 @@ namespace oalhslib
         int k_bosebush = k < q_bosebush + 1 ? k : q_bosebush + 1;
         if (bVerbose)
         {
-            printf("Candidate OA:  BoseBush with q=%d n=%d k=%d\n", q_bosebush, n_bosebush, k_bosebush); // LCOV_EXCL_LINE
+			PRINT_OUTPUT("Candidate OA:  BoseBush with q=%d n=%d k=%d\n", q_bosebush, n_bosebush, k_bosebush); // LCOV_EXCL_LINE
         }
 
 		// Goal:  Find the n and k that are the closest with atleast the required n and k
@@ -316,7 +316,7 @@ namespace oalhslib
         {
             if (bVerbose)
             {
-                printf("AddelKemp selected\n"); // LCOV_EXCL_LINE
+				PRINT_OUTPUT("AddelKemp selected\n"); // LCOV_EXCL_LINE
             }
             coa.addelkemp(q_addelkemp, k_addelkemp, &n_addelkemp);
         }
@@ -324,7 +324,7 @@ namespace oalhslib
         {
             if (bVerbose)
             {
-                printf("AddelKemp3 selected\n"); // LCOV_EXCL_LINE
+				PRINT_OUTPUT("AddelKemp3 selected\n"); // LCOV_EXCL_LINE
             }
             coa.addelkemp3(q_addelkemp3, k_addelkemp3, &n_addelkemp3);
         }
@@ -332,7 +332,7 @@ namespace oalhslib
         {
             if (bVerbose)
             {
-                printf("Bose selected\n"); // LCOV_EXCL_LINE
+				PRINT_OUTPUT("Bose selected\n"); // LCOV_EXCL_LINE
             }
             coa.bose(q_bose, k_bose, &n_bose);
         }
@@ -340,7 +340,7 @@ namespace oalhslib
         {
             if (bVerbose)
             {
-                printf("BoseBush selected\n"); // LCOV_EXCL_LINE
+				PRINT_OUTPUT("BoseBush selected\n"); // LCOV_EXCL_LINE
             }
             coa.bosebush(q_bosebush, k_bosebush, &n_bosebush);
         }
@@ -362,7 +362,7 @@ namespace oalhslib
 
 		if (bVerbose)
 		{
-			printf("\ninteger lhs:\n%s\n", intoalhs.toString()); // LCOV_EXCL_LINE
+			PRINT_OUTPUT("\ninteger lhs:\n%s\n", intoalhs.toString()); // LCOV_EXCL_LINE
 		}
 
 		// transform integer hypercube to a double hypercube

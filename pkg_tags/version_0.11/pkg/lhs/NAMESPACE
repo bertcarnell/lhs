@@ -1,6 +1,0 @@
-useDynLib(lhs)
-
-export(improvedLHS, maximinLHS, randomLHS, optimumLHS, augmentLHS,
-       geneticLHS, optAugmentLHS, optSeededLHS)
-	   
-importFrom("stats", dist, na.exclude, na.fail, na.omit, runif)
