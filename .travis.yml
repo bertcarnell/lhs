@@ -19,13 +19,7 @@ r_github_packages:
 # execute code coverage, but ignore files that are tested in their own packages
 #  these files from from bertcarnell/oa, bertcarnell/bclib, and bertcarnell/lhslib
 after_success:
-  - Rscript -e 'covr::codecov(line_exclusions=list("src/COrthogonalArray.cpp",
-  "src/COrthogonalArray.h", "src/CRandom.h", "src/RStandardUniform.h", "src/ak3.cpp",
-  "src/akconst.cpp", "src/akn.cpp", "src/construct.cpp", "src/galdef.h", "src/galois.cpp", "src/geneticLHS.cpp",
-  "src/gfields.cpp", "src/improvedLHS.cpp", "src/matrix.h", "src/maximinLHS.cpp", "src/oa.cpp",
-  "src/oaLHS.cpp", "src/oaLHSUtility.h", "src/optSeededLHS.cpp", "src/order.h", "src/primes.cpp",
-  "src/randomLHS.cpp", "src/runif.cpp", "src/runif.h", "src/rutils.cpp", "src/rutils.h", "src/utilityLHS.cpp",
-  "src/utilityLHS.h", "src/xtndeclare.h", "src/xtndispatch.h", "src/xtnset.h"))'
+  - Rscript -e 'covr::codecov(line_exclusions=list("src/COrthogonalArray.cpp", "src/COrthogonalArray.h", "src/CRandom.h", "src/RStandardUniform.h", "src/ak3.cpp", "src/akconst.cpp", "src/akn.cpp", "src/construct.cpp", "src/galdef.h", "src/galois.cpp", "src/geneticLHS.cpp", "src/gfields.cpp", "src/improvedLHS.cpp", "src/matrix.h", "src/maximinLHS.cpp", "src/oa.cpp", "src/oaLHS.cpp", "src/oaLHSUtility.h", "src/optSeededLHS.cpp", "src/order.h", "src/primes.cpp", "src/randomLHS.cpp", "src/runif.cpp", "src/runif.h", "src/rutils.cpp", "src/rutils.h", "src/utilityLHS.cpp", "src/utilityLHS.h", "src/xtndeclare.h", "src/xtndispatch.h", "src/xtnset.h"))'
 
 cache: packages
 warnings_are_errors: true
