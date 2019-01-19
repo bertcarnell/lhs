@@ -228,3 +228,130 @@ pairs(x)
 pairs(y, col = "red") 
 ```
 
+## Question 3
+
+How do I create a Latin hypercube that ranges between between 0 and 1 and sums to 1?
+
+### Answer
+
+I have an imperfect solution to this problem using a Dirichlet distribution.   
+The Dirichlet seems to keep the range of the values larger once they are 
+normalized.  The result is not uniformly distributed on (0,1) anymore, but 
+instead is Dirichlet distributed with the parameters alpha.  The Latin 
+properties are maintained. 
+
+```{r qdirichlet}
+qdirichlet <- function(X, alpha) 
+{ 
+  # qdirichlet is not an exact quantile function since the quantile of a 
+  #  multivariate distribtion is not unique 
+  # qdirichlet is also not the quantiles of the marginal distributions since 
+  #  those quantiles do not sum to one 
+  # qdirichlet is the quantile of the underlying gamma functions, normalized 
+  # This has been tested to show that qdirichlet approximates the dirichlet 
+  #  distribution well and creates the correct marginal means and variances 
+  #  when using a latin hypercube sample 
+  lena <- length(alpha) 
+  stopifnot(is.matrix(X)) 
+  sims <- dim(X)[1] 
+  stopifnot(dim(X)[2] == lena) 
+  if (any(is.na(alpha)) || any(is.na(X))) 
+    stop("NA values not allowed in qdirichlet") 
+
+  Y <- matrix(0, nrow = sims, ncol = lena) 
+  ind <- which(alpha != 0) 
+  for (i in ind) 
+  { 
+    Y[,i] <- qgamma(X[,i], alpha[i], 1) 
+  } 
+  Y <- Y / rowSums(Y) 
+  return(Y) 
+} 
+
+X <- randomLHS(1000, 7) 
+Y <- qdirichlet(X, rep(1,7)) 
+stopifnot(all(abs(rowSums(Y) - 1) < 1E-12)) 
+range(Y) 
+
+ws <- randomLHS(1000, 7) 
+wsSums <- rowSums(ws) 
+wss <- ws / wsSums 
+stopifnot(all(abs(rowSums(wss) - 1) < 1E-12)) 
+range(wss)
+```
+
+## Question 5
+
+I need to use Latin hypercube sampling for my own custome functions.
+
+### Answer
+
+```{r custom, fig.width=5, fig.height=5}
+require(lhs) 
+
+# functions you described 
+T1 <- function(t) t*t 
+WL1 <- function(T1, t) T1*t 
+BE1 <- function(WL1, T1, t) WL1*T1*t 
+
+# t is distributed according to some pdf (e.g. normal) 
+# draw a lhs with 512 rows and 3 columns (one for each function) 
+y <- randomLHS(512, 3) 
+# transform the three columns to a normal distribution (these could be any 
+# distribution) 
+t <- apply(y, 2, function(columny) qnorm(columny, 2, 1)) 
+# transform t using the functions provided 
+result <- cbind( 
+  T1(t[,1]), 
+  WL1(T1(t[,2]), t[,2]), 
+  BE1(WL1(T1(t[,3]), t[,3]), T1(t[,3]), t[,3]) 
+) 
+# check the results 
+# these should be approximately uniform 
+par(mfrow = c(2,2)) 
+dummy <- apply(y, 2, hist, breaks = 50, main = "") 
+# these should be approximately normal 
+par(mfrow = c(2,2)) 
+dummy <- apply(t, 2, hist, breaks = 50, main = "") 
+# these should be the results of the functions 
+par(mfrow = c(2,2)) 
+dummy <- apply(result, 2, hist, breaks = 50, main = "") 
+```
+
+## Question 6
+
+I need a Latin hypercube sample on an integer set or a set of colors.
+
+### Answer
+
+```{r q6, fig.height=5, fig.width=5}
+N <- 1000 
+set.seed(1919) 
+
+x <- randomLHS(N, 4) 
+y <- x 
+# uniform on 1-10 
+y[,1] <- ceiling(qunif(x[,1], 0, 10)) 
+# three colors 1,2,3 
+y[,2] <- ceiling(qunif(x[,2], 0, 3)) 
+# other distributions 
+y[,3] <- qunif(x[,3], 5, 10) 
+y[,4] <- qnorm(x[,4], 0, 2) 
+
+par(mfrow=c(2,2)) 
+dummy <- apply(x, 2, hist, main="") 
+
+par(mfrow=c(2,2)) 
+plot(1:10, c(table(y[,1])), type="h", col="blue", lwd=2, ylim=c(0,120), 
+ylab="Frequency", xlab="y[,1]") 
+plot(1:3, c(table(y[,2])), type="h", col="blue", lwd=2, ylim=c(0,400), 
+ylab="Frequency", xlab="y[,2]") 
+hist(y[,3], main="") 
+hist(y[,4], main="") 
+
+# change to color names 
+z <- as.data.frame(y) 
+z[,2] <- factor(y[,2], labels=c("R","G","B")) 
+z[1:10,] 
+```
+
