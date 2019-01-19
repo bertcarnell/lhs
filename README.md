@@ -6,6 +6,8 @@ This package provides a number of methods for creating and augmenting Latin Hype
 |:---:|:---:|:---:|:---:|:---:|
 |[![Build Status](https://travis-ci.org/bertcarnell/lhs.svg?branch=master)](https://travis-ci.org/bertcarnell/lhs)|[![Build status](https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true)](https://ci.appveyor.com/project/bertcarnell/lhs/branch/master)|[![Coverage status](https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg)](https://codecov.io/github/bertcarnell/lhs?branch=master)|[![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs)|[![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs)|
 
+Visit the webpage [here](https://bertcarnell.github.io/lhs/)
+
 ## Installation
 
 You can install the released version of lhs from [CRAN](https://CRAN.R-project.org) with:
