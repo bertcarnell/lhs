@@ -24,8 +24,7 @@ test_that("optAugmentLHS works", {
   set.seed(1977)
   expect_true(checkLatinHypercube(optAugmentLHS(randomLHS(3, 3), 3, 3)))
 
-  expect_error(optAutmentLHS(c(1,2), m = 4, mult = 2))
+  expect_error(optAugmentLHS(c(1,2), m = 4, mult = 2))
   expect_error(optAugmentLHS(randomLHS(10, 4), c(1,2)))
   expect_error(optAugmentLHS(randomLHS(10, 4), -2))
-
 })

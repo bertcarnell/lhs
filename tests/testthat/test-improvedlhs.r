@@ -30,3 +30,9 @@ test_that("improvedLHS works", {
   D <- improvedLHS(20, 6)
   expect_true(any(A != D))
 })
+
+test_that("improvedLHS errors work", {
+  expect_error(.Call("improvedLHS_cpp", 3, 4L, 4L))
+  X <- .Call("improvedLHS_cpp", 1L, 4L, 4L)
+  expect_equal(nrow(X), 1)
+})

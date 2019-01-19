@@ -64,4 +64,6 @@ test_that("randomLHS works", {
   expect_equal(A, B[,1:3], tolerance = 1E-12)
   expect_true(checkLatinHypercube(A))
   expect_true(checkLatinHypercube(B))
+
+  expect_error(.Call("randomLHS_cpp", 3, 4L, FALSE))
 })

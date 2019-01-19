@@ -43,3 +43,22 @@ test_that("maximinLHS works with expanded capability", {
   expect_true(checkLatinHypercube(maximinLHS(4, 3, method = "iterative", eps = 0.05, maxIter = 100, optimize.on = "grid")))
   expect_true(checkLatinHypercube(maximinLHS(4, 3, method = "iterative", eps = 0.05, maxIter = 100, optimize.on = "result")))
 })
+
+test_that("maximinLHS debug capability for code coverage", {
+  capture_output(X <- maximinLHS(10, 4, method = "build",
+                                 optimize.on = "grid", debug = TRUE))
+  expect_equal(nrow(X), 10)
+  expect_warning(capture_output(X <- maximinLHS(10, 4, method = "build",
+                                                optimize.on = "result", debug = TRUE)))
+  expect_equal(nrow(X), 10)
+  capture_output(X <- maximinLHS(10, 10, method = "iterative",
+                                optimize.on = "result", eps = 1E-9, debug = TRUE))
+  expect_equal(nrow(X), 10)
+  capture_output(X <- maximinLHS(5, 5, method = "iterative",
+                                 optimize.on = "result", eps = 1, debug = TRUE))
+
+  expect_error(.Call("maximinLHS_cpp", 3, 4L, 4L))
+  X <- .Call("maximinLHS_cpp", 1L, 4L, 4L)
+  expect_equal(nrow(X), 1)
+
+})

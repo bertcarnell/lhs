@@ -31,6 +31,11 @@ test_that("oa_to_oalhs works with internal oa generation", {
   oa <- createAddelKemp3(4, 20, TRUE)
   oalhs <- oa_to_oalhs(128, 20, oa, FALSE)
   expect_true(checkLatinHypercube(oalhs))
+
+  expect_error(.Call("oa_to_lhs", 4, 20L, oa, FALSE))
+  expect_error(.Call("oa_to_lhs", 4L, 20L, oa, 5))
+  expect_error(.Call("oa_to_lhs", as.integer(NA), 20L, oa, FALSE))
+
 })
 
 test_that("oa_to_oalhs works with DoE.base", {

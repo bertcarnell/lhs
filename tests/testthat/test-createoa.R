@@ -24,6 +24,12 @@ test_that("createBose works", {
   B <- createBose(5, 4)
   expect_equal(nrow(B), 5^2)
   expect_equal(ncol(B), 4)
+
+  expect_error(.Call("oa_type1", "bose", 3, 3L, FALSE))
+  expect_error(.Call("oa_type1", 0, 3L, 3L, FALSE))
+  expect_error(.Call("oa_type1", "bose", c(3L, 4L), 3L, FALSE))
+  expect_error(.Call("oa_type1", "bose", as.integer(NA), 3L, FALSE))
+  expect_error(.Call("oa_type1", "bob", 3L, 3L, FALSE))
 })
 
 test_that("createBoseBush works", {
@@ -138,6 +144,17 @@ test_that("createBusht works", {
   B[which(B == 1, arr.ind = TRUE)] <- 0
   B[which(B == 2, arr.ind = TRUE)] <- 1
   expect_true(checkOA(B))
+
+  expect_error(.Call("oa_type2", "busht", 3, 4L, 3L, FALSE))
+  expect_error(.Call("oa_type2", 0, 3L, 4L, 3L, FALSE))
+  expect_error(.Call("oa_type2", "busht", c(3L, 4L), 4L, 3L, FALSE))
+  expect_error(.Call("oa_type2", "busht", as.integer(NA), 4L, 3L, FALSE))
+  expect_error(.Call("oa_type2", "bosebushl", as.integer(NA), 4L, 3L, FALSE))
+  expect_error(.Call("oa_type2", "addelkempn", as.integer(NA), 4L, 3L, FALSE))
+  expect_error(.Call("oa_type2", "bob", as.integer(NA), 4L, 3L, FALSE))
+  expect_error(.Call("oa_type2", "bob", 3L, 4L, 3L, FALSE))
+  X <- .Call("oa_type2", "busht", 3L, 4L, 3L, TRUE)
+  expect_equal(nrow(X), 64)
 })
 
 test_that("createBoseBushl works", {

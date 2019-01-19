@@ -38,4 +38,9 @@ test_that("create_oalhs works", {
   Y <- create_oalhs(9, 4, TRUE, FALSE)
   expect_true(all(X == Y))
 
+  expect_error(.Call("create_oalhs", 3, 4L, FALSE, FALSE))
+  expect_error(.Call("create_oalhs", 3L, 4L, 5, FALSE))
+  expect_error(.Call("create_oalhs", 3L, as.integer(NA), FALSE, FALSE))
+
+
 })

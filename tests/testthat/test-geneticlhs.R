@@ -2,7 +2,7 @@
 
 context("test-geneticlhs")
 
-test_that("multiplication works", {
+test_that("geneticLHS works", {
   expect_error(geneticLHS(-1, 2))
   expect_error(geneticLHS(10, -30))
   expect_error(geneticLHS(10, 2, -2))
@@ -37,4 +37,7 @@ test_that("multiplication works", {
   set.seed(1976)
   expect_true(checkLatinHypercube(geneticLHS(20, 5, pop = 100, gen = 4,
                                              pMut = 0.2, criterium = "S")))
+
+  capture_output(X <- .Call("geneticLHS_cpp", 1L, 4L, 10L, 4L, 0.01, "S", TRUE))
+  expect_equal(nrow(X), 1)
 })
