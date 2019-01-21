@@ -22,14 +22,6 @@
 
 namespace lhslib
 {
-    /**
-     * check to determine of an lhs is valid.
-     * if bTranspose==false, then sum the columns
-     * if bTranspose==true, then sum the rows
-     * @param result
-     * @param bTranspose
-     * @return 
-     */
     bool isValidLHS(const bclib::matrix<int> & result)
     {
         int total = 0;

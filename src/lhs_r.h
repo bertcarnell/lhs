@@ -46,7 +46,7 @@ RcppExport SEXP maximinLHS_cpp(SEXP n, SEXP k, SEXP dup);
  * Optimal Latin hypercube sample algorithm
  * @param n (IntegerVector length 1) number of rows / samples in the lhs
  * @param k (IntegerVector length 1) number parameters / columns in the lhs
- * @param maxSweeps (IntegerVector length 1) the maximum number of sweeps to use in the algorithm
+ * @param maxsweeps (IntegerVector length 1) the maximum number of sweeps to use in the algorithm
  * @param eps (NumericVector length 1) The optimal stopping criterion
  * @param bVerbose (LogicalVector length 1) should messages be printed 
  * @return (NumericMatrix dim n x k) an lhs
@@ -57,7 +57,7 @@ RcppExport SEXP optimumLHS_cpp(SEXP n, SEXP k, SEXP maxsweeps, SEXP eps,
  * Optimum Latin hypercube sample with a seed sample 
  * @param n (IntegerVector length 1) number of rows / samples in the lhs
  * @param k (IntegerVector length 1) number parameters / columns in the lhs
- * @param maxSweeps (IntegerVector length 1) the maximum number of sweeps to use in the algorithm
+ * @param maxsweeps (IntegerVector length 1) the maximum number of sweeps to use in the algorithm
  * @param eps (NumericVector length 1) The optimal stopping criterion
  * @param pOld (NumericMatrix dim n x k) a seed matrix
  * @param bVerbose (LogicalVector length 1) should messages be printed?

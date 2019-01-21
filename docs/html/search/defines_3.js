@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['range_5fdebug',['RANGE_DEBUG',['../_o_a_common_defines_8h.html#a6468f990cec8df731c33e2d266588daf',1,'OACommonDefines.h']]]
+  ['failure_5fcheck',['FAILURE_CHECK',['../_o_a_common_defines_8h.html#afd1ca69c1eeffce8bc886ff99b208dad',1,'OACommonDefines.h']]]
 ];

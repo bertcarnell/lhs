@@ -45,8 +45,9 @@ namespace oacpp
          * In S one just does rank(runif(q)).  Here we want
          * something like rank(runif(q))-1 since the symbols to
          * be permuted are 0..q-1
-         * @param pi
-         * @param q
+         * @param pi a vector of integers to be permuted
+         * @param q length of the vector
+         * @param randomClass a random number generator class
          */
 		void unifperm( std::vector<int> & pi, int q, RUnif & randomClass );
 
@@ -114,7 +115,7 @@ namespace oacpp
          * Find the rank of each vector element (zero based)
          * @tparam T numeric argument that can be ranked
          * @param v the vector to be ranked
-         * @param indx the ranks of the elements
+         * @param rank the ranks of the elements
          */
         template <class T>
         void findranks_zero(const std::vector<T> & v, std::vector<int> & rank)
@@ -147,7 +148,7 @@ namespace oacpp
          * Find the rank of each vector element
          * @tparam T numeric argument that can be ranked
          * @param v the vector to be ranked
-         * @param indx the ranks of the elements
+         * @param rank the ranks of the elements
          */
         template <class T>
         void findranks(const std::vector<T> & v, std::vector<int> & rank)

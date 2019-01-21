@@ -49,13 +49,14 @@ namespace oacpp
             }
         }
 
-        // TODO:  I am copying the entire object here, there may be a better way to do with with
-        //  a row or column iterator in the matrix object since these are read only on p1 and p2
         void GF_poly_prod(int p, int n, std::vector<int> & xton, std::vector<int> p1, std::vector<int> p2, std::vector<int> & prod)
         /*
           Set prod = p1*p2 with coefficients modulo p, and x^n replaced
-        by polynomial xton.
-         */
+          by polynomial xton.
+		  
+		  TODO:  I am copying the entire object here, there may be a better way to do with with
+		    a row or column iterator in the matrix object since these are read only on p1 and p2
+		 */
         {
             size_t nu = static_cast<size_t>(n);
             std::vector<int> longprod(2*nu-1);

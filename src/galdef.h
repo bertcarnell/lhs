@@ -40,16 +40,26 @@ namespace oacpp {
      */
     struct GF 
     {
+		/** Vector Length */
         int n;
-        int p;
-        int q;
-        std::vector<int> xton;
-        std::vector<int> inv;
-        std::vector<int> neg;
-        std::vector<int> root;
-        bclib::matrix<int> plus;
-        bclib::matrix<int> times;
-        bclib::matrix<int> poly;
+		/** modulus */
+		int p;
+		/** q */
+		int q;
+		/** x^n */
+		std::vector<int> xton;
+		/** inverse polynomial */
+		std::vector<int> inv;
+		/** negative polynomial */
+		std::vector<int> neg;
+		/** root */
+		std::vector<int> root;
+		/** sum field */
+		bclib::matrix<int> plus;
+		/** product field */
+		bclib::matrix<int> times;
+		/** polynomial field */
+		bclib::matrix<int> poly;
     };
 } // end namespace
 

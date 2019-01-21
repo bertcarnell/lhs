@@ -63,13 +63,21 @@ RcppExport SEXP /*int matrix*/ oa_type2(SEXP /*char*/ type, SEXP /*int*/ int1, S
 
 namespace typeConstants
 {
+	/** bush algorithm indicator */
     const char * BUSH = "bush";
+	/** bose algorithm indicator */
     const char * BOSE = "bose";
+	/** bosebush algorithm indicator */
     const char * BOSEBUSH = "bosebush";
+	/** busht algorithm indicator */
     const char * BUSHT = "busht";
+	/** bosebushl algorithm indicator */
     const char * BOSEBUSHL = "bosebushl";
+	/** addelkemp algorithm indicator */
     const char * ADDELKEMP = "addelkemp";
+	/** addelkemp3 algorithm indicator */
     const char * ADDELKEMP3 = "addelkemp3";
+	/** addelkempn algorithm indicator */
     const char * ADDELKEMPN = "addelkempn";
 } // end namespace
 

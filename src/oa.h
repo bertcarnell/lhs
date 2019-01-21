@@ -45,6 +45,9 @@
  * checks!
  */
 #define BIGWORK 100000000
+/**
+ * One tenth of the comparisons of BIGWORK
+ */
 #define MEDWORK BIGWORK/10
 
 namespace oacpp {

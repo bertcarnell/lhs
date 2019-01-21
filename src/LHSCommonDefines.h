@@ -1,5 +1,5 @@
 /**
- * @file CommonDefines.h
+ * @file LHSCommonDefines.h
  * @author Robert Carnell
  * @copyright Copyright (c) 2014, Robert Carnell
  * 
@@ -40,10 +40,13 @@
 #define PRINT_MACRO Rprintf
 #define ERROR_MACRO Rprintf
 #else // RCOMPILE
+/** Macro to choose the function for printing */
 #define PRINT_MACRO printf
+/** Macro to choose the function for error printing */
 #define ERROR_MACRO printf
 #endif // RCOMPILE
 
+/** Should results be printed */
 #define PRINT_RESULT 0
 
 /**

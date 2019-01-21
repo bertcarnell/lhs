@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['pointer',['pointer',['../classbclib_1_1matrix.html#a2dbfe8da4088fcf4864c9e616b19e5ad',1,'bclib::matrix']]],
-  ['polyeval',['polyeval',['../namespaceoacpp_1_1oaconstruct.html#a79c3bd2882edee81b24fc368ed8fcb4b',1,'oacpp::oaconstruct']]],
-  ['primepow',['primepow',['../namespaceoacpp_1_1primes.html#ab046a30888ac659d74dc5ea0e48aabb3',1,'oacpp::primes']]],
-  ['primes_2ecpp',['primes.cpp',['../primes_8cpp.html',1,'']]],
-  ['primes_2eh',['primes.h',['../primes_8h.html',1,'']]],
-  ['print_5foutput',['PRINT_OUTPUT',['../_o_a_common_defines_8h.html#a7eadbf610b2dfeee010c2742a65d7589',1,'OACommonDefines.h']]]
+  ['maximinlhs',['maximinLHS',['../namespacelhslib.html#a7a25fff02258ddf775f529369d0ffde9',1,'lhslib']]],
+  ['maximinlhs_2ecpp',['maximinLHS.cpp',['../maximin_l_h_s_8cpp.html',1,'']]],
+  ['maximinlhs_5fcpp',['maximinLHS_cpp',['../lhs__r_8cpp.html#a4948eea85441505c869916d1420a47e0',1,'maximinLHS_cpp(SEXP n, SEXP k, SEXP dup):&#160;lhs_r.cpp'],['../lhs__r_8h.html#a4948eea85441505c869916d1420a47e0',1,'maximinLHS_cpp(SEXP n, SEXP k, SEXP dup):&#160;lhs_r.cpp']]],
+  ['medwork',['MEDWORK',['../oa_8h.html#a08a2d82ff899200ca10d87dbf9ad57f9',1,'oa.h']]],
+  ['mod',['mod',['../classoacpp_1_1_r_unif.html#aaa7a4a02a5a1716bb5398b24326048d4',1,'oacpp::RUnif']]],
+  ['msize_5ftype',['msize_type',['../namespacelhslib.html#aba3390cdfd1c0921a2afd4877ae2694a',1,'lhslib']]]
 ];

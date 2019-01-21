@@ -34,8 +34,14 @@ namespace oacpp
 {
     // include declarations of xtndeclare
 #include "xtndeclare.h"
+	/**
+	 * p^1
+	 */
     std::vector<int> xtnpt1;
 
+	/**
+	 * Indicator of whether the Galois fields are set-up
+	 */
     int GF_fields_are_set = 0;
 
     void galoisfield::GF_set_fields()

@@ -35,6 +35,7 @@ namespace oarutils {
      * A method to convert an oacpp::matrix to an Rcpp::IntegerMatrix
      * @tparam T an atomic type that is convertible to <code>int</code> through a <code>static_cast<int>(T t)</code>
      * @param A an orthogonal array matrix
+	 * @param rcppA the output Rcpp::IntegerMatrix
      * @return an integer matrix
      */
     template <class T>
@@ -107,6 +108,11 @@ namespace oarutils {
       }
     }
 
+	/**
+	 * permute the entries of each column in an orthogonal array
+	 * @param oa A Rcpp::IntegerMatrix containing an orthogonal array
+	 * @param q The number of unique entries in each column
+	 */
     void randomizeOA(Rcpp::IntegerMatrix & oa, int q);
 
 } // end namespace

@@ -104,12 +104,11 @@ Classes</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a0f674ea18843155bc54720c713e85bd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#a0f674ea18843155bc54720c713e85bd3">findorder_zero</a> (const Rcpp::NumericVector &amp;v, Rcpp::IntegerVector &amp;order)</td></tr>
 <tr class="separator:a0f674ea18843155bc54720c713e85bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d7b16d0c3998bd4aa98c30e9b8882c3"><td class="memItemLeft" align="right" valign="top">Rcpp::NumericMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#a6d7b16d0c3998bd4aa98c30e9b8882c3">convertIntegerToNumericLhs</a> (const <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; int &gt; &amp;intMat)</td></tr>
+<tr class="memitem:a6d7b16d0c3998bd4aa98c30e9b8882c3"><td class="memItemLeft" align="right" valign="top">Rcpp::NumericMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#a6d7b16d0c3998bd4aa98c30e9b8882c3">convertIntegerToNumericLhs</a> (const bclib::matrix&lt; int &gt; &amp;intMat)</td></tr>
 <tr class="separator:a6d7b16d0c3998bd4aa98c30e9b8882c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3c66f013474541546e17babdb43bd95"><td class="memItemLeft" align="right" valign="top"><a id="af3c66f013474541546e17babdb43bd95"></a>
-Rcpp::NumericMatrix&#160;</td><td class="memItemRight" valign="bottom"><b>convertIntegerToNumericLhs</b> (const Rcpp::IntegerMatrix &amp;intMat)</td></tr>
+<tr class="memitem:af3c66f013474541546e17babdb43bd95"><td class="memItemLeft" align="right" valign="top">Rcpp::NumericMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#af3c66f013474541546e17babdb43bd95">convertIntegerToNumericLhs</a> (const Rcpp::IntegerMatrix &amp;intMat)</td></tr>
 <tr class="separator:af3c66f013474541546e17babdb43bd95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1db21b2cc7f6e2665ab478be9c0a3856"><td class="memItemLeft" align="right" valign="top">Rcpp::NumericMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#a1db21b2cc7f6e2665ab478be9c0a3856">convertMatrixToNumericLhs</a> (const <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; double &gt; &amp;intMat)</td></tr>
+<tr class="memitem:a1db21b2cc7f6e2665ab478be9c0a3856"><td class="memItemLeft" align="right" valign="top">Rcpp::NumericMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#a1db21b2cc7f6e2665ab478be9c0a3856">convertMatrixToNumericLhs</a> (const bclib::matrix&lt; double &gt; &amp;intMat)</td></tr>
 <tr class="separator:a1db21b2cc7f6e2665ab478be9c0a3856"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a2c4e900e333963faa84226446fdca1"><td class="memItemLeft" align="right" valign="top">Rcpp::IntegerVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#a3a2c4e900e333963faa84226446fdca1">runifint</a> (unsigned int n, int min_int, int max_int)</td></tr>
 <tr class="separator:a3a2c4e900e333963faa84226446fdca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,6 +150,11 @@ template&lt;int RTYPE&gt; </div>
 <p>Calculate the distance between points in a matrix </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mat</td><td>the matrix to use for the calculation </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
     <tr><td class="paramname">RTYPE</td><td>the type of SEXP </td></tr>
   </table>
   </dd>
@@ -179,6 +183,11 @@ template&lt;int RTYPE&gt; </div>
 <p>calculate the S optimal criterion </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mat</td><td>the input matrix </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
     <tr><td class="paramname">RTYPE</td><td>the type of SEXP </td></tr>
   </table>
   </dd>
@@ -314,7 +323,7 @@ template&lt;int RTYPE&gt; </div>
 </div>
 </div>
 <a id="a6d7b16d0c3998bd4aa98c30e9b8882c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d7b16d0c3998bd4aa98c30e9b8882c3">&#9670;&nbsp;</a></span>convertIntegerToNumericLhs()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d7b16d0c3998bd4aa98c30e9b8882c3">&#9670;&nbsp;</a></span>convertIntegerToNumericLhs() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -322,7 +331,7 @@ template&lt;int RTYPE&gt; </div>
         <tr>
           <td class="memname">Rcpp::NumericMatrix lhs_r::convertIntegerToNumericLhs </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; int &gt; &amp;&#160;</td>
+          <td class="paramtype">const bclib::matrix&lt; int &gt; &amp;&#160;</td>
           <td class="paramname"><em>intMat</em></td><td>)</td>
           <td></td>
         </tr>
@@ -338,6 +347,31 @@ template&lt;int RTYPE&gt; </div>
 
 </div>
 </div>
+<a id="af3c66f013474541546e17babdb43bd95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3c66f013474541546e17babdb43bd95">&#9670;&nbsp;</a></span>convertIntegerToNumericLhs() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Rcpp::NumericMatrix lhs_r::convertIntegerToNumericLhs </td>
+          <td>(</td>
+          <td class="paramtype">const Rcpp::IntegerMatrix &amp;&#160;</td>
+          <td class="paramname"><em>intMat</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>convert a Rcpp::IntegerMatrix to a numeric latin hypercube sample </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">intMat</td><td>the input matrix to be converted </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a Latin hypercube sample </dd></dl>
+
+</div>
+</div>
 <a id="a1db21b2cc7f6e2665ab478be9c0a3856"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1db21b2cc7f6e2665ab478be9c0a3856">&#9670;&nbsp;</a></span>convertMatrixToNumericLhs()</h2>
 
@@ -347,7 +381,7 @@ template&lt;int RTYPE&gt; </div>
         <tr>
           <td class="memname">Rcpp::NumericMatrix lhs_r::convertMatrixToNumericLhs </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; double &gt; &amp;&#160;</td>
+          <td class="paramtype">const bclib::matrix&lt; double &gt; &amp;&#160;</td>
           <td class="paramname"><em>intMat</em></td><td>)</td>
           <td></td>
         </tr>

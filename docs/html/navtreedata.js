@@ -24,14 +24,14 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "Latin Hypercube Samples (lhs)", "index.html", [
-    [ "Orthogonal Array Library", "index.html", [
-      [ "Orthogonal Arrays", "index.html#orthogonal_arrays_sec", null ],
-      [ "Available Prime Powers", "index.html#avail_prime_sec", null ],
-      [ "Methods", "index.html#methods", null ],
-      [ "Tips On Use", "index.html#tips", null ],
-      [ "References", "index.html#references", null ],
-      [ "Implementation Details", "index.html#implement", null ],
-      [ "<code>oalib</code>", "index.html#Compiling", null ]
+    [ "Orthogonal Array Library", "oa_main_page.html", [
+      [ "Orthogonal Arrays", "oa_main_page.html#orthogonal_arrays_sec", null ],
+      [ "Available Prime Powers", "oa_main_page.html#avail_prime_sec", null ],
+      [ "Methods", "oa_main_page.html#methods", null ],
+      [ "Tips On Use", "oa_main_page.html#tips", null ],
+      [ "References", "oa_main_page.html#references", null ],
+      [ "Implementation Details", "oa_main_page.html#implement", null ],
+      [ "Compiling oalib", "oa_main_page.html#compile_oa", null ]
     ] ],
     [ "Todo List", "todo.html", null ],
     [ "Deprecated List", "deprecated.html", null ],
@@ -40,6 +40,7 @@ var NAVTREE =
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ],
         [ "Typedefs", "namespacemembers_type.html", null ]
       ] ]
     ] ],
@@ -50,8 +51,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
-        [ "Typedefs", "functions_type.html", null ],
-        [ "Related Functions", "functions_rela.html", null ]
+        [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -67,10 +67,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_c_orthogonal_array_8cpp.html",
-"gfields_8cpp.html#a355588182d2fdead1be36de956b8d117",
-"primes_8h_source.html",
-"xtnset_8h.html#a903a3272a1d99fca83e3a7459e2abf14"
+".html",
+"oa__r__utils_8cpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

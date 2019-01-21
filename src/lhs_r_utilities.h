@@ -48,6 +48,12 @@ namespace lhs_r
      */
     Rcpp::NumericMatrix convertMatrixToNumericLhs(const bclib::matrix<double> & intMat);
     /**
+     * convert a Rcpp::IntegerMatrix to a numeric latin hypercube sample
+     * @param intMat the input matrix to be converted
+     * @return a Latin hypercube sample
+     */
+    Rcpp::NumericMatrix convertIntegerToNumericLhs(const Rcpp::IntegerMatrix & intMat);
+    /**
      * a uniform integer sample between min and max
      * @param n the size of the sample
      * @param min_int the minimum integer in the sample
@@ -86,7 +92,7 @@ namespace lhs_r
     /**
      * Calculate the distance between points in a matrix
      * @param mat the matrix to use for the calculation
-     * @param RTYPE the type of SEXP
+     * @tparam RTYPE the type of SEXP
      * @return the matrix of distances
      */
     template <int RTYPE>
@@ -109,7 +115,7 @@ namespace lhs_r
     /**
      * calculate the S optimal criterion
      * @param mat the input matrix
-     * @param RTYPE the type of SEXP
+     * @tparam RTYPE the type of SEXP
      * @return the S optimality criterion
      */
     template <int RTYPE>

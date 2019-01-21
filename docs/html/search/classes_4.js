@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['rstandarduniform',['RStandardUniform',['../classlhs__r_1_1_r_standard_uniform.html',1,'lhs_r']]],
-  ['runif',['RUnif',['../classoacpp_1_1_r_unif.html',1,'oacpp']]]
+  ['seedset',['SeedSet',['../structoacpp_1_1_seed_set.html',1,'oacpp']]],
+  ['squaredifference',['squareDifference',['../structlhslib_1_1square_difference.html',1,'lhslib']]]
 ];

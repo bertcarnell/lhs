@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['begin',['begin',['../classbclib_1_1matrix.html#a22657b4fd7139aba0d51da4c71eea103',1,'bclib::matrix']]],
   ['bose',['bose',['../classoacpp_1_1_c_orthogonal_array.html#a3d3895c4257996c82ed70081524e1222',1,'oacpp::COrthogonalArray::bose()'],['../namespaceoacpp_1_1oaconstruct.html#aef8fc8e74ca2811a92b71973d2339c4c',1,'oacpp::oaconstruct::bose()']]],
   ['bosebush',['bosebush',['../classoacpp_1_1_c_orthogonal_array.html#a73875575343a969f9c067eebb09aad6f',1,'oacpp::COrthogonalArray::bosebush()'],['../namespaceoacpp_1_1oaconstruct.html#a2f8571a053f2174ed3ed5a0b15bc7c90',1,'oacpp::oaconstruct::bosebush()']]],
   ['bosebushcheck',['bosebushcheck',['../namespaceoacpp_1_1oaconstruct.html#a1c0a94079749603b7a130e53da14e123',1,'oacpp::oaconstruct']]],

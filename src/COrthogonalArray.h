@@ -34,9 +34,13 @@
 #include "oa.h"
 #include "primes.h"
 
+/** The number of rows of the oa to check and print */
 #define ROWCHECK 50
+/** no debug messages */
 #define NOMESSAGES 0
+/** some debug messages */
 #define SOMEMESSAGES 1
+/** all debug messages should be shown */
 #define ALLMESSAGES 2
 
 /**
@@ -434,9 +438,9 @@ namespace oacpp {
          * mean that the array indeed has all its elements in the
          * range 0..q-1.
          * 
-         * An array of strength <code>t > 0</code> is also of strength <code>s</code> for
-         * all <code>0 <= s < t</code>.  The program starts testing <code>t = 0</code> and
-         * increases <ocde>t</code> until it finds <code>t</code> for which the array is
+         * An array of strength <code>t \> 0</code> is also of strength <code>s</code> for
+         * all <code>0 \<= s \< t</code>.  The program starts testing <code>t = 0</code> and
+         * increases <code>t</code> until it finds <code>t</code> for which the array is
          * not strength <code>t</code>.
          * 
          * Finding the strength of an array by brute force is

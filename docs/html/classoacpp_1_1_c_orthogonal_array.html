@@ -145,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a9f78d7a3e50edeba0682601e55d79089"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd48b4c5fd4b41198d2f0dd63d68747e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoacpp_1_1_c_orthogonal_array.html#afd48b4c5fd4b41198d2f0dd63d68747e">getq</a> ()</td></tr>
 <tr class="separator:afd48b4c5fd4b41198d2f0dd63d68747e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b39d58348ae1fcf080152ebe5589160"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a8b39d58348ae1fcf080152ebe5589160">getoa</a> ()</td></tr>
+<tr class="memitem:a8b39d58348ae1fcf080152ebe5589160"><td class="memItemLeft" align="right" valign="top">const bclib::matrix&lt; int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a8b39d58348ae1fcf080152ebe5589160">getoa</a> ()</td></tr>
 <tr class="separator:a8b39d58348ae1fcf080152ebe5589160"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -731,7 +731,7 @@ if Lemma 5a is used in place of Lemma 5." Page 1175 provides the example n=3,q=3
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; int &gt; &amp; oacpp::COrthogonalArray::getoa </td>
+          <td class="memname">const bclib::matrix&lt; int &gt; &amp; oacpp::COrthogonalArray::getoa </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -909,7 +909,7 @@ if Lemma 5a is used in place of Lemma 5." Page 1175 provides the example n=3,q=3
 </div><div class="memdoc">
 <p>Find the strength of an orthogonal array</p>
 <p>This program reads an orthogonal array strength by brute force computation. In addition to the strength <code>t</code> described above under the heading orthogonal arrays, strength 0 is taken to mean that the array indeed has all its elements in the range 0..q-1.</p>
-<p>An array of strength <code>t &gt; 0</code> is also of strength <code>s</code> for all <code>0 &lt;= s &lt; t</code>. The program starts testing <code>t = 0</code> and increases &lt;ocde&gt;t until it finds <code>t</code> for which the array is not strength <code>t</code>.</p>
+<p>An array of strength <code>t &gt; 0</code> is also of strength <code>s</code> for all <code>0 &lt;= s &lt; t</code>. The program starts testing <code>t = 0</code> and increases <code>t</code> until it finds <code>t</code> for which the array is not strength <code>t</code>.</p>
 <p>Finding the strength of an array by brute force is lightning fast for small arrays but very slow for larger arrays. When the job is large enough, intermediate results are printed so the user can decide whether or not to kill the job, based on how much progress is being made.</p>
 <p>The function that calculates strength has an argument verbose. In oastr the array strength function is called with verbose=2. This prints to standard output a description of progress as the strength check proceeds. If one wants to use this function in other settings, calling it with verbose=1 shuts off standard output but leaves the warnings to standard error, and verbose=0 shuts off all output.</p>
 <dl class="params"><dt>Parameters</dt><dd>

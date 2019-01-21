@@ -8,12 +8,21 @@ This package provides a number of methods for creating and augmenting Latin Hype
 
 Visit the webpage [here](https://bertcarnell.github.io/lhs/)
 
+See the Doxygen documentation [here](https://bertcarnell.github.io/lhs/html/index.html)
+
 ## Installation
 
-You can install the released version of lhs from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of `lhs` from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("lhs")
+```
+
+You can also install the development version of `lhs` from here with:
+
+``` r
+# (if not done already:)  install.packages("devtools")
+devtools::install_github("bertcarnell/lhs")
 ```
 
 ## Example

@@ -33,7 +33,13 @@
 
 #include "OACommonDefines.h"
 
+/**
+ * Macro to indicate that a number is prime
+ */
 #define ISPRIMETRUE 1
+/**
+ * Macro to indicate that a number is not prime
+ */
 #define ISPRIMEFALSE 0
 
 namespace oacpp {
@@ -44,7 +50,7 @@ namespace oacpp {
 	{
         /**
          * returns 1 for prime argument
-         * @param p prime number
+         * @param n number to test
          * @return 1 if <code>p</code> is prime
          */
 		int isprime(unsigned int n);

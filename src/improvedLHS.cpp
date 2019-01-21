@@ -42,14 +42,6 @@
  */
 namespace lhslib
 {
-    /**
-     * 
-     * @param n
-     * @param k
-     * @param dup
-     * @param result n x k matrix
-     * @param oRandom
-     */
     void improvedLHS(int n, int k, int dup, bclib::matrix<int> & result, bclib::CRandom<double> & oRandom)
     {
         if (n < 1 || k < 1 || dup < 1)

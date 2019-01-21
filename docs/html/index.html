@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.15"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Latin Hypercube Samples (lhs): Orthogonal Array Library</title>
+<title>Latin Hypercube Samples (lhs): Main Page</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,173 +86,11 @@ $(document).ready(function(){initNavTree('index.html','');});
 </iframe>
 </div>
 
-<div class="PageDoc"><div class="header">
+<div class="header">
   <div class="headertitle">
-<div class="title">Orthogonal Array Library </div>  </div>
+<div class="title">Latin Hypercube Samples (lhs) Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="toc"><h3>Table of Contents</h3>
-<ul><li class="level1"><a href="#orthogonal_arrays_sec">Orthogonal Arrays</a></li>
-<li class="level1"><a href="#avail_prime_sec">Available Prime Powers</a></li>
-<li class="level1"><a href="#methods">Methods</a></li>
-<li class="level1"><a href="#tips">Tips On Use</a></li>
-<li class="level1"><a href="#references">References</a></li>
-<li class="level1"><a href="#implement">Implementation Details</a></li>
-<li class="level1"><a href="#Compiling">&lt;code&gt;oalib&lt;/code&gt;</a></li>
-</ul>
-</div>
-<div class="textblock"><p>From the original documentation by Owen:</p>
-<blockquote class="doxtable">
-<p>From: <a href="#" onclick="location.href='mai'+'lto:'+'owe'+'n@'+'sta'+'t.'+'sta'+'nf'+'ord'+'.e'+'du'; return false;">owen@<span style="display: none;">.nosp@m.</span>stat<span style="display: none;">.nosp@m.</span>.stan<span style="display: none;">.nosp@m.</span>ford<span style="display: none;">.nosp@m.</span>.edu</a></p>
-<p>These programs construct and manipulate orthogonal arrays. They were prepared by</p><ul>
-<li>Art Owen</li>
-<li>Department of Statistics</li>
-<li>Sequoia Hall</li>
-<li>Stanford CA 94305</li>
-</ul>
-<p>They may be freely used and shared. This code comes with no warranty of any kind. Use it at your own risk.</p>
-<p>I thank the Semiconductor Research Corporation and the National Science Foundation for supporting this work.</p>
-<p>I thank Randall Tobias of SAS Inc. for many helpful electronic discussions that lead to improvements in these programs. </p>
-</blockquote>
-<h1><a class="anchor" id="orthogonal_arrays_sec"></a>
-Orthogonal Arrays</h1>
-<blockquote class="doxtable">
-<p>An orthogonal array <code>A</code> is a matrix of <code>n</code> rows, <code>k</code> columns with every element being one of <code>q</code> symbols <code>0,...,q-1</code>. The array has strength <code>t</code> if, in every <code>n</code> by <code>t</code> submatrix, the <code>q^t</code> possible distinct rows, all appear the same number of times. This number is the index of the array, commonly denoted <code>lambda</code>. Clearly, <code>lambda*q^t = n</code>. Geometrically, if one were to "plot" the submatrix with one plotting axis for each of the <code>t</code> columns and one point in <code>t</code> dimensional space for each row, the result would be a grid of <code>q^t</code> distinct points. There would be <code>lambda</code> "overstrikes" at each point of the grid.</p>
-<p>The notation for such an array is <code>OA( n, k, q, t )</code>.</p>
-<p>If <code>n &lt;= q^(t+1)</code>, then the <code>n</code> rows "should" plot as <code>n</code> distinct points in every <code>n</code> by <code>t+1</code> dimensional subarray. When this fails to hold, the array has the "coincidence
- defect".</p>
-<p>Owen (1992,199?) describes some uses for randomized orthogonal arrays, in numerical integration, computer experiments and visualization of functions. Those references contain further references to the literature, that provide further explanations. A strength 1 randomized orthogonal array is a Latin hypercube sample, essentially so or exactly so, depending on the definition used for Latin hypercube sampling. The arrays constructed here have strength 2 or more, it being much easier to construct arrays of strength 1.</p>
-<p>The randomization is achieved by independent uniform permutation of the symbols in each column.</p>
-<p>To investigate a function <code>f</code> of <code>d</code> variables, one has to have an array with <code>k &gt;= d</code>. One may also have a maximum value of <code>n</code> in mind and a minimum value for the number <code>q</code> of distinct levels to investigate.</p>
-<p>It is entirely possible that no array of strength <code>t &gt; 1</code> is compatible with these conditions. The programs below provide some choices to pick from, hopefully without too much of a compromise.</p>
-<p>The constructions used are based on published algorithms that exploit properties of Galois fields. Because of this the number of levels <code>q</code> must be a prime power. That is <code>q = p^r</code> where <code>p</code> is prime and <code>r &gt;= 1</code> is an integer.</p>
-<p>The Galois field arithmetic for the prime powers is based on tables published by Knuth and Alanen (1964) below. The resulting fields have been tested by the methods described in Appendix 2 of that paper and they passed. This is more a test of the accuracy of my transcription than of the original tables. </p>
-</blockquote>
-<h1><a class="anchor" id="avail_prime_sec"></a>
-Available Prime Powers</h1>
-<blockquote class="doxtable">
-<p>The designs given here require a prime power for the number of levels. They presently work for the following prime powers:</p>
-<p>All Primes All prime powers <code>q = p^r</code> where <code>p &lt; 50</code> and <code>q &lt; 10^9</code></p>
-<p>Here are some of the smaller prime powers:</p>
-<ul>
-<li>Powers of 2: 4 8 16 32 64 128 256 512</li>
-<li>Powers of 3: 9 27 81 243 729</li>
-<li>Powers of 5: 25 125 625</li>
-<li>Powers of 7: 49 343</li>
-<li>Square of 11: 121</li>
-<li>Square of 13: 169</li>
-</ul>
-<p>Here are some useful primes:</p>
-<ul>
-<li>2,3,5,7,11,13,17,19,23,29,31,37,101,251,401</li>
-</ul>
-<p>The first row are small primes, the second row are primes that are 1 more than a "round number". The small primes lead to small arrays. An array with 101 levels is useful for exploring a function at levels 0.00 0.01 through 1.00. Keep in mind that a strength 2 array on 101 levels requires <code>101^2 = 10201</code> experimental runs, so it is only useful where large experiments are possible.</p>
-<p>Note that some of these will require more memory than your computer has. For example, with a large prime like 10663, the program knows the Galois field, but can't allocate enough memory:</p>
-<p><code>bose 10663</code></p><ul>
-<li>Unable to allocate 1927'th row in an integer matrix.</li>
-<li>Unable to allocate space for Galois field on 10663 elements.</li>
-<li>Construction failed for <code>GF(10663)</code>.</li>
-<li>Could not construct Galois field needed for Bose design.</li>
-</ul>
-<p>The smallest prime power not covered is <code>53^2 = 2809</code>. The smallest strength 2 array with 2809 symbols has <code>2809^2 = 7890481</code> rows. Therefore the missing prime powers are only needed in certain enormous arrays, not in the small ones of most practical use. In any event there are some large primes and prime powers in the program if an enormous array is needed.</p>
-<p>To add <code>GF(p^r)</code> for some new prime power p^r, consult Alanen and Knuth for instructions on how to search for an appropriate indexing polynomial, and for how to translate that polynomial into a replacement rule for <code>x^r</code>.</p>
-<p></p>
-</blockquote>
-<h1><a class="anchor" id="methods"></a>
-Methods</h1>
-<ul>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a3d3895c4257996c82ed70081524e1222">oacpp::COrthogonalArray::bose</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a0ecfb0dacfc39bc31c78864c074a35b8">oacpp::COrthogonalArray::bush</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#ad251d1401182d05e6d01323ea00848c5">oacpp::COrthogonalArray::busht</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a73875575343a969f9c067eebb09aad6f">oacpp::COrthogonalArray::bosebush</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a6eab0f0edb805006ce6cde282d4d5e4d">oacpp::COrthogonalArray::bosebushl</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a82714bdda728354150233c07f92d736c">oacpp::COrthogonalArray::addelkemp</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#afcbedf9583f97688056ca9fb4c04b54d">oacpp::COrthogonalArray::addelkemp3</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#ae49593d2455ad741422cbbd1aeb24867">oacpp::COrthogonalArray::oarand</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#ad4aa0fedc1f43aa132de0cf807e115cb">oacpp::COrthogonalArray::oastr</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#ab4986bd1845da1224472e8a24104c875">oacpp::COrthogonalArray::oastr1</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a3f543d5c6df67f66f4f4d1fa034d72c1">oacpp::COrthogonalArray::oastr2</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a72cfcc928f1987ec0c9821c7e142c1df">oacpp::COrthogonalArray::oastr3</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#adce5e7b737d299bb2c64af4163e58d77">oacpp::COrthogonalArray::oastr4</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a3b4b6a0550b159c67b49ba93580c3c63">oacpp::COrthogonalArray::oatriple</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#a878b84d443bf4127b3ecb146d994ac03">oacpp::COrthogonalArray::oaagree</a> </li>
-<li>
-<a class="el" href="classoacpp_1_1_c_orthogonal_array.html#ad2baccbfd0c4ae1587e84ff7ef23bbe4">oacpp::COrthogonalArray::oadimen</a> </li>
-</ul>
-<h1><a class="anchor" id="tips"></a>
-Tips On Use</h1>
-<blockquote class="doxtable">
-<p>It is faster to generate only the columns you need. For example <code>bose 101 4</code> only generates the first 4 columns of the array, whereas <code>bose 101</code> generates 102 columns. If you only want 4 columns the former saves a lot of time.</p>
-<p>Passing the <code>q n k</code> on the command line is more difficult than letting the computer figure them out, but it allows more error checking.</p>
-<p>In practical use, I would try first to use a Bose design. Then I would consider either an Addelman- Kempthorne or Bose-Bush design to see whether it could accommodate the desired number of columns with fewer runs. Obviously this advice depends on the sort of problems I expect to handle. When a very large number of runs is possible a Bush design may work well, since it can have high strength. </p>
-</blockquote>
-<h1><a class="anchor" id="references"></a>
-References</h1>
-<blockquote class="doxtable">
-<p>Here are the references for the constructions used: </p><ul>
-<li>
-S. Addelman and O. Kempthorne (1961) Annals of Mathematical Statistics, Vol 32 pp 1167-1176. </li>
-<li>
-J.D. Alanen and D.E. Knuth (1964) Sankhya Ser. A Vol. 26, pp 305-328 </li>
-<li>
-R.C. Bose (1938) Sankhya Vol 3 pp 323-338 </li>
-<li>
-K.A. Bush (1952) Annals of Mathematical Statistics, Vol 23 pp 426-434 </li>
-<li>
-R.C. Bose and K.A. Bush (1952) Annals of Mathematical Statistics, Vol 23 pp 508-524. </li>
-</ul>
-<p>This book provides a large list of orthogonal array constructions: </p><ul>
-<li>
-Aloke Dey (1985) "Orthogonal Fractional Factorial Designs" Halstead Press</li>
-</ul>
-<p>These papers discuss randomized orthogonal arrays, the second is being revised in parallel with development of the software described here: </p><ul>
-<li>
-A.B. Owen (1992) Statistica Sinica, v2 n2 pp 439-452 </li>
-<li>
-A.B. Owen (199?) Annals of Statistics, to appear "Lattice Sampling Revisited: Monte Carlo Variance of Means Over Randomized Orthogonal Arrays" </li>
-<li>
-H.D. Patterson (1954) J.R.S.S. B 16, 140-149 </li>
-</ul>
-<p>These papers discuss Latin hypercube sampling: </p><ul>
-<li>
-M.D. McKay, W.J. Conover and R.J. Beckman (1979) Technometrics 21, 239-245 </li>
-<li>
-A.B. Owen (1992) J.R.S.S. B 541-551 </li>
-<li>
-H.D. Patterson (1954) J.R.S.S. B 16, 140-149 </li>
-<li>
-M. Stein (1987) Technometrics 29, 143-151 </li>
-</ul>
-</blockquote>
-<h1><a class="anchor" id="implement"></a>
-Implementation Details</h1>
-<blockquote class="doxtable">
-<p>Galois fields are implemented through arrays that store their addition and multiplication tables. Some space could have been saved by using powers of primitive marks in place of the multiplication table. But since the multiplication tables itself is only as large as the smallest possible column in a strength 2 array it was not considered to be a burden. Subtraction and division are implemented through vectors of additive and multiplicative inverses, derived from the tables. The tables for <code>GF(p^r)</code> are constructed using a representation of the field elements as polynomials in <code>x</code> with coefficients as integers modulo <code>p</code> and a special rule (derived from minimal polynomials) for handling products involving <code>x^r</code>. These rules are taken from published references. The rules have not all been checked for accuracy, because some of the fields are very large (e.g. 16807 elements).</p>
-<p>The functions that manipulate orthogonal arrays keep the arrays in integer matrices. This might be a problem for applications that require enormous arrays. The reason for keeping them in memory is that it makes it easier for others to lift out the functions and embed them in applications or to put on a GUI front end. It was also thought that any array that is too large to store in a computer, is likely to be too large to use in integration/experimentation on that same computer. The arrays are generated row by row, so it is not too hard to change the program to place the elements on an output stream as they are computed and do away with the storage.</p>
-<p>The functions that test the strength of the arrays may be very far from optimally fast. </p>
-</blockquote>
-<h1><a class="anchor" id="Compiling"></a>
-&lt;code&gt;oalib&lt;/code&gt;</h1>
-<p>When compiling <code>oalib</code> these preprocessor directives are used:</p><ul>
-<li>NDEBUG defined for a release build</li>
-<li>RCOMPILE defined for building with R </li>
-</ul>
-</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

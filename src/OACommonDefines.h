@@ -71,7 +71,7 @@
 #define UNCHECKED_RETURN 0
 
 /**
- * @mainpage Orthogonal Array Library
+ * @page oa_main_page Orthogonal Array Library
  * 
  * From the original documentation by Owen:
  * 
@@ -333,7 +333,7 @@
  * arrays may be very far from optimally fast.
  * </blockquote>
  * 
- * @section Compiling <code>oalib</code>
+ * @section compile_oa Compiling oalib
  * When compiling <code>oalib</code> these preprocessor directives are used:
  * - NDEBUG defined for a release build
  * - RCOMPILE defined for building with R

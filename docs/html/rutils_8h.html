@@ -182,7 +182,7 @@ template&lt;class T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>the vector to be ranked </td></tr>
-    <tr><td class="paramname">indx</td><td>the ranks of the elements </td></tr>
+    <tr><td class="paramname">rank</td><td>the ranks of the elements </td></tr>
   </table>
   </dd>
 </dl>
@@ -315,7 +315,7 @@ template&lt;class T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">v</td><td>the vector to be ranked </td></tr>
-    <tr><td class="paramname">indx</td><td>the ranks of the elements </td></tr>
+    <tr><td class="paramname">rank</td><td>the ranks of the elements </td></tr>
   </table>
   </dd>
 </dl>
@@ -393,8 +393,9 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 <p>In S one just does rank(runif(q)). Here we want something like rank(runif(q))-1 since the symbols to be permuted are 0..q-1 </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pi</td><td></td></tr>
-    <tr><td class="paramname">q</td><td></td></tr>
+    <tr><td class="paramname">pi</td><td>a vector of integers to be permuted </td></tr>
+    <tr><td class="paramname">q</td><td>length of the vector </td></tr>
+    <tr><td class="paramname">randomClass</td><td>a random number generator class </td></tr>
   </table>
   </dd>
 </dl>

@@ -32,18 +32,34 @@
 #define RUNIF_H
 
 #include "OACommonDefines.h"
+/**
+ * Macro to define a seed is within range
+ */
 #define SEEDOK 1
+/**
+ * Macro to define a seed is not within range
+ */
 #define SEEDBAD 0
+/**
+ * Macro to set the length of the seed vector
+ */
 #define SEED_VECTOR_LENGTH (97+1)
 
 namespace oacpp 
 {
+	/**
+	*  A set of seed variables for the random number generator 
+	*/
     struct SeedSet
     {
+		/** seed i */
         int is;
-        int js;
-        int ks;
-        int ls;
+		/** seed j */
+		int js;
+		/** seed k */
+		int ks;
+		/** seed l */
+		int ls;
     };
 
     /**
@@ -58,8 +74,11 @@ namespace oacpp
 	class RUnif
 	{
 	public:
+		/** Constructor */
         RUnif();
+		/** Constructor with individual seeds */
         RUnif(int is, int js, int ks, int ls);
+		/** Constructor with a seed set */
         RUnif(SeedSet seedSet);
         
         ~RUnif() {};
@@ -74,31 +93,35 @@ namespace oacpp
 		void seed(int is, int js, int ks, int ls );
         
         /**
-         * 
-         * @param seedset
+         * Set the seeds to equal the numbers in the seedSet
+         * @param seedSet a set of four seeds
          */
         void seed(SeedSet seedSet);
         
+		/**
+		 * Get the seed set
+		 * @return the SeedSet struct containing the seeds
+		 */
         SeedSet getSeedSet();
 
         /**
-         * 
-         * @param x
-         * @param n
+         * random uniform number generator
+         * @param x a double vector to contain the random numbers
+         * @param n the length of the vector
          */
 		void runif(std::vector<double> & x, int n);
 
 		/**
 		 * a mod b
-		 * @param a
-		 * @param b
-		 * @return
+		 * @param a base
+		 * @param b modulus
+		 * @return an integer result
 		 */
 		static int mod(int a, int b);
 
 	private:
         /**
-         * 1 if seeds ok, 0 otherwise
+         * is the seed ok?
          * @param is seed
          * @param js seed
          * @param ks seed
@@ -109,8 +132,8 @@ namespace oacpp
         
         /**
          * sets z[0] through z[n-1] to the next n random uniforms between 0 and 1
-         * @param x
-         * @param n
+         * @param x double vector
+         * @param n length of the vector
          */
 		void ranums(std::vector<double> & x, int n);
 

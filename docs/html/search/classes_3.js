@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['matrix',['matrix',['../classbclib_1_1matrix.html',1,'bclib']]],
-  ['matrix_3c_20int_20_3e',['matrix&lt; int &gt;',['../classbclib_1_1matrix.html',1,'bclib']]],
-  ['matrixconstiter',['matrixConstIter',['../classbclib_1_1matrix_const_iter.html',1,'bclib']]],
-  ['matrixiter',['matrixIter',['../classbclib_1_1matrix_iter.html',1,'bclib']]]
+  ['rstandarduniform',['RStandardUniform',['../classlhs__r_1_1_r_standard_uniform.html',1,'lhs_r']]],
+  ['runif',['RUnif',['../classoacpp_1_1_r_unif.html',1,'oacpp']]]
 ];

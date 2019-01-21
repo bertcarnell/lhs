@@ -1,7 +1,9 @@
-/**
- * @file xtndispatch.h
- * @author Robert Carnell
- * @copyright Copyright (c) 2013, Robert Carnell
+/*
+ * NOTE: This file should be excluded from the Doxygen build
+ * 
+ * file xtndispatch.h
+ * author Robert Carnell
+ * copyright Copyright (c) 2013, Robert Carnell
  * 
  * License:  This file may be freely used and shared according to the original license.
  * 

@@ -96,17 +96,16 @@ $(document).ready(function(){initNavTree('namespaceoarutils.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:acc1b5ad1ddf066b45084b18761f0c037"><td class="memItemLeft" align="right" valign="top"><a id="acc1b5ad1ddf066b45084b18761f0c037"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>randomizeOA</b> (Rcpp::IntegerMatrix &amp;oa, int q)</td></tr>
+<tr class="memitem:acc1b5ad1ddf066b45084b18761f0c037"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceoarutils.html#acc1b5ad1ddf066b45084b18761f0c037">randomizeOA</a> (Rcpp::IntegerMatrix &amp;oa, int q)</td></tr>
 <tr class="separator:acc1b5ad1ddf066b45084b18761f0c037"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3bbf6905bfd6c4fcdba5e84c2eafad9"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr class="memitem:ad3bbf6905bfd6c4fcdba5e84c2eafad9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceoarutils.html#ad3bbf6905bfd6c4fcdba5e84c2eafad9">convertToIntegerMatrix</a> (const <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; T &gt; &amp;A, Rcpp::IntegerMatrix &amp;rcppA)</td></tr>
+<tr class="memitem:ad3bbf6905bfd6c4fcdba5e84c2eafad9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceoarutils.html#ad3bbf6905bfd6c4fcdba5e84c2eafad9">convertToIntegerMatrix</a> (const bclib::matrix&lt; T &gt; &amp;A, Rcpp::IntegerMatrix &amp;rcppA)</td></tr>
 <tr class="separator:ad3bbf6905bfd6c4fcdba5e84c2eafad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2fa4178004d806974821f1c618058f7"><td class="memTemplParams" colspan="2">template&lt;class T , class U &gt; </td></tr>
-<tr class="memitem:aa2fa4178004d806974821f1c618058f7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceoarutils.html#aa2fa4178004d806974821f1c618058f7">convertToRcppMatrix</a> (const <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; T &gt; &amp;A, U &amp;rcppA)</td></tr>
+<tr class="memitem:aa2fa4178004d806974821f1c618058f7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceoarutils.html#aa2fa4178004d806974821f1c618058f7">convertToRcppMatrix</a> (const bclib::matrix&lt; T &gt; &amp;A, U &amp;rcppA)</td></tr>
 <tr class="separator:aa2fa4178004d806974821f1c618058f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a654fa26fe852c2ab330fd98ae099ad6c"><td class="memTemplParams" colspan="2">template&lt;class T , class U &gt; </td></tr>
-<tr class="memitem:a654fa26fe852c2ab330fd98ae099ad6c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceoarutils.html#a654fa26fe852c2ab330fd98ae099ad6c">convertToMatrix</a> (const U &amp;rcppA, <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; T &gt; &amp;A)</td></tr>
+<tr class="memitem:a654fa26fe852c2ab330fd98ae099ad6c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceoarutils.html#a654fa26fe852c2ab330fd98ae099ad6c">convertToMatrix</a> (const U &amp;rcppA, bclib::matrix&lt; T &gt; &amp;A)</td></tr>
 <tr class="separator:a654fa26fe852c2ab330fd98ae099ad6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -123,7 +122,7 @@ template&lt;class T &gt; </div>
         <tr>
           <td class="memname">void oarutils::convertToIntegerMatrix </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramtype">const bclib::matrix&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>A</em>, </td>
         </tr>
         <tr>
@@ -148,6 +147,7 @@ template&lt;class T &gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">A</td><td>an orthogonal array matrix </td></tr>
+    <tr><td class="paramname">rcppA</td><td>the output Rcpp::IntegerMatrix </td></tr>
   </table>
   </dd>
 </dl>
@@ -172,7 +172,7 @@ template&lt;class T , class U &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramtype">bclib::matrix&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>A</em>&#160;</td>
         </tr>
         <tr>
@@ -182,7 +182,7 @@ template&lt;class T , class U &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A method to convert a Rcpp::NumericMatrix or Rcpp::IntegerMatrix to a <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a> </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+<p>A method to convert a Rcpp::NumericMatrix or Rcpp::IntegerMatrix to a bclib::matrix </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>an atomic type that matches the Rcpp type </td></tr>
     <tr><td class="paramname">U</td><td>an Rcpp matrix type </td></tr>
@@ -191,7 +191,7 @@ template&lt;class T , class U &gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">A</td><td>a <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a> </td></tr>
+    <tr><td class="paramname">A</td><td>a bclib::matrix </td></tr>
     <tr><td class="paramname">rcppA</td><td>a Rcpp matrix </td></tr>
   </table>
   </dd>
@@ -211,7 +211,7 @@ template&lt;class T , class U &gt; </div>
         <tr>
           <td class="memname">void oarutils::convertToRcppMatrix </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramtype">const bclib::matrix&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>A</em>, </td>
         </tr>
         <tr>
@@ -227,7 +227,7 @@ template&lt;class T , class U &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A method to convert a <a class="el" href="classbclib_1_1matrix.html">bclib::matrix</a> to an Rcpp::NumericMatrix or Rcpp::IntegerMatrix </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+<p>A method to convert a bclib::matrix to an Rcpp::NumericMatrix or Rcpp::IntegerMatrix </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>an atomic type that matches the Rcpp type </td></tr>
     <tr><td class="paramname">U</td><td>an Rcpp matrix type </td></tr>
@@ -242,6 +242,41 @@ template&lt;class T , class U &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="acc1b5ad1ddf066b45084b18761f0c037"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc1b5ad1ddf066b45084b18761f0c037">&#9670;&nbsp;</a></span>randomizeOA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void oarutils::randomizeOA </td>
+          <td>(</td>
+          <td class="paramtype">Rcpp::IntegerMatrix &amp;&#160;</td>
+          <td class="paramname"><em>oa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>q</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>permute the entries of each column in an orthogonal array </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oa</td><td>A Rcpp::IntegerMatrix containing an orthogonal array </td></tr>
+    <tr><td class="paramname">q</td><td>The number of unique entries in each column </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

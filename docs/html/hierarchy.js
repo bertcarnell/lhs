@@ -10,12 +10,6 @@ var hierarchy =
       [ "lhs_r::RStandardUniform", "classlhs__r_1_1_r_standard_uniform.html", null ]
     ] ],
     [ "oacpp::GF", "structoacpp_1_1_g_f.html", null ],
-    [ "iterator", null, [
-      [ "bclib::matrixConstIter< T, ISROWWISE >", "classbclib_1_1matrix_const_iter.html", null ],
-      [ "bclib::matrixIter< T, ISROWWISE >", "classbclib_1_1matrix_iter.html", null ]
-    ] ],
-    [ "bclib::matrix< T >", "classbclib_1_1matrix.html", null ],
-    [ "bclib::matrix< int >", "classbclib_1_1matrix.html", null ],
     [ "oacpp::RUnif", "classoacpp_1_1_r_unif.html", null ],
     [ "oacpp::SeedSet", "structoacpp_1_1_seed_set.html", null ],
     [ "unary_function", null, [

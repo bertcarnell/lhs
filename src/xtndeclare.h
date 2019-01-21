@@ -1,7 +1,9 @@
-/**
- * @file xtndeclare.h
- * @author Robert Carnell
- * @copyright Copyright (c) 2013, Robert Carnell
+/*
+ * NOTE: This file should be excluded from the Doxygen build
+ * 
+ * file xtndeclare.h
+ * author Robert Carnell
+ * copyright Copyright (c) 2013, Robert Carnell
  * 
  * License:  This file may be freely used and shared according to the original license.
  * 
@@ -29,6 +31,8 @@
  */
 
 /*  This code was computer generated */
+
+/// @cond
 
 std::vector<int> xtn2t2;
 std::vector<int> xtn2t3;
@@ -152,3 +156,5 @@ std::vector<int> xtn47t2;
 std::vector<int> xtn47t3;
 std::vector<int> xtn47t4;
 std::vector<int> xtn47t5;
+
+/// @endcond

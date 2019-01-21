@@ -319,7 +319,6 @@ namespace lhslib
      * @param output the output vector of values
      * @param oRandom the pseudo random number generator.
      * @tparam T1 the integer valued type like <code>int, unsigned int, long, long long, unsigned long</code>
-     * @tparam T2 the real valued type like <code>float, double, long double</code>
      */
     template <class T1>
     void runifint(unsigned int n, T1 min, T1 max, std::vector<T1> & output, bclib::CRandom<double> & oRandom)

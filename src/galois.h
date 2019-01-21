@@ -43,63 +43,63 @@ namespace oacpp {
         /**
          * Multiplication in polynomial representation
          * 
-         * @param p
-         * @param n
-         * @param xton
-         * @param p1
-         * @param p2
-         * @param prod
+         * @param p modulus
+         * @param n length of p1 and p2
+         * @param xton representation of x^n
+         * @param p1 polynomial 1
+         * @param p2 polynomial 2
+         * @param prod the product of the polynomials
          */
 		void GF_poly_prod(int p, int n, std::vector<int> & xton, std::vector<int> p1, std::vector<int> p2, std::vector<int> & prod );
         
         /**
          * Addition in polynomial representation
          * 
-         * @param p
-         * @param n
-         * @param p1
-         * @param p2
-         * @param sum
+         * @param p modulus
+         * @param n the length of p1 and p2
+         * @param p1 polynomial 1
+         * @param p2 polynomial 2
+         * @param sum the sum of the polynomials
          */
 		void GF_poly_sum(int p, int n, std::vector<int> p1, std::vector<int> p2, std::vector<int> & sum );
         
         /**
          * Convert polynomial to integer in <code>0..q-1</code>
          * 
-         * @param p
-         * @param n
-         * @param poly
-         * @return 
+         * @param p polynomial multiplier
+         * @param n the length of poly
+         * @param poly the polynomial
+         * @return an integer
          */
 		int GF_poly2int( int p, int n, std::vector<int> & poly );
         
         /**
          * Print a Galois field
-         * @param gf
+         * @param gf a Galois field struct
          */
 		void GF_print(GF & gf);
         
         /**
          * Prepare (+,*,^-1) lookup tables
          * 
-         * @param gf
-         * @param p
-         * @param n
-         * @param xton
-         * @return 
+         * @param gf the Galois field
+         * @param p the modulus
+         * @param n the length of xton
+         * @param xton the x^n vector
+         * @return 1 for success
          */
 		int GF_ready(GF & gf, int p, int n, std::vector<int> & xton );
         
         /**
-         * 
-         * @param q
-         * @param gf
-         * @return 
+         * Get a Galois field with q arguments
+         * @param q the number of arguments
+         * @param gf the Galois field
+         * @return 1 for success
          */
 		int GF_getfield(int q, GF & gf);
         
         /**
-         * 
+         * Set the Galois fields
          */
 		void GF_set_fields();
 	}

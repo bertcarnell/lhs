@@ -24,14 +24,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "lhs_r.h", "lhs__r_8h.html", "lhs__r_8h" ],
     [ "lhs_r_utilities.cpp", "lhs__r__utilities_8cpp.html", "lhs__r__utilities_8cpp" ],
     [ "lhs_r_utilities.h", "lhs__r__utilities_8h.html", "lhs__r__utilities_8h" ],
-    [ "LHSCommonDefines.h", "_l_h_s_common_defines_8h_source.html", null ],
-    [ "matrix.h", "matrix_8h.html", [
-      [ "matrixIter", "classbclib_1_1matrix_iter.html", "classbclib_1_1matrix_iter" ],
-      [ "matrixConstIter", "classbclib_1_1matrix_const_iter.html", "classbclib_1_1matrix_const_iter" ],
-      [ "matrix", "classbclib_1_1matrix.html", "classbclib_1_1matrix" ],
-      [ "matrixIter", "classbclib_1_1matrix_iter.html", "classbclib_1_1matrix_iter" ],
-      [ "matrixConstIter", "classbclib_1_1matrix_const_iter.html", "classbclib_1_1matrix_const_iter" ]
-    ] ],
+    [ "LHSCommonDefines.h", "_l_h_s_common_defines_8h.html", "_l_h_s_common_defines_8h" ],
     [ "maximinLHS.cpp", "maximin_l_h_s_8cpp.html", "maximin_l_h_s_8cpp" ],
     [ "oa.cpp", "oa_8cpp.html", "oa_8cpp" ],
     [ "oa.h", "oa_8h.html", "oa_8h" ],
@@ -58,8 +51,5 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "rutils.cpp", "rutils_8cpp.html", "rutils_8cpp" ],
     [ "rutils.h", "rutils_8h.html", "rutils_8h" ],
     [ "utilityLHS.cpp", "utility_l_h_s_8cpp.html", "utility_l_h_s_8cpp" ],
-    [ "utilityLHS.h", "utility_l_h_s_8h.html", "utility_l_h_s_8h" ],
-    [ "xtndeclare.h", "xtndeclare_8h.html", "xtndeclare_8h" ],
-    [ "xtndispatch.h", "xtndispatch_8h.html", "xtndispatch_8h" ],
-    [ "xtnset.h", "xtnset_8h.html", "xtnset_8h" ]
+    [ "utilityLHS.h", "utility_l_h_s_8h.html", "utility_l_h_s_8h" ]
 ];

@@ -7,6 +7,5 @@ var searchData=
   ['addelkempn',['addelkempn',['../classoacpp_1_1_c_orthogonal_array.html#a6f06dbbb771be9a96588af7cbcc31d05',1,'oacpp::COrthogonalArray::addelkempn()'],['../namespaceoacpp_1_1oaaddelkemp.html#a12443b20663c63efd576505ac44b87f8',1,'oacpp::oaaddelkemp::addelkempn()']]],
   ['addelkempncheck',['addelkempncheck',['../namespaceoacpp_1_1oaaddelkemp.html#a4cf7f988214c8db5662380354949c5f2',1,'oacpp::oaaddelkemp']]],
   ['akeven',['akeven',['../namespaceoacpp_1_1oaaddelkemp.html#ab66f4e8d325fe67b4ce58ea42268c02a',1,'oacpp::oaaddelkemp']]],
-  ['akodd',['akodd',['../namespaceoacpp_1_1oaaddelkemp.html#a82e50d0c07cb0fe201459d86f74dae22',1,'oacpp::oaaddelkemp']]],
-  ['at',['at',['../classbclib_1_1matrix.html#ae4a4e9535e50fcf5941659cd963afb9a',1,'bclib::matrix::at(size_type row, size_type col) const'],['../classbclib_1_1matrix.html#a50e0a94daf57a1ba777d6a232549424c',1,'bclib::matrix::at(size_type row, size_type col)'],['../classbclib_1_1matrix.html#a36dde132dee1b7a620b40de14de8876e',1,'bclib::matrix::at(size_type loc)'],['../classbclib_1_1matrix.html#af8add4df4b1bd3d9fa9faf2b6ec90c82',1,'bclib::matrix::at(size_type loc) const']]]
+  ['akodd',['akodd',['../namespaceoacpp_1_1oaaddelkemp.html#a82e50d0c07cb0fe201459d86f74dae22',1,'oacpp::oaaddelkemp']]]
 ];

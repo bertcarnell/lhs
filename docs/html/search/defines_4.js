@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['success_5fcheck',['SUCCESS_CHECK',['../_o_a_common_defines_8h.html#a700fe5d925dc7762808951a0a02f2579',1,'OACommonDefines.h']]]
+  ['isprimefalse',['ISPRIMEFALSE',['../primes_8h.html#ad593133fb8fa6cbcdda89dbbd052f894',1,'primes.h']]],
+  ['isprimetrue',['ISPRIMETRUE',['../primes_8h.html#a67f6f18352d9f611d87001d54324c68f',1,'primes.h']]]
 ];
