@@ -86,7 +86,7 @@
       <h1>Latin Hypercube Samples - Questions</h1>
                         <h4 class="author">Rob Carnell</h4>
             
-            <h4 class="date">2019-01-18</h4>
+            <h4 class="date">2019-01-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/bertcarnell/lhs/blob/master/vignettes/lhs_faq.Rmd"><code>vignettes/lhs_faq.Rmd</code></a></small>
       <div class="hidden name"><code>lhs_faq.Rmd</code></div>
@@ -118,20 +118,20 @@ Y[,<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw"><a 
 
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(X)
 <span class="co">#&gt;          [,1]     [,2]</span>
-<span class="co">#&gt; [1,] 1.166155 25.26317</span>
-<span class="co">#&gt; [2,] 6.520885 27.36309</span>
-<span class="co">#&gt; [3,] 3.379411 22.02198</span>
-<span class="co">#&gt; [4,] 4.773919 20.77782</span>
-<span class="co">#&gt; [5,] 7.419591 22.43443</span>
-<span class="co">#&gt; [6,] 7.825408 27.05749</span>
+<span class="co">#&gt; [1,] 6.881529 25.77281</span>
+<span class="co">#&gt; [2,] 8.061472 29.00033</span>
+<span class="co">#&gt; [3,] 7.773009 23.90885</span>
+<span class="co">#&gt; [4,] 2.678061 20.52233</span>
+<span class="co">#&gt; [5,] 9.244709 28.14413</span>
+<span class="co">#&gt; [6,] 1.949190 24.75183</span>
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(Y)
 <span class="co">#&gt;          [,1]     [,2]</span>
-<span class="co">#&gt; [1,] 7.779042 27.71929</span>
-<span class="co">#&gt; [2,] 1.188253 22.79547</span>
-<span class="co">#&gt; [3,] 8.626289 23.31998</span>
-<span class="co">#&gt; [4,] 4.166029 28.69685</span>
-<span class="co">#&gt; [5,] 6.340768 25.28571</span>
-<span class="co">#&gt; [6,] 3.162804 26.93603</span></code></pre></div>
+<span class="co">#&gt; [1,] 6.998733 21.30204</span>
+<span class="co">#&gt; [2,] 2.956720 26.47170</span>
+<span class="co">#&gt; [3,] 6.548628 23.81885</span>
+<span class="co">#&gt; [4,] 1.365932 29.07602</span>
+<span class="co">#&gt; [5,] 7.326759 22.63167</span>
+<span class="co">#&gt; [6,] 6.092410 27.80950</span></code></pre></div>
 <p>If you want integers only in the sample, then we must be careful about what we mean by a Latin hypercube sample. If you wanted exactly 3 points, then you could divide up the range [1,10] into three almost equal parts and sample from <code>1:3</code>, <code>4:6</code>, and <code>7:10</code>. The problem is that it wouldn’t be uniform sample across the range. (7 would be sampled less often than 2 for example)</p>
 <p>To do a Latin hypercube sample on the intgers, you should have a number of integers on the margins which have the number of points sampled as a common factor. For example if you sample 3 points from <code>1:9</code>, and <code>21:32</code> then you could sample as follows:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dv">1</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>, <span class="dv">1</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sample">sample</a></span>(<span class="dv">7</span><span class="op">:</span><span class="dv">9</span>, <span class="dv">1</span>)) 
@@ -171,41 +171,41 @@ b &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumenta
 
 <span class="kw">integerLHS</span>(<span class="dv">10</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">31</span><span class="op">:</span><span class="dv">40</span>)) 
 <span class="co">#&gt;       [,1] [,2]</span>
-<span class="co">#&gt;  [1,]    8   34</span>
-<span class="co">#&gt;  [2,]    2   36</span>
-<span class="co">#&gt;  [3,]    3   31</span>
-<span class="co">#&gt;  [4,]    7   33</span>
-<span class="co">#&gt;  [5,]    4   40</span>
-<span class="co">#&gt;  [6,]   10   32</span>
-<span class="co">#&gt;  [7,]    6   39</span>
-<span class="co">#&gt;  [8,]    5   35</span>
-<span class="co">#&gt;  [9,]    1   37</span>
-<span class="co">#&gt; [10,]    9   38</span>
+<span class="co">#&gt;  [1,]    1   31</span>
+<span class="co">#&gt;  [2,]   10   37</span>
+<span class="co">#&gt;  [3,]    7   33</span>
+<span class="co">#&gt;  [4,]    9   35</span>
+<span class="co">#&gt;  [5,]    2   40</span>
+<span class="co">#&gt;  [6,]    8   32</span>
+<span class="co">#&gt;  [7,]    3   39</span>
+<span class="co">#&gt;  [8,]    4   36</span>
+<span class="co">#&gt;  [9,]    6   34</span>
+<span class="co">#&gt; [10,]    5   38</span>
 <span class="kw">integerLHS</span>(<span class="dv">5</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">31</span><span class="op">:</span><span class="dv">40</span>)) 
 <span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,]    3   40</span>
-<span class="co">#&gt; [2,]    5   38</span>
+<span class="co">#&gt; [1,]    9   40</span>
+<span class="co">#&gt; [2,]    6   33</span>
 <span class="co">#&gt; [3,]    8   31</span>
-<span class="co">#&gt; [4,]    2   36</span>
-<span class="co">#&gt; [5,]    9   34</span>
+<span class="co">#&gt; [4,]    2   35</span>
+<span class="co">#&gt; [5,]    3   37</span>
 <span class="kw">integerLHS</span>(<span class="dv">2</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">31</span><span class="op">:</span><span class="dv">40</span>)) 
 <span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,]   10   31</span>
-<span class="co">#&gt; [2,]    1   37</span>
+<span class="co">#&gt; [1,]    8   37</span>
+<span class="co">#&gt; [2,]    1   34</span>
 <span class="kw">integerLHS</span>(<span class="dv">5</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dv">31</span><span class="op">:</span><span class="dv">60</span>, <span class="dv">101</span><span class="op">:</span><span class="dv">115</span>)) 
 <span class="co">#&gt;      [,1] [,2] [,3]</span>
-<span class="co">#&gt; [1,]   15   52  108</span>
-<span class="co">#&gt; [2,]    3   42  112</span>
-<span class="co">#&gt; [3,]   11   34  104</span>
-<span class="co">#&gt; [4,]    6   43  101</span>
-<span class="co">#&gt; [5,]   18   58  114</span>
+<span class="co">#&gt; [1,]    4   60  110</span>
+<span class="co">#&gt; [2,]   12   46  107</span>
+<span class="co">#&gt; [3,]   14   49  103</span>
+<span class="co">#&gt; [4,]   18   35  104</span>
+<span class="co">#&gt; [5,]    5   39  115</span>
 <span class="kw">integerLHS</span>(<span class="dv">5</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">2</span>,<span class="dv">20</span>,<span class="dv">2</span>), <span class="dv">31</span><span class="op">:</span><span class="dv">60</span>, <span class="dv">101</span><span class="op">:</span><span class="dv">115</span>)) 
 <span class="co">#&gt;      [,1] [,2] [,3]</span>
-<span class="co">#&gt; [1,]    4   40  102</span>
-<span class="co">#&gt; [2,]    6   53  112</span>
-<span class="co">#&gt; [3,]   16   60  105</span>
-<span class="co">#&gt; [4,]   12   35  115</span>
-<span class="co">#&gt; [5,]   20   45  108</span></code></pre></div>
+<span class="co">#&gt; [1,]    4   41  107</span>
+<span class="co">#&gt; [2,]   14   58  113</span>
+<span class="co">#&gt; [3,]   20   31  104</span>
+<span class="co">#&gt; [4,]    8   54  103</span>
+<span class="co">#&gt; [5,]   12   44  111</span></code></pre></div>
 </div>
 </div>
 <div id="question-2" class="section level2">
@@ -334,14 +334,14 @@ X &lt;-<span class="st"> </span><span class="kw"><a href="../reference/randomLHS
 Y &lt;-<span class="st"> </span><span class="kw">qdirichlet</span>(X, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(<span class="dv">1</span>,<span class="dv">7</span>)) 
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/stopifnot">stopifnot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/all">all</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">abs</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">rowSums</a></span>(Y) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&lt;</span><span class="st"> </span><span class="fl">1E-12</span>)) 
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span>(Y) 
-<span class="co">#&gt; [1] 1.247241e-06 7.853235e-01</span>
+<span class="co">#&gt; [1] 4.725456e-06 8.052419e-01</span>
 
 ws &lt;-<span class="st"> </span><span class="kw"><a href="../reference/randomLHS.html">randomLHS</a></span>(<span class="dv">1000</span>, <span class="dv">7</span>) 
 wsSums &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">rowSums</a></span>(ws) 
 wss &lt;-<span class="st"> </span>ws <span class="op">/</span><span class="st"> </span>wsSums 
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/stopifnot">stopifnot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/all">all</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">abs</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/colSums">rowSums</a></span>(wss) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">&lt;</span><span class="st"> </span><span class="fl">1E-12</span>)) 
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/range">range</a></span>(wss)
-<span class="co">#&gt; [1] 6.392494e-05 4.854261e-01</span></code></pre></div>
+<span class="co">#&gt; [1] 6.091838e-07 5.025290e-01</span></code></pre></div>
 </div>
 </div>
 <div id="question-5" class="section level2">
