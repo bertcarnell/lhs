@@ -3,7 +3,7 @@ Title: Latin Hypercube Samples
 Version: 1.0
 Authors@R: 
     person(given = "Rob",
-           family = "carnell",
+           family = "Carnell",
            role = c("aut", "cre"),
            email = "bertcarnell@gmail.com")
 Description: Provides a number of methods for creating and augmenting Latin Hypercube Samples.
