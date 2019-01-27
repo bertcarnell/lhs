@@ -15,4 +15,5 @@
 ^revdep
 ^appveyor.yml$
 ^rev_dep_check.sh$
+^rev_dep_check.R$
 ^Doxyfile$
