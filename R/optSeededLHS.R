@@ -36,6 +36,9 @@
 optSeededLHS <- function(seed, m=0, maxSweeps=2, eps=.1, verbose=FALSE)
 {
   k <- ncol(seed)
+  if (!is.numeric(m) || is.na(m) || !is.finite(m) || m < 0)
+    stop("m must be a positive number")
+
   if (m == 0)
   {
     N <- nrow(seed)

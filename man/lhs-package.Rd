@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Rob carnell \email{bertcarnell@gmail.com}
+\strong{Maintainer}: Rob Carnell \email{bertcarnell@gmail.com}
 
 }
 \keyword{internal}

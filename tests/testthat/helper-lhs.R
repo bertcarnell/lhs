@@ -2,6 +2,12 @@
 
 checkLatinHypercube <- function(X)
 {
+  if (any(apply(X, 2, min) <= 0))
+    return(FALSE)
+  if (any(apply(X, 2, max) >= 1))
+    return(FALSE)
+  if (any(is.na(X)))
+    return(FALSE)
   # check that the matrix is a latin hypercube
   g <- function(Y)
   {
@@ -11,7 +17,7 @@ checkLatinHypercube <- function(X)
     all(h$counts == 1)
   }
   # check all the columns
-  all(apply(X, 2, g))
+  return(all(apply(X, 2, g)))
 }
 
 checkOA <- function(X)

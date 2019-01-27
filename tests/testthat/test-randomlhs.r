@@ -40,7 +40,7 @@ test_that("randomLHS works", {
   A <- randomLHS(1, 5)
   expect_equal(1, nrow(A))
   expect_equal(5, ncol(A))
-  expect_true(all(A == 1))
+  expect_true(checkLatinHypercube(A))
 
   expect_error(randomLHS(c(1,2,3), c(3,4)))
 
@@ -66,4 +66,9 @@ test_that("randomLHS works", {
   expect_true(checkLatinHypercube(B))
 
   expect_error(.Call("randomLHS_cpp", 3, 4L, FALSE))
+})
+
+test_that("degenerate LHS problem is fixed", {
+  A <- randomLHS(1, 3)
+  expect_true(checkLatinHypercube(A))
 })

@@ -40,4 +40,8 @@ test_that("geneticLHS works", {
 
   capture_output(X <- .Call("geneticLHS_cpp", 1L, 4L, 10L, 4L, 0.01, "S", TRUE))
   expect_equal(nrow(X), 1)
+
+  A <- geneticLHS(1, 4)
+  expect_equal(nrow(A), 1)
+  expect_true(checkLatinHypercube(A))
 })

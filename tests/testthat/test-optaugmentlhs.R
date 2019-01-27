@@ -27,4 +27,7 @@ test_that("optAugmentLHS works", {
   expect_error(optAugmentLHS(c(1,2), m = 4, mult = 2))
   expect_error(optAugmentLHS(randomLHS(10, 4), c(1,2)))
   expect_error(optAugmentLHS(randomLHS(10, 4), -2))
+
+  A <- optAugmentLHS(randomLHS(1,4), 1)
+  expect_true(checkLatinHypercube(A))
 })

@@ -37,13 +37,13 @@ RcppExport SEXP /*double matrix*/ improvedLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k
     int m_dup = Rcpp::as<int>(dup);
 
     lhs_r::checkArguments(m_n, m_k, m_dup);
+    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     if (m_n == 1)
     {
-        return lhs_r::degenerateCase(m_k);
+        return lhs_r::degenerateCase(m_k, oRStandardUniform);
     }
 
     bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
-    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     lhslib::improvedLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
     Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
 
@@ -68,13 +68,13 @@ RcppExport SEXP /*double matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
     int m_dup = Rcpp::as<int>(dup);
 
     lhs_r::checkArguments(m_n, m_k, m_dup);
+    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     if (m_n == 1)
     {
-        return lhs_r::degenerateCase(m_k);
+        return lhs_r::degenerateCase(m_k, oRStandardUniform);
     }
 
     bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
-    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     lhslib::maximinLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
     Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
 
@@ -99,13 +99,13 @@ RcppExport SEXP /*double matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
     bool m_bVerbose = Rcpp::as<bool>(bVerbose);
 
     lhs_r::checkArguments(m_n, m_k, m_maxsweeps, m_eps);
-    if (m_n == 1)
-    {
-        return lhs_r::degenerateCase(m_k);
-    }
-
     Rcpp::RNGScope tempRNG;
     lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
+    if (m_n == 1)
+    {
+        return lhs_r::degenerateCase(m_k, oRStandardUniform);
+    }
+
     int jLen = static_cast<int>(::Rf_choose(static_cast<double>(m_n), 2.0) + 1.0);
     bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
 
@@ -136,20 +136,20 @@ RcppExport SEXP /*double matrix*/ optSeededLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ 
     bool m_bVerbose = Rcpp::as<bool>(bVerbose);
 
     lhs_r::checkArguments(m_n, m_k, m_maxsweeps, m_eps);
+    Rcpp::NumericMatrix m_inlhs(inlhs);
+    if (m_inlhs.ncol() != m_k || m_inlhs.nrow() != m_n)
+    {
+      Rcpp_error("input matrix does not match the n and k arguments");
+    }
     if (m_n == 1)
     {
-        return lhs_r::degenerateCase(m_k);
+        return m_inlhs;
     }
 
     int jLen = static_cast<int>(::Rf_choose(static_cast<double>(m_n), 2.0) + 1.0);
-    Rcpp::NumericMatrix m_inlhs(inlhs);
     //std::vector<double> mv_inlhs = Rcpp::as<std::vector<double> >(m_inlhs); // this probably unrolled the matrix columnwise
     //bclib::matrix<double> mm_inlhs = bclib::matrix<double>(m_n, m_k, mv_inlhs); // and this was row wise
     bclib::matrix<double> mm_inlhs = bclib::matrix<double>(m_n, m_k);
-    if (m_inlhs.ncol() != m_k || m_inlhs.nrow() != m_n)
-    {
-        throw std::invalid_argument("input matrix does not match the n and k arguments");
-    }
     for (int i = 0; i < m_n; i++)
     {
         for (int j = 0; j < m_k; j++)
@@ -183,12 +183,12 @@ RcppExport SEXP randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw)
     bool bPreserveDraw = Rcpp::as<bool>(preserveDraw);
 
     lhs_r::checkArguments(m_n, m_k);
+    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     if (m_n == 1)
     {
-        return lhs_r::degenerateCase(m_k);
+        return lhs_r::degenerateCase(m_k, oRStandardUniform);
     }
 
-    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     bclib::matrix<double> result = bclib::matrix<double>(m_n, m_k);
     lhslib::randomLHS(m_n, m_k, bPreserveDraw, result, oRStandardUniform);
 
@@ -221,16 +221,12 @@ RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
     bool m_bVerbose = Rcpp::as<bool>(bVerbose);
 
     lhs_r::checkArguments(m_n, m_k);
+    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     if (m_n == 1)
     {
-        if (m_bVerbose)
-        {
-            Rprintf("Design is already optimal");
-        }
-        return lhs_r::degenerateCase(m_k);
+        return lhs_r::degenerateCase(m_k, oRStandardUniform);
     }
 
-    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     bclib::matrix<double> mat = bclib::matrix<double>(m_n, m_k);
     lhslib::geneticLHS(m_n, m_k, m_pop, m_gen, m_pMut, m_criterium, m_bVerbose, mat, oRStandardUniform);
 

@@ -36,6 +36,10 @@ test_that("maximinLHS works", {
   expect_true(checkLatinHypercube(A))
   A <- maximinLHS(20, 5, dup = 3, method = "iterative", optimize.on = "grid")
   expect_true(checkLatinHypercube(A))
+
+  A <- maximinLHS(1, 4)
+  expect_equal(nrow(A), 1)
+  expect_true(checkLatinHypercube(A))
 })
 
 test_that("maximinLHS works with expanded capability", {

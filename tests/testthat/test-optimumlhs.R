@@ -68,4 +68,8 @@ test_that("optimumLHS works", {
   expect_error(.Call("optimumLHS_cpp", 3, 4L, 4L, 0.01, FALSE))
   X <- .Call("optimumLHS_cpp", 1L, 4L, 4L, 0.01, FALSE)
   expect_equal(nrow(X), 1)
+
+  A <- optimumLHS(1, 4)
+  expect_equal(nrow(A), 1)
+  expect_true(checkLatinHypercube(A))
 })

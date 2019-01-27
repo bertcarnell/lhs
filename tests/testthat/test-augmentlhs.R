@@ -41,4 +41,7 @@ test_that("augment works", {
   expect_error(augmentLHS(randomLHS(10,3), -1))
   expect_error(augmentLHS(randomLHS(10,3), 2.2))
 
+  A <- augmentLHS(randomLHS(1,4), 1)
+  expect_true(checkLatinHypercube(A))
+
 })

@@ -33,7 +33,8 @@ test_that("optseededLHS works", {
   expect_true(checkLatinHypercube(A))
 
   expect_error(.Call("optSeededLHS_cpp", 3, 4L, 4L, 0.01, matrix(1L, 2, 2), FALSE))
-  X <- .Call("optSeededLHS_cpp", 1L, 4L, 4L, 0.01, matrix(1L, 2, 2), FALSE)
+  X <- .Call("optSeededLHS_cpp", 1L, 4L, 4L, 0.01, matrix(runif(4), nrow = 1, ncol = 4), FALSE)
   expect_equal(nrow(X), 1)
+  expect_true(checkLatinHypercube(X))
   expect_error(.Call("optSeededLHS_cpp", 3L, 4L, 4L, 0.01, matrix(1L, 2, 2), FALSE))
 })

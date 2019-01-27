@@ -29,6 +29,10 @@ test_that("improvedLHS works", {
   expect_true(all(A == B))
   D <- improvedLHS(20, 6)
   expect_true(any(A != D))
+
+  A <- improvedLHS(1, 4)
+  expect_equal(nrow(A), 1)
+  expect_true(checkLatinHypercube(A))
 })
 
 test_that("improvedLHS errors work", {

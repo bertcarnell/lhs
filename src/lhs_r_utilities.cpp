@@ -2,25 +2,25 @@
  * @file lhs_r_utilities.cpp
  * @author Robert Carnell
  * @copyright Copyright (c) 2014, Robert Carnell
- * 
+ *
  * @license <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (GPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "lhs_r_utilities.h"
 
-namespace lhs_r 
+namespace lhs_r
 {
     void findorder_zero(const Rcpp::NumericVector & v, Rcpp::IntegerVector & order)
     {
@@ -81,7 +81,7 @@ namespace lhs_r
         bclib::matrix<int>::size_type rows = intMat.rowsize();
         bclib::matrix<int>::size_type cols = intMat.colsize();
         //Rcpp::NumericMatrix result(rows, cols, i);
-        
+
         Rcpp::NumericMatrix result(rows, cols);
         for (bclib::matrix<int>::size_type i = 0; i < rows; i++)
         {
@@ -108,7 +108,7 @@ namespace lhs_r
         }
         return intv;
     }
-    
+
     void checkArguments(int n, int k)
     {
         if (n == NA_INTEGER || k == NA_INTEGER)
@@ -122,7 +122,7 @@ namespace lhs_r
             throw std::invalid_argument(msg.str().c_str());
         }
     }
-    
+
     void checkArguments(int n, int k, int dup)
     {
         checkArguments(n, k);
@@ -137,7 +137,7 @@ namespace lhs_r
             throw std::invalid_argument(msg.str().c_str());
         }
     }
-    
+
     void checkArguments(int n, int k, int maxsweeps, double eps)
     {
         std::stringstream msg;
@@ -161,11 +161,14 @@ namespace lhs_r
             throw std::invalid_argument(msg.str().c_str());
         }
     }
-    
-    Rcpp::NumericMatrix degenerateCase(int k)
+
+    Rcpp::NumericMatrix degenerateCase(int k, bclib::CRandom<double> & oRandom)
     {
         Rcpp::NumericMatrix Z(1, k);
-        std::fill(Z.begin(), Z.end(), 1.0);
+        for (int i = 0; i < k; i++)
+        {
+          Z(0, i) = oRandom.getNextRandom();
+        }
         return Z;
     }
 } // end namespace

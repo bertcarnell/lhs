@@ -21,7 +21,7 @@ test_that("oa_to_oalhs works with internal oa generation", {
   expect_error(oa_to_oalhs(128, 8, oa, FALSE))
   # check a wrong sized oa causes an error
   expect_error(oa_to_oalhs(128, 5, oa[1:100,1:3], FALSE))
-  # check wront type
+  # check wrong type
   expect_error(oa_to_oalhs(3, 5, matrix(1.2, nrow = 3, ncol = 5)))
 
   oa <- createAddelKemp(3, 4, FALSE)
@@ -69,4 +69,11 @@ test_that("oa_to_oalhs works with DoE.base", {
   temp1 <- ifelse(floor(oalhs*9) < 9/3, -1, ifelse(floor(oalhs*9) < 2*9/3, 0, 1))
   temp <- t(temp1) %*% temp1
   expect_true(all(temp[upper.tri(temp)] == 0))
+})
+
+test_that("Edge cases", {
+  A <- matrix(1L, nrow = 1, ncol = 4)
+  B <- oa_to_oalhs(1, 4, A, FALSE)
+  expect_equal(nrow(B), 1)
+  expect_true(checkLatinHypercube(B))
 })
