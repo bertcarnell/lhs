@@ -5,15 +5,10 @@
 ^lhs\.Rproj$
 ^\.Rproj\.user$
 ^refs
-^pkg
-^pkg_branches
-^pkg_tags
-^www
 ^developmentBuild.sh$
 ^CMakeLists.txt$
 ^\.travis\.yml
 ^revdep
 ^appveyor.yml$
-^rev_dep_check.sh$
-^rev_dep_check.R$
 ^Doxyfile$
+^etc
