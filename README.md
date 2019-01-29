@@ -33,6 +33,10 @@ Create a random LHS with 10 samples and 3 variables
 X <- randomLHS(10, 3)
 ```
 
+## Development
+
+The reverse dependency checks for lhs can be found [here](etc/README.md).
+
 ## Help
 
 R-Help Examples of using the LHS package
