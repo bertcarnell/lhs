@@ -7,9 +7,9 @@ lhs_rev_imports <- devtools::revdep(pkg = "lhs", dependencies = "Imports")
 lhs_rev_suggests <- devtools::revdep(pkg = "lhs", dependencies = "Suggests")
 
 # get all the necessary packages that they depend on
-lhs_rev_depends_req <- lapply(lhs_rev_depends, function(x) tools::package_dependencies(packages = x))
-lhs_rev_imports_req <- lapply(lhs_rev_imports, function(x) tools::package_dependencies(packages = x))
-lhs_rev_suggests_req <- lapply(lhs_rev_suggests, function(x) tools::package_dependencies(packages = x))
+lhs_rev_depends_req <- lapply(lhs_rev_depends, function(x) tools::package_dependencies(packages = x, which = "most"))
+lhs_rev_imports_req <- lapply(lhs_rev_imports, function(x) tools::package_dependencies(packages = x, which = "most"))
+lhs_rev_suggests_req <- lapply(lhs_rev_suggests, function(x) tools::package_dependencies(packages = x, which = "most"))
 
 rev_dep_req_install <- function(rev_req)
 {

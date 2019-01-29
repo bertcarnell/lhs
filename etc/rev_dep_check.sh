@@ -39,3 +39,8 @@ echo Cleaning
 echo Checking
 "$RCMDPLATFORM" -e "revdepcheck::revdep_check(pkg='.', dependencies='Depends', num_workers=1)"
 echo Done
+
+# sudo apt-get install docker docker.io
+# https://github.com/rocker-org/rocker
+# https://hub.docker.com/_/r-base
+# sudo docker pull r-base
