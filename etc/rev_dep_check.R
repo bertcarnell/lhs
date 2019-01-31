@@ -11,6 +11,12 @@ lhs_rev_depends_req <- lapply(lhs_rev_depends, function(x) tools::package_depend
 lhs_rev_imports_req <- lapply(lhs_rev_imports, function(x) tools::package_dependencies(packages = x, which = "most"))
 lhs_rev_suggests_req <- lapply(lhs_rev_suggests, function(x) tools::package_dependencies(packages = x, which = "most"))
 
+#all_unique <- unique(c(unlist(lhs_rev_depends_req),
+#                     unlist(lhs_rev_imports_req),
+#                     unlist(lhs_rev_suggests_req)))
+#all_unique <- all_unique[-which(all_unique == "lhs")]
+#cat(paste(paste("r-cran-", all_unique, sep = ""), collapse = " \\ \n"))
+
 rev_dep_req_install <- function(rev_req)
 {
   # install if not done already
