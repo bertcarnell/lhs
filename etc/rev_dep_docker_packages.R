@@ -12,7 +12,7 @@ if (length(args) == 0) {
 }
 
 ################################################################################
-require(devtools)
+stopifnot(require(devtools))
 get_rev_deps <- function(x) tools::package_dependencies(packages = x, which = "most")
 
 rev_dep_req_install <- function(rev_req)
@@ -29,7 +29,7 @@ rev_dep_req_install <- function(rev_req)
     print(paste(":::::::", rev_depends_ureq[i], ":::::::::::::::::::::::::::::::"))
     if (!require(rev_depends_ureq[i], character.only = TRUE))
     {
-      install.packages(rev_depends_ureq[i])
+      install.packages(rev_depends_ureq[i], repos="https://cran.rstudio.com", dependencies = TRUE)
     }
     # after installation check the result and error if not working
     if (!require(rev_depends_ureq[i], character.only = TRUE))
