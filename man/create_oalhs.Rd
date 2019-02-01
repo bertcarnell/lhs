@@ -23,6 +23,6 @@ Create an orthogonal array Latin hypercube
 }
 \examples{
 set.seed(34)
-create_oalhs(9, 4, TRUE, FALSE)
-create_oalhs(9, 4, TRUE, FALSE)
+A <- create_oalhs(9, 4, TRUE, FALSE)
+B <- create_oalhs(9, 4, TRUE, FALSE)
 }

@@ -30,9 +30,9 @@ S-optimality seeks to maximize the mean distance from each design point to all
 the other points in the design, so the points are as spread out as possible.
 }
 \examples{
+set.seed(1234)
 a <- randomLHS(4,3)
-a
-optAugmentLHS(a, 2, 3)
+b <- optAugmentLHS(a, 2, 3)
 }
 \references{
 Stein, M.  (1987) Large Sample Properties of Simulations Using Latin Hypercube Sampling.

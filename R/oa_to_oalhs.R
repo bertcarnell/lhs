@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' oa <- createBose(3, 4, TRUE)
-#' oa_to_oalhs(9, 4, oa, TRUE)
+#' B <- oa_to_oalhs(9, 4, oa, FALSE)
 oa_to_oalhs <- function(n, k, oa, bverbose=FALSE)
 {
   if (is.integer(oa) && is.matrix(oa))

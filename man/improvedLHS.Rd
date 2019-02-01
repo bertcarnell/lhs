@@ -45,7 +45,8 @@ euclidean distance between design points.
 \deqn{Optimum distance = frac{n}{n^{\frac{1.0}{k}}}}{Optimum distance = n/n^(1.0/k)}
 }
 \examples{
-improvedLHS(4, 3, 2)
+set.seed(1234)
+A <- improvedLHS(4, 3, 2)
 }
 \references{
 Beachkofski, B., Grandhi, R.  (2002) Improved Distributed Hypercube Sampling

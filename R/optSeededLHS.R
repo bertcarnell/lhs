@@ -30,9 +30,9 @@
 #'   \emph{Technometrics}. \bold{29}, 143--151.
 #'
 #' @examples
+#'   set.seed(1234)
 #'   a <- randomLHS(4,3)
-#'   a
-#'   optSeededLHS(a, 2, 2, .1)
+#'   b <- optSeededLHS(a, 2, 2, .1)
 optSeededLHS <- function(seed, m=0, maxSweeps=2, eps=.1, verbose=FALSE)
 {
   k <- ncol(seed)

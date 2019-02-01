@@ -99,9 +99,11 @@ createAddelKemp3 <- function(q, ncol, bRandom=TRUE)
 #' @param bRandom should the array be randomized
 #' @return an orthogonal array
 #' @export
-#' @examples A <- createBusht(3, 4, 2, TRUE)
+#' @examples
+#' set.seed(1234)
+#' A <- createBusht(3, 4, 2, TRUE)
 #' B <- createBusht(3, 4, 3, FALSE)
-#' G <- createBusht(3, 4, 4, TRUE)
+#' G <- createBusht(3, 4, 3, TRUE)
 #' @seealso Other methods to create orthogonal arrays [createBoseBush()],
 #' [createBose()], [createAddelKemp()], [createAddelKemp3()],
 #' [createAddelKempN()], [createBoseBushl()]

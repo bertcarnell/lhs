@@ -47,9 +47,9 @@
 #' and [optSeededLHS()] to modify and augment existing designs.
 #'
 #' @examples
+#' set.seed(1234)
 #' a <- randomLHS(4,3)
-#' a
-#' augmentLHS(a, 2)
+#' b <- augmentLHS(a, 2)
 augmentLHS <- function(lhs, m=1)
 {
   if (!is.matrix(lhs))

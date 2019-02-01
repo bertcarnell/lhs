@@ -63,7 +63,8 @@ Genetic Algorithm:
 }
 }
 \examples{
-geneticLHS(4, 3, 50, 5, .25)
+set.seed(1234)
+A <- geneticLHS(4, 3, 50, 5, .25)
 }
 \references{
 Stocki, R. (2005) A method to improve design reliability using optimal Latin hypercube sampling

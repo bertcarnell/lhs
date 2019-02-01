@@ -62,7 +62,8 @@
 #' @author Rob Carnell
 #'
 #' @examples
-#' geneticLHS(4, 3, 50, 5, .25)
+#' set.seed(1234)
+#' A <- geneticLHS(4, 3, 50, 5, .25)
 geneticLHS <- function(n=10, k=2, pop=100, gen=4, pMut=.1, criterium="S", verbose=FALSE)
 {
   .Call("geneticLHS_cpp", as.integer(n), as.integer(k), as.integer(pop), as.integer(gen),

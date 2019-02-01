@@ -33,9 +33,9 @@ maintaining the \emph{latin} properties of the design.  This function then uses 
 is not necessarily maintained.
 }
 \examples{
+  set.seed(1234)
   a <- randomLHS(4,3)
-  a
-  optSeededLHS(a, 2, 2, .1)
+  b <- optSeededLHS(a, 2, 2, .1)
 }
 \references{
 Stein, M.  (1987) Large Sample Properties of Simulations Using Latin Hypercube Sampling.

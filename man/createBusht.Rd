@@ -22,9 +22,10 @@ an orthogonal array
 Create an orthogonal array using the Bush algorithm with alternate strength
 }
 \examples{
+set.seed(1234)
 A <- createBusht(3, 4, 2, TRUE)
 B <- createBusht(3, 4, 3, FALSE)
-G <- createBusht(3, 4, 4, TRUE)
+G <- createBusht(3, 4, 3, TRUE)
 }
 \seealso{
 Other methods to create orthogonal arrays [createBoseBush()],

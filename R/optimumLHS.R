@@ -50,7 +50,7 @@
 #'   \emph{Computer Assisted Mechanics and Engineering Sciences} \bold{12}, 87--105.
 #'
 #' @examples
-#' optimumLHS(4, 3, 5, .05)
+#' A <- optimumLHS(4, 3, 5, .05)
 optimumLHS <- function(n=10, k=2, maxSweeps=2, eps=.1, verbose=FALSE)
 {
   result <- .Call("optimumLHS_cpp", as.integer(n), as.integer(k),

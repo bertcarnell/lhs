@@ -31,9 +31,9 @@
 #'   \emph{Technometrics}. \bold{29}, 143--151.
 #'
 #' @examples
+#' set.seed(1234)
 #' a <- randomLHS(4,3)
-#' a
-#' optAugmentLHS(a, 2, 3)
+#' b <- optAugmentLHS(a, 2, 3)
 optAugmentLHS <- function(lhs, m=1, mult=2)
 {
   if (is.matrix(lhs) == FALSE)

@@ -54,7 +54,7 @@ This function uses the \acronym{CP} algorithm to generate an optimal
 design with respect to the S optimality criterion.
 }
 \examples{
-optimumLHS(4, 3, 5, .05)
+A <- optimumLHS(4, 3, 5, .05)
 }
 \references{
 Stocki, R. (2005) A method to improve design reliability using optimal Latin hypercube sampling

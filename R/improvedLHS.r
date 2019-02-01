@@ -48,7 +48,8 @@
 #' [augmentLHS()] to modify and augment existing designs.
 #'
 #' @examples
-#' improvedLHS(4, 3, 2)
+#' set.seed(1234)
+#' A <- improvedLHS(4, 3, 2)
 improvedLHS <- function(n, k, dup=1)
 {
   result <- .Call("improvedLHS_cpp", as.integer(n), as.integer(k), as.integer(dup),

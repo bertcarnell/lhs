@@ -62,10 +62,11 @@ Here, values are added to the design one by one such that the maximin criteria i
 satisfied.
 }
 \examples{
-maximinLHS(4, 3, dup=2)
-maximinLHS(4, 3, method="build", dup=2)
-maximinLHS(4, 3, method="iterative", eps=0.05, maxIter=100, optimize.on="grid")
-maximinLHS(4, 3, method="iterative", eps=0.05, maxIter=100, optimize.on="result")
+set.seed(1234)
+A1 <- maximinLHS(4, 3, dup=2)
+A2 <- maximinLHS(4, 3, method="build", dup=2)
+A3 <- maximinLHS(4, 3, method="iterative", eps=0.05, maxIter=100, optimize.on="grid")
+A4 <- maximinLHS(4, 3, method="iterative", eps=0.05, maxIter=100, optimize.on="result")
 }
 \references{
 Stein, M.  (1987) Large Sample Properties of Simulations Using Latin Hypercube Sampling.

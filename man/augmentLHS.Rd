@@ -43,9 +43,9 @@ The additional candidate points are selected randomly due to the random search
 for empty cells.
 }
 \examples{
+set.seed(1234)
 a <- randomLHS(4,3)
-a
-augmentLHS(a, 2)
+b <- augmentLHS(a, 2)
 }
 \references{
 Stein, M.  (1987) Large Sample Properties of Simulations Using Latin
