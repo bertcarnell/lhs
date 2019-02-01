@@ -129,3 +129,7 @@ COPY ["rev_dep_docker_packages.R", "/home/docker/rev_dep_docker_packages.R"]
 
 RUN Rscript /home/docker/rev_dep_docker_packages.R lhs
 
+COPY ["revdepcheck_install.R", "/home/docker/revdepcheck_install.R"]
+
+RUN Rscript /home/docker/revdepcheck_install.R
+
