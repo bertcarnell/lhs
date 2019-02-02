@@ -40,12 +40,14 @@ namespace oacpp
             if (ncol > q + 1)
             {
                 msg << "Bose's design must have ncol <= q+1. Had q=" << q << " and ncol=" << ncol << ".\n";
-                throw std::runtime_error(msg.str().c_str());
-            }
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
+			}
             if (ncol <= 0)
             {
                 msg << "Nonpositive number of columns requested for Bose's design\n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
             }
             return SUCCESS_CHECK;
         }
@@ -124,13 +126,15 @@ namespace oacpp
             if (ncol > q + 1)
             {
                 msg << "Bush designs require ncol <= q+1. Cannot have q = " << q << " and ncol = " << ncol << ".\n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
             }
             if (str > ncol)
             {
                 msg << "It doesn't make sense to have an array of strength " << str << " with only " << ncol << "columns.\n";
-                throw std::runtime_error(msg.str().c_str());
-            }
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
+			}
             if (str >= q + 1) // LCOV_EXCL_START
             {
                 PRINT_OUTPUT << "\tBush's (1952) theorem has a condition t<q where t\n";
@@ -172,14 +176,16 @@ namespace oacpp
                 msg << "available for odd prime powers q and for even prime\n";
                 msg << "powers q<=4.  q=" << q << " is not available, but a\n";
                 msg << "Bose Bush construction exists for that design.\n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
             }
 
             if (ncol > 2 * q + 1)
             {
                 msg << "The Addelman-Kempthorne construction needs ncol <= 2q+1.\n";
                 msg << "Can't have ncol = " << ncol << " with q = " << q << ".\n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
             }
 
             if (ncol == 2 * q + 1) // LCOV_EXCL_START
@@ -289,14 +295,16 @@ namespace oacpp
             if (p != 2)
             {
                 msg << "This version of Bose and Bush needs q=2^n for some n.\n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
             }
 
             if (ncol > 2 * q + 1)
             {
                 msg << "The Bose-Bush construction needs ncol <= 2q+1.\n";
                 msg << "Can't have ncol = " << ncol << " with q = " << q << ".\n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
             }
 
             if (ncol == 2 * q + 1) // LCOV_EXCL_START
@@ -357,7 +365,8 @@ namespace oacpp
             if (!primes::isprime(p))
             {
                 msg << "Bose Bush routine given a nonprime.\n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
             }
 
             if (ncol > lam * s + 1)
@@ -365,7 +374,8 @@ namespace oacpp
                 msg << "The Bose-Bush construction needs ncol <= lambda*q+1.\n";
                 msg << "Can't have ncol = " << ncol << " with lam = " << lam << "\n";
                 msg << "and q = " << s << ".\n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
             }
 
             if (ncol == lam * s + 1) // LCOV_EXCL_START

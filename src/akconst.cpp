@@ -99,7 +99,8 @@ namespace oacpp
             {
                 std::ostringstream s;
                 s << "Problem: no rootless element in GF(" << gf.n << ").\n";
-                throw std::runtime_error(s.str().c_str());
+				const std::string ss = s.str();
+				throw std::runtime_error(ss.c_str());
             }
 
             for (size_t i = 1; i < q; i++)

@@ -102,7 +102,8 @@ namespace lhslib
                 {
                     std::stringstream msg;
                     msg << "Criterium not recognized: S and Maximin are available: " << criterium.c_str() << " was provided.\n";
-                    throw std::invalid_argument(msg.str().c_str());
+					const std::string smsg = msg.str();
+                    throw std::invalid_argument(smsg.c_str());
                 }
             }
             // H is used as an index on vector of matrices, A, so it should be using zero based order

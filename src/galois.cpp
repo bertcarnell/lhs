@@ -172,7 +172,8 @@ namespace oacpp
                 { // LCOV_EXCL_START
                     msg << "There is something wrong with the Galois field\n";
                     msg << "used for q=" << q << ".  Element " << i << "has no reciprocal.\n";
-                    throw std::runtime_error(msg.str().c_str());
+					const std::string smsg = msg.str();
+					throw std::runtime_error(smsg.c_str());
                 } // LCOV_EXCL_STOP
             }
 

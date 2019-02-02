@@ -8,6 +8,7 @@
 ^developmentBuild.sh$
 ^CMakeLists.txt$
 ^cmakeshell.sh$
+^cmakebuild
 ^\.travis\.yml
 ^revdep
 ^appveyor.yml$

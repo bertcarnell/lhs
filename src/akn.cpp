@@ -40,19 +40,22 @@ namespace oacpp
             if (akn < 2)
             {
                 msg << "This Addelman-Kempthorne OA(2q^n,ncol,q,2) is only available for n >= 2.  n = " << akn << " was requested.\n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string ss = msg.str();
+				throw std::runtime_error(ss.c_str());
             }
 
             if (p == 2 && q > 4)
             {
                 msg << "This Addelman-Kempthorne OA(2q^n,ncol,q,2) is only available for odd prime powers q and for even prime \n powers q<=4. \n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
             }
 
             if (ncol > 2 * (primes::ipow(q, akn) - 1) / (q - 1) - 1)
             {
                 msg << "The Addelman-Kempthorne construction needs ncol <= 2(q^n-1)(q-1) -1. Can't have ncol = " << ncol << " with n=" << akn << " and q = " << q << "\n";
-                throw std::runtime_error(msg.str().c_str());
+				const std::string smsg = msg.str();
+				throw std::runtime_error(smsg.c_str());
             }
 
             return SUCCESS_CHECK;

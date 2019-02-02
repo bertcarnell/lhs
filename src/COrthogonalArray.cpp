@@ -60,7 +60,8 @@ int COrthogonalArray::checkMaxColumns(int k, int maxColumns)
 	{
         std::ostringstream s;
         s << "At most " << maxColumns << "columns are possible for the design.";
-		throw std::runtime_error(s.str().c_str());
+		const std::string ss = s.str();
+		throw std::runtime_error(ss.c_str());
 	}
 	else
 	{

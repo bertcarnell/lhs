@@ -119,7 +119,8 @@ namespace lhs_r
         {
             std::stringstream msg;
             msg << "Invalid Argument: n and k must be integers > 0, n=" << n << " k=" << k << "\n";
-            throw std::invalid_argument(msg.str().c_str());
+			const std::string smsg = msg.str();
+            throw std::invalid_argument(smsg.c_str());
         }
     }
 
@@ -134,7 +135,8 @@ namespace lhs_r
         {
             std::stringstream msg;
             msg << "Invalid Argument: dup must be an integer > 0, dup=" << dup << "\n";
-            throw std::invalid_argument(msg.str().c_str());
+			const std::string smsg = msg.str();
+            throw std::invalid_argument(smsg.c_str());
         }
     }
 
@@ -153,13 +155,15 @@ namespace lhs_r
         else if (maxsweeps < 1)
         {
             msg << "Invalid Argument: maxsweeps must be an integer > 0, maxsweeps=" << maxsweeps << "\n";
-            throw std::invalid_argument(msg.str().c_str());
+			const std::string smsg = msg.str();
+            throw std::invalid_argument(smsg.c_str());
         }
         else if (eps <= 0 || eps >= 1)
         {
             msg << "Invalid Argument: eps must be a double on the interval (0,1), eps=" << eps << "\n";
-            throw std::invalid_argument(msg.str().c_str());
-        }
+			const std::string smsg = msg.str();
+			throw std::invalid_argument(smsg.c_str());
+		}
     }
 
     Rcpp::NumericMatrix degenerateCase(int k, bclib::CRandom<double> & oRandom)

@@ -80,7 +80,8 @@ RcppExport SEXP /*int matrix*/ oa_type1(SEXP /*char*/ type, SEXP /*int*/ q,
     {
         std::stringstream sstype;
         sstype << stype << " is an Unrecognized orthogonal array algorithm";
-        Rcpp_error(sstype.str().c_str());
+		const std::string ssstype = sstype.str();
+        Rcpp_error(ssstype.c_str());
     }
 
     oarutils::convertToIntegerMatrix<int>(oa.getoa(), rcppA);
@@ -146,8 +147,9 @@ RcppExport SEXP /*int matrix*/ oa_type2(SEXP /*char*/ type, SEXP /*int*/ int1,
         {
             std::stringstream sstype;
             sstype << cvtype[0] << " is an Unrecognized orthogonal array algorithm";
-            Rcpp_error(sstype.str().c_str());
-        }
+			const std::string ssstype = sstype.str();
+			Rcpp_error(ssstype.c_str());
+		}
     }
 
     if (cvtype[0] == typeConstants::BOSEBUSHL)
@@ -169,8 +171,9 @@ RcppExport SEXP /*int matrix*/ oa_type2(SEXP /*char*/ type, SEXP /*int*/ int1,
     {
         std::stringstream sstype;
         sstype << cvtype[0] << " is an Unrecognized orthogonal array algorithm";
-        Rcpp_error(sstype.str().c_str());
-    }
+		const std::string ssstype = sstype.str();
+		Rcpp_error(ssstype.c_str());
+	}
     oarutils::convertToIntegerMatrix<int>(oa.getoa(), rcppA);
     if (bRandomLocal)
     {

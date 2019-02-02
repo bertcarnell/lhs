@@ -53,7 +53,8 @@ namespace oacpp
             {
                 std::ostringstream s;
                 s << "The Addelman-Kempthorne (n=3) construction needs ncol <= 2q^2+2q+1. Can't have ncol = " << ncol << " with q = " << q << "\n";
-                throw std::runtime_error(s.str().c_str());
+				const std::string ss = s.str();
+                throw std::runtime_error(ss.c_str());
             }
 
             return SUCCESS_CHECK;
