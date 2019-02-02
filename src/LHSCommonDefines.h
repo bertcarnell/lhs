@@ -2,18 +2,18 @@
  * @file LHSCommonDefines.h
  * @author Robert Carnell
  * @copyright Copyright (c) 2014, Robert Carnell
- * 
+ *
  * @license <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -37,9 +37,9 @@
 #include "CRandom.h"
 
 #ifdef RCOMPILE
-#include "R.h"
-#define PRINT_MACRO Rcout
-#define ERROR_MACRO Rcerr
+#include <Rcpp.h>
+#define PRINT_MACRO Rcpp::Rcout
+#define ERROR_MACRO Rcpp::Rcerr
 #else // RCOMPILE
 /** Macro to choose the function for printing */
 #define PRINT_MACRO std::cout
@@ -53,7 +53,7 @@
 /**
  * @namespace lhslib LHS c++ Library namespace
  */
-namespace lhslib 
+namespace lhslib
 {
     /**
      * Improved Latin hypercube sample algorithm
@@ -63,7 +63,7 @@ namespace lhslib
      * @param result the result matrix
      * @param oRandom the random number stream
      */
-    void improvedLHS(int n, int k, int dup, bclib::matrix<int> & result, 
+    void improvedLHS(int n, int k, int dup, bclib::matrix<int> & result,
             bclib::CRandom<double> & oRandom);
     /**
      * Latin hypercube sample algorithm with maximin criterion
@@ -73,7 +73,7 @@ namespace lhslib
      * @param result the result matrix
      * @param oRandom the random number stream
      */
-    void maximinLHS(int n, int k, int dup, bclib::matrix<int> & result, 
+    void maximinLHS(int n, int k, int dup, bclib::matrix<int> & result,
             bclib::CRandom<double> & oRandom);
     /**
      * Optimum Latin hypercube sample algorithm
@@ -86,8 +86,8 @@ namespace lhslib
      * @param oRandom the random number stream
      * @param bVerbose should messages be printed?
      */
-    void optimumLHS(int n, int k, int maxSweeps, double eps, 
-            bclib::matrix<int> & outlhs, int optimalityRecordLength, 
+    void optimumLHS(int n, int k, int maxSweeps, double eps,
+            bclib::matrix<int> & outlhs, int optimalityRecordLength,
             bclib::CRandom<double> & oRandom, bool bVerbose);
     /**
      * Application of the optimum lhs method to a seeded Latin hypercube
@@ -99,7 +99,7 @@ namespace lhslib
      * @param JLen the length of a vector used in the calculations
      * @param bVerbose should messages be printed?
      */
-    void optSeededLHS(int n, int k, int maxSweeps, double eps, 
+    void optSeededLHS(int n, int k, int maxSweeps, double eps,
             bclib::matrix<double> & pOld, int JLen, bool bVerbose);
 
     /**
@@ -112,7 +112,7 @@ namespace lhslib
      * @note the type of the vector (i.e. int) is irrelevant for size_type
      */
     typedef std::vector<int>::size_type vsize_type;
-    
+
     /**
      * Create a random latin hypercube sample
      * @param n number of rows / samples in the lhs
@@ -131,7 +131,7 @@ namespace lhslib
      * @param oRandom the random number stream
      */
     void randomLHS(int n, int k, bclib::matrix<int> & result, bclib::CRandom<double> & oRandom);
-    
+
     /**
      * Create a latin hypercube sample optimized by some criteria with a genetic algorithm
      * @param n number of rows / samples in the lhs

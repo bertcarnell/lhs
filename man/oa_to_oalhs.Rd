@@ -4,7 +4,7 @@
 \alias{oa_to_oalhs}
 \title{Create a Latin hypercube from an orthogonal array}
 \usage{
-oa_to_oalhs(n, k, oa, bverbose = FALSE)
+oa_to_oalhs(n, k, oa)
 }
 \arguments{
 \item{n}{the number of samples or rows in the LHS (integer)}
@@ -12,8 +12,6 @@ oa_to_oalhs(n, k, oa, bverbose = FALSE)
 \item{k}{the number of parameters or columns in the LHS (integer)}
 
 \item{oa}{the orthogonal array to be used as the basis for the LHS (matrix of integers) or data.frame of factors}
-
-\item{bverbose}{should information be printed with execution}
 }
 \value{
 a numeric matrix which is a Latin hypercube sample
@@ -23,5 +21,5 @@ Create a Latin hypercube from an orthogonal array
 }
 \examples{
 oa <- createBose(3, 4, TRUE)
-B <- oa_to_oalhs(9, 4, oa, FALSE)
+B <- oa_to_oalhs(9, 4, oa)
 }
