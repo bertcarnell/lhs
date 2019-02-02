@@ -31,19 +31,20 @@
 #include <cfloat>
 #include <climits>
 #include <cstdio>
+#include <iostream>
 #include "matrix.h"
 #include "order.h"
 #include "CRandom.h"
 
 #ifdef RCOMPILE
 #include "R.h"
-#define PRINT_MACRO Rprintf
-#define ERROR_MACRO Rprintf
+#define PRINT_MACRO Rcout
+#define ERROR_MACRO Rcerr
 #else // RCOMPILE
 /** Macro to choose the function for printing */
-#define PRINT_MACRO printf
+#define PRINT_MACRO std::cout
 /** Macro to choose the function for error printing */
-#define ERROR_MACRO printf
+#define ERROR_MACRO std::cerr
 #endif // RCOMPILE
 
 /** Should results be printed */

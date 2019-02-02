@@ -1,3 +1,23 @@
+/**
+ * @file oaLHS.cpp
+ * @author Robert Carnell
+ * @copyright Copyright (c) 2019, Robert Carnell
+ * @license <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 #include "oaLHS.h"
 
 namespace oalhslib
@@ -39,12 +59,12 @@ namespace oalhslib
 
         replaceOAValues(oa, uniqueLevelsVector, intlhs, oRandom, true);
 
-        if (bVerbose)
-        {
-			PRINT_OUTPUT("\ninteger lhs:\n%s\n", intlhs.toString()); // LCOV_EXCL_LINE
-        }
+		if (bVerbose)
+		{
+			PRINT_OUTPUT << "\ninteger lhs:\n" << intlhs.toString() << "\n"; // LCOV_EXCL_LINE
+		}
 
-        // transform integer hypercube to a double hypercube
+		// transform integer hypercube to a double hypercube
         for (msize_type jcol = 0; jcol < static_cast<msize_type>(k); jcol++)
         {
             for (msize_type irow = 0; irow < static_cast<msize_type>(n); irow++)
@@ -73,15 +93,15 @@ namespace oalhslib
 
     void printOAandUnique(const bclib::matrix<int> & oa, const std::vector<std::vector<int> > & uniqueLevelsVector) // LCOV_EXCL_START
     {
-		PRINT_OUTPUT("\ninitial oa:\n%s\n", oa.toString());
-		PRINT_OUTPUT("unique values per row:\n");
+		PRINT_OUTPUT << "\ninitial oa:\n" << oa.toString() << "\n";
+		PRINT_OUTPUT << "unique values per row:\n";
         for (vsize_type vi = 0; vi < uniqueLevelsVector.size(); vi++)
         {
             for (vsize_type vvi = 0; vvi < uniqueLevelsVector[vi].size(); vvi++)
             {
-				PRINT_OUTPUT("%d,", uniqueLevelsVector[vi][vvi]);
+				PRINT_OUTPUT << uniqueLevelsVector[vi][vvi] << ",";
             }
-			PRINT_OUTPUT("\n");
+			PRINT_OUTPUT << "\n";
         }
     } // LCOV_EXCL_STOP
 
@@ -112,7 +132,7 @@ namespace oalhslib
 
         if (bVerbose)
         {
-			PRINT_OUTPUT("\nintlhs:\n%s\n", intlhs.toString()); // LCOV_EXCL_LINE
+			PRINT_OUTPUT << "\nintlhs:\n" << intlhs.toString() << "\n"; // LCOV_EXCL_LINE
         }
     }
 
@@ -174,7 +194,7 @@ namespace oalhslib
     {
         if (bVerbose)
         {
-			PRINT_OUTPUT("\n"); // LCOV_EXCL_LINE
+			PRINT_OUTPUT << "\n"; // LCOV_EXCL_LINE
         }
         int q_addelkemp = bChooseLargerDesign ? (int) ceil(sqrt((double) n / 2.0)) : (int) floor(sqrt((double) n / 2.0));
         while (oacpp::primes::isprimepow(q_addelkemp) == 0 && q_addelkemp >= 2)
@@ -192,7 +212,7 @@ namespace oalhslib
         int k_addelkemp = k < 2*q_addelkemp + 1 ? k : 2*q_addelkemp + 1;
         if (bVerbose)
         {
-			PRINT_OUTPUT("Candidate OA:  AddelKemp with q=%d n=%d k=%d\n", q_addelkemp, n_addelkemp, k_addelkemp); // LCOV_EXCL_LINE
+			PRINT_OUTPUT << "Candidate OA:  AddelKemp with q=" << q_addelkemp << " n=" << n_addelkemp << " k=" << k_addelkemp << "\n"; // LCOV_EXCL_LINE
         }
 
         int q_addelkemp3 = bChooseLargerDesign ? (int) ceil(pow((double) n / 2.0, 1.0/3.0)) : (int) floor(pow((double) n / 2.0, 1.0/3.0));
@@ -211,7 +231,7 @@ namespace oalhslib
         int k_addelkemp3 = k < 2*q_addelkemp3*q_addelkemp3 + 2*q_addelkemp3 + 1 ? k : 2*q_addelkemp3*q_addelkemp3 + 2*q_addelkemp3 + 1;
         if (bVerbose)
         {
-			PRINT_OUTPUT("Candidate OA:  AddelKemp3 with q=%d n=%d k=%d\n", q_addelkemp3, n_addelkemp3, k_addelkemp3); // LCOV_EXCL_LINE
+			PRINT_OUTPUT << "Candidate OA:  AddelKemp3 with q=" << q_addelkemp3 << " n=" << n_addelkemp3 << " k=" << k_addelkemp3 << "\n"; // LCOV_EXCL_LINE
         }
 
         int q_bose = bChooseLargerDesign ? (int) ceil(sqrt((double) n)) : (int) floor(sqrt((double) n));
@@ -230,7 +250,7 @@ namespace oalhslib
         int k_bose = k < q_bose + 1 ? k : q_bose + 1;
         if (bVerbose)
         {
-			PRINT_OUTPUT("Candidate OA:  Bose with q=%d n=%d k=%d\n", q_bose, n_bose, k_bose); // LCOV_EXCL_LINE
+			PRINT_OUTPUT << "Candidate OA:  Bose with q=" << q_bose << " n=" << n_bose << " k=" << k_bose << "\n"; // LCOV_EXCL_LINE
         }
 
         int q_bosebush = bChooseLargerDesign ? (int) ceil(sqrt((double) n / 2.0)) : (int) floor(sqrt((double) n / 2.0));
@@ -249,7 +269,7 @@ namespace oalhslib
         int k_bosebush = k < q_bosebush + 1 ? k : q_bosebush + 1;
         if (bVerbose)
         {
-			PRINT_OUTPUT("Candidate OA:  BoseBush with q=%d n=%d k=%d\n", q_bosebush, n_bosebush, k_bosebush); // LCOV_EXCL_LINE
+			PRINT_OUTPUT << "Candidate OA:  BoseBush with q=" << q_bosebush << " n=" << n_bosebush << " k=" << k_bosebush << "\n"; // LCOV_EXCL_LINE
         }
 
 		// Goal:  Find the n and k that are the closest with atleast the required n and k
@@ -316,7 +336,7 @@ namespace oalhslib
         {
             if (bVerbose)
             {
-				PRINT_OUTPUT("AddelKemp selected\n"); // LCOV_EXCL_LINE
+				PRINT_OUTPUT << "AddelKemp selected\n"; // LCOV_EXCL_LINE
             }
             coa.addelkemp(q_addelkemp, k_addelkemp, &n_addelkemp);
         }
@@ -324,7 +344,7 @@ namespace oalhslib
         {
             if (bVerbose)
             {
-				PRINT_OUTPUT("AddelKemp3 selected\n"); // LCOV_EXCL_LINE
+				PRINT_OUTPUT << "AddelKemp3 selected\n"; // LCOV_EXCL_LINE
             }
             coa.addelkemp3(q_addelkemp3, k_addelkemp3, &n_addelkemp3);
         }
@@ -332,7 +352,7 @@ namespace oalhslib
         {
             if (bVerbose)
             {
-				PRINT_OUTPUT("Bose selected\n"); // LCOV_EXCL_LINE
+				PRINT_OUTPUT << "Bose selected\n"; // LCOV_EXCL_LINE
             }
             coa.bose(q_bose, k_bose, &n_bose);
         }
@@ -340,7 +360,7 @@ namespace oalhslib
         {
             if (bVerbose)
             {
-				PRINT_OUTPUT("BoseBush selected\n"); // LCOV_EXCL_LINE
+				PRINT_OUTPUT << "BoseBush selected\n"; // LCOV_EXCL_LINE
             }
             coa.bosebush(q_bosebush, k_bosebush, &n_bosebush);
         }
@@ -362,7 +382,7 @@ namespace oalhslib
 
 		if (bVerbose)
 		{
-			PRINT_OUTPUT("\ninteger lhs:\n%s\n", intoalhs.toString()); // LCOV_EXCL_LINE
+			PRINT_OUTPUT << "\ninteger lhs:\n" << intoalhs.toString() << "\n"; // LCOV_EXCL_LINE
 		}
 
 		// transform integer hypercube to a double hypercube

@@ -315,7 +315,7 @@ private:
       bool isEmpty() const {return elements.empty();};
 
       /// return a string representation of the matrix
-      const char* toString() const;
+      std::string toString() const;
       
       /// Transpose the matrix
       void transpose();
@@ -678,7 +678,7 @@ matrix<T>::matrix()
 }
 
 template<class T>
-const char* matrix<T>::toString() const
+std::string matrix<T>::toString() const
 {
     std::ostringstream msg;
     for (size_type irow = 0; irow < rows; irow++)
@@ -693,7 +693,7 @@ const char* matrix<T>::toString() const
         }
         msg << "\n";
     }
-    return msg.str().c_str();
+    return msg.str();
 }
 
 template<class T>

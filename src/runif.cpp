@@ -102,9 +102,9 @@ namespace oacpp
         }
         else
         {
-            PRINT_OUTPUT("Error: Invalid seed %d %d %d %d\n", is, js, ks, ls);
-            PRINT_OUTPUT("Must be four integers between 1 and 168, and\n");
-            PRINT_OUTPUT("must not all be 1.  Seed not changed.\n");
+            PRINT_OUTPUT << "Error: Invalid seed " << is << " " << js << " " << ks << " " << ls << "\n";
+            PRINT_OUTPUT << "Must be four integers between 1 and 168, and\n";
+            PRINT_OUTPUT << "must not all be 1.  Seed not changed.\n";
         }
     }
     

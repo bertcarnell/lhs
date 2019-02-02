@@ -33,19 +33,20 @@
 #include <algorithm>
 #include <stdexcept>
 #include <sstream>
+#include <iostream>
 #include <numeric>
 
 #ifdef RCOMPILE
 #include <Rcpp.h>
 /**
- * A print macro to enable operation with or without R
+ * A print macro to enable printing with or without R
  */
-#define PRINT_OUTPUT Rprintf
+#define PRINT_OUTPUT Rcpp::Rcout
 #else
-/**
- * A print macro to enable operation with or without R
- */
-#define PRINT_OUTPUT std::printf
+ /**
+  * A print macro to enable printing with or without R
+  */
+#define PRINT_OUTPUT std::cout
 #endif
 
 /**

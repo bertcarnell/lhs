@@ -225,25 +225,25 @@ int COrthogonalArray::oaagree(bool verbose)
 		  mrow2 = j;
 		  if (verbose)
 		  {
-			PRINT_OUTPUT("New max %d %d %d\n", i, j, agree); // LCOV_EXCL_LINE
+			PRINT_OUTPUT << "New max " << i << " " << j << " " << agree << "\n"; // LCOV_EXCL_LINE
 		  }
 		}
 	  }
 	  if (i && i % ROWCHECK == 0 && verbose)
       {
-		PRINT_OUTPUT("Checked rows <= %d vs all other rows.\n",i); // LCOV_EXCL_LINE
+		PRINT_OUTPUT << "Checked rows <= " << i << " vs all other rows.\n"; // LCOV_EXCL_LINE
       }
 	}
 	if (verbose) // LCOV_EXCL_START
 	{
 		if (maxagr == 0)
 		{
-		  PRINT_OUTPUT("No two distinct rows agree in any columns.\n");
+		  PRINT_OUTPUT << "No two distinct rows agree in any columns.\n";
 		}
 		else
 		{
-		  PRINT_OUTPUT("Maximum number of columns matching for two distinct rows is %d.\n", maxagr);
-		  PRINT_OUTPUT("This is attained by rows %d and %d.\n", mrow1, mrow2);
+		  PRINT_OUTPUT << "Maximum number of columns matching for two distinct rows is " << maxagr << ".\n";
+		  PRINT_OUTPUT << "This is attained by rows " << mrow1 << " and " << mrow2 << ".\n";
 		}
 	} // LCOV_EXCL_STOP
 	return maxagr;
@@ -272,7 +272,7 @@ int COrthogonalArray::oatriple(bool verbose)
 					{
                         if (verbose)
                         {
-                            PRINT_OUTPUT("Cols %d %d %d match in %d distinct pairs of rows.\n", j1, j2, j3, a3); // LCOV_EXCL_LINE
+                            PRINT_OUTPUT << "Cols " << j1 << " " << j2 << " " << j3 << " match in " << a3 << " distinct pairs of rows.\n"; // LCOV_EXCL_LINE
                         }
 						num3++;
 					}
@@ -282,8 +282,8 @@ int COrthogonalArray::oatriple(bool verbose)
 	}
 	if (verbose) // LCOV_EXCL_START
 	{
-		PRINT_OUTPUT("There are %d distinct triples of columns that agree\n", num3);
-		PRINT_OUTPUT("in at least two distinct rows.\n");
+		PRINT_OUTPUT << "There are " << num3 << " distinct triples of columns that agree\n";
+		PRINT_OUTPUT << "in at least two distinct rows.\n";
 	} // LCOV_EXCL_STOP
 	return num3;
 }
@@ -312,12 +312,12 @@ int COrthogonalArray::oastr(bool verbose)
 	{
 		if (str < 0)
 		{
-		  PRINT_OUTPUT("\nThe array does not even have strength 0, meaning that\n");
-		  PRINT_OUTPUT("it is not composed of symbols 0 through %d.\n", m_q);
+		  PRINT_OUTPUT << "\nThe array does not even have strength 0, meaning that\n";
+		  PRINT_OUTPUT << "it is not composed of symbols 0 through " << m_q << ".\n";
 		}
 		else
 		{
-		  PRINT_OUTPUT("\nThe array has strength %d and no higher strength.\n", str);
+		  PRINT_OUTPUT << "\nThe array has strength " << str << " and no higher strength.\n";
 		}
 	} // LCOV_EXCL_STOP
 	return str;

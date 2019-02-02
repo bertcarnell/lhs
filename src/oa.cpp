@@ -39,21 +39,18 @@ namespace oacpp
         {
             if (work > BIGWORK) // LCOV_EXCL_START
             {
-                PRINT_OUTPUT("If the array has strength %d, %g comparisons will\n",
-                        str, work);
-                PRINT_OUTPUT("be required to prove it.  This might take a long time.\n");
-                PRINT_OUTPUT("This warning is triggered when more than %d comparisons\n",
-                        BIGWORK);
-                PRINT_OUTPUT("are required.  To avoid this warning increase BIGWORK in\n");
-                PRINT_OUTPUT("oa.h.  Intermediate results will be printed.\n\n");
+                PRINT_OUTPUT << "If the array has strength " << str << ", " << work << " comparisons will\n";
+                PRINT_OUTPUT << "be required to prove it.  This might take a long time.\n";
+                PRINT_OUTPUT << "This warning is triggered when more than " << BIGWORK << " comparisons\n";
+                PRINT_OUTPUT << "are required.  To avoid this warning increase BIGWORK in\n";
+                PRINT_OUTPUT << "oa.h.  Intermediate results will be printed.\n\n";
             }
             else if (work > MEDWORK)
             {
-                PRINT_OUTPUT("Since more than %d comparisons may be required to\n", MEDWORK);
-                PRINT_OUTPUT("to check whether the array has strength %d, intermediate\n",
-                        str);
-                PRINT_OUTPUT("results will be printed.  To avoid this warning increase\n");
-                PRINT_OUTPUT("MEDWORK in oa.h\n\n");
+                PRINT_OUTPUT << "Since more than " << MEDWORK << " comparisons may be required to\n";
+                PRINT_OUTPUT << "to check whether the array has strength " << str << ", intermediate\n";
+                PRINT_OUTPUT << "results will be printed.  To avoid this warning increase\n";
+                PRINT_OUTPUT << "MEDWORK in oa.h\n\n";
             } // LCOV_EXCL_STOP
         }
 
@@ -103,9 +100,9 @@ namespace oacpp
                     {
                         if (verbose >= 2) // LCOV_EXCL_START
                         {
-                            PRINT_OUTPUT("Array is not even of strength 0, that is there are elements\n");
-                            PRINT_OUTPUT("other than integers 0 through %d inclusive in it.\n", q);
-                            PRINT_OUTPUT("The first exception is A[%d,%d] = %d.\n", static_cast<int>(i), static_cast<int>(j1), A(i,j1));
+                            PRINT_OUTPUT << "Array is not even of strength 0, that is there are elements\n";
+                            PRINT_OUTPUT << "other than integers 0 through " << q << " inclusive in it.\n";
+                            PRINT_OUTPUT << "The first exception is A[" << i << "," << j1 << "] = " << A(i, j1) << ".\n";
                         } // LCOV_EXCL_STOP
                         return 0;
                     }
@@ -113,7 +110,7 @@ namespace oacpp
             }
             if (verbose >= 2)
             {
-                PRINT_OUTPUT("The array has strength (at least) 0.\n"); // LCOV_EXCL_LINE
+                PRINT_OUTPUT << "The array has strength (at least) 0.\n"; // LCOV_EXCL_LINE
             }
             return SUCCESS_CHECK;
         }
@@ -129,8 +126,8 @@ namespace oacpp
             {
                 if (verbose >= 2) // LCOV_EXCL_START
                 {
-                    PRINT_OUTPUT("The array cannot have strength 1, because the number\n");
-                    PRINT_OUTPUT("of rows %d is not a multiple of q = %d.\n", static_cast<int>(nrow), q);
+                    PRINT_OUTPUT << "The array cannot have strength 1, because the number\n";
+                    PRINT_OUTPUT << "of rows " << nrow << " is not a multiple of q = " << q << ".\n";
                 } // LCOV_EXCL_STOP
                 return 0;
             }
@@ -151,23 +148,21 @@ namespace oacpp
                     {
                         if (verbose >= 2) // LCOV_EXCL_START
                         {
-                            PRINT_OUTPUT("Array is not of strength 1.  The first violation arises for\n");
-                            PRINT_OUTPUT("the number of times A[,%d] = %d.\n",
-                                    static_cast<int>(j1), q1);
-                            PRINT_OUTPUT("This happened in %d rows, it should have happened in %d rows.\n",
-                                    count, lambda);
+                            PRINT_OUTPUT << "Array is not of strength 1.  The first violation arises for\n";
+                            PRINT_OUTPUT << "the number of times A[," << j1 << "] = " << q1 << ".\n";
+                            PRINT_OUTPUT << "This happened in " << count << " rows, it should have happened in " << lambda << " rows.\n";
                         } // LCOV_EXCL_STOP
                         return 0;
                     }
                 }
                 if (work > MEDWORK && verbose > 0)
                 {
-                    PRINT_OUTPUT("No violation of strength 1 involves column %d.\n", static_cast<int>(j1)); // LCOV_EXCL_LINE
+                    PRINT_OUTPUT << "No violation of strength 1 involves column " << j1 << ".\n"; // LCOV_EXCL_LINE
                 }
             }
             if (verbose >= 2)
             {
-                PRINT_OUTPUT("The array has strength (at least) 1.\n"); // LCOV_EXCL_LINE
+                PRINT_OUTPUT << "The array has strength (at least) 1.\n"; // LCOV_EXCL_LINE
             }
             return SUCCESS_CHECK;
         }
@@ -184,8 +179,8 @@ namespace oacpp
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
-                    PRINT_OUTPUT("Array has only %d column(s).  At least two\n", static_cast<int>(ncol));
-                    PRINT_OUTPUT("columns are necessary for strength 2 to make sense.\n");
+                    PRINT_OUTPUT << "Array has only " << ncol << " column(s).  At least two\n";
+                    PRINT_OUTPUT << "columns are necessary for strength 2 to make sense.\n";
                 } // LCOV_EXCL_STOP
                 return 0;
             }
@@ -193,8 +188,8 @@ namespace oacpp
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
-                    PRINT_OUTPUT("The array cannot have strength 2, because the number\n");
-                    PRINT_OUTPUT("of rows %d is not a multiple of q^2 = %d^2 = %d.\n", static_cast<int>(nrow), q, q * q);
+                    PRINT_OUTPUT << "The array cannot have strength 2, because the number\n";
+                    PRINT_OUTPUT << "of rows " << nrow << " is not a multiple of q^2 = " << q << "^2 = " << q*q << ".\n";
                 } // LCOV_EXCL_STOP
                 return 0;
             }
@@ -220,11 +215,9 @@ namespace oacpp
                             {
                                 if (verbose >= 2) // LCOV_EXCL_START
                                 {
-                                    PRINT_OUTPUT("Array is not of strength 2.  The first violation arises for\n");
-                                    PRINT_OUTPUT("the number of times (A[,%d],A[,%d]) = (%d,%d).\n",
-                                            static_cast<int>(j1), static_cast<int>(j2), q1, q2);
-                                    PRINT_OUTPUT("This happened in %d rows, it should have happened in %d rows.\n",
-                                            count, lambda);
+                                    PRINT_OUTPUT << "Array is not of strength 2.  The first violation arises for\n";
+                                    PRINT_OUTPUT << "the number of times (A[," << j1 << "],A[," << j2 << "]) = (" << q1 << "," << q2 << ").\n";
+                                    PRINT_OUTPUT << "This happened in " << count << " rows, it should have happened in " << lambda << " rows.\n";
                                 } // LCOV_EXCL_STOP
                                 return 0;
                             }
@@ -233,13 +226,13 @@ namespace oacpp
                 }
                 if (work > MEDWORK && verbose > 0)
                 {
-                    PRINT_OUTPUT("No violation of strength 2 involves column %d.\n", static_cast<int>(j1)); // LCOV_EXCL_LINE
+                    PRINT_OUTPUT << "No violation of strength 2 involves column " << j1 << ".\n"; // LCOV_EXCL_LINE
                 }
             }
 
             if (verbose >= 2)
             {
-                PRINT_OUTPUT("The array has strength (at least) 2.\n"); // LCOV_EXCL_LINE
+                PRINT_OUTPUT << "The array has strength (at least) 2.\n"; // LCOV_EXCL_LINE
             }
             return 1;
         }
@@ -256,8 +249,8 @@ namespace oacpp
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
-                    PRINT_OUTPUT("Array has only %d column(s).  At least three\n", static_cast<int>(ncol));
-                    PRINT_OUTPUT("columns are necessary for strength 3 to make sense.\n");
+                    PRINT_OUTPUT << "Array has only " << ncol << " column(s).  At least three\n";
+                    PRINT_OUTPUT << "columns are necessary for strength 3 to make sense.\n";
                 } // LCOV_EXCL_STOP
                 return 0;
             }
@@ -265,8 +258,8 @@ namespace oacpp
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
-                    PRINT_OUTPUT("The array cannot have strength 3, because the number\n");
-                    PRINT_OUTPUT("of rows %d is not a multiple of q^3 = %d^3 = %d.\n", static_cast<int>(nrow), q, q * q * q);
+                    PRINT_OUTPUT << "The array cannot have strength 3, because the number\n";
+                    PRINT_OUTPUT << "of rows " << nrow << " is not a multiple of q^3 = " << q << "^3 = " << q*q*q << ".\n";
                 } // LCOV_EXCL_STOP
                 return 0;
             }
@@ -296,11 +289,9 @@ namespace oacpp
                                     {
                                         if (verbose >= 2) // LCOV_EXCL_START
                                         {
-                                            PRINT_OUTPUT("Array is not of strength 3.  The first violation arises for\n");
-                                            PRINT_OUTPUT("the number of times (A[,%d],A[,%d],A[,%d]) = (%d,%d,%d).\n",
-                                                    static_cast<int>(j1), static_cast<int>(j2), static_cast<int>(j3), q1, q2, q3);
-                                            PRINT_OUTPUT("This happened in %d rows, it should have happened in %d rows.\n",
-                                                    count, lambda);
+                                            PRINT_OUTPUT << "Array is not of strength 3.  The first violation arises for\n";
+                                            PRINT_OUTPUT << "the number of times (A[," << j1 << "],A[," << j2 << "],A[," << j3 << "]) = (" << q1 << "," << q2 << "," << q3 << ").\n";
+                                            PRINT_OUTPUT << "This happened in " << count << " rows, it should have happened in " << lambda << " rows.\n";
                                         } // LCOV_EXCL_STOP
                                         return 0;
                                     }
@@ -311,12 +302,12 @@ namespace oacpp
                 }
                 if (work > MEDWORK && verbose > 0)
                 {
-                    PRINT_OUTPUT("No violation of strength 3 involves column %d.\n", static_cast<int>(j1)); // LCOV_EXCL_LINE
+                    PRINT_OUTPUT << "No violation of strength 3 involves column " << j1 << ".\n"; // LCOV_EXCL_LINE
                 }
             }
             if (verbose >= 2)
             {
-                PRINT_OUTPUT("The array has strength (at least) 3.\n"); // LCOV_EXCL_LINE
+                PRINT_OUTPUT << "The array has strength (at least) 3.\n"; // LCOV_EXCL_LINE
             }
             return 1;
         }
@@ -333,8 +324,8 @@ namespace oacpp
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
-                    PRINT_OUTPUT("Array has only %d column(s).  At least four\n", static_cast<int>(ncol));
-                    PRINT_OUTPUT("columns are necessary for strength 4 to make sense.\n");
+                    PRINT_OUTPUT << "Array has only " << ncol << " column(s).  At least four\n";
+                    PRINT_OUTPUT << "columns are necessary for strength 4 to make sense.\n";
                 } // LCOV_EXCL_STOP
                 return 0;
             }
@@ -342,8 +333,8 @@ namespace oacpp
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
-                    PRINT_OUTPUT("The array cannot have strength 4, because the number\n");
-                    PRINT_OUTPUT("of rows %d is not a multiple of q^4 = %d^4 = %d.\n", static_cast<int>(nrow), q, q * q * q * q);
+                    PRINT_OUTPUT << "The array cannot have strength 4, because the number\n";
+                    PRINT_OUTPUT << "of rows " << nrow << " is not a multiple of q^4 = " << q << "^4 = " << q*q*q*q << ".\n";
                 } // LCOV_EXCL_STOP
                 return 0;
             }
@@ -381,11 +372,9 @@ namespace oacpp
                                             {
                                                 if (verbose >= 2) // LCOV_EXCL_START
                                                 {
-                                                    PRINT_OUTPUT("Array is not of strength 4.  The first violation arises for\n");
-                                                    PRINT_OUTPUT("the number of times (A[,%d],A[,%d],A[,%d],A[,%d]) = (%d,%d,%d,%d).\n",
-                                                            static_cast<int>(j1), static_cast<int>(j2), static_cast<int>(j3), static_cast<int>(j4), q1, q2, q3, q4);
-                                                    PRINT_OUTPUT("This happened in %d rows, it should have happened in %d rows.\n",
-                                                            count, lambda);
+                                                    PRINT_OUTPUT << "Array is not of strength 4.  The first violation arises for\n";
+                                                    PRINT_OUTPUT << "the number of times (A[," << j1 << "],A[," << j2 << "],A[," << j3 << "],A[," << j4 << "]) = (" << q1 << "," << q2 << "," << q3 << "," << q4 << ").\n";
+                                                    PRINT_OUTPUT << "This happened in " << count << " rows, it should have happened in " << lambda << " rows.\n";
                                                 } // LCOV_EXCL_STOP
                                                 return 0;
                                             }
@@ -398,13 +387,13 @@ namespace oacpp
                 }
                 if (work > MEDWORK && verbose > 0)
                 {
-                    PRINT_OUTPUT("No violation of strength 4 involves column %d.\n", static_cast<int>(j1)); // LCOV_EXCL_LINE
+                    PRINT_OUTPUT << "No violation of strength 4 involves column " << j1 << ".\n"; // LCOV_EXCL_LINE
                 }
             }
 
             if (verbose >= 2)
             {
-                PRINT_OUTPUT("The array has strength (at least) 4.\n"); // LCOV_EXCL_LINE
+                PRINT_OUTPUT << "The array has strength (at least) 4.\n"; // LCOV_EXCL_LINE
             }
             return 1;
         }
@@ -422,8 +411,8 @@ namespace oacpp
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
-                    PRINT_OUTPUT("Don't know how to verify strength %d.  It doesn't\n", t);
-                    PRINT_OUTPUT("make sense.\n");
+                    PRINT_OUTPUT << "Don't know how to verify strength " << t << ".  It doesn't\n";
+                    PRINT_OUTPUT << "make sense.\n";
                 } // LCOV_EXCL_STOP
                 return 0;
             }
@@ -431,8 +420,8 @@ namespace oacpp
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
-                    PRINT_OUTPUT("Array has only %d column(s).  At least %d\n", static_cast<int>(ncol), t);
-                    PRINT_OUTPUT("columns are necessary for strength %d to make sense.\n", t);
+                    PRINT_OUTPUT << "Array has only " << ncol << " column(s).  At least " << t << "\n";
+                    PRINT_OUTPUT << "columns are necessary for strength " << t << " to make sense.\n";
                 } // LCOV_EXCL_STOP
                 return 0;
             }
@@ -444,9 +433,8 @@ namespace oacpp
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
-                    PRINT_OUTPUT("The array cannot have strength %d, because the number\n", t);
-                    PRINT_OUTPUT("of rows %d is not a multiple of q^%d = %d^%d = %d.\n",
-                            static_cast<int>(nrow), t, q, t, primes::ipow(q, t));
+                    PRINT_OUTPUT << "The array cannot have strength " << t << ", because the number\n";
+                    PRINT_OUTPUT << "of rows " << nrow << " is not a multiple of q^" << t << " = " << q << "^" << t << " = " << primes::ipow(q, t) << ".\n";
                 } // LCOV_EXCL_STOP
                 return 0;
             }
@@ -491,19 +479,18 @@ namespace oacpp
                     {
                         if (verbose >= 2) // LCOV_EXCL_START
                         {
-                            PRINT_OUTPUT("Array is not of strength %d.  The first violation arises for\n", t);
-                            PRINT_OUTPUT("the number of times (");
+                            PRINT_OUTPUT << "Array is not of strength " << t << ".  The first violation arises for\n";
+                            PRINT_OUTPUT << "the number of times (";
                             for (int i = 0; i < t; i++)
                             {
-                                PRINT_OUTPUT("A(,%d)%s", clist[i], (i == t - 1) ? ")" : ",");
+                                PRINT_OUTPUT << "A(," << clist[i] << ")" << ((i == t - 1) ? ")" : ",");
                             }
-                            PRINT_OUTPUT(" = (");
+                            PRINT_OUTPUT << " = (";
                             for (int i = 0; i < t; i++)
                             {
-                                PRINT_OUTPUT("%d%s", qlist[i], (i == t - 1) ? ").\n" : ",");
+                                PRINT_OUTPUT << qlist[i] << ((i == t - 1) ? ").\n" : ",");
                             }
-                            PRINT_OUTPUT("This happened in %d rows, it should have happened in %d rows.\n",
-                                    count, lambda);
+                            PRINT_OUTPUT << "This happened in " << count << " rows, it should have happened in " << lambda << " rows.\n";
                         } // LCOV_EXCL_STOP
                         return 0;
                     }
@@ -529,8 +516,7 @@ namespace oacpp
                 if (work > MEDWORK && verbose > 0 &&
                       ((t == 1 || t > 1) && (clist[1] == 0)))
                 {
-                    PRINT_OUTPUT("No violation of strength %d involves column %d.\n",
-                        t, (clist[0] + static_cast<int>(ncol) - 1) % static_cast<int>(ncol)); // LCOV_EXCL_LINE
+                    PRINT_OUTPUT << "No violation of strength " << t << " involves column " << (clist[0] + static_cast<int>(ncol) - 1) % static_cast<int>(ncol) << ".\n"; // LCOV_EXCL_LINE
                 }
 
                 for (size_t i = 1; i < static_cast<size_t>(t); i++)
@@ -544,7 +530,7 @@ namespace oacpp
 
             if (verbose >= 2)
             {
-                PRINT_OUTPUT("The array has strength (at least) %d.\n", t); // LCOV_EXCL_LINE
+                PRINT_OUTPUT << "The array has strength (at least) " << t << ".\n"; // LCOV_EXCL_LINE
             }
             return SUCCESS_CHECK;
         }

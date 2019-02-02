@@ -83,16 +83,16 @@ namespace lhslib
 	template <class T>
 	void lhsPrint(const bclib::matrix<T> & A)
 	{
-        PRINT_MACRO("\n");
+        PRINT_MACRO << "\n";
         msize_type cols = A.colsize();
         msize_type rows = A.rowsize();
         for (msize_type irow = 0; irow < rows; irow++)
         {
             for (msize_type jcol = 0; jcol < cols; jcol++)
             {
-                PRINT_MACRO("%g ", static_cast<double>(A(irow, jcol)));
+                PRINT_MACRO << A(irow, jcol) << ", ";
             }
-            PRINT_MACRO("\n");
+            PRINT_MACRO << "\n";
         }
 	}
 

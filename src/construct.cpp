@@ -133,11 +133,11 @@ namespace oacpp
             }
             if (str >= q + 1) // LCOV_EXCL_START
             {
-                PRINT_OUTPUT("Bush's (1952) theorem has a condition t<q where t\n");
-                PRINT_OUTPUT("is the strength of the array and q is the number of symbols.\n");
-                PRINT_OUTPUT("Here we have t = %d and q = %d.  The array may still\n", str, q);
-                PRINT_OUTPUT("be useful, but a full factorial would have at least as\n");
-                PRINT_OUTPUT("many columns.\n");
+                PRINT_OUTPUT << "\tBush's (1952) theorem has a condition t<q where t\n";
+                PRINT_OUTPUT << "\tis the strength of the array and q is the number of symbols.\n";
+                PRINT_OUTPUT << "\tHere we have t = " << str << " and q = " << q << ".  The array may still\n";
+                PRINT_OUTPUT << "\tbe useful, but a full factorial would have at least as\n";
+                PRINT_OUTPUT << "many columns.\n";
             } // LCOV_EXCL_STOP
 
             return SUCCESS_CHECK;
@@ -184,11 +184,11 @@ namespace oacpp
 
             if (ncol == 2 * q + 1) // LCOV_EXCL_START
             {
-                PRINT_OUTPUT("\nWarning: The Addelman-Kempthorne construction with ncol = 2q+1\n");
-                PRINT_OUTPUT("has a defect.  While it is still an OA(2q^2,2q+1,q,2),\n");
-                PRINT_OUTPUT("there exist some pairs of rows that agree in three columns.\n");
-                PRINT_OUTPUT("The final column in the array is involved in all of these\n");
-                PRINT_OUTPUT("triple coincidences.\n");
+                PRINT_OUTPUT << "\n\tWarning: The Addelman-Kempthorne construction with ncol = 2q+1\n";
+                PRINT_OUTPUT << "\thas a defect.  While it is still an OA(2q^2,2q+1,q,2),\n";
+                PRINT_OUTPUT << "\tthere exist some pairs of rows that agree in three columns.\n";
+                PRINT_OUTPUT << "\tThe final column in the array is involved in all of these\n";
+                PRINT_OUTPUT << "\ttriple coincidences.\n";
             } // LCOV_EXCL_STOP
             
             return SUCCESS_CHECK;
@@ -301,9 +301,9 @@ namespace oacpp
 
             if (ncol == 2 * q + 1) // LCOV_EXCL_START
             {
-                PRINT_OUTPUT("\nWarning: The Bose-Bush construction with ncol = 2q+1\n");
-                PRINT_OUTPUT("has a defect.  While it is still an OA(2q^2,2q+1,q,2),\n");
-                PRINT_OUTPUT("there exist some pairs of rows that agree in three columns.\n\n\n");
+                PRINT_OUTPUT << "\n\tWarning: The Bose-Bush construction with ncol = 2q+1\n";
+                PRINT_OUTPUT << "\thas a defect.  While it is still an OA(2q^2,2q+1,q,2),\n";
+                PRINT_OUTPUT << "\tthere exist some pairs of rows that agree in three columns.\n\n";
             } // LCOV_EXCL_STOP
             
             return SUCCESS_CHECK;
@@ -370,10 +370,10 @@ namespace oacpp
 
             if (ncol == lam * s + 1) // LCOV_EXCL_START
             {
-                PRINT_OUTPUT("\nWarning: The Bose-Bush construction with ncol = lambda*q+1\n");
-                PRINT_OUTPUT("has a defect.  While it is still an OA(lambda*q^2,lambda*q+1,q,2),\n");
-                PRINT_OUTPUT("it may have worse coincidence properties than\n");
-                PRINT_OUTPUT("OA(lambda*q^2,lambda*q+1,q,2).\n");
+                PRINT_OUTPUT << "\n\tWarning: The Bose-Bush construction with ncol = lambda*q+1\n";
+                PRINT_OUTPUT << "\thas a defect.  While it is still an OA(lambda*q^2,lambda*q+1,q,2),\n";
+                PRINT_OUTPUT << "\tit may have worse coincidence properties than\n";
+                PRINT_OUTPUT << "\tOA(lambda*q^2,lambda*q+1,q,2).\n";
             } // LCOV_EXCL_STOP
             
             return SUCCESS_CHECK;

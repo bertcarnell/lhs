@@ -602,8 +602,8 @@ namespace oacpp {
 	inline
 	void COrthogonalArray::oadimen()
 	{
-		PRINT_OUTPUT("\nThe array has %d rows, %d columns and appears\n", m_nrow, m_ncol);
-		PRINT_OUTPUT("to have %d symbols, since the largest symbol is %d.\n", m_q, m_q-1);
+		PRINT_OUTPUT << "\nThe array has " << m_nrow << " rows, " << m_ncol << " columns and appears\n";
+		PRINT_OUTPUT << "to have " << m_q << " symbols, since the largest symbol is " << m_q - 1 << ".\n";
 	}
 
 	inline 

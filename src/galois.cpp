@@ -214,62 +214,62 @@ namespace oacpp
 
             if (q > 999)
             {
-                PRINT_OUTPUT("Warning q=%d will overflow print field.\n", q);
+                PRINT_OUTPUT << "Warning q=" << q << " will overflow print field.\n";
             }
 
-            PRINT_OUTPUT("\nFor GF(%d) p=%d n=%d\n", q, p, n);
-            PRINT_OUTPUT("x**n = (");
+            PRINT_OUTPUT << "\nFor GF(" << q << ") p=" << p << " n=" << n << "\n";
+            PRINT_OUTPUT << "x**n = (";
             for (int i = 0; i < n - 1; i++)
             {
-                PRINT_OUTPUT("%d,", gf.xton[i]);
+                PRINT_OUTPUT << gf.xton[i] << ",";
             }
-            PRINT_OUTPUT("%d)\n", gf.xton[static_cast<size_t>(n) - 1]);
-            PRINT_OUTPUT("\n\nGF(%d) Polynomial coefficients:\n", q);
+            PRINT_OUTPUT << gf.xton[static_cast<size_t>(n) - 1] << ")\n";
+            PRINT_OUTPUT << "\n\nGF(" << q << ") Polynomial coefficients:\n";
             for (int i = 0; i < q; i++)
             {
-                PRINT_OUTPUT("  %3d  ", i);
+                PRINT_OUTPUT << "  " << i << "  ";
                 for (int j = 0; j < n; j++)
                 {
-                    PRINT_OUTPUT("%3d ", gf.poly(i,j));
+                    PRINT_OUTPUT << gf.poly(i,j) << " ";
                 }
-                PRINT_OUTPUT("\n");
+                PRINT_OUTPUT << "\n";
             }
-            PRINT_OUTPUT("\n\nGF(%d) Addition Table\n", q);
+            PRINT_OUTPUT << "\n\nGF(" << q << ") Addition Table\n";
             for (int i = 0; i < q; i++)
             {
-                PRINT_OUTPUT("  ");
+                PRINT_OUTPUT << "  ";
                 for (int j = 0; j < q; j++)
                 {
-                    PRINT_OUTPUT(" %3d", gf.plus(i,j));
+                    PRINT_OUTPUT << " " << gf.plus(i,j);
                 }
-                PRINT_OUTPUT("\n");
+                PRINT_OUTPUT << "\n";
             }
-            PRINT_OUTPUT("\n\nGF(%d) Multiplication table\n", q);
+            PRINT_OUTPUT << "\n\nGF(" << q << ") Multiplication table\n";
             for (int i = 0; i < q; i++)
             {
-                PRINT_OUTPUT("  ");
+                PRINT_OUTPUT << "  ";
                 for (int j = 0; j < q; j++)
                 {
-                    PRINT_OUTPUT(" %3d", gf.times(i,j));
+                    PRINT_OUTPUT << " " << gf.times(i,j);
                 }
-                PRINT_OUTPUT("\n");
+                PRINT_OUTPUT << "\n";
             }
-            PRINT_OUTPUT("\n\nGF(%d) Reciprocals\n", q);
+            PRINT_OUTPUT << "\n\nGF(" << q << ") Reciprocals\n";
             for (int i = 1; i < q; i++)
             {
-                PRINT_OUTPUT(" %3d %3d\n", i, gf.inv[i]);
+                PRINT_OUTPUT << " " << i << " " << gf.inv[i] << "\n";
             }
 
-            PRINT_OUTPUT("\n\nGF(%d) Negatives\n", q);
+            PRINT_OUTPUT << "\n\nGF(" << q << ") Negatives\n";
             for (int i = 0; i < q; i++)
             {
-                PRINT_OUTPUT(" %3d %3d\n", i, gf.neg[i]);
+                PRINT_OUTPUT << " " << i << " " << gf.neg[i] << "\n";
             }
 
-            PRINT_OUTPUT("\n\nGF(%d) Square roots\n", q);
+            PRINT_OUTPUT << "\n\nGF(" << q << ") Square roots\n";
             for (int i = 0; i < q; i++)
             {
-                PRINT_OUTPUT(" %3d %3d\n", i, gf.root[i]);
+                PRINT_OUTPUT << " " << i << " " << gf.root[i] << "\n";
             }
         } // LCOV_EXCL_STOP
     } // end namespace
