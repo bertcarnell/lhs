@@ -64,7 +64,7 @@ maintaining the latin properties of the design." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -186,18 +186,9 @@ and [optSeededLHS()] to modify and augment existing designs.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='randomLHS.html'>randomLHS</a></span>(<span class='fl'>4</span>,<span class='fl'>3</span>)
-<span class='no'>a</span></div><div class='output co'>#&gt;             [,1]       [,2]       [,3]
-#&gt; [1,] 0.008560333 0.08009643 0.85058206
-#&gt; [2,] 0.798917459 0.85088453 0.01591536
-#&gt; [3,] 0.597175328 0.49388696 0.32247307
-#&gt; [4,] 0.419595107 0.68382990 0.54898918</div><div class='input'><span class='fu'>augmentLHS</span>(<span class='no'>a</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt;             [,1]       [,2]       [,3]
-#&gt; [1,] 0.008560333 0.08009643 0.85058206
-#&gt; [2,] 0.798917459 0.85088453 0.01591536
-#&gt; [3,] 0.597175328 0.49388696 0.32247307
-#&gt; [4,] 0.419595107 0.68382990 0.54898918
-#&gt; [5,] 0.991429429 0.57202854 0.77274427
-#&gt; [6,] 0.196723128 0.28440564 0.41317076</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Random'>set.seed</a></span>(<span class='fl'>1234</span>)
+<span class='no'>a</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='randomLHS.html'>randomLHS</a></span>(<span class='fl'>4</span>,<span class='fl'>3</span>)
+<span class='no'>b</span> <span class='kw'>&lt;-</span> <span class='fu'>augmentLHS</span>(<span class='no'>a</span>, <span class='fl'>2</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -222,7 +213,7 @@ and [optSeededLHS()] to modify and augment existing designs.</p></div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rob carnell.</p>
+  <p>Developed by Rob Carnell.</p>
 </div>
 
 <div class="pkgdown">

@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
       </span>
     </div>
 
@@ -128,7 +128,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>oa_to_oalhs</span>(<span class='no'>n</span>, <span class='no'>k</span>, <span class='no'>oa</span>, <span class='kw'>bverbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>oa_to_oalhs</span>(<span class='no'>n</span>, <span class='no'>k</span>, <span class='no'>oa</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,10 +145,6 @@
       <th>oa</th>
       <td><p>the orthogonal array to be used as the basis for the LHS (matrix of integers) or data.frame of factors</p></td>
     </tr>
-    <tr>
-      <th>bverbose</th>
-      <td><p>should information be printed with execution</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -158,44 +154,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>oa</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='createBose.html'>createBose</a></span>(<span class='fl'>3</span>, <span class='fl'>4</span>, <span class='fl'>TRUE</span>)
-<span class='fu'>oa_to_oalhs</span>(<span class='fl'>9</span>, <span class='fl'>4</span>, <span class='no'>oa</span>, <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
-#&gt; initial oa:
-#&gt; 1,0,1,1
-#&gt; 1,1,2,0
-#&gt; 1,2,0,2
-#&gt; 0,0,2,2
-#&gt; 0,1,0,1
-#&gt; 0,2,1,0
-#&gt; 2,0,0,0
-#&gt; 2,1,1,2
-#&gt; 2,2,2,1
-#&gt; 
-#&gt; unique values per row:
-#&gt; 1,0,2,
-#&gt; 0,1,2,
-#&gt; 1,2,0,
-#&gt; 1,0,2,
-#&gt; 
-#&gt; integer lhs:
-#&gt; 2,1,2,2
-#&gt; 1,5,6,6
-#&gt; 3,8,9,7
-#&gt; 5,2,4,8
-#&gt; 6,6,7,3
-#&gt; 4,7,3,5
-#&gt; 7,3,8,4
-#&gt; 9,4,1,9
-#&gt; 8,9,5,1
-#&gt; </div><div class='output co'>#&gt;             [,1]       [,2]       [,3]       [,4]
-#&gt;  [1,] 0.13236126 0.04448711 0.16496590 0.21833389
-#&gt;  [2,] 0.07640146 0.45606638 0.62137536 0.61869085
-#&gt;  [3,] 0.30159534 0.86184283 0.90188639 0.73781139
-#&gt;  [4,] 0.46127432 0.20844853 0.37652290 0.81619290
-#&gt;  [5,] 0.63341767 0.66585604 0.77225182 0.26688927
-#&gt;  [6,] 0.41221287 0.70870716 0.29419095 0.44849174
-#&gt;  [7,] 0.75637464 0.25857557 0.87141113 0.37398857
-#&gt;  [8,] 0.98099623 0.41858989 0.04457824 0.94494590
-#&gt;  [9,] 0.81101928 0.89646049 0.50900651 0.05848529</div></pre>
+<span class='no'>B</span> <span class='kw'>&lt;-</span> <span class='fu'>oa_to_oalhs</span>(<span class='fl'>9</span>, <span class='fl'>4</span>, <span class='no'>oa</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -212,7 +171,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Rob carnell.</p>
+  <p>Developed by Rob Carnell.</p>
 </div>
 
 <div class="pkgdown">

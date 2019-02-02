@@ -64,3 +64,7 @@ Verion 1.0
   Changed all underlying C code to C++ using Rcpp.
   Added orthogonal array latin hypercube capability
   
+Version 1.0.1
+  Update to fix a memory leak notice on CRAN servers when checking examples with valgrind
+
+  
