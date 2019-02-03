@@ -6,7 +6,9 @@ RUN apt-get update -qq \
 	&& apt-get dist-upgrade -y
 
 ## install requirements for R packages
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
+## best practice to run update each time in case the build restarts later
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
+	&& apt-get install -y \
 	libgmp-dev \
 	curl \
 	libcurl4-openssl-dev \
@@ -18,9 +20,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	libfreetype6-dev \
 	xorg \
 	libx11-dev \
-	libftgl2
+	libftgl2 \
+	texlive \
+	git
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -t unstable -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
+	&& apt-get install -t unstable -y \
 	r-recommended \
 	r-cran-rcpp \
 	r-cran-rcpparmadillo \
@@ -125,8 +130,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -t unstable -y \
 COPY ["rev_dep_docker_packages.R", "/home/docker/rev_dep_docker_packages.R"]
 
 RUN Rscript /home/docker/rev_dep_docker_packages.R lhs
-
-COPY ["revdepcheck_install.R", "/home/docker/revdepcheck_install.R"]
 
 RUN wget https://install-github.me/r-lib/revdepcheck \
 	&& Rscript -e 'source("revdepcheck")'
