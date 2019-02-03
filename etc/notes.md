@@ -32,5 +32,16 @@ docker run -ti --rm -v ~/Documents/repositories:/home/docker -w /home/docker -u 
 cd lhs
 R
 revdepcheck::revdep_check(pkg='.', dependencies='Depends', num_workers=1)
+# revdep folder may be owned by root, use sudo chown -hR pi revdep from outside of the docker to allow docker access
+revdepcheck::revdep_summary()
+revdepcheck::revdep_reset()
+```
+
+## For failed installations, check the package directly
+
+```
+cd <package>/revdep/checks/<dependency>
+wget https://cran.r-project.org/src/contrib/<dependency>_<rev>.tar.gz
+R CMD check <dependency>_<rev>.tar.gz
 ```
 
