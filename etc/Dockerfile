@@ -10,18 +10,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	libgmp-dev \
 	curl \
 	libcurl4-openssl-dev \
-	python-dev
-#	libssl-dev \
-#	texlive \
-#	default-jdk \
-#	libxml2-dev \
-#	libcgal-dev \
-#	libglu1-mesa-dev \
-#	libfreetype6-dev \
-#	xorg \
-#	libx11-dev \
-#	libftgl2 \
-#	git 
+	python-dev \
+	libssl-dev \
+	default-jdk \
+	libxml2-dev \
+	libcgal-dev \
+	libfreetype6-dev \
+	xorg \
+	libx11-dev \
+	libftgl2
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -t unstable -y \
 	r-recommended \
@@ -131,5 +128,6 @@ RUN Rscript /home/docker/rev_dep_docker_packages.R lhs
 
 COPY ["revdepcheck_install.R", "/home/docker/revdepcheck_install.R"]
 
-RUN Rscript /home/docker/revdepcheck_install.R
+RUN wget https://install-github.me/r-lib/revdepcheck \
+	&& Rscript -e 'source("revdepcheck")'
 
