@@ -1,6 +1,7 @@
-# lhs
+<div><table><tr><td><img align="left" width="200" height="200" src="logo.svg"></td></tr></table></div>
 
-This package provides a number of methods for creating and augmenting Latin Hypercube Samples
+This package provides a number of methods for creating and augmenting 
+Latin Hypercube Samples
 
 |<sub>Linux & MacOS</sub>|<sub>Windows</sub>|<sub>Code Coverage</sub>|<sub>CRAN Downloads</sub>|<sub>CRAN</sub>|
 |:---:|:---:|:---:|:---:|:---:|

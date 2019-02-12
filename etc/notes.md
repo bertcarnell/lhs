@@ -20,14 +20,14 @@ docker run -ti --rm r-base
 #  -v is bind mount a volume
 #  -w is the working directory
 #  -u is the user
-docker run -ti --rm -v ~/Documents/repositories:/home/docker -w /home/docker -u docker r-base R CMD build lhs
-docker run -ti --rm -v ~/Documents/repositories:/home/docker -w /home/docker -u docker r-base R CMD check lhs_*.tar.gz
+sudo docker run -ti --rm -v ~/Documents/repositories:/home/docker -w /home/docker -u docker r-base R CMD build lhs
+sudo docker run -ti --rm -v ~/Documents/repositories:/home/docker -w /home/docker -u docker r-base R CMD check lhs_*.tar.gz
 ```
 
-## Usage of the built image
+## Usage of the built image for Reverse Dependency Checks
 
 ```
-docker run -ti --rm -v ~/Documents/repositories:/home/docker -w /home/docker -u docker lhs_r_base "/bin/bash"
+sudo docker run -ti --rm -v ~/Documents/repositories:/home/docker -w /home/docker -u docker lhs_r_base "/bin/bash"
 # inside the docker
 cd lhs
 R
@@ -37,11 +37,16 @@ revdepcheck::revdep_summary()
 revdepcheck::revdep_reset()
 ```
 
-## For failed installations, check the package directly
+#### For failed installations, check the package directly
 
 ```
+# build the package from the repo
+R CMD build <my package>
+R CMD INSTALL <my package>_<ver>.tar.gz
+
 cd <package>/revdep/checks/<dependency>
-wget https://cran.r-project.org/src/contrib/<dependency>_<rev>.tar.gz
+wget -r -l2 --accept-regex='<package>[_][0-9.-_]*[.]tar[.]gz' -R "*.txt" https://cran.r-project.org/src/contrib
+mv cran.r-project.org/src/contrib/*.tar.gz .
+rm -rf cran.r-project.org
 R CMD check <dependency>_<rev>.tar.gz
 ```
-
