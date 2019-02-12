@@ -8,7 +8,7 @@ RUN apt-get update -qq \
 ## install requirements for R packages
 ## best practice to run update each time in case the build restarts later
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
-	&& apt-get install -y \
+	&& DEBIAN_FRONTEND=noninteractive apt-get install -t unstable -y \
 	libgmp-dev \
 	curl \
 	libcurl4-openssl-dev \
@@ -21,7 +21,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	xorg \
 	libx11-dev \
 	libftgl2 \
-	texlive \
+	texinfo \
+	texlive-base \
+	texlive-extra-utils \
+	texlive-fonts-extra \
+	texlive-fonts-recommended \
+	texlive-generic-recommended \
+	texlive-latex-base \
+	texlive-latex-extra \
+	texlive-latex-recommended \
 	git
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
