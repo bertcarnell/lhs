@@ -1,6 +1,6 @@
 pkg <- "lhs"
 pkg_path <- ".."
-dependencies <- c("Depends", "Suggests")
+dependencies <- c("Depends", "Suggests", "Imports")
 restart <- NA # or NA
 extraArgs <- list(laGP = "--no-vignettes")
 
@@ -40,7 +40,7 @@ print_section <- function(oldtext, newtext, typetext, output_filename)
 ################################################################################
 # Create directory structure
 revdep_path <- check_and_create_dir(file.path(pkg_path, "revdep"))
-revdep_library_path <- check_and_create_dir(file.path(revdep_path, "library", "lhs"))
+revdep_library_path <- check_and_create_dir(file.path(revdep_path, "library", pkg))
 revdep_library_path_new <- check_and_create_dir(file.path(revdep_library_path, "new"))
 revdep_library_path_old <- check_and_create_dir(file.path(revdep_library_path, "old"))
 revdep_check_path <- check_and_create_dir(file.path(revdep_path, "checks"))
@@ -56,7 +56,7 @@ if (!file.exists(file.path(revdep_library_path_old, pkg)))
   install.packages(deps, lib = revdep_library_path_old)
 } else
 {
-  cat("old lhs package already installed\n")
+  cat("old package already installed\n")
 }
 
 ################################################################################
@@ -71,7 +71,7 @@ if (!file.exists(file.path(revdep_library_path_new, pkg)))
   install.packages(deps, lib = revdep_library_path_new)
 } else
 {
-  cat("new lhs package already installed\n")
+  cat("new package already installed\n")
 }
 
 ################################################################################
