@@ -29,12 +29,8 @@ sudo docker run -ti --rm -v ~/Documents/repositories:/home/docker -w /home/docke
 ```
 sudo docker run -ti --rm -v ~/Documents/repositories:/home/docker -w /home/docker -u docker lhs_r_base "/bin/bash"
 # inside the docker
-cd lhs
-R
-revdepcheck::revdep_check(pkg='.', dependencies='Depends', num_workers=1)
-# revdep folder may be owned by root, use sudo chown -hR pi revdep from outside of the docker to allow docker access
-revdepcheck::revdep_summary()
-revdepcheck::revdep_reset()
+cd lhs/etc
+Rscript lhs_rev_dep_check.R
 ```
 
 #### For failed installations, check the package directly

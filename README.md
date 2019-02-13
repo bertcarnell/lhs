@@ -11,6 +11,8 @@ Visit the webpage [here](https://bertcarnell.github.io/lhs/)
 
 See the Doxygen documentation [here](https://bertcarnell.github.io/lhs/html/index.html)
 
+The reverse dependency checks for `lhs` can be found [here](etc/revdep_README.md).
+
 ## Installation
 
 You can install the released version of `lhs` from [CRAN](https://CRAN.R-project.org) with:
@@ -33,10 +35,6 @@ Create a random LHS with 10 samples and 3 variables
 ``` r
 X <- randomLHS(10, 3)
 ```
-
-## Development
-
-The reverse dependency checks for lhs can be found [here](etc/README.md).
 
 ## Help
 
