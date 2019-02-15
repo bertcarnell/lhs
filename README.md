@@ -1,4 +1,12 @@
-<div><table><tr><td><img align="left" width="200" height="200" src="logo.svg"></td></tr></table></div>
+<div>
+  <table>
+    <tr>
+      <td>
+        <img align="left" width="200" height="200" src="logo.svg"/>
+      </td>
+    </tr>
+  </table>
+</div>
 
 This package provides a number of methods for creating and augmenting 
 Latin Hypercube Samples
@@ -24,16 +32,62 @@ install.packages("lhs")
 You can also install the development version of `lhs` from here with:
 
 ``` r
-# (if not done already:)  install.packages("devtools")
+# install.packages("devtools")
 devtools::install_github("bertcarnell/lhs")
 ```
 
-## Example
+## Examples
 
 Create a random LHS with 10 samples and 3 variables 
 
 ``` r
+require(lhs)
+set.seed(1776)
 X <- randomLHS(10, 3)
+```
+
+Create a design that is more optimal than the random case
+
+```r
+A <- geneticLHS(10, 3, pop = 100, gen = 5, pMut = 0.1)
+B <- maximinLHS(10, 3, method = "build", dup = 5)
+D <- maximinLHS(10, 3, method = "iterative", optimize.on = "result", eps = 0.01, maxIter = 300)
+E <- improvedLHS(10, 3, dup = 5)
+F <- optimumLHS(10, 3, maxSweeps = 10, eps = 0.01)
+```
+
+```r
+data.frame(method = c("random","genetic","maximin","maximin","improved","optimum"),
+           mean_dist = c(mean(dist(X)), mean(dist(A)), mean(dist(B)),
+                         mean(dist(D)), mean(dist(E)), mean(dist(F))),
+           min_dist = c(min(dist(X)), min(dist(A)), min(dist(B)),
+                        min(dist(D)), min(dist(E)), min(dist(F))))
+```
+
+|Method|Mean Distance|Minimum Distance|
+|------|-------------|----------------|
+|random | 0.7067224 | 0.2708864 |
+|genetic | 0.7189860 | 0.4058587 |
+|maximin | 0.7295788 | 0.3611274 |
+|maximin | 0.7245922 | 0.3974934 |
+|improved | 0.7028446 | 0.3871904 |
+|optimum | 0.7289469 | 0.4597657 |
+
+Augment an existing design
+
+```r
+Y <- randomLHS(10, 5)
+Z <- augmentLHS(Y, 2)
+```
+
+Build an orthogonal array LHS
+
+```r
+# a 9 row design is returned
+W9 <- create_oalhs(10, 3, FALSE, FALSE)
+
+# a 16 row design is returned
+W16 <- create_oalhs(10, 3, TRUE, FALSE)
 ```
 
 ## Help

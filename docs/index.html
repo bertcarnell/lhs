@@ -90,7 +90,13 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div><table class="table"><tr><td><img align="left" width="200" height="200" src="logo.svg"></td></tr></table></div>
+<div>
+  <table class="table"><tr>
+<td>
+        <img align="left" width="200" height="200" src="logo.svg">
+</td>
+    </tr></table>
+</div>
 <p>This package provides a number of methods for creating and augmenting Latin Hypercube Samples</p>
 <table class="table">
 <thead><tr class="header">
@@ -110,25 +116,82 @@
 </table>
 <p>Visit the webpage <a href="https://bertcarnell.github.io/lhs/">here</a></p>
 <p>See the Doxygen documentation <a href="https://bertcarnell.github.io/lhs/html/index.html">here</a></p>
+<p>The reverse dependency checks for <code>lhs</code> can be found <a href="etc/revdep_README.html">here</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of <code>lhs</code> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"lhs"</span>)</code></pre></div>
 <p>You can also install the development version of <code>lhs</code> from here with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># (if not done already:)  install.packages("devtools")</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
 devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"bertcarnell/lhs"</span>)</code></pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="examples" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<a href="#examples" class="anchor"></a>Examples</h2>
 <p>Create a random LHS with 10 samples and 3 variables</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">X &lt;-<span class="st"> </span><span class="kw"><a href="reference/randomLHS.html">randomLHS</a></span>(<span class="dv">10</span>, <span class="dv">3</span>)</code></pre></div>
-</div>
-<div id="development" class="section level2">
-<h2 class="hasAnchor">
-<a href="#development" class="anchor"></a>Development</h2>
-<p>The reverse dependency checks for lhs can be found <a href="etc/README.html">here</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(lhs)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1776</span>)
+X &lt;-<span class="st"> </span><span class="kw"><a href="reference/randomLHS.html">randomLHS</a></span>(<span class="dv">10</span>, <span class="dv">3</span>)</code></pre></div>
+<p>Create a design that is more optimal than the random case</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">A &lt;-<span class="st"> </span><span class="kw"><a href="reference/geneticLHS.html">geneticLHS</a></span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dt">pop =</span> <span class="dv">100</span>, <span class="dt">gen =</span> <span class="dv">5</span>, <span class="dt">pMut =</span> <span class="fl">0.1</span>)
+B &lt;-<span class="st"> </span><span class="kw"><a href="reference/maximinLHS.html">maximinLHS</a></span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dt">method =</span> <span class="st">"build"</span>, <span class="dt">dup =</span> <span class="dv">5</span>)
+D &lt;-<span class="st"> </span><span class="kw"><a href="reference/maximinLHS.html">maximinLHS</a></span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dt">method =</span> <span class="st">"iterative"</span>, <span class="dt">optimize.on =</span> <span class="st">"result"</span>, <span class="dt">eps =</span> <span class="fl">0.01</span>, <span class="dt">maxIter =</span> <span class="dv">300</span>)
+E &lt;-<span class="st"> </span><span class="kw"><a href="reference/improvedLHS.html">improvedLHS</a></span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dt">dup =</span> <span class="dv">5</span>)
+F &lt;-<span class="st"> </span><span class="kw"><a href="reference/optimumLHS.html">optimumLHS</a></span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="dt">maxSweeps =</span> <span class="dv">10</span>, <span class="dt">eps =</span> <span class="fl">0.01</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">method =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"random"</span>,<span class="st">"genetic"</span>,<span class="st">"maximin"</span>,<span class="st">"maximin"</span>,<span class="st">"improved"</span>,<span class="st">"optimum"</span>),
+           <span class="dt">mean_dist =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(X)), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(A)), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(B)),
+                         <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(D)), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(E)), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(F))),
+           <span class="dt">min_dist =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(X)), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(A)), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(B)),
+                        <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(D)), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(E)), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Extremes">min</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/dist">dist</a></span>(F))))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th>Method</th>
+<th>Mean Distance</th>
+<th>Minimum Distance</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>random</td>
+<td>0.7067224</td>
+<td>0.2708864</td>
+</tr>
+<tr class="even">
+<td>genetic</td>
+<td>0.7189860</td>
+<td>0.4058587</td>
+</tr>
+<tr class="odd">
+<td>maximin</td>
+<td>0.7295788</td>
+<td>0.3611274</td>
+</tr>
+<tr class="even">
+<td>maximin</td>
+<td>0.7245922</td>
+<td>0.3974934</td>
+</tr>
+<tr class="odd">
+<td>improved</td>
+<td>0.7028446</td>
+<td>0.3871904</td>
+</tr>
+<tr class="even">
+<td>optimum</td>
+<td>0.7289469</td>
+<td>0.4597657</td>
+</tr>
+</tbody>
+</table>
+<p>Augment an existing design</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Y &lt;-<span class="st"> </span><span class="kw"><a href="reference/randomLHS.html">randomLHS</a></span>(<span class="dv">10</span>, <span class="dv">5</span>)
+Z &lt;-<span class="st"> </span><span class="kw"><a href="reference/augmentLHS.html">augmentLHS</a></span>(Y, <span class="dv">2</span>)</code></pre></div>
+<p>Build an orthogonal array LHS</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a 9 row design is returned</span>
+W9 &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_oalhs.html">create_oalhs</a></span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>)
+
+<span class="co"># a 16 row design is returned</span>
+W16 &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_oalhs.html">create_oalhs</a></span>(<span class="dv">10</span>, <span class="dv">3</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</code></pre></div>
 </div>
 <div id="help" class="section level2">
 <h2 class="hasAnchor">
