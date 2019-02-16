@@ -2,7 +2,10 @@
 % Please edit documentation in R/createOA.R
 \name{createBoseBushl}
 \alias{createBoseBushl}
-\title{Create an orthogonal array using the Bose-Bush algorithm with alternate strength >= 3}
+\title{Create an orthogonal array using the Bose-Bush algorithm with alternate strength >= 3. The
+bosebushl program produces \code{OA( lambda*q^2, k, q, 2 )},
+\code{k <= lambda*q+1}, for prime powers \code{q} and \code{lambda > 1}.  Both \code{q} and
+\code{lambda} must be powers of the same prime.}
 \usage{
 createBoseBushl(q, ncol, lambda, bRandom = TRUE)
 }
@@ -19,11 +22,21 @@ createBoseBushl(q, ncol, lambda, bRandom = TRUE)
 an orthogonal array
 }
 \description{
-Create an orthogonal array using the Bose-Bush algorithm with alternate strength >= 3
+From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
+columns with every element being one of \code{q} symbols
+\code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}
+submatrix, the \code{q^t} possible distinct rows, all appear
+the same number of times.  This number is the index
+of the array, commonly denoted \code{lambda}.  Clearly,
+\code{lambda*q^t=n}. The notation for such an array is \code{OA( n, k, q, t )}.
 }
 \examples{
 A <- createBoseBushl(3, 3, 3, TRUE)
 B <- createBoseBushl(4, 4, 16, TRUE)
+}
+\references{
+Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+R.C. Bose and K.A. Bush (1952) Annals of Mathematical Statistics, Vol 23 pp 508-524.
 }
 \seealso{
 Other methods to create orthogonal arrays [createBoseBush()],

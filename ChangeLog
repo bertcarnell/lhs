@@ -10,43 +10,43 @@ Version 0.3
   The bug involved augmenting a hypercube with one point.  RUnit test added
   to check this bug.  All RUnit tests satisfactory.  Also added documentation
   consisting of an augmentation example.  Added a lhs package help page.
-  
+
 Version 0.4
   Changed the license to GPL >= 2 according to a Kurt Hornik email
 
 Version 0.5
   Change output filenames to be portable
-  
+
 Version 0.6
   Added a new option to randomLHS to allow for similar lhs's when
   the seed is set and columns are added
-  
+
 Version 0.7
   Removed test directories to fix them for the proper package structure.
- 
+
 Version 0.8
   Refactored the underlying C code into C++ to add range checks
-  for internal arrays.  Corrected a bug suggested by XXXX on DATE.  
+  for internal arrays.  Corrected a bug suggested by XXXX on DATE.
   Corrected the bug suggested by Prof Ripley on DATE with the
   range checking.
-  
+
 Version 0.9
   Removed non-portable code introduced in Version 0.8
-  
+
 Version 0.10
-  Changed static template method definitions to be included in the 
+  Changed static template method definitions to be included in the
   definition of the utilityLHS class, instead of in the header below the class.
-  
+
 Version 0.11
-  Fixed a bug in the geneticLHS code and added Maximin to the optimization criteria.  
+  Fixed a bug in the geneticLHS code and added Maximin to the optimization criteria.
   Fixed a bug caused by a change in R2.3.3 that requires a matrix dimnames to be a list.  Added an importFrom to
   the namespace.
-  
+
 Version 0.12
   Fixed a bug in the Description file.
- 
+
 Version 0.13
-  Numerical accuracy checks on the Solaris 10 systems was failing.  Unable to reproduce this error easily, 
+  Numerical accuracy checks on the Solaris 10 systems was failing.  Unable to reproduce this error easily,
   but it is limited to the numerical accuracy tests.  Eliminated the numerical tests for Solaris/Sun/Sparc.
 
 Version 0.14
@@ -63,8 +63,9 @@ Verion 1.0
   Major revision.
   Changed all underlying C code to C++ using Rcpp.
   Added orthogonal array latin hypercube capability
-  
+
 Version 1.0.1
   Update to fix a memory leak notice on CRAN servers when checking examples with valgrind
 
-  
+Version 1.0.2
+  Added references to the Orthogonal array functions

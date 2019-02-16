@@ -2,7 +2,8 @@
 % Please edit documentation in R/createOA.R
 \name{createBoseBush}
 \alias{createBoseBush}
-\title{Create an orthogonal array using the Bose-Bush algorithm}
+\title{Create an orthogonal array using the Bose-Bush algorithm. The bosebush program
+produces \code{OA( 2q^2, k, q, 2 )},  \code{k <= 2q+1}, for powers of 2, \code{q=2^r}.}
 \usage{
 createBoseBush(q, ncol, bRandom = TRUE)
 }
@@ -17,11 +18,21 @@ createBoseBush(q, ncol, bRandom = TRUE)
 an orthogonal array
 }
 \description{
-Create an orthogonal array using the Bose-Bush algorithm
+From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
+columns with every element being one of \code{q} symbols
+\code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}
+submatrix, the \code{q^t} possible distinct rows, all appear
+the same number of times.  This number is the index
+of the array, commonly denoted \code{lambda}.  Clearly,
+\code{lambda*q^t=n}. The notation for such an array is \code{OA( n, k, q, t )}.
 }
 \examples{
 A <- createBoseBush(4, 3, FALSE)
 B <- createBoseBush(8, 3, TRUE)
+}
+\references{
+Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+R.C. Bose and K.A. Bush (1952) Annals of Mathematical Statistics, Vol 23 pp 508-524.
 }
 \seealso{
 Other methods to create orthogonal arrays [createBush()],

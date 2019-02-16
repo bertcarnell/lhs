@@ -2,7 +2,9 @@
 % Please edit documentation in R/createOA.R
 \name{createAddelKemp}
 \alias{createAddelKemp}
-\title{Create an orthogonal array using the Addelman-Kempthorne algorithm}
+\title{Create an orthogonal array using the Addelman-Kempthorne algorithm.  The
+addelkemp program produces \code{OA( 2q^2, k, q, 2 )},  \code{k <= 2q+1},
+for odd prime powers \code{q}.}
 \usage{
 createAddelKemp(q, ncol, bRandom = TRUE)
 }
@@ -17,11 +19,21 @@ createAddelKemp(q, ncol, bRandom = TRUE)
 an orthogonal array
 }
 \description{
-Create an orthogonal array using the Addelman-Kempthorne algorithm
+From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
+columns with every element being one of \code{q} symbols
+\code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}
+submatrix, the \code{q^t} possible distinct rows, all appear
+the same number of times.  This number is the index
+of the array, commonly denoted \code{lambda}.  Clearly,
+\code{lambda*q^t=n}. The notation for such an array is \code{OA( n, k, q, t )}.
 }
 \examples{
 A <- createAddelKemp(3, 3, TRUE)
 B <- createAddelKemp(3, 5, FALSE)
+}
+\references{
+Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+S. Addelman and O. Kempthorne (1961) Annals of Mathematical Statistics, Vol 32 pp 1167-1176.
 }
 \seealso{
 Other methods to create orthogonal arrays [createBoseBush()],
