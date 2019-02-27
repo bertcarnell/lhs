@@ -43,7 +43,7 @@ Create a random LHS with 10 samples and 3 variables:
 ``` r
 require(lhs)
 set.seed(1776)
-X <- randomLHS(10, 3)
+X <- randomLHS(n = 10, k = 3)
 ```
 
 Create a design that is more optimal than the random case:
@@ -84,10 +84,10 @@ Build an orthogonal array LHS:
 
 ```r
 # a 9 row design is returned because a 10 row design is not possible with these algorithms
-W9 <- create_oalhs(10, 3, FALSE, FALSE)
+W9 <- create_oalhs(10, 3, bChooseLargerDesign = FALSE, bverbose = FALSE)
 
 # a 16 row design is returned because a 10 row design is not possible with these algorithms
-W16 <- create_oalhs(10, 3, TRUE, FALSE)
+W16 <- create_oalhs(10, 3, bChooseLargerDesign = TRUE, bverbose = FALSE)
 ```
 
 ## Help
