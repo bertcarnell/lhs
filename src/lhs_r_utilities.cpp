@@ -175,4 +175,12 @@ namespace lhs_r
         }
         return Z;
     }
+    void degenerateCase(int k, bclib::CRandom<double> & oRandom, Rcpp::NumericMatrix & Z)
+    {
+        for (int i = 0; i < k; i++)
+        {
+          Z(0, i) = oRandom.getNextRandom();
+        }
+    }
+
 } // end namespace

@@ -91,6 +91,14 @@ namespace lhs_r
     Rcpp::NumericMatrix degenerateCase(int k, bclib::CRandom<double> & oRandom);
 
     /**
+     * develop an lhs sample in the degenerate case. This one uses an object already created.
+     * @param k number parameters / columns in the lhs
+     * @param oRandom a random number generator for the hypercube
+     * @param Z the target matrix to write into
+     */
+    void degenerateCase(int k, bclib::CRandom<double> & oRandom, Rcpp::NumericMatrix & Z);
+
+    /**
      * Calculate the distance between points in a matrix
      * @param mat the matrix to use for the calculation
      * @tparam RTYPE the type of SEXP

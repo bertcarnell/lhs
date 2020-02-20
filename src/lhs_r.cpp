@@ -41,13 +41,15 @@ RcppExport SEXP /*double matrix*/ improvedLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k
         lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
         if (m_n == 1)
         {
-            return lhs_r::degenerateCase(m_k, oRStandardUniform);
+            PROTECT(sexp_result = wrap(lhs_r::degenerateCase(m_k, oRStandardUniform)));
         }
-
-        bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
-        lhslib::improvedLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
-        Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
-        PROTECT(sexp_result = wrap(result));
+        else
+        {
+            bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
+            lhslib::improvedLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
+            Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
+            PROTECT(sexp_result = wrap(result));
+        }
     }
 
     UNPROTECT(1);
@@ -77,13 +79,15 @@ RcppExport SEXP /*double matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
         lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
         if (m_n == 1)
         {
-            return lhs_r::degenerateCase(m_k, oRStandardUniform);
+            PROTECT(sexp_result = wrap(lhs_r::degenerateCase(m_k, oRStandardUniform)));
         }
-
-        bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
-        lhslib::maximinLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
-        Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
-        PROTECT(sexp_result = wrap(result));
+        else
+        {
+            bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
+            lhslib::maximinLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
+            Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
+            PROTECT(sexp_result = wrap(result));
+        }
     }
 
     UNPROTECT(1);
@@ -115,17 +119,19 @@ RcppExport SEXP /*double matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
         lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
         if (m_n == 1)
         {
-            return lhs_r::degenerateCase(m_k, oRStandardUniform);
+            PROTECT(sexp_result = wrap(lhs_r::degenerateCase(m_k, oRStandardUniform)));
         }
+        else
+        {
+            int jLen = static_cast<int>(::Rf_choose(static_cast<double>(m_n), 2.0) + 1.0);
+            bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
 
-        int jLen = static_cast<int>(::Rf_choose(static_cast<double>(m_n), 2.0) + 1.0);
-        bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
+            lhslib::optimumLHS(m_n, m_k, m_maxsweeps, m_eps, intMat,
+                    jLen, oRStandardUniform, m_bVerbose);
 
-        lhslib::optimumLHS(m_n, m_k, m_maxsweeps, m_eps, intMat,
-                jLen, oRStandardUniform, m_bVerbose);
-
-        Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
-        PROTECT(sexp_result = wrap(result));
+            Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
+            PROTECT(sexp_result = wrap(result));
+        }
     }
     UNPROTECT(1);
 
@@ -203,17 +209,20 @@ RcppExport SEXP randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw)
     lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     if (m_n == 1)
     {
-        return lhs_r::degenerateCase(m_k, oRStandardUniform);
+        lhs_r::degenerateCase(m_k, oRStandardUniform, rresult);
     }
-
-    bclib::matrix<double> result = bclib::matrix<double>(m_n, m_k);
-    lhslib::randomLHS(m_n, m_k, bPreserveDraw, result, oRStandardUniform);
-
-    for (int irow = 0; irow < m_n; irow++)
+    else
     {
-        for (int jcol = 0; jcol < m_k; jcol++)
+
+        bclib::matrix<double> result = bclib::matrix<double>(m_n, m_k);
+        lhslib::randomLHS(m_n, m_k, bPreserveDraw, result, oRStandardUniform);
+
+        for (int irow = 0; irow < m_n; irow++)
         {
-            rresult(irow, jcol) = result(irow, jcol);
+            for (int jcol = 0; jcol < m_k; jcol++)
+            {
+                rresult(irow, jcol) = result(irow, jcol);
+            }
         }
     }
 
@@ -241,17 +250,20 @@ RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
     lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     if (m_n == 1)
     {
-        return lhs_r::degenerateCase(m_k, oRStandardUniform);
+        lhs_r::degenerateCase(m_k, oRStandardUniform, rresult);
     }
-
-    bclib::matrix<double> mat = bclib::matrix<double>(m_n, m_k);
-    lhslib::geneticLHS(m_n, m_k, m_pop, m_gen, m_pMut, m_criterium, m_bVerbose, mat, oRStandardUniform);
-
-    for (int irow = 0; irow < m_n; irow++)
+    else
     {
-        for (int jcol = 0; jcol < m_k; jcol++)
+
+        bclib::matrix<double> mat = bclib::matrix<double>(m_n, m_k);
+        lhslib::geneticLHS(m_n, m_k, m_pop, m_gen, m_pMut, m_criterium, m_bVerbose, mat, oRStandardUniform);
+
+        for (int irow = 0; irow < m_n; irow++)
         {
-            rresult(irow, jcol) = mat(irow, jcol);
+            for (int jcol = 0; jcol < m_k; jcol++)
+            {
+                rresult(irow, jcol) = mat(irow, jcol);
+            }
         }
     }
 
