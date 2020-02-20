@@ -29,7 +29,8 @@ RcppExport SEXP /*double matrix*/ improvedLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k
     {
         Rcpp_error("n, k, and dup should be integers");
     }
-
+    SEXP sexp_result;
+    {
     Rcpp::RNGScope tempRNG;
 
     int m_n = Rcpp::as<int>(n);
@@ -46,8 +47,11 @@ RcppExport SEXP /*double matrix*/ improvedLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k
     bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
     lhslib::improvedLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
     Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
+    PROTECT(sexp_result = wrap(result));
+    }
 
-    return result;
+    UNPROTECT(1);
+    return sexp_result;
   END_RCPP
 }
 
@@ -61,6 +65,8 @@ RcppExport SEXP /*double matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
         Rcpp_error("n, k, and dup should be integers");
     }
 
+    SEXP sexp_result;
+    {
     Rcpp::RNGScope tempRNG;
 
     int m_n = Rcpp::as<int>(n);
@@ -77,8 +83,12 @@ RcppExport SEXP /*double matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
     bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
     lhslib::maximinLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
     Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
+    PROTECT(sexp_result = wrap(result));
+    }
 
-    return result;
+    UNPROTECT(1);
+
+    return sexp_result;
   END_RCPP
 }
 
@@ -99,6 +109,8 @@ RcppExport SEXP /*double matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
     bool m_bVerbose = Rcpp::as<bool>(bVerbose);
 
     lhs_r::checkArguments(m_n, m_k, m_maxsweeps, m_eps);
+    SEXP sexp_result;
+    {
     Rcpp::RNGScope tempRNG;
     lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
     if (m_n == 1)
@@ -113,8 +125,11 @@ RcppExport SEXP /*double matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
             jLen, oRStandardUniform, m_bVerbose);
 
     Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
+    PROTECT(sexp_result = wrap(result));
+    }
+    UNPROTECT(1);
 
-    return result;
+    return sexp_result;
   END_RCPP
 }
 
@@ -176,11 +191,13 @@ RcppExport SEXP randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw)
       Rcpp_error("n and k should be integers, preserveDraw should be a logical");
     }
 
-    Rcpp::RNGScope tempRNG;
 
     int m_n = Rcpp::as<int>(n);
     int m_k = Rcpp::as<int>(k);
     bool bPreserveDraw = Rcpp::as<bool>(preserveDraw);
+
+    Rcpp::NumericMatrix rresult(m_n, m_k);
+    Rcpp::RNGScope tempRNG;
 
     lhs_r::checkArguments(m_n, m_k);
     lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
@@ -192,7 +209,6 @@ RcppExport SEXP randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw)
     bclib::matrix<double> result = bclib::matrix<double>(m_n, m_k);
     lhslib::randomLHS(m_n, m_k, bPreserveDraw, result, oRStandardUniform);
 
-    Rcpp::NumericMatrix rresult(m_n, m_k);
     for (int irow = 0; irow < m_n; irow++)
     {
         for (int jcol = 0; jcol < m_k; jcol++)
@@ -210,7 +226,6 @@ RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
         SEXP /*bool*/ bVerbose)
 {
   BEGIN_RCPP
-    Rcpp::RNGScope tempRNG;
 
     int m_n = Rcpp::as<int>(n);
     int m_k = Rcpp::as<int>(k);
@@ -219,6 +234,8 @@ RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
     double m_pMut = Rcpp::as<double>(pMut);
     std::string m_criterium = Rcpp::as<std::string>(criterium);
     bool m_bVerbose = Rcpp::as<bool>(bVerbose);
+    Rcpp::NumericMatrix rresult(m_n, m_k);
+    Rcpp::RNGScope tempRNG;
 
     lhs_r::checkArguments(m_n, m_k);
     lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
@@ -230,7 +247,6 @@ RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
     bclib::matrix<double> mat = bclib::matrix<double>(m_n, m_k);
     lhslib::geneticLHS(m_n, m_k, m_pop, m_gen, m_pMut, m_criterium, m_bVerbose, mat, oRStandardUniform);
 
-    Rcpp::NumericMatrix rresult(m_n, m_k);
     for (int irow = 0; irow < m_n; irow++)
     {
         for (int jcol = 0; jcol < m_k; jcol++)
