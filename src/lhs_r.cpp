@@ -41,14 +41,14 @@ RcppExport SEXP /*double matrix*/ improvedLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k
         lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
         if (m_n == 1)
         {
-            PROTECT(sexp_result = wrap(lhs_r::degenerateCase(m_k, oRStandardUniform)));
+            PROTECT(sexp_result = Rcpp::wrap(lhs_r::degenerateCase(m_k, oRStandardUniform)));
         }
         else
         {
             bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
             lhslib::improvedLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
             Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
-            PROTECT(sexp_result = wrap(result));
+            PROTECT(sexp_result = Rcpp::wrap(result));
         }
     }
 
@@ -79,14 +79,14 @@ RcppExport SEXP /*double matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
         lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
         if (m_n == 1)
         {
-            PROTECT(sexp_result = wrap(lhs_r::degenerateCase(m_k, oRStandardUniform)));
+            PROTECT(sexp_result = Rcpp::wrap(lhs_r::degenerateCase(m_k, oRStandardUniform)));
         }
         else
         {
             bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
             lhslib::maximinLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
             Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
-            PROTECT(sexp_result = wrap(result));
+            PROTECT(sexp_result = Rcpp::wrap(result));
         }
     }
 
@@ -119,7 +119,7 @@ RcppExport SEXP /*double matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
         lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
         if (m_n == 1)
         {
-            PROTECT(sexp_result = wrap(lhs_r::degenerateCase(m_k, oRStandardUniform)));
+            PROTECT(sexp_result = Rcpp::wrap(lhs_r::degenerateCase(m_k, oRStandardUniform)));
         }
         else
         {
@@ -130,7 +130,7 @@ RcppExport SEXP /*double matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
                     jLen, oRStandardUniform, m_bVerbose);
 
             Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
-            PROTECT(sexp_result = wrap(result));
+            PROTECT(sexp_result = Rcpp::wrap(result));
         }
     }
     UNPROTECT(1);
