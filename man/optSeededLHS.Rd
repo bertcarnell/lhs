@@ -4,8 +4,7 @@
 \alias{optSeededLHS}
 \title{Optimum Seeded Latin Hypercube Sample}
 \usage{
-optSeededLHS(seed, m = 0, maxSweeps = 2, eps = 0.1,
-  verbose = FALSE)
+optSeededLHS(seed, m = 0, maxSweeps = 2, eps = 0.1, verbose = FALSE)
 }
 \arguments{
 \item{seed}{The number of partitions (simulations or design points)}

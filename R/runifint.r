@@ -7,6 +7,8 @@
 #' @param max_int the maximum integer \code{x <= max_int}
 #'
 #' @return the sample sample of size \code{n}
+#'
+#' @export
 #' @importFrom stats runif
 runifint <- function(n=1, min_int=0, max_int=1)
 {

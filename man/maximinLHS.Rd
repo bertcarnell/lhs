@@ -4,8 +4,16 @@
 \alias{maximinLHS}
 \title{Maximin Latin Hypercube Sample}
 \usage{
-maximinLHS(n, k, method = "build", dup = 1, eps = 0.05,
-  maxIter = 100, optimize.on = "grid", debug = FALSE)
+maximinLHS(
+  n,
+  k,
+  method = "build",
+  dup = 1,
+  eps = 0.05,
+  maxIter = 100,
+  optimize.on = "grid",
+  debug = FALSE
+)
 }
 \arguments{
 \item{n}{The number of partitions (simulations or design points or rows)}

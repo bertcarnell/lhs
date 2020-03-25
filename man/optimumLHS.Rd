@@ -4,8 +4,7 @@
 \alias{optimumLHS}
 \title{Optimum Latin Hypercube Sample}
 \usage{
-optimumLHS(n = 10, k = 2, maxSweeps = 2, eps = 0.1,
-  verbose = FALSE)
+optimumLHS(n = 10, k = 2, maxSweeps = 2, eps = 0.1, verbose = FALSE)
 }
 \arguments{
 \item{n}{The number of partitions (simulations or design points or rows)}

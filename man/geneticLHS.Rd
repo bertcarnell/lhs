@@ -4,8 +4,15 @@
 \alias{geneticLHS}
 \title{Latin Hypercube Sampling with a Genetic Algorithm}
 \usage{
-geneticLHS(n = 10, k = 2, pop = 100, gen = 4, pMut = 0.1,
-  criterium = "S", verbose = FALSE)
+geneticLHS(
+  n = 10,
+  k = 2,
+  pop = 100,
+  gen = 4,
+  pMut = 0.1,
+  criterium = "S",
+  verbose = FALSE
+)
 }
 \arguments{
 \item{n}{The number of partitions (simulations or design points or rows)}
