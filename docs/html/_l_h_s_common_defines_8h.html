@@ -106,6 +106,7 @@ $(document).ready(function(){initNavTree('_l_h_s_common_defines_8h.html','');});
 <code>#include &lt;cfloat&gt;</code><br />
 <code>#include &lt;climits&gt;</code><br />
 <code>#include &lt;cstdio&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
 <code>#include &quot;matrix.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="order_8h_source.html">order.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_c_random_8h_source.html">CRandom.h</a>&quot;</code><br />
@@ -119,9 +120,9 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a0e87a733ba4e482c0f5f55a8d96f467f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_l_h_s_common_defines_8h.html#a0e87a733ba4e482c0f5f55a8d96f467f">PRINT_MACRO</a>&#160;&#160;&#160;printf</td></tr>
+<tr class="memitem:a0e87a733ba4e482c0f5f55a8d96f467f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_l_h_s_common_defines_8h.html#a0e87a733ba4e482c0f5f55a8d96f467f">PRINT_MACRO</a>&#160;&#160;&#160;std::cout</td></tr>
 <tr class="separator:a0e87a733ba4e482c0f5f55a8d96f467f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54a8202621907013a87cfeef68c26080"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_l_h_s_common_defines_8h.html#a54a8202621907013a87cfeef68c26080">ERROR_MACRO</a>&#160;&#160;&#160;printf</td></tr>
+<tr class="memitem:a54a8202621907013a87cfeef68c26080"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_l_h_s_common_defines_8h.html#a54a8202621907013a87cfeef68c26080">ERROR_MACRO</a>&#160;&#160;&#160;std::cerr</td></tr>
 <tr class="separator:a54a8202621907013a87cfeef68c26080"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc84ad58c2e577beb804d06bb0e1ea6f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_l_h_s_common_defines_8h.html#acc84ad58c2e577beb804d06bb0e1ea6f">PRINT_RESULT</a>&#160;&#160;&#160;0</td></tr>
 <tr class="separator:acc84ad58c2e577beb804d06bb0e1ea6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -164,7 +165,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define ERROR_MACRO&#160;&#160;&#160;printf</td>
+          <td class="memname">#define ERROR_MACRO&#160;&#160;&#160;std::cerr</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -179,7 +180,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PRINT_MACRO&#160;&#160;&#160;printf</td>
+          <td class="memname">#define PRINT_MACRO&#160;&#160;&#160;std::cout</td>
         </tr>
       </table>
 </div><div class="memdoc">

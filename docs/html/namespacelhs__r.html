@@ -118,8 +118,8 @@ Functions</h2></td></tr>
 <tr class="separator:a4d1d403a5e712cb398ae848adb0c7333"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85fa7479aef00dc0b9408050e90370c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#a85fa7479aef00dc0b9408050e90370c8">checkArguments</a> (int n, int k, int maxsweeps, double eps)</td></tr>
 <tr class="separator:a85fa7479aef00dc0b9408050e90370c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6646739c635c9fe8440f4a90261d1d9"><td class="memItemLeft" align="right" valign="top">Rcpp::NumericMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#ab6646739c635c9fe8440f4a90261d1d9">degenerateCase</a> (int k)</td></tr>
-<tr class="separator:ab6646739c635c9fe8440f4a90261d1d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c41a66dec90243d2b76b6b03d68bf02"><td class="memItemLeft" align="right" valign="top">Rcpp::NumericMatrix&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#a9c41a66dec90243d2b76b6b03d68bf02">degenerateCase</a> (int k, <a class="el" href="classbclib_1_1_c_random.html">bclib::CRandom</a>&lt; double &gt; &amp;oRandom)</td></tr>
+<tr class="separator:a9c41a66dec90243d2b76b6b03d68bf02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07b965bc93a70535feb91314885d2750"><td class="memTemplParams" colspan="2">template&lt;int RTYPE&gt; </td></tr>
 <tr class="memitem:a07b965bc93a70535feb91314885d2750"><td class="memTemplItemLeft" align="right" valign="top">Rcpp::NumericMatrix&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacelhs__r.html#a07b965bc93a70535feb91314885d2750">calculateDistance</a> (Rcpp::Matrix&lt; RTYPE &gt; &amp;mat)</td></tr>
 <tr class="separator:a07b965bc93a70535feb91314885d2750"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -397,8 +397,8 @@ template&lt;int RTYPE&gt; </div>
 
 </div>
 </div>
-<a id="ab6646739c635c9fe8440f4a90261d1d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6646739c635c9fe8440f4a90261d1d9">&#9670;&nbsp;</a></span>degenerateCase()</h2>
+<a id="a9c41a66dec90243d2b76b6b03d68bf02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c41a66dec90243d2b76b6b03d68bf02">&#9670;&nbsp;</a></span>degenerateCase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -407,14 +407,25 @@ template&lt;int RTYPE&gt; </div>
           <td class="memname">Rcpp::NumericMatrix lhs_r::degenerateCase </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>k</em></td><td>)</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classbclib_1_1_c_random.html">bclib::CRandom</a>&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>oRandom</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>develop an lhs sample in the degenerate case </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">k</td><td>number parameters / columns in the lhs </td></tr>
+    <tr><td class="paramname">oRandom</td><td>a random number generator for the hypercube </td></tr>
   </table>
   </dd>
 </dl>

@@ -6,7 +6,7 @@
 \alias{lhs-package}
 \title{lhs: Latin Hypercube Samples}
 \description{
-Provides a number of methods for creating and augmenting Latin Hypercube Samples.
+Provides a number of methods for creating and augmenting Latin Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
 }
 \seealso{
 Useful links:

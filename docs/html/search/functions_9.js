@@ -13,6 +13,7 @@ var searchData=
   ['oa_5ftype2',['oa_type2',['../oa__r_8cpp.html#a55810b7e8a026babd4e9d64ed581e96c',1,'oa_type2(SEXP type, SEXP int1, SEXP q, SEXP ncol, SEXP bRandom):&#160;oa_r.cpp'],['../oa__r_8h.html#a55810b7e8a026babd4e9d64ed581e96c',1,'oa_type2(SEXP type, SEXP int1, SEXP q, SEXP ncol, SEXP bRandom):&#160;oa_r.cpp']]],
   ['oaagree',['oaagree',['../classoacpp_1_1_c_orthogonal_array.html#a878b84d443bf4127b3ecb146d994ac03',1,'oacpp::COrthogonalArray']]],
   ['oadimen',['oadimen',['../classoacpp_1_1_c_orthogonal_array.html#ad2baccbfd0c4ae1587e84ff7ef23bbe4',1,'oacpp::COrthogonalArray']]],
+  ['oalhs',['oaLHS',['../oa_l_h_s_8cpp.html#aa47d068cb64825867375297d10446de1',1,'oalhslib::oaLHS(int n, int k, const bclib::matrix&lt; int &gt; &amp;oa, bclib::matrix&lt; int &gt; &amp;intlhs, bclib::matrix&lt; double &gt; &amp;lhs, bool bVerbose, bclib::CRandom&lt; double &gt; &amp;oRandom)'],['../oa_l_h_s_8cpp.html#ac3b5034cc4dbab66faf700987e9edb65',1,'oalhslib::oaLHS(int n, int k, const bclib::matrix&lt; int &gt; &amp;oa, bclib::matrix&lt; int &gt; &amp;intlhs, bool bVerbose)']]],
   ['oarand',['oarand',['../classoacpp_1_1_c_orthogonal_array.html#ae49593d2455ad741422cbbd1aeb24867',1,'oacpp::COrthogonalArray']]],
   ['oastr',['oastr',['../classoacpp_1_1_c_orthogonal_array.html#ad4aa0fedc1f43aa132de0cf807e115cb',1,'oacpp::COrthogonalArray']]],
   ['oastr1',['oastr1',['../classoacpp_1_1_c_orthogonal_array.html#ab4986bd1845da1224472e8a24104c875',1,'oacpp::COrthogonalArray']]],

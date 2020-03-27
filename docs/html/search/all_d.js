@@ -25,6 +25,8 @@ var searchData=
   ['oaconstruct',['oaconstruct',['../namespaceoacpp_1_1oaconstruct.html',1,'oacpp']]],
   ['oacpp',['oacpp',['../namespaceoacpp.html',1,'']]],
   ['oadimen',['oadimen',['../classoacpp_1_1_c_orthogonal_array.html#ad2baccbfd0c4ae1587e84ff7ef23bbe4',1,'oacpp::COrthogonalArray']]],
+  ['oalhs',['oaLHS',['../oa_l_h_s_8cpp.html#aa47d068cb64825867375297d10446de1',1,'oalhslib::oaLHS(int n, int k, const bclib::matrix&lt; int &gt; &amp;oa, bclib::matrix&lt; int &gt; &amp;intlhs, bclib::matrix&lt; double &gt; &amp;lhs, bool bVerbose, bclib::CRandom&lt; double &gt; &amp;oRandom)'],['../oa_l_h_s_8cpp.html#ac3b5034cc4dbab66faf700987e9edb65',1,'oalhslib::oaLHS(int n, int k, const bclib::matrix&lt; int &gt; &amp;oa, bclib::matrix&lt; int &gt; &amp;intlhs, bool bVerbose)']]],
+  ['oalhs_2ecpp',['oaLHS.cpp',['../oa_l_h_s_8cpp.html',1,'']]],
   ['oalhs_5fr_2ecpp',['oalhs_r.cpp',['../oalhs__r_8cpp.html',1,'']]],
   ['oalhs_5fr_2eh',['oalhs_r.h',['../oalhs__r_8h.html',1,'']]],
   ['oarand',['oarand',['../classoacpp_1_1_c_orthogonal_array.html#ae49593d2455ad741422cbbd1aeb24867',1,'oacpp::COrthogonalArray']]],

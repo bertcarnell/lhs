@@ -6,6 +6,7 @@ var searchData=
   ['randomlhs_5fcpp',['randomLHS_cpp',['../lhs__r_8cpp.html#a693fadd1767a6395557d2ec06dd359f1',1,'randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw):&#160;lhs_r.cpp'],['../lhs__r_8h.html#a693fadd1767a6395557d2ec06dd359f1',1,'randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw):&#160;lhs_r.cpp']]],
   ['range_5fdebug',['RANGE_DEBUG',['../_o_a_common_defines_8h.html#a6468f990cec8df731c33e2d266588daf',1,'OACommonDefines.h']]],
   ['rank',['rank',['../namespacelhslib.html#a31cef924adb5147873603a385f3f4fc1',1,'lhslib']]],
+  ['replaceoavalues',['replaceOAValues',['../oa_l_h_s_8cpp.html#abeaa7b65bb0a079b17a160516f3b8fdc',1,'oalhslib']]],
   ['root',['root',['../structoacpp_1_1_g_f.html#aa132926dc8a5fb7a0a9f343bffedcc62',1,'oacpp::GF']]],
   ['rowcheck',['ROWCHECK',['../_c_orthogonal_array_8h.html#ad15ff4b0e9054da2e39351546d35cd91',1,'COrthogonalArray.h']]],
   ['rstandarduniform',['RStandardUniform',['../classlhs__r_1_1_r_standard_uniform.html',1,'lhs_r']]],

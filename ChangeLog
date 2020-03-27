@@ -69,3 +69,5 @@ Version 1.0.1
 
 Version 1.0.2
   Added references to the Orthogonal array functions
+  Fixed typos
+  Changed the way the Rcpp::RNGScope object is destructed based on the debugging efforts of @mb706

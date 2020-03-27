@@ -72,3 +72,15 @@ test_that("degenerate LHS problem is fixed", {
   A <- randomLHS(1, 3)
   expect_true(checkLatinHypercube(A))
 })
+
+# in version 1.0.1 and prior, this did not necessarily cause a segfault
+#    in all attempts.  It was a relatively random occurence
+test_that("Segfault does not occur with gctorture", {
+  for (i in 1:100)
+  {
+    gctorture(TRUE)
+    A <- randomLHS(10, 4)
+    gctorture(FALSE)
+  }
+  expect_true(checkLatinHypercube(A))
+})
