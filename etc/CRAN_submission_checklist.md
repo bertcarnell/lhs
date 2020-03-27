@@ -2,30 +2,28 @@
 
 ## Local Windows
 
-- [ ] Run `bclib` tests
+- [ ] Run `bclib` tests in PowerShell
   - `cd ../bclib`
   - `sh cmakeshell.sh Release`
-- [ ] Run `oa` tests
-  - ensure any recent changes to `bclib` are `git pull`ed as a submodule in `oa`
-  - `cd ../oa`
-  - `git submodule update`
+- [ ] Run `oa` tests in PowerShell
+  - ensure any recent changes to `bclib` are `git pull`ed as a submodule in `oa` (`git submodule update` in `git bash`)
+  - `cd ../oa/src`
   - `sh cmakeshell.sh Release`
-- [ ] Run `lhslib` tests
-  - ensure any recent change to `bclib` are `git pull`ed as a submodule in `lhslib`
-  - `cd ../lhslib`
-  - `git submodule update`
+- [ ] Run `lhslib` tests in PowerShell
+  - ensure any recent change to `bclib` are `git pull`ed as a submodule in `lhslib` (`git submodule update` in `git bash`)
+  - `cd ../lhslib/src`
   - `sh cmakeshell.sh Release`
 - [ ] Increment `lhs` version up from CRAN if not already done
 - [ ] Check the `ChangeLog` entry for the version to be released
 - [ ] Copy the sub-project code in to `src`
   - `sh developmentBuild.sh`
-- [ ] Build the Visual Studio project (does not compile, but is useful for debugging and C++ development)
+- [ ] Build the Visual Studio project in PowerShell (does not compile, but is useful for debugging and C++ development)
   - `sh cmakeshell.sh`
-- [ ] Doxygen deployment to `docs` (output directory specified in the `Doxyfile`)
+- [ ] Doxygen deployment to `docs` in PowerShell (output directory specified in the `Doxyfile`)
   - `doxygen Doxyfile`
 - RStudio
   - [ ] Document with `roxygen2` by running `Document` in the UI
-  - [ ] Run `testthat` tests by running `Test` in the UI
+  - [ ] Run `testthat` tests by running `Test Package` in the UI
   - [ ] Build the `.tar.gz` or `R CMD build`
   - [ ] Run `check` or `R CMD check --as-cran`
   - [ ] In R, create the `pkgdown` site with `pkgdown::build_site()`
