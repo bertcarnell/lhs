@@ -22,12 +22,12 @@
  * A Note about Rcpp::RNGScope (3/25/2020)
  *
  * In the original code, Rcpp::RNGScope was called before memory was allocated
- * for the return SEXP.  In rare cases, the RNGScope destructure caused a
- * garbarge collection event at the end of the function call, at the same time
+ * for the return SEXP.  In rare cases, the RNGScope destructor caused a
+ * garbage collection event at the end of the function call, at the same time
  * the return value was being unprotected causing the return value to be
  * garbage collected.
  *
- * Thanks to @mb706 for reporing this issue on github (https://github.com/bertcarnell/lhs/issues/21)
+ * Thanks to @mb706 for reporting this issue on github (https://github.com/bertcarnell/lhs/issues/21)
  * Thanks also the r-help community for suggesting solutions
  * http://lists.r-forge.r-project.org/pipermail/rcpp-devel/2013-May/005838.html
  *
@@ -56,17 +56,20 @@ RcppExport SEXP /*double matrix*/ improvedLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k
     int m_dup = Rcpp::as<int>(dup);
     lhs_r::checkArguments(m_n, m_k, m_dup);
     bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
+	Rcpp::NumericMatrix result;
 
-    Rcpp::RNGScope tempRNG;
-    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
-    if (m_n == 1)
-    {
-      return lhs_r::degenerateCase(m_k, oRStandardUniform);
-    } // else
-    lhslib::improvedLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
-    tempRNG.~RNGScope(); // explicitly release the RNG state to avoid memory corruption
-
-    Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
+    START_RNG
+      lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
+      if (m_n == 1)
+      { 
+	    result = lhs_r::degenerateCase(m_k, oRStandardUniform); 
+      } 
+	  else
+	  {
+        lhslib::improvedLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
+        result = lhs_r::convertIntegerToNumericLhs(intMat);
+	  }
+    END_RNG
 
     return result;
   END_RCPP
@@ -82,23 +85,25 @@ RcppExport SEXP /*double matrix*/ maximinLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
         Rcpp_error("n, k, and dup should be integers");
     }
 
-
     int m_n = Rcpp::as<int>(n);
     int m_k = Rcpp::as<int>(k);
     int m_dup = Rcpp::as<int>(dup);
     lhs_r::checkArguments(m_n, m_k, m_dup);
     bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
+	Rcpp::NumericMatrix result;
 
-    Rcpp::RNGScope tempRNG;
-    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
-    if (m_n == 1)
-    {
-        return lhs_r::degenerateCase(m_k, oRStandardUniform);
-    }
-    lhslib::maximinLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
-    tempRNG.~RNGScope();
-
-    Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
+    START_RNG
+	  lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
+      if (m_n == 1)
+      {
+        result = lhs_r::degenerateCase(m_k, oRStandardUniform);
+      }
+	  else
+	  {
+	    lhslib::maximinLHS(m_n, m_k, m_dup, intMat, oRStandardUniform);
+        result = lhs_r::convertIntegerToNumericLhs(intMat);
+	  }
+    END_RNG
 
     return result;
   END_RCPP
@@ -122,18 +127,21 @@ RcppExport SEXP /*double matrix*/ optimumLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k,
     lhs_r::checkArguments(m_n, m_k, m_maxsweeps, m_eps);
     bclib::matrix<int> intMat = bclib::matrix<int>(m_n, m_k);
     int jLen = static_cast<int>(::Rf_choose(static_cast<double>(m_n), 2.0) + 1.0);
-
-    Rcpp::RNGScope tempRNG;
-    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
-    if (m_n == 1)
-    {
-        return lhs_r::degenerateCase(m_k, oRStandardUniform);
-    }
-    lhslib::optimumLHS(m_n, m_k, m_maxsweeps, m_eps, intMat,
-            jLen, oRStandardUniform, m_bVerbose);
-    tempRNG.~RNGScope();
-
-    Rcpp::NumericMatrix result = lhs_r::convertIntegerToNumericLhs(intMat);
+    Rcpp::NumericMatrix result;
+    
+	START_RNG
+      lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
+      if (m_n == 1)
+      {
+	    result = lhs_r::degenerateCase(m_k, oRStandardUniform);
+      }
+	  else
+	  {
+        lhslib::optimumLHS(m_n, m_k, m_maxsweeps, m_eps, intMat,
+                           jLen, oRStandardUniform, m_bVerbose);
+        result = lhs_r::convertIntegerToNumericLhs(intMat);
+	  }
+    END_RNG
 
     return result;
   END_RCPP
@@ -200,24 +208,27 @@ RcppExport SEXP randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw)
     bool bPreserveDraw = Rcpp::as<bool>(preserveDraw);
     lhs_r::checkArguments(m_n, m_k);
     bclib::matrix<double> result = bclib::matrix<double>(m_n, m_k);
+    Rcpp::NumericMatrix rresult;
 
-    Rcpp::RNGScope tempRNG;
-    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
-    if (m_n == 1)
-    {
-        return lhs_r::degenerateCase(m_k, oRStandardUniform);
-    }
-    lhslib::randomLHS(m_n, m_k, bPreserveDraw, result, oRStandardUniform);
-    tempRNG.~RNGScope();
-
-    Rcpp::NumericMatrix rresult(m_n, m_k);
-    for (int irow = 0; irow < m_n; irow++)
-    {
-        for (int jcol = 0; jcol < m_k; jcol++)
+    START_RNG
+      lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
+      if (m_n == 1)
+      {
+        rresult = lhs_r::degenerateCase(m_k, oRStandardUniform);
+      }
+	  else
+	  {
+        lhslib::randomLHS(m_n, m_k, bPreserveDraw, result, oRStandardUniform);
+		rresult = Rcpp::NumericMatrix(m_n, m_k);
+        for (int irow = 0; irow < m_n; irow++)
         {
+          for (int jcol = 0; jcol < m_k; jcol++)
+          {
             rresult(irow, jcol) = result(irow, jcol);
+          }
         }
-    }
+	  }
+	END_RNG
 
     return rresult;
   END_RCPP
@@ -237,25 +248,28 @@ RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
     bool m_bVerbose = Rcpp::as<bool>(bVerbose);
     lhs_r::checkArguments(m_n, m_k);
     bclib::matrix<double> mat = bclib::matrix<double>(m_n, m_k);
+	Rcpp::NumericMatrix rresult;
 
-    Rcpp::RNGScope tempRNG;
-    lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
-    if (m_n == 1)
-    {
-        return lhs_r::degenerateCase(m_k, oRStandardUniform);
-    }
-    lhslib::geneticLHS(m_n, m_k, m_pop, m_gen, m_pMut, m_criterium, m_bVerbose,
-                       mat, oRStandardUniform);
-    tempRNG.~RNGScope();
-
-    Rcpp::NumericMatrix rresult(m_n, m_k);
-    for (int irow = 0; irow < m_n; irow++)
-    {
-        for (int jcol = 0; jcol < m_k; jcol++)
+    START_RNG
+      lhs_r::RStandardUniform oRStandardUniform = lhs_r::RStandardUniform();
+      if (m_n == 1)
+      {
+        rresult = lhs_r::degenerateCase(m_k, oRStandardUniform);
+      }
+	  else 
+	  {
+        lhslib::geneticLHS(m_n, m_k, m_pop, m_gen, m_pMut, m_criterium, m_bVerbose,
+                           mat, oRStandardUniform);
+        rresult = Rcpp::NumericMatrix(m_n, m_k);
+        for (int irow = 0; irow < m_n; irow++)
         {
+          for (int jcol = 0; jcol < m_k; jcol++)
+          {
             rresult(irow, jcol) = mat(irow, jcol);
+          }
         }
-    }
+	  }
+	END_RNG
 
     return rresult;
   END_RCPP

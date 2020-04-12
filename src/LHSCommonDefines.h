@@ -50,6 +50,10 @@
 /** Should results be printed */
 #define PRINT_RESULT 0
 
+/** RNG Macro (See lhs_r.cpp)*/
+#define START_RNG Rcpp::RNGScope * tempRNG = new Rcpp::RNGScope(); // instantiate a pointer so that the destructor is not implicitly called
+#define END_RNG delete tempRNG; // explicitly release the RNG state to avoid memory corruption
+
 /**
  * @namespace lhslib LHS c++ Library namespace
  */
