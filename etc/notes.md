@@ -1,6 +1,6 @@
 ## Setup
 
-Review the notes [here](https://hub.docker.com/_/r-base)
+Review the notes on the Docker `r-base` image [here](https://hub.docker.com/_/r-base)
 
 ```
 sudo apt-get install docker docker.io

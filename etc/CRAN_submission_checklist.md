@@ -76,3 +76,9 @@
   - [Notes](notes.md)
 - upload the results
   - copy to /etc and push 
+
+## Submit to CRAN
+
+- [ ] [form](https://cran.r-project.org/submit.html)
+- [ ] Tag the github repository with the version
+
