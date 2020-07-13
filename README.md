@@ -116,6 +116,7 @@ StackExchange Examples:
 - [Dividing CDF rather than PDF equally in Latin Hypercube Sampling](https://stats.stackexchange.com/questions/468293/dividing-cdf-rather-than-pdf-equally-in-latin-hypercube-sampling)
 - [Stratified sampling / QMC simulation for compound Poisson rv](https://stats.stackexchange.com/questions/469963/stratified-sampling-qmc-simulation-for-compound-poisson-rv)
 - [Using Latin Hypercube Sampling with a condition that the sum of two variables should be less than one](https://stats.stackexchange.com/questions/474911/using-latin-hypercube-sampling-with-a-condition-that-the-sum-of-two-variables-sh)
+- [How to generate a design for a response surface with a discrete input random variable?](https://stats.stackexchange.com/questions/444997/how-to-generate-a-design-for-a-response-surface-with-a-discrete-input-random-var)
 
 ## Other
 
