@@ -34,7 +34,7 @@ namespace oacpp
 {
     namespace oaaddelkemp
     {
-        int addelkempncheck(int q, int p, int akn, int ncol) // LCOV_EXCL_START
+        int addelkempncheck(int q, int p, int akn, int ncol)
         {
             std::ostringstream msg;
             if (akn < 2)
@@ -114,15 +114,10 @@ namespace oacpp
                             {
                                 monic = static_cast<int>(i);
                             }
-                            // TODO: this might be an else on the if(s[i])
-                            /*else
+                            else
                             {
-                                indx[numin++] = i;
-                            }*/
-                        }
-                        else
-                        {
-                            indx[numin++] = static_cast<int>(i);
+                                indx[numin++] = static_cast<int>(i);
+                            }
                         }
                     }
                     for (size_t i = 0; i < numin; i++)
@@ -180,15 +175,10 @@ namespace oacpp
                             {
                                 monic = static_cast<int>(i);
                             }
-                            // this might be an else on the if(s[i])
-                            /*else
+                            else
                             {
-                                indx[numin++] = i;
-                            }*/
-                        }
-                        else
-                        {
-                            indx[numin++] = static_cast<int>(i);
+								indx[numin++] = static_cast<int>(i);
+                            }
                         }
                     }
                     coef[0] = 0;
@@ -278,15 +268,10 @@ namespace oacpp
                             {
                                 monic = static_cast<int>(i);
                             }
-                            // this might be an else on the if(s[i])
-                            /*else
+                            else
                             {
-                                indx[numin++] = i;
-                            }*/
-                        }
-                        else
-                        {
-                            indx[numin++] = static_cast<int>(i);
+								indx[numin++] = static_cast<int>(i);
+                            }
                         }
                     }
                     for (size_t i = 0; i < numin; i++)
@@ -348,15 +333,10 @@ namespace oacpp
                             {
                                 monic = static_cast<int>(i);
                             }
-                            // this might be an else on the if(s[i])
-                            /*else
+                            else
                             {
-                                indx[numin++] = i;
-                            }*/
-                        }
-                        else
-                        {
-                            indx[numin++] = static_cast<int>(i);
+								indx[numin++] = static_cast<int>(i);
+                            }
                         }
                     }
                     coef[0] = 0;
@@ -411,6 +391,6 @@ namespace oacpp
             }
 
             return SUCCESS_CHECK;
-        } // LCOV_EXCL_STOP
+        }
     } // end namespace
 } // end namespace

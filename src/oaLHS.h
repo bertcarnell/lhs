@@ -1,4 +1,4 @@
-/*
+/**
  * @file oaLHS.h
  * @author Robert Carnell
  * @copyright Copyright (c) 2019, Robert Carnell

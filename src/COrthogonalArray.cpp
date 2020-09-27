@@ -59,7 +59,7 @@ int COrthogonalArray::checkMaxColumns(int k, int maxColumns)
 	else if (k > maxColumns)
 	{
         std::ostringstream s;
-        s << "At most " << maxColumns << "columns are possible for the design.";
+        s << "At most " << maxColumns << " columns are possible for the design.";
 		const std::string ss = s.str();
 		throw std::runtime_error(ss.c_str());
 	}
@@ -149,7 +149,7 @@ void COrthogonalArray::bosebushl(int lambda, int q, int k, int* n)
 {
 	int pq, nq, isppq,  pl, nl, isppl;
 
-	k = checkMaxColumns(k, q*lambda);
+	k = checkMaxColumns(k, q*lambda + 1);
 
 	primes::primepow(lambda, &pl, &nl, &isppl);
 	primes::primepow(q , &pq, &nq, &isppq);
