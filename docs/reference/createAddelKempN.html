@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Create an orthogonal array using the Addelman-Kempthorne algorithm with
-alternate strength — createAddelKempN • lhs</title>
+alternate strength with <code>2q^n</code> rows. — createAddelKempN • lhs</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -44,9 +44,10 @@ alternate strength — createAddelKempN • lhs</title>
 
 
 <meta property="og:title" content="Create an orthogonal array using the Addelman-Kempthorne algorithm with
-alternate strength — createAddelKempN" />
-<meta property="og:description" content="Create an orthogonal array using the Addelman-Kempthorne algorithm with
-alternate strength" />
+alternate strength with <code>2q^n</code> rows. — createAddelKempN" />
+<meta property="og:description" content="The addelkempn program produces
+OA( 2*q^n, k, q, 2 ),  k &amp;lt;= 2(q^n - 1)/(q-1)-1, for prime powers q.
+q may be an odd prime power, or q may be 2 or 4." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -80,7 +81,7 @@ alternate strength" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -135,14 +136,15 @@ alternate strength" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create an orthogonal array using the Addelman-Kempthorne algorithm with
-alternate strength</h1>
+alternate strength with <code>2q^n</code> rows.</h1>
     <small class="dont-index">Source: <a href='https://github.com/bertcarnell/lhs/blob/master/R/createOA.R'><code>R/createOA.R</code></a></small>
     <div class="hidden name"><code>createAddelKempN.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create an orthogonal array using the Addelman-Kempthorne algorithm with
-alternate strength</p>
+    <p>The <code>addelkempn</code> program produces
+<code>OA( 2*q^n, k, q, 2 )</code>,  <code>k &lt;= 2(q^n - 1)/(q-1)-1</code>, for prime powers <code>q</code>.
+<code>q</code> may be an odd prime power, or <code>q</code> may be 2 or 4.</p>
     </div>
 
     <pre class="usage"><span class='fu'>createAddelKempN</span>(<span class='no'>q</span>, <span class='no'>ncol</span>, <span class='no'>exponent</span>, <span class='kw'>bRandom</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -171,6 +173,15 @@ alternate strength</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>an orthogonal array</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>From Owen: An orthogonal array <code>A</code> is a matrix of <code>n</code> rows, <code>k</code>
+columns with every element being one of <code>q</code> symbols
+<code>0,...,q-1</code>.  The array has strength <code>t</code> if, in every <code>n</code> by <code>t</code>
+submatrix, the <code>q^t</code> possible distinct rows, all appear
+the same number of times.  This number is the index
+of the array, commonly denoted <code>lambda</code>.  Clearly,
+<code>lambda*q^t=n</code>. The notation for such an array is <code>OA( n, k, q, t )</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other methods to create orthogonal arrays [createBoseBush()],
@@ -186,6 +197,7 @@ alternate strength</p>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>

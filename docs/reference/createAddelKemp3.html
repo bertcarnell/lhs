@@ -7,9 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Create an orthogonal array using the Addelman-Kempthorne algorithm
-with <code>2q^3</code> rows.  The addelkemp3 program produces
-<code>OA( 2*q^3, k, q, 2 )</code>,  <code>k &lt;= 2q^2+2q+1</code>, for prime powers <code>q</code>.
-<code>q</code> may be an odd prime power, or <code>q</code> may be 2 or 4. — createAddelKemp3 • lhs</title>
+with <code>2q^3</code> rows. — createAddelKemp3 • lhs</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,16 +44,10 @@ with <code>2q^3</code> rows.  The addelkemp3 program produces
 
 
 <meta property="og:title" content="Create an orthogonal array using the Addelman-Kempthorne algorithm
-with <code>2q^3</code> rows.  The addelkemp3 program produces
-<code>OA( 2*q^3, k, q, 2 )</code>,  <code>k &lt;= 2q^2+2q+1</code>, for prime powers <code>q</code>.
-<code>q</code> may be an odd prime power, or <code>q</code> may be 2 or 4. — createAddelKemp3" />
-<meta property="og:description" content="From Owen: An orthogonal array A is a matrix of n rows, k
-columns with every element being one of q symbols
-0,...,q-1.  The array has strength t if, in every n by t
-submatrix, the q^t possible distinct rows, all appear
-the same number of times.  This number is the index
-of the array, commonly denoted lambda.  Clearly,
-lambda*q^t=n. The notation for such an array is OA( n, k, q, t )." />
+with <code>2q^3</code> rows. — createAddelKemp3" />
+<meta property="og:description" content="The addelkemp3 program produces
+OA( 2*q^3, k, q, 2 ),  k &amp;lt;= 2q^2+2q+1, for prime powers q.
+q may be an odd prime power, or q may be 2 or 4." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -89,7 +81,7 @@ lambda*q^t=n. The notation for such an array is OA( n, k, q, t )." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -144,21 +136,15 @@ lambda*q^t=n. The notation for such an array is OA( n, k, q, t )." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create an orthogonal array using the Addelman-Kempthorne algorithm
-with <code>2q^3</code> rows.  The addelkemp3 program produces
-<code>OA( 2*q^3, k, q, 2 )</code>,  <code>k &lt;= 2q^2+2q+1</code>, for prime powers <code>q</code>.
-<code>q</code> may be an odd prime power, or <code>q</code> may be 2 or 4.</h1>
+with <code>2q^3</code> rows.</h1>
     <small class="dont-index">Source: <a href='https://github.com/bertcarnell/lhs/blob/master/R/createOA.R'><code>R/createOA.R</code></a></small>
     <div class="hidden name"><code>createAddelKemp3.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>From Owen: An orthogonal array <code>A</code> is a matrix of <code>n</code> rows, <code>k</code>
-columns with every element being one of <code>q</code> symbols
-<code>0,...,q-1</code>.  The array has strength <code>t</code> if, in every <code>n</code> by <code>t</code>
-submatrix, the <code>q^t</code> possible distinct rows, all appear
-the same number of times.  This number is the index
-of the array, commonly denoted <code>lambda</code>.  Clearly,
-<code>lambda*q^t=n</code>. The notation for such an array is <code>OA( n, k, q, t )</code>.</p>
+    <p>The <code>addelkemp3</code> program produces
+<code>OA( 2*q^3, k, q, 2 )</code>,  <code>k &lt;= 2q^2+2q+1</code>, for prime powers <code>q</code>.
+<code>q</code> may be an odd prime power, or <code>q</code> may be 2 or 4.</p>
     </div>
 
     <pre class="usage"><span class='fu'>createAddelKemp3</span>(<span class='no'>q</span>, <span class='no'>ncol</span>, <span class='kw'>bRandom</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -183,6 +169,15 @@ of the array, commonly denoted <code>lambda</code>.  Clearly,
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>an orthogonal array</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>From Owen: An orthogonal array <code>A</code> is a matrix of <code>n</code> rows, <code>k</code>
+columns with every element being one of <code>q</code> symbols
+<code>0,...,q-1</code>.  The array has strength <code>t</code> if, in every <code>n</code> by <code>t</code>
+submatrix, the <code>q^t</code> possible distinct rows, all appear
+the same number of times.  This number is the index
+of the array, commonly denoted <code>lambda</code>.  Clearly,
+<code>lambda*q^t=n</code>. The notation for such an array is <code>OA( n, k, q, t )</code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. <a href='http://lib.stat.cmu.edu/designs/oa.c'>http://lib.stat.cmu.edu/designs/oa.c</a>. 1994
@@ -202,6 +197,7 @@ S. Addelman and O. Kempthorne (1961) Annals of Mathematical Statistics, Vol 32 p
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
