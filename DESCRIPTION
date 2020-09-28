@@ -17,6 +17,7 @@ Imports:
     Rcpp
 Suggests: 
     testthat,
+    assertthat,
     DoE.base,
     knitr,
     rmarkdown,
