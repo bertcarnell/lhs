@@ -2,9 +2,7 @@
 % Please edit documentation in R/createOA.R
 \name{createBusht}
 \alias{createBusht}
-\title{Create an orthogonal array using the Bush algorithm with alternate strength. The
-bush program produces \code{OA( q^t, k, q, t )},  \code{k <= q+1}, \code{t>=3},
-for prime powers \code{q}.}
+\title{Create an orthogonal array using the Bush algorithm with alternate strength.}
 \usage{
 createBusht(q, ncol, strength, bRandom = TRUE)
 }
@@ -21,6 +19,10 @@ createBusht(q, ncol, strength, bRandom = TRUE)
 an orthogonal array
 }
 \description{
+The \code{busht} program produces \code{OA( q^t, k, q, t )},  \code{k <= q+1}, \code{t>=3},
+for prime powers \code{q}.
+}
+\details{
 From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
 columns with every element being one of \code{q} symbols
 \code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}

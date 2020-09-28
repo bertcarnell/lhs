@@ -2,9 +2,7 @@
 % Please edit documentation in R/createOA.R
 \name{createAddelKemp}
 \alias{createAddelKemp}
-\title{Create an orthogonal array using the Addelman-Kempthorne algorithm.  The
-addelkemp program produces \code{OA( 2q^2, k, q, 2 )},  \code{k <= 2q+1},
-for odd prime powers \code{q}.}
+\title{Create an orthogonal array using the Addelman-Kempthorne algorithm.}
 \usage{
 createAddelKemp(q, ncol, bRandom = TRUE)
 }
@@ -19,6 +17,10 @@ createAddelKemp(q, ncol, bRandom = TRUE)
 an orthogonal array
 }
 \description{
+The \code{addelkemp} program produces \code{OA( 2q^2, k, q, 2 )},  \code{k <= 2q+1},
+for odd prime powers \code{q}.
+}
+\details{
 From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
 columns with every element being one of \code{q} symbols
 \code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}

@@ -2,8 +2,7 @@
 % Please edit documentation in R/createOA.R
 \name{createBush}
 \alias{createBush}
-\title{Create an orthogonal array using the Bush algorithm.  The bush program
-produces \code{OA( q^3, k, q, 3 )},  \code{k <= q+1} for prime powers \code{q}.}
+\title{Create an orthogonal array using the Bush algorithm.}
 \usage{
 createBush(q, ncol, bRandom = TRUE)
 }
@@ -18,6 +17,10 @@ createBush(q, ncol, bRandom = TRUE)
 an orthogonal array
 }
 \description{
+The \code{bush} program
+produces \code{OA( q^3, k, q, 3 )},  \code{k <= q+1} for prime powers \code{q}.
+}
+\details{
 From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
 columns with every element being one of \code{q} symbols
 \code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}

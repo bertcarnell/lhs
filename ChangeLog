@@ -65,9 +65,15 @@ Verion 1.0
   Added orthogonal array latin hypercube capability
 
 Version 1.0.1
-  Update to fix a memory leak notice on CRAN servers when checking examples with valgrind
+  Update to fix a memory leak noticed on CRAN servers when checking examples with valgrind
 
 Version 1.0.2
   Added references to the Orthogonal array functions
   Fixed typos
   Changed the way the Rcpp::RNGScope object is destructed based on the debugging efforts of @mb706
+
+Version 1.1.0
+  Bug reports from Dr. Ulrike Groemping (https://github.com/bertcarnell/lhs/issues/26, https://github.com/bertcarnell/lhs/issues/25)
+  Fixed underlying C++ code for addelkempn orthogonal array algorithm.
+  Fixed underlying C++ for bosebushl orthogonal array algorithm.
+  Added regression tests

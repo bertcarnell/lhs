@@ -3,9 +3,7 @@
 \name{createAddelKemp3}
 \alias{createAddelKemp3}
 \title{Create an orthogonal array using the Addelman-Kempthorne algorithm
-with \code{2q^3} rows.  The addelkemp3 program produces
-\code{OA( 2*q^3, k, q, 2 )},  \code{k <= 2q^2+2q+1}, for prime powers \code{q}.
-\code{q} may be an odd prime power, or \code{q} may be 2 or 4.}
+with \code{2q^3} rows.}
 \usage{
 createAddelKemp3(q, ncol, bRandom = TRUE)
 }
@@ -20,6 +18,11 @@ createAddelKemp3(q, ncol, bRandom = TRUE)
 an orthogonal array
 }
 \description{
+The \code{addelkemp3} program produces
+\code{OA( 2*q^3, k, q, 2 )},  \code{k <= 2q^2+2q+1}, for prime powers \code{q}.
+\code{q} may be an odd prime power, or \code{q} may be 2 or 4.
+}
+\details{
 From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
 columns with every element being one of \code{q} symbols
 \code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}

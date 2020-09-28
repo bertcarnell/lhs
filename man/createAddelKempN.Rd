@@ -3,7 +3,7 @@
 \name{createAddelKempN}
 \alias{createAddelKempN}
 \title{Create an orthogonal array using the Addelman-Kempthorne algorithm with
-alternate strength}
+alternate strength with \code{2q^n} rows.}
 \usage{
 createAddelKempN(q, ncol, exponent, bRandom = TRUE)
 }
@@ -20,8 +20,18 @@ createAddelKempN(q, ncol, exponent, bRandom = TRUE)
 an orthogonal array
 }
 \description{
-Create an orthogonal array using the Addelman-Kempthorne algorithm with
-alternate strength
+The \code{addelkempn} program produces
+\code{OA( 2*q^n, k, q, 2 )},  \code{k <= 2(q^n - 1)/(q-1)-1}, for prime powers \code{q}.
+\code{q} may be an odd prime power, or \code{q} may be 2 or 4.
+}
+\details{
+From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
+columns with every element being one of \code{q} symbols
+\code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}
+submatrix, the \code{q^t} possible distinct rows, all appear
+the same number of times.  This number is the index
+of the array, commonly denoted \code{lambda}.  Clearly,
+\code{lambda*q^t=n}. The notation for such an array is \code{OA( n, k, q, t )}.
 }
 \examples{
 A <- createAddelKempN(3, 4, 3, TRUE)

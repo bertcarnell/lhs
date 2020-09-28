@@ -1,6 +1,8 @@
 # Copyright 2019 Robert Carnell
 
-#' Create an orthogonal array using the Bose algorithm.  The bose program
+#' Create an orthogonal array using the Bose algorithm.
+#'
+#' The \code{bose} program
 #' produces \code{OA( q^2, k, q, 2 )},  \code{k <= q+1} for prime powers \code{q}.
 #'
 #' From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
@@ -31,7 +33,9 @@ createBose <- function(q, ncol, bRandom=TRUE)
                as.logical(bRandom), PACKAGE = "lhs"))
 }
 
-#' Create an orthogonal array using the Bose-Bush algorithm. The bosebush program
+#' Create an orthogonal array using the Bose-Bush algorithm.
+#'
+#' The \code{bosebush} program
 #' produces \code{OA( 2q^2, k, q, 2 )},  \code{k <= 2q+1}, for powers of 2, \code{q=2^r}.
 #'
 #' From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
@@ -62,7 +66,9 @@ createBoseBush <- function(q, ncol, bRandom=TRUE)
                as.logical(bRandom), PACKAGE = "lhs"))
 }
 
-#' Create an orthogonal array using the Bush algorithm.  The bush program
+#' Create an orthogonal array using the Bush algorithm.
+#'
+#' The \code{bush} program
 #' produces \code{OA( q^3, k, q, 3 )},  \code{k <= q+1} for prime powers \code{q}.
 #'
 #' From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
@@ -93,8 +99,9 @@ createBush <- function(q, ncol, bRandom=TRUE)
                as.logical(bRandom), PACKAGE = "lhs"))
 }
 
-#' Create an orthogonal array using the Addelman-Kempthorne algorithm.  The
-#' addelkemp program produces \code{OA( 2q^2, k, q, 2 )},  \code{k <= 2q+1},
+#' Create an orthogonal array using the Addelman-Kempthorne algorithm.
+#'
+#' The \code{addelkemp} program produces \code{OA( 2q^2, k, q, 2 )},  \code{k <= 2q+1},
 #' for odd prime powers \code{q}.
 #'
 #' From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
@@ -126,7 +133,9 @@ createAddelKemp <- function(q, ncol, bRandom=TRUE)
 }
 
 #' Create an orthogonal array using the Addelman-Kempthorne algorithm
-#' with \code{2q^3} rows.  The addelkemp3 program produces
+#' with \code{2q^3} rows.
+#'
+#' The \code{addelkemp3} program produces
 #' \code{OA( 2*q^3, k, q, 2 )},  \code{k <= 2q^2+2q+1}, for prime powers \code{q}.
 #' \code{q} may be an odd prime power, or \code{q} may be 2 or 4.
 #'
@@ -158,8 +167,9 @@ createAddelKemp3 <- function(q, ncol, bRandom=TRUE)
                as.logical(bRandom), PACKAGE = "lhs"))
 }
 
-#' Create an orthogonal array using the Bush algorithm with alternate strength. The
-#' bush program produces \code{OA( q^t, k, q, t )},  \code{k <= q+1}, \code{t>=3},
+#' Create an orthogonal array using the Bush algorithm with alternate strength.
+#'
+#' The \code{busht} program produces \code{OA( q^t, k, q, t )},  \code{k <= q+1}, \code{t>=3},
 #' for prime powers \code{q}.
 #'
 #' From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
@@ -193,8 +203,9 @@ createBusht <- function(q, ncol, strength, bRandom=TRUE)
                as.integer(ncol), as.logical(bRandom), PACKAGE = "lhs"))
 }
 
-#' Create an orthogonal array using the Bose-Bush algorithm with alternate strength >= 3. The
-#' bosebushl program produces \code{OA( lambda*q^2, k, q, 2 )},
+#' Create an orthogonal array using the Bose-Bush algorithm with alternate strength >= 3.
+#'
+#' The \code{bosebushl} program produces \code{OA( lambda*q^2, k, q, 2 )},
 #' \code{k <= lambda*q+1}, for prime powers \code{q} and \code{lambda > 1}.  Both \code{q} and
 #' \code{lambda} must be powers of the same prime.
 #'
@@ -228,7 +239,19 @@ createBoseBushl <- function(q, ncol, lambda, bRandom=TRUE)
 }
 
 #' Create an orthogonal array using the Addelman-Kempthorne algorithm with
-#' alternate strength
+#' alternate strength with \code{2q^n} rows.
+#'
+#' The \code{addelkempn} program produces
+#' \code{OA( 2*q^n, k, q, 2 )},  \code{k <= 2(q^n - 1)/(q-1)-1}, for prime powers \code{q}.
+#' \code{q} may be an odd prime power, or \code{q} may be 2 or 4.
+#'
+#' From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
+#' columns with every element being one of \code{q} symbols
+#' \code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}
+#' submatrix, the \code{q^t} possible distinct rows, all appear
+#' the same number of times.  This number is the index
+#' of the array, commonly denoted \code{lambda}.  Clearly,
+#' \code{lambda*q^t=n}. The notation for such an array is \code{OA( n, k, q, t )}.
 #'
 #' @param q the number of symbols in the array
 #' @param ncol number of parameters or columns

@@ -2,8 +2,7 @@
 % Please edit documentation in R/createOA.R
 \name{createBoseBush}
 \alias{createBoseBush}
-\title{Create an orthogonal array using the Bose-Bush algorithm. The bosebush program
-produces \code{OA( 2q^2, k, q, 2 )},  \code{k <= 2q+1}, for powers of 2, \code{q=2^r}.}
+\title{Create an orthogonal array using the Bose-Bush algorithm.}
 \usage{
 createBoseBush(q, ncol, bRandom = TRUE)
 }
@@ -18,6 +17,10 @@ createBoseBush(q, ncol, bRandom = TRUE)
 an orthogonal array
 }
 \description{
+The \code{bosebush} program
+produces \code{OA( 2q^2, k, q, 2 )},  \code{k <= 2q+1}, for powers of 2, \code{q=2^r}.
+}
+\details{
 From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
 columns with every element being one of \code{q} symbols
 \code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}

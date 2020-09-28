@@ -2,8 +2,7 @@
 % Please edit documentation in R/createOA.R
 \name{createBose}
 \alias{createBose}
-\title{Create an orthogonal array using the Bose algorithm.  The bose program
-produces \code{OA( q^2, k, q, 2 )},  \code{k <= q+1} for prime powers \code{q}.}
+\title{Create an orthogonal array using the Bose algorithm.}
 \usage{
 createBose(q, ncol, bRandom = TRUE)
 }
@@ -18,6 +17,10 @@ createBose(q, ncol, bRandom = TRUE)
 an orthogonal array
 }
 \description{
+The \code{bose} program
+produces \code{OA( q^2, k, q, 2 )},  \code{k <= q+1} for prime powers \code{q}.
+}
+\details{
 From Owen: An orthogonal array \code{A} is a matrix of \code{n} rows, \code{k}
 columns with every element being one of \code{q} symbols
 \code{0,...,q-1}.  The array has strength \code{t} if, in every \code{n} by \code{t}

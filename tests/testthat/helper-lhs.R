@@ -26,3 +26,30 @@ checkOA <- function(X)
   Y <- t(X) %*% X
   all(abs(Y[upper.tri(Y)]) < 1E-9)
 }
+
+encodeOA <- function(X, n)
+{
+  assertthat::assert_that(n > 1 & is.integer(n),
+                          msg = "n must be an integer > 1")
+  if (n == 2)
+  {
+    X[which(X == 0, arr.ind = TRUE)] <- -1
+    return(X)
+  } else if (n == 3)
+  {
+    X[which(X == 0, arr.ind = TRUE)] <- -1
+    X[which(X == 1, arr.ind = TRUE)] <- 0
+    X[which(X == 2, arr.ind = TRUE)] <- 1
+    return(X)
+  } else if (n == 4)
+  {
+    X[which(X == 0, arr.ind = TRUE)] <- -1
+    X[which(X == 1, arr.ind = TRUE)] <- -1/3
+    X[which(X == 2, arr.ind = TRUE)] <- 1/3
+    X[which(X == 3, arr.ind = TRUE)] <- 1
+    return(X)
+  } else if (n > 4)
+  {
+    stop("Not implemented yet")
+  }
+}
