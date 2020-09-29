@@ -28,9 +28,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Latin Hypercube Samples (lhs)
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.1.0</span>
    </div>
    <div id="projectbrief">R, C++, and Rcpp code to generate Latin hypercube samples</div>
   </td>
@@ -126,6 +127,11 @@ Macros</h2></td></tr>
 <tr class="separator:a54a8202621907013a87cfeef68c26080"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc84ad58c2e577beb804d06bb0e1ea6f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_l_h_s_common_defines_8h.html#acc84ad58c2e577beb804d06bb0e1ea6f">PRINT_RESULT</a>&#160;&#160;&#160;0</td></tr>
 <tr class="separator:acc84ad58c2e577beb804d06bb0e1ea6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa68fb66c1e09694f8585874f1873b3bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_l_h_s_common_defines_8h.html#aa68fb66c1e09694f8585874f1873b3bf">START_RNG</a>&#160;&#160;&#160;Rcpp::RNGScope * tempRNG = new Rcpp::RNGScope();</td></tr>
+<tr class="separator:aa68fb66c1e09694f8585874f1873b3bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad446b90eaeeb1b2f2cc3691368ef240b"><td class="memItemLeft" align="right" valign="top"><a id="ad446b90eaeeb1b2f2cc3691368ef240b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>END_RNG</b>&#160;&#160;&#160;delete tempRNG;</td></tr>
+<tr class="separator:ad446b90eaeeb1b2f2cc3691368ef240b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -200,6 +206,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Should results be printed </p>
+
+</div>
+</div>
+<a id="aa68fb66c1e09694f8585874f1873b3bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa68fb66c1e09694f8585874f1873b3bf">&#9670;&nbsp;</a></span>START_RNG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define START_RNG&#160;&#160;&#160;Rcpp::RNGScope * tempRNG = new Rcpp::RNGScope();</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>RNG Macro (See <a class="el" href="lhs__r_8cpp.html">lhs_r.cpp</a>) </p>
 
 </div>
 </div>
