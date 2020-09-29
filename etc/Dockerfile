@@ -12,7 +12,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	libgmp-dev \
 	curl \
 	libcurl4-openssl-dev \
-	python-dev \
+	python3 \
+	python3-dev \
 	libssl-dev \
 	default-jdk \
 	libxml2-dev \
@@ -30,13 +31,22 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	texlive-latex-base \
 	texlive-latex-extra \
 	texlive-latex-recommended \
-	git
+	git \
+	libfreetype6-dev \
+	libpng-dev \
+	libtiff5-dev \
+	libjpeg-dev \
+	libgeos-dev \
+	libgsl-dev \
+	qpdf
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	&& apt-get install -t unstable -y \
 	r-recommended \
 	r-cran-rcpp \
 	r-cran-rcpparmadillo \
+	r-cran-rcppeigen \
+	r-cran-rcppgsl \
 	r-cran-msm \
 	r-cran-stringr \
 	r-cran-xml \
@@ -133,12 +143,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	r-cran-irace \
 	r-cran-testit \
 	r-cran-fnn \
-	r-cran-scales
+	r-cran-scales \
+	r-cran-gam
+
+## r-cran-ragg is not available
+RUN Rscript -e 'install.packages("ragg")'
 
 COPY ["rev_dep_docker_packages.R", "/home/docker/rev_dep_docker_packages.R"]
 
 RUN Rscript /home/docker/rev_dep_docker_packages.R lhs
 
-RUN wget https://install-github.me/r-lib/revdepcheck \
-	&& Rscript -e 'source("revdepcheck")'
 

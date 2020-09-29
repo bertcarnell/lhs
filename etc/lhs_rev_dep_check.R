@@ -1,14 +1,19 @@
 pkg <- "lhs"
 pkg_path <- ".."
 dependencies <- c("Depends", "Suggests", "Imports")
-restart <- NA # or NA
-extraArgs <- list(laGP = "--no-vignettes")
+restart <- NA # NA to run all dependencies or the name of a package to restart from
+extraArgs <- list(laGP = "--no-vignettes",
+                  ENMTools = "--no-examples")
 
 require(callr)
 require(assertthat)
 require(withr)
 require(devtools)
-require(revdepcheck)
+if (!require(revdepcheck))
+{
+  devtools::install_github("r-lib/revdepcheck")
+  require(revdepcheck)
+}
 require(rcmdcheck)
 
 ################################################################################
@@ -86,6 +91,11 @@ if (!is.na(restart))
 if (file.exists(file.path("revdep.out.Rdata")))
 {
   load(file = file.path("revdep.out.Rdata"))
+  if (length(rcmd_output_new) != length(revdeps))
+  {
+    rcmd_output_new <- vector("list", length(revdeps))
+    rcmd_output_old <- vector("list", length(revdeps))
+  }
 } else 
 {
   rcmd_output_new <- vector("list", length(revdeps))
@@ -95,6 +105,11 @@ if (file.exists(file.path("revdep.out.Rdata")))
 for (i in seq_along(revdeps))
 {
   revdep <- revdeps[i]
+
+  cat("\n", paste(rep("-", 80), collapse=""), "\n")
+  cat(paste("-----", revdep, "(", i, "of", length(revdeps), ")-----\n"))
+  cat(paste(rep("-", 80), collapse=""), "\n")
+
   revdep_check_path_curr <- check_and_create_dir(file.path(revdep_check_path, revdep))
   revdep_check_path_curr_old <- check_and_create_dir(file.path(revdep_check_path_curr, "old"))
   revdep_check_path_curr_new <- check_and_create_dir(file.path(revdep_check_path_curr, "new"))
@@ -108,22 +123,24 @@ for (i in seq_along(revdeps))
     extraArgs_local <- extraArgs[[pkg]]
   }
 
+  cat("\nOLD PACKAGE\n")
   withr::with_envvar(
-    revdepcheck:::check_env_vars(check_version = FALSE, force_suggests = TRUE),
+    revdepcheck::revdep_env_vars(force_suggests = TRUE),
     rcmd_output_old[[i]] <- rcmdcheck::rcmdcheck(
       path = tarball,
       libpath = c(revdep_library_path_old, .libPaths()),
-      args = c("--as-cran", extraArgs),
+      args = c("--as-cran", extraArgs_local),
       check_dir = revdep_check_path_curr_old
     )
   )
 
+  cat("\nNEW PACKAGE\n")
   withr::with_envvar(
-    revdepcheck:::check_env_vars(check_version = FALSE, force_suggests = TRUE),
+    revdepcheck::revdep_env_vars(force_suggests = TRUE),
     rcmd_output_new[[i]] <- rcmdcheck::rcmdcheck(
       path = tarball,
       libpath = c(revdep_library_path_new, .libPaths()),
-      args = c("--as-cran", extraArgs),
+      args = c("--as-cran", extraArgs_local),
       check_dir = revdep_check_path_curr_new
     )
   )
