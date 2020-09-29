@@ -41,7 +41,7 @@
 #'   \emph{American Institute of Aeronautics and Astronautics Paper} \bold{1274}.
 #'
 #'   This function is based on the MATLAB program written by John Burkardt and modified 16 Feb 2005
-#'   \url{http://www.csit.fsu.edu/~burkardt/m_src/ihs/ihs.m}
+#'   \url{https://people.sc.fsu.edu/~jburkardt/m_src/ihs/ihs.m}
 #'
 #' @seealso [randomLHS()], [geneticLHS()], [maximinLHS()], and [optimumLHS()]
 #' to generate Latin Hypercube Samples.  [optAugmentLHS()], [optSeededLHS()], and
