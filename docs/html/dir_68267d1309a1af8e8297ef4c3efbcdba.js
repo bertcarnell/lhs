@@ -34,7 +34,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "oa_r_utils.h", "oa__r__utils_8h.html", "oa__r__utils_8h" ],
     [ "OACommonDefines.h", "_o_a_common_defines_8h.html", "_o_a_common_defines_8h" ],
     [ "oaLHS.cpp", "oa_l_h_s_8cpp.html", "oa_l_h_s_8cpp" ],
-    [ "oaLHS.h", "oa_l_h_s_8h_source.html", null ],
+    [ "oaLHS.h", "oa_l_h_s_8h.html", "oa_l_h_s_8h" ],
     [ "oalhs_r.cpp", "oalhs__r_8cpp.html", "oalhs__r_8cpp" ],
     [ "oalhs_r.h", "oalhs__r_8h.html", "oalhs__r_8h" ],
     [ "oaLHSUtility.h", "oa_l_h_s_utility_8h_source.html", null ],
