@@ -417,7 +417,7 @@ namespace oacpp
                 }
                 for (size_t k = 0; k < s; k++)
                 {
-                    for (size_t j = 0; j < static_cast<size_t>(ncol) && j < lam * s + 1; j++)
+                    for (size_t j = 0; j < static_cast<size_t>(ncol) && j < lam * s + 1 && j < q; j++)
                     {
                         B(irow,j) = A(k,j);
                     }
