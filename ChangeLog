@@ -77,3 +77,6 @@ Version 1.1.0
   Fixed underlying C++ code for addelkempn orthogonal array algorithm.
   Fixed underlying C++ for bosebushl orthogonal array algorithm.
   Added regression tests
+
+Verion 1.1.1
+  Corrected memory leak and read out-of-bounds
