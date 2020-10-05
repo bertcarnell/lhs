@@ -19,9 +19,11 @@ jobs:
       matrix:
         config:
           - {os: windows-latest, r: 'release'}
+          - {os: windows-latest, r: 'devel'}
           - {os: macOS-latest, r: 'release'}
           - {os: macOS-latest, r: 'devel'}
           - {os: ubuntu-16.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
+          - {os: ubuntu-16.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/xenial/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -66,10 +68,21 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-      - name: Check
+      - name: Check Standard
+        if: ! ( ${{ matrix.config.os }} == 'ubuntu-16.04' && ${{ matrix.config.r }} == 'devel' )
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
+        shell: Rscript {0}
+
+      - name: Check Valgrind
+        if: ${{ matrix.config.os }} == 'ubuntu-16.04' && ${{ matrix.config.r }} == 'devel'
+        env:
+          _R_CHECK_CRAN_INCOMING_REMOTE_: false
+        run: |
+          sudo apt-get install valgrind
+          VALGRIND_OPTS="--lead-check=full"
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--use-valgrind"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
       - name: Upload check results
