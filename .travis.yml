@@ -1,4 +1,6 @@
 language: r
+dist: bionic
+os: linux
 
 addons:
   apt:
@@ -7,22 +9,27 @@ addons:
       
 # execute code coverage, but ignore files that are tested in their own packages
 #  these files from from bertcarnell/oa, bertcarnell/bclib, and bertcarnell/lhslib
-matrix:
+jobs:
   include:
-    - dist: xenial
+    - name: "Code Coverage"
+      dist: xenial
       r: release
       after_success: Rscript -e 'covr::codecov(line_exclusions=list("src/COrthogonalArray.cpp", "src/COrthogonalArray.h", "src/CRandom.h", "src/RStandardUniform.h", "src/ak3.cpp", "src/akconst.cpp", "src/akn.cpp", "src/construct.cpp", "src/galdef.h", "src/galois.cpp", "src/geneticLHS.cpp", "src/gfields.cpp", "src/improvedLHS.cpp", "src/matrix.h", "src/maximinLHS.cpp", "src/oa.cpp", "src/oaLHS.cpp", "src/oaLHSUtility.h", "src/optSeededLHS.cpp", "src/optimumLHS.cpp", "src/order.h", "src/primes.cpp", "src/randomLHS.cpp", "src/runif.cpp", "src/runif.h", "src/rutils.cpp", "src/rutils.h", "src/utilityLHS.cpp", "src/utilityLHS.h", "src/xtndeclare.h", "src/xtndispatch.h", "src/xtnset.h"))'
-      r_check_args: "--as-cran"
-    - dist: xenial
+      r_check_args: ""
+    - name: "R-devel on CRAN"
+      dist: xenial
       r: devel
       r_check_args: "--as-cran"
-    - dist: bionic
+    - name: "Latest R with Valgrind"
+      dist: bionic
       r: release
       r_check_args: "--use-valgrind"
-    - dist: focal
+    - name: "Latest R on CRAN"
+      dist: focal
       r: release
       r_check_args: "--as-cran"
-    - os: osx
+    - name: "Latest R on CRAN"
+      os: osx
       r: release
       r_check_args: "--as-cran"
 
@@ -31,4 +38,3 @@ r_github_packages:
 
 cache: packages
 warnings_are_errors: true
-sudo: false
