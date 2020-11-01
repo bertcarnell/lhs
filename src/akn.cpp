@@ -40,50 +40,43 @@ namespace oacpp
             if (akn < 2)
             {
                 msg << "This Addelman-Kempthorne OA(2q^n,ncol,q,2) is only available for n >= 2.  n = " << akn << " was requested.\n";
-				const std::string ss = msg.str();
-				throw std::runtime_error(ss.c_str());
+                ostringstream_runtime_error(msg);
             }
 
             if (p == 2 && q > 4)
             {
                 msg << "This Addelman-Kempthorne OA(2q^n,ncol,q,2) is only available for odd prime powers q and for even prime \n powers q<=4. \n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
             }
 
             if (ncol > 2 * (primes::ipow(q, akn) - 1) / (q - 1) - 1)
             {
                 msg << "The Addelman-Kempthorne construction needs ncol <= 2(q^n-1)(q-1) -1. Can't have ncol = " << ncol << " with n=" << akn << " and q = " << q << "\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
             }
 
             return SUCCESS_CHECK;
         }
 
         /* Implement Addelman and Kempthorne's 1961 A.M.S. method with n=3 */
-        int addelkempn(GF & gf, int akn, bclib::matrix<int> & A, int ncol)
+        int addelkempn(GaloisField & gf, int akn, bclib::matrix<int> & A, int ncol)
         {
-            int p, q;
             int kay; /* A&K notation */
             int col, square, ksquare;
             int monic, elt;
             size_t numin;
-            size_t aknu = static_cast<size_t> (akn);
+            size_t aknu = static_cast<size_t>(akn);
 
-            p = gf.p;
-            q = gf.q;
-
-            int test = addelkempncheck(q, p, akn, ncol);
+            int test = addelkempncheck(gf.q, gf.p, akn, ncol);
 
             if (test != SUCCESS_CHECK)
             {
                 return FAILURE_CHECK;
             }
 
-            std::vector<int> b(q);
-            std::vector<int> c(q);
-            std::vector<int> k(q);
+            std::vector<int> b(gf.u_q);
+            std::vector<int> c(gf.u_q);
+            std::vector<int> k(gf.u_q);
             std::vector<int> x(aknu);
             std::vector<int> s(aknu);
             std::vector<int> coef(aknu);
@@ -93,7 +86,7 @@ namespace oacpp
             {
                 x[i] = 0;
             }
-            for (size_t row = 0; row < static_cast<size_t>(primes::ipow(q, akn)); row++)
+            for (size_t row = 0; row < static_cast<size_t>(primes::ipow(gf.q, akn)); row++)
             { /* First q^akn rows */
                 col = 0;
                 s[0] = 1;
@@ -108,7 +101,7 @@ namespace oacpp
                     numin = 0;
                     for (size_t i = 0; i < aknu; i++)
                     {
-                        if (s[i])
+                        if (s[i] != 0)
                         {
                             if (monic == -1)
                             {
@@ -124,7 +117,7 @@ namespace oacpp
                     {
                         coef[i] = 1;
                     }
-                    for (size_t poly = 0; poly < static_cast<size_t>(primes::ipow(q - 1, static_cast<int>(numin))) && col < ncol; poly++)
+                    for (size_t poly = 0; poly < static_cast<size_t>(primes::ipow(gf.q - 1, static_cast<int>(numin))) && col < ncol; poly++)
                     {
                         elt = x[monic];
                         for (size_t i = 0; i < numin; i++)
@@ -135,21 +128,18 @@ namespace oacpp
                         for (int i = static_cast<int>(numin) - 1; i >= 0; i--) // has to be an int to decrement
                         {
                             size_t ui = static_cast<size_t>(i);
-                            coef[ui] = (coef[ui] + 1) % q;
-                            if (coef[ui])
+                            coef[ui] = (coef[ui] + 1) % gf.q;
+                            if (coef[ui] != 0)
                             {
                                 break;
                             }
-                            else
-                            {
-                                coef[ui] = 1;
-                            }
+                            coef[ui] = 1;
                         }
                     }
                     for (size_t i = 0; i < aknu; i++)
                     {
                         s[i] = (s[i] + 1) % 2;
-                        if (s[i])
+                        if (s[i] != 0)
                         {
                             break;
                         }
@@ -169,7 +159,7 @@ namespace oacpp
                     numin = 0;
                     for (size_t i = 1; i < aknu; i++)
                     {
-                        if (s[i])
+                        if (s[i] != 0)
                         {
                             if (monic == -1)
                             {
@@ -186,7 +176,7 @@ namespace oacpp
                     {
                         coef[i] = 1;
                     }
-					int polymax = q * primes::ipow(q - 1, static_cast<int>(numin));
+					int polymax = gf.q * primes::ipow(gf.q - 1, static_cast<int>(numin));
                     for (size_t poly = 0; poly < static_cast<size_t>(polymax) && col < ncol; poly++)
                     {
                         elt = gf.plus(square,gf.times(x[0],coef[0]));
@@ -199,24 +189,21 @@ namespace oacpp
                         for (int i = static_cast<int>(numin) + 1 - 1; i >= 0; i--) // has to be an int
                         {
                             size_t ui = static_cast<size_t>(i);
-                            coef[ui] = (coef[ui] + 1) % q;
-                            if (coef[ui])
+                            coef[ui] = (coef[ui] + 1) % gf.q;
+                            if (coef[ui] != 0)
                             {
                                 break;
                             }
-                            else
+                            if (i > 0)
                             {
-                                if (i > 0)
-                                {
-                                    coef[ui] = 1;
-                                }
+                                coef[ui] = 1;
                             }
                         }
                     }
                     for (size_t i = 1; i < aknu; i++)
                     {
                         s[i] = (s[i] + 1) % 2;
-                        if (s[i])
+                        if (s[i] != 0)
                         {
                             break;
                         }
@@ -226,15 +213,15 @@ namespace oacpp
                 for (int i = akn - 1; i >= 0; i--) // has to be an int to decrement
                 {
                     size_t ui = static_cast<size_t>(i);
-                    x[ui] = (x[ui] + 1) % q;
-                    if (x[ui])
+                    x[ui] = (x[ui] + 1) % gf.q;
+                    if (x[ui] != 0)
                     {
                         break;
                     }
                 }
             }
 
-            if (p != 2) /* Constants kay,b,c,k for odd p */
+            if (gf.p != 2) /* Constants kay,b,c,k for odd p */
             {
                 akodd(gf, &kay, b, c, k);
             }
@@ -247,8 +234,8 @@ namespace oacpp
             {
                 x[i] = 0;
             }
-			int rowmax = 2 * primes::ipow(q, akn);
-            for (size_t row = static_cast<size_t>(primes::ipow(q, akn)); row < static_cast<size_t>(rowmax); row++) /* Second q^akn rows */
+			int rowmax = 2 * primes::ipow(gf.q, akn);
+            for (size_t row = static_cast<size_t>(primes::ipow(gf.q, akn)); row < static_cast<size_t>(rowmax); row++) /* Second q^akn rows */
             {
                 col = 0;
                 s[0] = 1;
@@ -262,7 +249,7 @@ namespace oacpp
                     numin = 0;
                     for (size_t i = 0; i < aknu; i++)
                     {
-                        if (s[i])
+                        if (s[i] != 0)
                         {
                             if (monic == -1)
                             {
@@ -278,10 +265,10 @@ namespace oacpp
                     {
                         coef[i] = 1;
                     }
-                    for (size_t poly = 0; poly < static_cast<size_t>(primes::ipow(q - 1, static_cast<int>(numin))) && col < ncol; poly++)
+                    for (size_t poly = 0; poly < static_cast<size_t>(primes::ipow(gf.q - 1, static_cast<int>(numin))) && col < ncol; poly++)
                     {
                         elt = x[monic];
-                        if (numin && s[0])
+                        if (numin != 0 && s[0] != 0)
                         {
                             elt = gf.plus(elt,b[coef[0]]);
                         }
@@ -293,21 +280,18 @@ namespace oacpp
                         for (int i = static_cast<int>(numin) - 1; i >= 0; i--) // has to be an int to decrement
                         {
                             size_t ui = static_cast<size_t>(i);
-                            coef[ui] = (coef[ui] + 1) % q;
-                            if (coef[ui])
+                            coef[ui] = (coef[ui] + 1) % gf.q;
+                            if (coef[ui] != 0)
                             {
                                 break;
                             }
-                            else
-                            {
-                                coef[ui] = 1;
-                            }
+                            coef[ui] = 1;
                         }
                     }
                     for (size_t i = 0; i < aknu; i++)
                     {
                         s[i] = (s[i] + 1) % 2;
-                        if (s[i])
+                        if (s[i] != 0)
                         {
                             break;
                         }
@@ -327,7 +311,7 @@ namespace oacpp
                     numin = 0;
                     for (size_t i = 1; i < aknu; i++)
                     {
-                        if (s[i])
+                        if (s[i] != 0)
                         {
                             if (monic == -1)
                             {
@@ -344,7 +328,7 @@ namespace oacpp
                     {
                         coef[i] = 1;
                     }
-					int polymax = q * primes::ipow(q - 1, static_cast<int>(numin));
+					int polymax = gf.q * primes::ipow(gf.q - 1, static_cast<int>(numin));
                     for (size_t poly = 0; poly < static_cast<size_t>(polymax) && col < ncol; poly++)
                     {
                         elt = gf.plus(ksquare,gf.times(x[0],k[coef[0]]));
@@ -358,21 +342,18 @@ namespace oacpp
                         for (int i = static_cast<int>(numin) + 1 - 1; i >= 0; i--) // has to be an int to decrement // don't understand + 1 - 1
                         {
                             size_t ui = static_cast<size_t>(i);
-                            coef[ui] = (coef[ui] + 1) % q;
-                            if (coef[ui])
+                            coef[ui] = (coef[ui] + 1) % gf.q;
+                            if (coef[ui] != 0)
                             {
                                 break;
                             }
-                            else
-                            {
-                                coef[ui] = i > 0 ? 1 : 0;
-                            }
+                            coef[ui] = i > 0 ? 1 : 0;
                         }
                     }
                     for (size_t i = 1; i < aknu; i++)
                     {
                         s[i] = (s[i] + 1) % 2;
-                        if (s[i])
+                        if (s[i] != 0)
                         {
                             break;
                         }
@@ -382,8 +363,8 @@ namespace oacpp
                 for (int i = static_cast<int>(aknu) - 1; i >= 0; i--) // has to be an int to decrement
                 {
                     size_t ui = static_cast<size_t>(i);
-                    x[ui] = (x[ui] + 1) % q;
-                    if (x[ui])
+                    x[ui] = (x[ui] + 1) % gf.q;
+                    if (x[ui] != 0)
                     {
                         break;
                     }

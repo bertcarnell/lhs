@@ -84,8 +84,6 @@ namespace oacpp
                 (*str)++;
                 test = OA_strt(q, A, *str + 1, verbose);
             }
-
-            return;
         }
 
         int OA_str0(int q, bclib::matrix<int> & A, int verbose)
@@ -142,7 +140,7 @@ namespace oacpp
                     count = 0;
                     for (size_t i = 0; i < nrow; i++)
                     {
-                        count += (A(i,j1) == q1);
+                        count += static_cast<int>(A(i,j1) == q1);
                     }
                     if (count != lambda)
                     {
@@ -184,7 +182,7 @@ namespace oacpp
                 } // LCOV_EXCL_STOP
                 return 0;
             }
-            if (static_cast<int>(nrow) % (q * q))
+            if ((static_cast<int>(nrow) % (q * q)) != 0)
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
@@ -209,7 +207,7 @@ namespace oacpp
                             count = 0;
                             for (size_t i = 0; i < nrow; i++)
                             {
-                                count += (A(i,j1) == q1) && (A(i,j2) == q2);
+                                count += static_cast<int>((A(i,j1) == q1) && (A(i,j2) == q2));
                             }
                             if (count != lambda)
                             {
@@ -254,7 +252,7 @@ namespace oacpp
                 } // LCOV_EXCL_STOP
                 return 0;
             }
-            if (static_cast<int>(nrow) % (q * q * q))
+            if (static_cast<int>(nrow) % (q * q * q) != 0)
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
@@ -283,7 +281,7 @@ namespace oacpp
                                     count = 0;
                                     for (size_t i = 0; i < nrow; i++)
                                     {
-                                        count += (A(i,j1) == q1) && (A(i,j2) == q2) && (A(i,j3) == q3);
+                                        count += static_cast<int>((A(i,j1) == q1) && (A(i,j2) == q2) && (A(i,j3) == q3));
                                     }
                                     if (count != lambda)
                                     {
@@ -329,7 +327,7 @@ namespace oacpp
                 } // LCOV_EXCL_STOP
                 return 0;
             }
-            if (static_cast<int>(nrow) % (q * q * q * q))
+            if (static_cast<int>(nrow) % (q * q * q * q) != 0)
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
@@ -366,7 +364,7 @@ namespace oacpp
                                             count = 0;
                                             for (size_t i = 0; i < nrow; i++)
                                             {
-                                                count += (A(i,j1) == q1) && (A(i,j2) == q2) && (A(i,j3) == q3) && (A(i,j4) == q4);
+                                                count += static_cast<int>((A(i,j1) == q1) && (A(i,j2) == q2) && (A(i,j3) == q3) && (A(i,j4) == q4));
                                             }
                                             if (count != lambda)
                                             {
@@ -429,7 +427,7 @@ namespace oacpp
             {
                 return OA_str0(q, A, verbose);
             }
-            if (nrow % primes::ipow(q, t))
+            if (nrow % primes::ipow(q, t) != 0)
             {
                 if (verbose > 0) // LCOV_EXCL_START
                 {
@@ -469,9 +467,9 @@ namespace oacpp
                     for (size_t row = 0; row < nrow; row++)
                     {
                         match = 1;
-                        for (int i = 0; i < t && match; i++)
+                        for (int i = 0; i < t && match != 0; i++)
                         {
-                            match *= A(row,clist[i]) == qlist[i];
+                            match *= static_cast<int>(A(row,clist[i]) == qlist[i]);
                         }
                         count += match;
                     }
@@ -483,7 +481,8 @@ namespace oacpp
                             PRINT_OUTPUT << "the number of times (";
                             for (int i = 0; i < t; i++)
                             {
-                                PRINT_OUTPUT << "A(," << clist[i] << ")" << ((i == t - 1) ? ")" : ",");
+                                std::string temp = (i == t - 1) ? ")" : ","; // warning about decaying a pointer when used on next line
+                                PRINT_OUTPUT << "A(," << clist[i] << ")" << temp.c_str();
                             }
                             PRINT_OUTPUT << " = (";
                             for (int i = 0; i < t; i++)
@@ -497,7 +496,7 @@ namespace oacpp
                     for (int i = t - 1; i >= 0; i--) // has to be int
                     {
                         qlist[i] = (qlist[i] + 1) % q;
-                        if (qlist[i])
+                        if (qlist[i] != 0)
                         {
                             break;
                         }
@@ -507,7 +506,7 @@ namespace oacpp
                 for (int i = t - 1; i >= 0; i--) // has to be int
                 {
                     clist[i] = (clist[i] + 1) % (static_cast<int>(ncol) + i - t + 1);
-                    if (clist[i])
+                    if (clist[i] != 0)
                     {
                         break;
                     }

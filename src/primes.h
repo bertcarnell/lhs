@@ -57,7 +57,7 @@ namespace oacpp {
 
         /**
          * Is the number prime
-         * @deprecated due to slowness
+         * @deprecated Deprecated due to slowness
          * @param p number
          * @return 1 if prime, 0 otherwise
          */

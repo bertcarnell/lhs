@@ -25,6 +25,9 @@
 #include "LHSCommonDefines.h"
 #include "lhs_r_utilities.h"
 #include "RStandardUniform.h"
+#include "bclibVersion.h"
+#include "oalibVersion.h"
+#include "lhslibVersion.h"
 
 /**
  * Improved Latin hypercube sample algorithm
@@ -86,5 +89,11 @@ RcppExport SEXP randomLHS_cpp(SEXP n, SEXP k, SEXP preserveDraw);
  */
 RcppExport SEXP geneticLHS_cpp(SEXP n, SEXP k, SEXP pop, SEXP gen, SEXP pMut, 
         SEXP criterium, SEXP bVerbose);
+
+/**
+ * Get the versions of the bclib, oa, and lhslib C++ libraries
+ * @return String of version information
+ */
+RcppExport SEXP get_library_versions();
 
 #endif	/* LHS_R_H */

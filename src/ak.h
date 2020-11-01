@@ -32,7 +32,7 @@
 #define AK_H
 
 #include "OACommonDefines.h"
-#include "galois.h"
+#include "GaloisField.h"
 #include "primes.h"
 #include "matrix.h"
 
@@ -44,11 +44,10 @@ namespace oacpp {
 	{
         /**
          * Check that the parameters of the addelkemp3 algorithm are consistent
+		 * (<code>ncol <= 2q^2+2q+1</code>
          * 
-         * @todo define p
-         * 
-         * @param q the number of symbols
-         * @param p
+         * @param q the order of the Galois field or the number of symbols
+         * @param p the prime basis of the Galois field
          * @param ncol the number of columns
          * @return an indicator of success
          */
@@ -57,54 +56,48 @@ namespace oacpp {
         /**
          * Addelkemp algorithm for even <code>p</code>
          * 
-         * @todo define b, c, and k
-         * @param gf galois field object
+         * @param gf a Galois field
          * @param kay the number of columns
-         * @param b
-         * @param c
-         * @param k
+         * @param b original Addelkemp variable
+         * @param c original Addelkemp variable
+         * @param k original Addelkemp variable
          * @return an indicator of success
          */
-		int akeven(GF & gf, int* kay, std::vector<int> & b, std::vector<int> & c, std::vector<int> & k );
+		int akeven(GaloisField & gf, int* kay, std::vector<int> & b, std::vector<int> & c, std::vector<int> & k);
         
         /**
          * Addelkemp algorithm for odd <code>p</code>
          * 
-         * @todo define b, c, and k
-         * @param gf galois field object
+         * @param gf a Galois field object
          * @param kay the number of columns
-         * @param b
-         * @param c
-         * @param k
+         * @param b original Addelkemp variable
+         * @param c original Addelkemp variable
+         * @param k original Addelkemp variable
          * @return an indicator of success
          */
-		int akodd(GF & gf, int* kay, std::vector<int> & b, std::vector<int> & c, std::vector<int> & k );
+		int akodd(GaloisField & gf, int* kay, std::vector<int> & b, std::vector<int> & c, std::vector<int> & k);
         
         /**
          * Check that the parameters are consistent for the addelkempn algorithm
          * 
-         * @todo define p and akn
-         * 
-         * @param q the number of symbols
-         * @param p
-         * @param akn
+         * @param q the order of Galois field or the number of symbols
+         * @param p the prime basis of the Galois field
+         * @param akn the <code>akn</code> algorithm produces OA(2q^n,ncol,q,2)
          * @param ncol the number of columns
          * @return an indicator of success
          */
-		int addelkempncheck(int q, int p, int akn, int ncol  );
+		int addelkempncheck(int q, int p, int akn, int ncol);
         
         /**
-         * The addelkemp algorithm for general n
+         * The addelkemp algorithm for general n to produce OA(2q^n,ncol,q,2)
          * 
-         * @todo define akn
-         * 
-         * @param gf galois filed
-         * @param akn
+         * @param gf a Galois Field
+         * @param akn the <code>akn</code> algorithm produces OA(2q^n,ncol,q,2)
          * @param A the orthogonal array
          * @param ncol the number of columns
          * @return an indicator of success
          */
-		int addelkempn(GF & gf, int akn, bclib::matrix<int> & A, int ncol );
+		int addelkempn(GaloisField & gf, int akn, bclib::matrix<int> & A, int ncol);
         
         /**
          * The addelkemp algorithm for n=3
@@ -114,7 +107,7 @@ namespace oacpp {
          * @param ncol the number of columns
          * @return an indicator of success
          */
-		int addelkemp3(GF & gf, bclib::matrix<int> & A, int ncol );
+		int addelkemp3(GaloisField & gf, bclib::matrix<int> & A, int ncol );
 	}
 }
 

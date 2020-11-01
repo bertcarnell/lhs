@@ -3,7 +3,7 @@
  * @author Robert Carnell
  * @copyright Copyright (c) 2013, Robert Carnell
  * 
- * @license <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
+ * License: <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -35,11 +35,7 @@ COrthogonalArray::COrthogonalArray()
 
 void COrthogonalArray::createGaloisField(int q)
 {
-	bool test = galoisfield::GF_getfield(q, m_gf) == SUCCESS_CHECK ? true : false;
-	if (!test)
-	{
-		throw std::runtime_error("Could not construct the Galois field"); // LCOV_EXCL_TEST
-	}
+    m_gf = GaloisField(q);
 }
 
 void COrthogonalArray::checkDesignMemory()
@@ -56,22 +52,20 @@ int COrthogonalArray::checkMaxColumns(int k, int maxColumns)
 	{
 		return maxColumns;
 	}
-	else if (k > maxColumns)
+
+    if (k > maxColumns)
 	{
-        std::ostringstream s;
-        s << "At most " << maxColumns << " columns are possible for the design.";
-		const std::string ss = s.str();
-		throw std::runtime_error(ss.c_str());
+        std::ostringstream msg;
+        msg << "At most " << maxColumns << " columns are possible for the design.";
+        ostringstream_runtime_error(msg);
 	}
-	else
-	{
-		return k;
-	}
+    
+    return k;
 }
 
 void COrthogonalArray::checkResult(int result, int nvalue, int * n)
 {
-	if (result)
+	if (result == SUCCESS_CHECK)
 	{
 		*n = nvalue;
 	}
@@ -131,7 +125,7 @@ void COrthogonalArray::bose(int q, int k, int* n)
 
 void COrthogonalArray::bosebush(int q, int k, int *n)
 {
-	if (q%2)
+	if (q % 2 != 0)
 	{
 		throw std::runtime_error("This implementation of Bose-Bush only works for a number of levels equal to a power of 2");
 	}
@@ -154,11 +148,11 @@ void COrthogonalArray::bosebushl(int lambda, int q, int k, int* n)
 	primes::primepow(lambda, &pl, &nl, &isppl);
 	primes::primepow(q , &pq, &nq, &isppq);
 
-	if (!isppq)
+	if (isppq == 0)
 	{
 		throw std::runtime_error("The Bose-Bush design requires that q be prime raised to a positive integral power.");
 	}
-	if (!isppl)
+	if (isppl == 0)
 	{
 		throw std::runtime_error("The Bose-Bush design requires that lambda be a prime raised to a positive integral power.");
 	}
@@ -217,7 +211,7 @@ int COrthogonalArray::oaagree(bool verbose)
 		agree = 0;
 		for (int k = 0; k < m_ncol; k++)
 		{
-		  agree += (m_A(i,k) == m_A(j,k));
+		  agree += static_cast<int>(m_A(i,k) == m_A(j,k));
 		}
 		if (agree > maxagr)
 		{
@@ -230,7 +224,7 @@ int COrthogonalArray::oaagree(bool verbose)
 		  }
 		}
 	  }
-	  if (i && i % ROWCHECK == 0 && verbose)
+	  if (i != 0 && i % ROWCHECK == 0 && verbose)
       {
 		PRINT_OUTPUT << "Checked rows <= " << i << " vs all other rows.\n"; // LCOV_EXCL_LINE
       }
@@ -267,9 +261,9 @@ int COrthogonalArray::oatriple(bool verbose)
 				{
 					for (int i2 = i1+1; i2 < m_nrow; i2++)
 					{
-						a3 += ( m_A(i1,j1)==m_A(i2,j1) )&&( m_A(i1,j2)==m_A(i2,j2) )&&( m_A(i1,j3)==m_A(i2,j3) );
+						a3 += static_cast<int>((m_A(i1,j1)==m_A(i2,j1)) && (m_A(i1,j2)==m_A(i2,j2)) && (m_A(i1,j3)==m_A(i2,j3)));
 					}
-					if (a3)
+					if (a3 != 0)
 					{
                         if (verbose)
                         {

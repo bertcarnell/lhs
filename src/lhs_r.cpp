@@ -309,3 +309,17 @@ RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
     return rresult;
   END_RCPP
 }
+
+RcppExport SEXP get_library_versions()
+{
+  BEGIN_RCPP
+    Rcpp::CharacterVector rresult = Rcpp::CharacterVector(1);
+    std::string bclibVersion = bclib::getVersion();
+    std::string oalibVersion = oacpp::getVersion();
+    std::string lhslibVersion = lhslib::getVersion();
+
+    rresult[0] = std::string("bclib: ") + bclibVersion + "  oalib: " + oalibVersion + "  lhslib: " + lhslibVersion;
+    return rresult;
+  END_RCPP
+}
+

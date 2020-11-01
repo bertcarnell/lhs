@@ -40,30 +40,27 @@ namespace oacpp
             if (ncol > q + 1)
             {
                 msg << "Bose's design must have ncol <= q+1. Had q=" << q << " and ncol=" << ncol << ".\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
 			}
             if (ncol <= 0)
             {
                 msg << "Nonpositive number of columns requested for Bose's design\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
             }
             return SUCCESS_CHECK;
         }
 
-        int bose(GF & gf, bclib::matrix<int> & A, int ncol)
+        int bose(GaloisField & gf, bclib::matrix<int> & A, int ncol)
         {
             size_t icol, irow;
-            size_t q = static_cast<size_t>(gf.q);
 
             // bosecheck throws if it fails
-            bosecheck(static_cast<int>(q), ncol);
+            bosecheck(gf.q, ncol);
 
             irow = 0;
-            for (size_t i = 0; i < q; i++)
+            for (size_t i = 0; i < gf.u_q; i++)
             {
-                for (size_t j = 0; j < q; j++)
+                for (size_t j = 0; j < gf.u_q; j++)
                 {
                     icol = 0;
                     A(irow, icol++) = static_cast<int>(i);
@@ -94,7 +91,7 @@ namespace oacpp
 
         /*  find  value = poly(arg) where poly is a polynomial of degree d  
             and all the arithmetic takes place in the given Galois field.*/
-        int polyeval(GF & gf, int d, std::vector<int> & poly, int arg, int* value)
+        int polyeval(GaloisField & gf, int d, std::vector<int> & poly, int arg, int* value)
         {
             int ans = 0;
             /* note: cannot decrement with a size type because it is always > 0.  this needs to go < 1 to stop */
@@ -126,38 +123,38 @@ namespace oacpp
             if (ncol > q + 1)
             {
                 msg << "Bush designs require ncol <= q+1. Cannot have q = " << q << " and ncol = " << ncol << ".\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
             }
             if (str > ncol)
             {
                 msg << "It doesn't make sense to have an array of strength " << str << " with only " << ncol << "columns.\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
 			}
             if (str >= q + 1) // LCOV_EXCL_START
             {
-                PRINT_OUTPUT << "\tBush's (1952) theorem has a condition t<q where t\n";
-                PRINT_OUTPUT << "\tis the strength of the array and q is the number of symbols.\n";
-                PRINT_OUTPUT << "\tHere we have t = " << str << " and q = " << q << ".  The array may still\n";
-                PRINT_OUTPUT << "\tbe useful, but a full factorial would have at least as\n";
-                PRINT_OUTPUT << "many columns.\n";
+                msg << "\tBush's (1952) theorem has a condition t<q where t\n";
+                msg << "\tis the strength of the array and q is the number of symbols.\n";
+                msg << "\tHere we have t = " << str << " and q = " << q << ".  The array may still\n";
+                msg << "\tbe useful, but a full factorial would have at least as\n";
+                msg << "many columns.\n";
+                ostringstream_warning(msg);
             } // LCOV_EXCL_STOP
 
             return SUCCESS_CHECK;
         }
 
-        int bush(GF & gf, bclib::matrix<int> & A, int str, int ncol)
+        int bush(GaloisField & gf, bclib::matrix<int> & A, int str, int ncol)
         {
-            int q = gf.q;
             std::vector<int> coef(str);
             
             // bushcheck throws if it fails
-            bushcheck(q, str, ncol);
+            bushcheck(gf.q, str, ncol);
 
-            for (size_t i = 0; i < static_cast<size_t>(primes::ipow(q, str)); i++)
+            size_t qToStr = static_cast<size_t>(primes::ipow(gf.q, str));
+
+            for (size_t i = 0; i < qToStr; i++)
             {
-                itopoly(static_cast<int>(i), q, str - 1, coef);
+                itopoly(static_cast<int>(i), gf.q, str - 1, coef);
                 A(i, static_cast<size_t>(0)) = coef[static_cast<size_t>(str) - 1];
                 for (size_t j = 0; j < static_cast<size_t>(ncol) - 1; j++)
                 {
@@ -176,74 +173,71 @@ namespace oacpp
                 msg << "available for odd prime powers q and for even prime\n";
                 msg << "powers q<=4.  q=" << q << " is not available, but a\n";
                 msg << "Bose Bush construction exists for that design.\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
             }
 
             if (ncol > 2 * q + 1)
             {
                 msg << "The Addelman-Kempthorne construction needs ncol <= 2q+1.\n";
                 msg << "Can't have ncol = " << ncol << " with q = " << q << ".\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
             }
 
             if (ncol == 2 * q + 1) // LCOV_EXCL_START
             {
-                PRINT_OUTPUT << "\n\tWarning: The Addelman-Kempthorne construction with ncol = 2q+1\n";
-                PRINT_OUTPUT << "\thas a defect.  While it is still an OA(2q^2,2q+1,q,2),\n";
-                PRINT_OUTPUT << "\tthere exist some pairs of rows that agree in three columns.\n";
-                PRINT_OUTPUT << "\tThe final column in the array is involved in all of these\n";
-                PRINT_OUTPUT << "\ttriple coincidences.\n";
+                msg << "\n\tWarning: The Addelman-Kempthorne construction with ncol = 2q+1\n";
+                msg << "\thas a defect.  While it is still an OA(2q^2,2q+1,q,2),\n";
+                msg << "\tthere exist some pairs of rows that agree in three columns.\n";
+                msg << "\tThe final column in the array is involved in all of these\n";
+                msg << "\ttriple coincidences.\n";
+                ostringstream_warning(msg);
             } // LCOV_EXCL_STOP
             
             return SUCCESS_CHECK;
         }
 
-        int addelkemp(GF & gf, bclib::matrix<int> & A, int ncol)
+        int addelkemp(GaloisField & gf, bclib::matrix<int> & A, int ncol)
         {
             int kay; /* A&K notation */
             int square, ksquare, temp;
 			size_t row, col;
+            size_t u_ncol = static_cast<size_t>(ncol);
 
-            int p = gf.p;
-            size_t q = gf.q;
-
-            std::vector<int> b(q);
-            std::vector<int> c(q);
-            std::vector<int> k(q);
+            std::vector<int> b(gf.u_q);
+            std::vector<int> c(gf.u_q);
+            std::vector<int> k(gf.u_q);
 
             // addelkempcheck throws if it fails
-            addelkempcheck(static_cast<int>(q), p, ncol);
+            addelkempcheck(gf.q, gf.p, ncol);
 
-            for (size_t i = 0; i < q; i++)
+            for (size_t i = 0; i < gf.u_q; i++)
             { /* First q*q rows */
                 square = gf.times(i,i);
-                for (size_t j = 0; j < q; j++)
+                for (size_t j = 0; j < gf.u_q; j++)
                 {
-                    row = i * q + j;
+                    row = i * gf.u_q + j;
                     col = 0;
-                    if (col < static_cast<size_t>(ncol))
+                    if (col < u_ncol)
                     {
                         A(row, col++) = static_cast<int>(j);
                     }
-                    for (size_t m = 1; m < q && col < static_cast<size_t>(ncol); m++)
+                    for (size_t m = 1; m < gf.u_q && col < u_ncol; m++)
                     {
                         A(row,col++) = gf.plus(i,gf.times(m,j));
                     }
-                    for (size_t m = 0; m < q && col < static_cast<size_t>(ncol); m++)
+                    for (size_t m = 0; m < gf.u_q && col < u_ncol; m++)
                     {
                         temp = gf.plus(j,gf.times(m,i));
                         A(row,col++) = gf.plus(temp,square); /* Rgt cols */
                     }
-                    if (col < static_cast<size_t>(ncol))
+                    if (col < u_ncol)
                     {
                         A(row, col++) = static_cast<int>(i);
                     }
                 }
             }
 
-            if (p != 2) /* Constants kay,b,c,k for odd p */
+            if (gf.p != 2) /* Constants kay,b,c,k for odd p */
             {
                 oaaddelkemp::akodd(gf, &kay, b, c, k);
             }
@@ -252,34 +246,34 @@ namespace oacpp
                 oaaddelkemp::akeven(gf, &kay, b, c, k);
             }
 
-            for (size_t i = 0; i < q; i++)
+            for (size_t i = 0; i < gf.u_q; i++)
             { /* Second q*q rows */
                 square = gf.times(i,i);
                 ksquare = gf.times(kay,square);
-                for (size_t j = 0; j < q; j++)
+                for (size_t j = 0; j < gf.u_q; j++)
                 {
-                    row = q * q + i * q + j;
+                    row = gf.u_q * gf.u_q + i * gf.u_q + j;
                     col = 0;
-                    if (col < static_cast<size_t>(ncol))
+                    if (col < u_ncol)
                     {
                         A(row, col++) = static_cast<int>(j);
                     }
-                    for (size_t m = 1; m < q && col < static_cast<size_t>(ncol); m++, col++)
+                    for (size_t m = 1; m < gf.u_q && col < u_ncol; m++, col++)
                     {
-                        A(row,col) = gf.plus(A(row - q * q,col),b[m]);
+                        A(row,col) = gf.plus(A(row - gf.u_q * gf.u_q, col), b[m]);
                     }
-                    if (col < static_cast<size_t>(ncol))
+                    if (col < u_ncol)
                     {
                         A(row,col++) = gf.plus(ksquare,j); /* q+1 */
                     }
-                    for (size_t m = 1; m < q && col < static_cast<size_t>(ncol); m++)
+                    for (size_t m = 1; m < gf.u_q && col < u_ncol; m++)
                     {
                         temp = gf.times(i,k[m]);
                         temp = gf.plus(ksquare,temp);
                         temp = gf.plus(j,temp);
                         A(row,col++) = gf.plus(temp,c[m]);
                     }
-                    if (col < static_cast<size_t>(ncol))
+                    if (col < u_ncol)
                     {
                         A(row, col++) = static_cast<int>(i);
                     }
@@ -295,46 +289,43 @@ namespace oacpp
             if (p != 2)
             {
                 msg << "This version of Bose and Bush needs q=2^n for some n.\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
             }
 
             if (ncol > 2 * q + 1)
             {
                 msg << "The Bose-Bush construction needs ncol <= 2q+1.\n";
                 msg << "Can't have ncol = " << ncol << " with q = " << q << ".\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
             }
 
             if (ncol == 2 * q + 1) // LCOV_EXCL_START
             {
-                PRINT_OUTPUT << "\n\tWarning: The Bose-Bush construction with ncol = 2q+1\n";
-                PRINT_OUTPUT << "\thas a defect.  While it is still an OA(2q^2,2q+1,q,2),\n";
-                PRINT_OUTPUT << "\tthere exist some pairs of rows that agree in three columns.\n\n";
+                msg << "\n\tWarning: The Bose-Bush construction with ncol = 2q+1\n";
+                msg << "\thas a defect.  While it is still an OA(2q^2,2q+1,q,2),\n";
+                msg << "\tthere exist some pairs of rows that agree in three columns.\n\n";
+                ostringstream_warning(msg);
             } // LCOV_EXCL_STOP
             
             return SUCCESS_CHECK;
         }
 
-        int bosebush(GF & gf, bclib::matrix<int> & B, int ncol)
+        int bosebush(GaloisField & gf, bclib::matrix<int> & B, int ncol)
         {
-            int p;
             int mul;
 			size_t irow;
+            size_t u_ncol = static_cast<size_t>(ncol);
 
-            p = gf.p; /* GF(q) used to generate design with q/2 levels */
-            size_t q = static_cast<size_t>(gf.q);
-            size_t s = q / 2; /* number of levels in design */
-            bclib::matrix<int> A(s, q);
+            size_t s = gf.u_q / 2; /* number of levels in design */
+            bclib::matrix<int> A(s, gf.u_q);
 
             // bosebushcheck throws if it fails
-            bosebushcheck(static_cast<int>(s), p, ncol);
+            bosebushcheck(static_cast<int>(s), gf.p, ncol);
 
             irow = 0;
-            for (size_t i = 0; i < q; i++)
+            for (size_t i = 0; i < gf.u_q; i++)
             {
-                for (size_t j = 0; j < q; j++)
+                for (size_t j = 0; j < gf.u_q; j++)
                 {
                     mul = gf.times(i,j);
                     mul = mul % s;
@@ -345,13 +336,13 @@ namespace oacpp
                 }
                 for (size_t k = 0; k < s; k++)
                 {
-                    for (size_t j = 0; j < static_cast<size_t>(ncol) && j < 2 * s + 1; j++)
+                    for (size_t j = 0; j < u_ncol && j < 2 * s + 1; j++)
                     {
                         B(irow,j) = A(k,j);
                     }
-                    if (static_cast<size_t>(ncol) == 2 * s + 1)
+                    if (u_ncol == 2 * s + 1)
                     {
-                        B(irow, static_cast<size_t>(ncol) - 1) = static_cast<int>(i % s);
+                        B(irow, u_ncol - 1) = static_cast<int>(i % s);
                     }
                     irow++;
                 }
@@ -362,11 +353,10 @@ namespace oacpp
         int bosebushlcheck(int s, int p, int lam, int ncol)
         {
             std::ostringstream msg;
-            if (!primes::isprime(p))
+            if (primes::isprime(p) == 0)
             {
                 msg << "Bose Bush routine given a nonprime.\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
             }
 
             if (ncol > lam * s + 1)
@@ -374,39 +364,38 @@ namespace oacpp
                 msg << "The Bose-Bush construction needs ncol <= lambda*q+1.\n";
                 msg << "Can't have ncol = " << ncol << " with lam = " << lam << "\n";
                 msg << "and q = " << s << ".\n";
-				const std::string smsg = msg.str();
-				throw std::runtime_error(smsg.c_str());
+                ostringstream_runtime_error(msg);
             }
 
             if (ncol == lam * s + 1) // LCOV_EXCL_START
             {
-                PRINT_OUTPUT << "\n\tWarning: The Bose-Bush construction with ncol = lambda*q+1\n";
-                PRINT_OUTPUT << "\thas a defect.  While it is still an OA(lambda*q^2,lambda*q+1,q,2),\n";
-                PRINT_OUTPUT << "\tit may have worse coincidence properties than\n";
-                PRINT_OUTPUT << "\tOA(lambda*q^2,lambda*q+1,q,2).\n";
+                msg << "\n\tWarning: The Bose-Bush construction with ncol = lambda*q+1\n";
+                msg << "\thas a defect.  While it is still an OA(lambda*q^2,lambda*q+1,q,2),\n";
+                msg << "\tit may have worse coincidence properties than\n";
+                msg << "\tOA(lambda*q^2,lambda*q+1,q,2).\n";
+                ostringstream_warning(msg);
             } // LCOV_EXCL_STOP
             
             return SUCCESS_CHECK;
         }
 
-        int bosebushl(GF & gf, int lam, bclib::matrix<int> & B, int ncol)
+        int bosebushl(GaloisField & gf, int lam, bclib::matrix<int> & B, int ncol)
         /* Implement Bose and Bush's 1952 A.M.S. method with given lambda */
         {
-            int p, irow;
+            int irow;
             int mul;
+            size_t u_ncol = static_cast<size_t>(ncol);
 
-            p = gf.p; /* GF(q) used to generate design with q/lam levels */
-            size_t q = static_cast<size_t>(gf.q);
-            size_t s = q / lam; /* number of levels in design */
-            bclib::matrix<int> A(s,q);
+            size_t s = gf.u_q / lam; /* number of levels in design */
+            bclib::matrix<int> A(s, gf.u_q);
 
             // bosebushlcheck throws if it fails
-            bosebushlcheck(static_cast<int>(s), p, lam, ncol);
+            bosebushlcheck(static_cast<int>(s), gf.p, lam, ncol);
 
             irow = 0;
-            for (size_t i = 0; i < q; i++)
+            for (size_t i = 0; i < gf.u_q; i++)
             {
-                for (size_t j = 0; j < q; j++)
+                for (size_t j = 0; j < gf.u_q; j++)
                 {
                     mul = gf.times(i,j);
                     mul = mul % s;
@@ -417,13 +406,13 @@ namespace oacpp
                 }
                 for (size_t k = 0; k < s; k++)
                 {
-                    for (size_t j = 0; j < static_cast<size_t>(ncol) && j < lam * s + 1 && j < q; j++)
+                    for (size_t j = 0; j < u_ncol && j < lam * s + 1 && j < gf.u_q; j++)
                     {
                         B(irow,j) = A(k,j);
                     }
                     if (ncol == lam * static_cast<int>(s) + 1)
                     {
-                        B(irow, static_cast<size_t>(ncol) - 1) = static_cast<int>(i % s);
+                        B(irow, u_ncol - 1) = static_cast<int>(i % s);
                     }
                     irow++;
                 }

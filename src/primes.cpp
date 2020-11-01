@@ -91,7 +91,7 @@ namespace oacpp
 
         void primepow(int q, int* p, int* n, int* isit)
         {
-            int firstfactor = 0; // maybe uninitialized otherwise
+            int firstfactor = 1; // maybe uninitialized otherwise
 
             *p = *n = *isit = 0;
             if (q <= 1)
@@ -99,7 +99,7 @@ namespace oacpp
                 return;
             }
 
-            if (isprime(q))
+            if (isprime(q) != 0)
             {
                 *p = q;
                 *n = 1;
@@ -115,12 +115,12 @@ namespace oacpp
                     break;
                 }
             }
-            if (!isprime(firstfactor)) // LCOV_EXCL_START
+            if (isprime(firstfactor) == 0) // LCOV_EXCL_START
             {
                 return;
             } // LCOV_EXCL_STOP
 
-            while (1)
+            while (true)
             {
                 if (q == 1)
                 {

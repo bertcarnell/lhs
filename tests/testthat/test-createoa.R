@@ -137,7 +137,8 @@ test_that("createBoseBushl works", {
   B <- createBoseBushl(q = 2^2, ncol = 2*2^2, lambda = 2, bRandom = FALSE)
   expect_true(checkOA(encodeOA(B, 4L)))
 
-  expect_output({
+  #expect_output({
+  expect_warning({
     B <- createBoseBushl(q = 2^2, ncol = 2*2^2 + 1, lambda = 2, bRandom = FALSE)
   }, regexp = "Warning:")
   expect_true(checkOA(encodeOA(B, 4L)))

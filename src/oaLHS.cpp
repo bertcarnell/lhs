@@ -1,8 +1,9 @@
-/**
+/** 
  * @file oaLHS.cpp
  * @author Robert Carnell
  * @copyright Copyright (c) 2019, Robert Carnell
- * @license <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
+ * 
+ * License: <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -22,11 +23,16 @@
 
 namespace oalhslib
 {
-    typedef bclib::matrix<int>::size_type msize_type;
-    typedef bclib::matrix<int>::columnwise_iterator columnit;
-    typedef std::vector<int>::iterator viterator;
-    typedef std::vector<int>::const_iterator vconstiterator;
-    typedef std::vector<int>::size_type vsize_type;
+	/** matrix size type */
+    using msize_type = bclib::matrix<int>::size_type;
+	/** matrix column iterator */
+    using columnit = bclib::matrix<int>::columnwise_iterator;
+	/** vector iterator */
+    using viterator = std::vector<int>::iterator;
+	/** vector const iterator */
+    using vconstiterator = std::vector<int>::const_iterator;
+	/** vector size type */
+    using vsize_type = std::vector<int>::size_type;
 
     // oa is provided in an arbitrary way (not necessarily all columns with the same q)
     void oaLHS(int n, int k, const bclib::matrix<int> & oa, bclib::matrix<int> & intlhs,
@@ -145,7 +151,6 @@ namespace oalhslib
         int basecount = 1;
         std::vector<int> randints;
         std::vector<double> randdouble;
-        viterator tempit;
         for (msize_type i = 0; i < oa.colsize(); i++)
         {
             // reset the basecount for each column
@@ -159,7 +164,7 @@ namespace oalhslib
                 {
                     randdouble = std::vector<double>(tempcount);
                     // get a random ordering for the digits
-                    for (std::vector<double>::iterator itt = randdouble.begin(); itt != randdouble.end(); itt++)
+                    for (std::vector<double>::iterator itt = randdouble.begin(); itt != randdouble.end(); ++itt)
                     {
                         *itt = oRandom.getNextRandom();
                     }
@@ -253,8 +258,8 @@ namespace oalhslib
 			PRINT_OUTPUT << "Candidate OA:  Bose with q=" << q_bose << " n=" << n_bose << " k=" << k_bose << "\n"; // LCOV_EXCL_LINE
         }
 
-        int q_bosebush = bChooseLargerDesign ? (int) ceil(sqrt((double) n / 2.0)) : (int) floor(sqrt((double) n / 2.0));
-        if (q_bosebush % 2)
+        int q_bosebush = bChooseLargerDesign ? static_cast<int>(ceil(sqrt((double) n / 2.0))) : static_cast<int>(floor(sqrt((double) n / 2.0)));
+        if (q_bosebush % 2 != 0)
         {
             if (bChooseLargerDesign)
             {
@@ -310,7 +315,7 @@ namespace oalhslib
         bclib::findorder_zero(ndiffs, norders);
         oacpp::COrthogonalArray coa = oacpp::COrthogonalArray();
 
-		std::string selected = "";
+		std::string selected;
 		if (ks[norders[0]] >= k)
 		{
 			selected = types[norders[0]];

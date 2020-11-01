@@ -3,7 +3,7 @@
  * @author Robert Carnell
  * @copyright Copyright (c) 2014, Robert Carnell
  * 
- * @license <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
+ * License <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -55,7 +55,7 @@ namespace lhslib
         typename std::vector<T>::const_iterator toRank_it2;
         std::vector<int>::iterator ranks_it;
         for (toRank_it1 = toRank.begin(), ranks_it = ranks.begin();
-                toRank_it1 != toRank.end(), ranks_it != ranks.end();
+                toRank_it1 != toRank.end() && ranks_it != ranks.end();
                 ++toRank_it1, ++ranks_it)
         {
             *ranks_it = 0;
@@ -124,7 +124,7 @@ namespace lhslib
      * @return the total squared distance
      */
     template <class T>
-    T calculateDistanceSquared(const std::vector<T> A, const std::vector<T> B)
+    T calculateDistanceSquared(const std::vector<T> & A, const std::vector<T> & B)
     {
         if (A.size() != B.size())
         {

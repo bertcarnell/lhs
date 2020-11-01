@@ -3,7 +3,7 @@
  * @author Robert Carnell
  * @copyright Copyright (c) 2014, Robert Carnell
  *
- * @license <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
+ * License <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -52,6 +52,7 @@
 
 /** RNG Macro (See lhs_r.cpp)*/
 #define START_RNG Rcpp::RNGScope * tempRNG = new Rcpp::RNGScope(); // instantiate a pointer so that the destructor is not implicitly called
+/** End RNG Macro (See lhs_r.cpp)*/
 #define END_RNG delete tempRNG; // explicitly release the RNG state to avoid memory corruption
 
 /**
@@ -99,12 +100,12 @@ namespace lhslib
      * @param k number parameters / columns in the lhs
      * @param maxSweeps the maximum number of sweeps to use in the algorithm
      * @param eps The optimal stopping criterion
-     * @param pOld the seeded lhs
-     * @param JLen the length of a vector used in the calculations
+     * @param oldHypercube the seeded lhs
+     * @param optimalityRecordLength the length of a vector used in the calculations
      * @param bVerbose should messages be printed?
      */
     void optSeededLHS(int n, int k, int maxSweeps, double eps,
-            bclib::matrix<double> & pOld, int JLen, bool bVerbose);
+            bclib::matrix<double> & oldHypercube, int optimalityRecordLength, bool bVerbose);
 
     /**
      * type of size type for use with bclib::matrix<T>
@@ -148,7 +149,7 @@ namespace lhslib
      * @param result the lhs
      * @param oRandom the random number stream
      */
-    void geneticLHS(int n, int k, int pop, int gen, double pMut, std::string criterium,
+    void geneticLHS(int n, int k, int pop, int gen, double pMut, const std::string & criterium,
             bool bVerbose, bclib::matrix<double> & result, bclib::CRandom<double> & oRandom);
 }
 

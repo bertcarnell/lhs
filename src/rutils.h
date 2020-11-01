@@ -106,7 +106,7 @@ namespace oacpp
          * @return true if the value in the first argument is less than the value in the second argument
          */
         template <class T>
-        bool findranksCompare(const std::pair<T, int> first, const std::pair<T, int> second)
+        bool findranksCompare(const std::pair<T, int> & first, const std::pair<T, int> & second)
         {
             return (first.first < second.first);
         }

@@ -36,23 +36,20 @@ namespace oacpp
     {
         /*  Find constants for Addelman Kempthorne designs
           when q is even. */
-        int akeven(GF & gf, int* kay, std::vector<int> & b, std::vector<int> & c, std::vector<int> & k)
+        int akeven(GaloisField & gf, int* kay, std::vector<int> & b, std::vector<int> & c, std::vector<int> & k)
         {
-            size_t q = static_cast<size_t>(gf.q);
-
-            if (q > 4)
+            if (gf.q > 4)
             {
-                std::string msg = "Addelman Kempthorne designs not yet available for \n even q >4.";
-                throw std::runtime_error(msg.c_str());
+                throw std::runtime_error("Addelman Kempthorne designs not yet available for \n even q >4.");
             }
 
             *kay = 1;
 
-            if (q == 2)
+            if (gf.q == 2)
             {
                 b[1] = c[1] = k[1] = 1;
             }
-            if (q == 4)
+            if (gf.q == 4)
             {
                 b[1] = c[1] = 2;
                 b[2] = c[2] = 1;
@@ -63,7 +60,7 @@ namespace oacpp
             }
 
             // TODO: isn't this redundant to the above for q <= 4
-            for (size_t i = 1; i < q; i++)
+            for (size_t i = 1; i < gf.u_q; i++)
             {
                 k[i] = static_cast<int>(i);
             }
@@ -71,14 +68,11 @@ namespace oacpp
             return 0;
         }
 
-        int akodd(GF & gf, int* kay, std::vector<int> & b, std::vector<int> & c, std::vector<int> & k)
+        int akodd(GaloisField & gf, int* kay, std::vector<int> & b, std::vector<int> & c, std::vector<int> & k)
         {
             int num, den, four;
 
-            size_t q = static_cast<size_t>(gf.q);
-            size_t p = static_cast<size_t>(gf.p);
-
-            if (p != 3)
+            if (gf.p != 3)
             {
                 four = 4;
             }
@@ -88,7 +82,7 @@ namespace oacpp
             }
 
             *kay = 0;
-            for (size_t i = 2; i < q; i++)
+            for (size_t i = 2; i < gf.u_q; i++)
             {
                 if (gf.root[i] == -1)
                 {
@@ -97,22 +91,19 @@ namespace oacpp
             }
             if (*kay == 0)
             {
-                std::ostringstream s;
-                s << "Problem: no rootless element in GF(" << gf.n << ").\n";
-				const std::string ss = s.str();
-				throw std::runtime_error(ss.c_str());
+                throw std::runtime_error("Problem: no rootless element in GF\n");
             }
 
-            for (size_t i = 1; i < q; i++)
+            for (size_t i = 1; i < gf.u_q; i++)
             {
-                num = gf.plus(*kay,p - 1); /* -1 = +(p-1) */
-                den = gf.times(*kay,four);
-                den = gf.times(den,i);
-                b[i] = gf.times(num,gf.inv[den]);
-                k[i] = gf.times(*kay,i);
-                c[i] = gf.times(i,i);
-                c[i] = gf.times(c[i],num);
-                c[i] = gf.times(c[i],gf.inv[four]);
+                num = gf.plus(*kay, gf.p - 1); /* -1 = +(p-1) */
+                den = gf.times(*kay, four);
+                den = gf.times(den, i);
+                b[i] = gf.times(num, gf.inv[den]);
+                k[i] = gf.times(*kay, i);
+                c[i] = gf.times(i, i);
+                c[i] = gf.times(c[i], num);
+                c[i] = gf.times(c[i], gf.inv[four]);
             }
             return 0;
         }

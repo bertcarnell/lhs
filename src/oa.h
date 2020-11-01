@@ -48,7 +48,7 @@
 /**
  * One tenth of the comparisons of BIGWORK
  */
-#define MEDWORK BIGWORK/10
+#define MEDWORK 10000000
 
 namespace oacpp {
     /**

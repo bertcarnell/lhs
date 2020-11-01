@@ -3,7 +3,7 @@
  * @author Robert Carnell
  * @copyright Copyright (c) 2014, Robert Carnell
  * 
- * @license <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
+ * License <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -83,7 +83,7 @@ namespace lhslib
         }
         else
         {
-            randomunif2 = std::vector<double>(n*k);
+            randomunif2 = std::vector<double>(static_cast<size_t>(n)*static_cast<size_t>(k)); // need to cast before multiply to prevent integer overflow
             for (int jcol = 0; jcol < k; jcol++)
             {
                 for (int irow = 0; irow < n; irow++)

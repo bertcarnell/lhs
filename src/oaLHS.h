@@ -2,8 +2,8 @@
  * @file oaLHS.h
  * @author Robert Carnell
  * @copyright Copyright (c) 2019, Robert Carnell
- *
- * @license <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (GPL v3)</a>
+ * 
+ * License: <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (GPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or

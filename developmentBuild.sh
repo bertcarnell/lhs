@@ -12,14 +12,13 @@ OALHSLIBDIR=../oa/src/oalhslib
 LHSLIBDIR=../lhslib/src/lhslib
 DESTDIR=src
 
-BCLIBSRCFILES="CRandom.h matrix.h order.h"
+BCLIBSRCFILES="CRandom.h matrix.h order.h bclibVersion.h RWarningException.h"
 LHSLIBSRCFILES="LHSCommonDefines.h geneticLHS.cpp improvedLHS.cpp maximinLHS.cpp \
-  optimumLHS.cpp optSeededLHS.cpp randomLHS.cpp utilityLHS.cpp utilityLHS.h"
+  optimumLHS.cpp optSeededLHS.cpp randomLHS.cpp utilityLHS.cpp utilityLHS.h lhslibVersion.h"
 OALIBSRCFILES="ak.h ak3.cpp akconst.cpp akn.cpp OACommonDefines.h \
-  construct.cpp construct.h COrthogonalArray.cpp COrthogonalArray.h galdef.h \
-  galois.cpp galois.h gfields.cpp oa.cpp oa.h primes.cpp \
-  primes.h runif.cpp runif.h rutils.cpp rutils.h xtndeclare.h \
-  xtndispatch.h xtnset.h"
+  construct.cpp construct.h COrthogonalArray.cpp COrthogonalArray.h \
+  GaloisField.h GaloisField.cpp oa.cpp oa.h primes.cpp \
+  primes.h runif.cpp runif.h rutils.cpp rutils.h xtn.h oalibVersion.h"
 OALHSLIBSRCFILES="oaLHS.cpp oaLHS.h oaLHSUtility.h"
 
 echo Copying from bclib, oa, and lhslib to the lhs package...
