@@ -22,7 +22,7 @@
 #define	OALIBVERSION_H
 
 namespace oacpp {
-	inline static const char * getVersion() {return "1.0.0";}
+	inline static const char * getVersion() {return "1.1.0";}
 }
 
 #endif

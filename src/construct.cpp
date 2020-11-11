@@ -130,15 +130,6 @@ namespace oacpp
                 msg << "It doesn't make sense to have an array of strength " << str << " with only " << ncol << "columns.\n";
                 ostringstream_runtime_error(msg);
 			}
-            if (str >= q + 1) // LCOV_EXCL_START
-            {
-                msg << "\tBush's (1952) theorem has a condition t<q where t\n";
-                msg << "\tis the strength of the array and q is the number of symbols.\n";
-                msg << "\tHere we have t = " << str << " and q = " << q << ".  The array may still\n";
-                msg << "\tbe useful, but a full factorial would have at least as\n";
-                msg << "many columns.\n";
-                ostringstream_warning(msg);
-            } // LCOV_EXCL_STOP
 
             return SUCCESS_CHECK;
         }
@@ -183,16 +174,6 @@ namespace oacpp
                 ostringstream_runtime_error(msg);
             }
 
-            if (ncol == 2 * q + 1) // LCOV_EXCL_START
-            {
-                msg << "\n\tWarning: The Addelman-Kempthorne construction with ncol = 2q+1\n";
-                msg << "\thas a defect.  While it is still an OA(2q^2,2q+1,q,2),\n";
-                msg << "\tthere exist some pairs of rows that agree in three columns.\n";
-                msg << "\tThe final column in the array is involved in all of these\n";
-                msg << "\ttriple coincidences.\n";
-                ostringstream_warning(msg);
-            } // LCOV_EXCL_STOP
-            
             return SUCCESS_CHECK;
         }
 
@@ -299,14 +280,6 @@ namespace oacpp
                 ostringstream_runtime_error(msg);
             }
 
-            if (ncol == 2 * q + 1) // LCOV_EXCL_START
-            {
-                msg << "\n\tWarning: The Bose-Bush construction with ncol = 2q+1\n";
-                msg << "\thas a defect.  While it is still an OA(2q^2,2q+1,q,2),\n";
-                msg << "\tthere exist some pairs of rows that agree in three columns.\n\n";
-                ostringstream_warning(msg);
-            } // LCOV_EXCL_STOP
-            
             return SUCCESS_CHECK;
         }
 
@@ -315,17 +288,18 @@ namespace oacpp
             int mul;
 			size_t irow;
             size_t u_ncol = static_cast<size_t>(ncol);
-
-            size_t s = gf.u_q / 2; /* number of levels in design */
-            bclib::matrix<int> A(s, gf.u_q);
+            size_t q_star = gf.u_q;
+            size_t s = q_star / 2; // s is the same as q since q_star = 2 * q
+            
+            bclib::matrix<int> A(s, q_star);
 
             // bosebushcheck throws if it fails
             bosebushcheck(static_cast<int>(s), gf.p, ncol);
 
             irow = 0;
-            for (size_t i = 0; i < gf.u_q; i++)
+            for (size_t i = 0; i < q_star; i++)
             {
-                for (size_t j = 0; j < gf.u_q; j++)
+                for (size_t j = 0; j < q_star; j++)
                 {
                     mul = gf.times(i,j);
                     mul = mul % s;
@@ -336,7 +310,10 @@ namespace oacpp
                 }
                 for (size_t k = 0; k < s; k++)
                 {
-                    for (size_t j = 0; j < u_ncol && j < 2 * s + 1; j++)
+                    // the original code has this j < ncol && j < 2*s+1
+                    //   however, A has dimensions of [s,2*q] so this must stop at either the number of columns or 2*q
+                    //   for (size_t j = 0; j < u_ncol && j < 2 * s + 1; j++)
+                    for (size_t j = 0; j < u_ncol && j < 2 * s; j++)
                     {
                         B(irow,j) = A(k,j);
                     }
@@ -367,15 +344,6 @@ namespace oacpp
                 ostringstream_runtime_error(msg);
             }
 
-            if (ncol == lam * s + 1) // LCOV_EXCL_START
-            {
-                msg << "\n\tWarning: The Bose-Bush construction with ncol = lambda*q+1\n";
-                msg << "\thas a defect.  While it is still an OA(lambda*q^2,lambda*q+1,q,2),\n";
-                msg << "\tit may have worse coincidence properties than\n";
-                msg << "\tOA(lambda*q^2,lambda*q+1,q,2).\n";
-                ostringstream_warning(msg);
-            } // LCOV_EXCL_STOP
-            
             return SUCCESS_CHECK;
         }
 

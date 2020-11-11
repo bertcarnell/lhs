@@ -31,6 +31,9 @@ COrthogonalArray::COrthogonalArray()
 	m_nrow = 0;
 	m_ncol = 0;
 	m_q = 0;
+    m_return_code = SUCCESS_CHECK;
+    m_warning_msg = "";
+    m_randomClass = RUnif();
 }
 
 void COrthogonalArray::createGaloisField(int q)
@@ -84,7 +87,27 @@ void COrthogonalArray::addelkemp(int q, int k, int* n)
 	checkDesignMemory();
 	int result = oaconstruct::addelkemp(m_gf, m_A, k);
 	checkResult(result, 2*q*q, n);
-    m_q = q; m_ncol=k; m_nrow=*n;
+
+    if (k == 2 * q + 1)
+    {
+        std::ostringstream msg;
+        msg << "\n\tWarning: The Addelman-Kempthorne construction with ncol = 2q+1\n";
+        msg << "\thas a defect.  While it is still an OA(2q^2,2q+1,q,2),\n";
+        msg << "\tthere exist some pairs of rows that agree in three columns.\n";
+        msg << "\tThe final column in the array is involved in all of these\n";
+        msg << "\ttriple coincidences.\n";
+        m_warning_msg = msg.str();
+        m_return_code = WARNING_CHECK;
+    }
+    else
+    {
+        m_return_code = SUCCESS_CHECK;
+        m_warning_msg = "";
+    }
+
+    m_q = q; 
+    m_ncol = k; 
+    m_nrow = *n;
 }
 
 void COrthogonalArray::addelkemp3(int q, int k, int* n)
@@ -96,10 +119,14 @@ void COrthogonalArray::addelkemp3(int q, int k, int* n)
 	checkDesignMemory();
 	int result = oaaddelkemp::addelkemp3(m_gf, m_A, k);
 	checkResult(result, 2*q*q*q, n);
-    m_q = q; m_ncol=k; m_nrow=*n;
+    m_return_code = SUCCESS_CHECK;
+    m_warning_msg = "";
+    m_q = q; 
+    m_ncol = k; 
+    m_nrow = *n;
 }
 
-void COrthogonalArray::addelkempn(int akn, int q, int k, int* n) // LCOV_EXCL_START
+void COrthogonalArray::addelkempn(int akn, int q, int k, int* n)
 {
 	k = checkMaxColumns(k, 2*(primes::ipow(q,akn)-1)/(q-1) - 1); /*  2(q^3-1)/(q-1) - 1  */
 	createGaloisField(q);
@@ -108,8 +135,12 @@ void COrthogonalArray::addelkempn(int akn, int q, int k, int* n) // LCOV_EXCL_ST
 	checkDesignMemory();
 	int result = oaaddelkemp::addelkempn(m_gf, akn, m_A, k);
 	checkResult(result, 2*primes::ipow(q,akn), n);
-    m_q = q; m_ncol=k; m_nrow=*n;
-} // LCOV_EXCL_STOP
+    m_return_code = SUCCESS_CHECK;
+    m_warning_msg = "";
+    m_q = q;
+    m_ncol = k; 
+    m_nrow = *n;
+}
 
 void COrthogonalArray::bose(int q, int k, int* n)
 {
@@ -120,7 +151,11 @@ void COrthogonalArray::bose(int q, int k, int* n)
 	checkDesignMemory();
 	int result = oaconstruct::bose(m_gf, m_A, k);
 	checkResult(result, q*q, n);
-    m_q = q; m_ncol=k; m_nrow=*n;
+    m_return_code = SUCCESS_CHECK;
+    m_warning_msg = "";
+    m_q = q;
+    m_ncol = k; 
+    m_nrow = *n;
 }
 
 void COrthogonalArray::bosebush(int q, int k, int *n)
@@ -129,14 +164,33 @@ void COrthogonalArray::bosebush(int q, int k, int *n)
 	{
 		throw std::runtime_error("This implementation of Bose-Bush only works for a number of levels equal to a power of 2");
 	}
-	k = checkMaxColumns(k, 2*q);
-	createGaloisField(2*q);
+	k = checkMaxColumns(k, 2*q + 1);
+    int q_star = 2 * q;
+	createGaloisField(q_star);
 	int matrows = 2 * q * q;
     m_A = bclib::matrix<int>(matrows, k);
 	checkDesignMemory();
 	int result = oaconstruct::bosebush(m_gf, m_A, k);
 	checkResult(result, 2*q*q, n);
-    m_q = q; m_ncol=k; m_nrow=*n;
+
+    if (k == 2 * q + 1) 
+    {
+        std::ostringstream msg;
+        msg << "\n\tWarning: The Bose-Bush construction with ncol = 2q+1\n";
+        msg << "\thas a defect.  While it is still an OA(2q^2,2q+1,q,2),\n";
+        msg << "\tthere exist some pairs of rows that agree in three columns.\n\n";
+        m_warning_msg = msg.str();
+        m_return_code = WARNING_CHECK;
+    }
+    else
+    {
+        m_return_code = SUCCESS_CHECK;
+        m_warning_msg = "";
+    }
+
+    m_q = q; 
+    m_ncol = k; 
+    m_nrow = *n;
 }
 
 void COrthogonalArray::bosebushl(int lambda, int q, int k, int* n)
@@ -167,7 +221,26 @@ void COrthogonalArray::bosebushl(int lambda, int q, int k, int* n)
 	checkDesignMemory();
 	int result = oaconstruct::bosebushl(m_gf, lambda, m_A, k);
 	checkResult(result, lambda*q*q, n);
-    m_q = q; m_ncol=k; m_nrow=*n;
+
+    if (k == lambda * q + 1)
+    {
+        std::ostringstream msg;
+        msg << "\n\tWarning: The Bose-Bush construction with ncol = lambda*q+1\n";
+        msg << "\thas a defect.  While it is still an OA(lambda*q^2,lambda*q+1,q,2),\n";
+        msg << "\tit may have worse coincidence properties than\n";
+        msg << "\tOA(lambda*q^2,lambda*q+1,q,2).\n";
+        m_warning_msg = msg.str();
+        m_return_code = WARNING_CHECK;
+    }
+    else
+    {
+        m_return_code = SUCCESS_CHECK;
+        m_warning_msg = "";
+    }
+
+    m_q = q; 
+    m_ncol = k; 
+    m_nrow = *n;
 }
 
 void COrthogonalArray::bush(int q, int k, int* n)
@@ -175,11 +248,30 @@ void COrthogonalArray::bush(int q, int k, int* n)
 	k = checkMaxColumns(k, q+1);
 	createGaloisField(q);
 	int matrows = q * q * q;
+    int str = 3;
     m_A = bclib::matrix<int>(matrows, k);
 	checkDesignMemory();
-	int result = oaconstruct::bush(m_gf, m_A, 3, k);
+	int result = oaconstruct::bush(m_gf, m_A, str, k);
 	checkResult(result, q*q*q, n);
-    m_q = q; m_ncol=k; m_nrow=*n;
+    if (str >= q + 1)
+    {
+        std::ostringstream msg;
+        msg << "\tBush's (1952) theorem has a condition t<q where t\n";
+        msg << "\tis the strength of the array and q is the number of symbols.\n";
+        msg << "\tHere we have t = " << str << " and q = " << q << ".  The array may still\n";
+        msg << "\tbe useful, but a full factorial would have at least as\n";
+        msg << "many columns.\n";
+        m_warning_msg = msg.str();
+        m_return_code = WARNING_CHECK;
+    }
+    else
+    {
+        m_return_code = SUCCESS_CHECK;
+        m_warning_msg = "";
+    }
+    m_q = q; 
+    m_ncol = k; 
+    m_nrow = *n;
 }
 
 void COrthogonalArray::busht(int str, int q, int k, int* n)
@@ -195,7 +287,11 @@ void COrthogonalArray::busht(int str, int q, int k, int* n)
 	checkDesignMemory();
 	int result = oaconstruct::bush(m_gf, m_A, str, k);
 	checkResult(result, primes::ipow(q,str), n);
-    m_q = q; m_ncol=k; m_nrow=*n;
+    m_return_code = SUCCESS_CHECK;
+    m_warning_msg = "";
+    m_q = q;
+    m_ncol = k; 
+    m_nrow = *n;
 }
 
 int COrthogonalArray::oaagree(bool verbose)
@@ -206,12 +302,12 @@ int COrthogonalArray::oaagree(bool verbose)
 
 	for (int i = 0; i < m_nrow; i++)
 	{
-	  for (int j = i+1; j < m_nrow; j++)
+	  for (int j = i + 1; j < m_nrow; j++)
 	  {
 		agree = 0;
 		for (int k = 0; k < m_ncol; k++)
 		{
-		  agree += static_cast<int>(m_A(i,k) == m_A(j,k));
+		  agree += static_cast<int>(m_A(i, k) == m_A(j, k));
 		}
 		if (agree > maxagr)
 		{

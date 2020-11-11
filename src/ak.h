@@ -85,8 +85,9 @@ namespace oacpp {
          * @param akn the <code>akn</code> algorithm produces OA(2q^n,ncol,q,2)
          * @param ncol the number of columns
          * @return an indicator of success
+         * @throws runtime_exception
          */
-		int addelkempncheck(int q, int p, int akn, int ncol);
+		void addelkempncheck(int q, int p, int akn, int ncol);
         
         /**
          * The addelkemp algorithm for general n to produce OA(2q^n,ncol,q,2)

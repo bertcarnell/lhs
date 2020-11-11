@@ -32,13 +32,8 @@
 
 namespace oacpp
 {
-	RUnif::RUnif()
+	RUnif::RUnif() : RUnif(1, 2, 3, 4)
 	{
-		m_jent = m_i = m_j = m_k = m_l = ip = jp = 0;
-		c = cd = cm = 0.0;
-        u = std::vector<double>(SEED_VECTOR_LENGTH);
-        u.assign(SEED_VECTOR_LENGTH, 0.0);
-        RUnif::seed(1, 2, 3, 4);
 	}
 
     RUnif::RUnif(int is, int js, int ks, int ls)
@@ -50,16 +45,7 @@ namespace oacpp
         RUnif::seed(is, js, ks, ls);
 	}
     
-    RUnif::RUnif(SeedSet seedSet)
-    {
-		m_jent = m_i = m_j = m_k = m_l = ip = jp = 0;
-		c = cd = cm = 0.0;
-        u = std::vector<double>(SEED_VECTOR_LENGTH);
-        u.assign(SEED_VECTOR_LENGTH, 0.0);
-        RUnif::seed(seedSet.is, seedSet.js, seedSet.ks, seedSet.ls);
-	}
-    
-    void RUnif::seed(SeedSet seedSet)
+    void RUnif::seed(SeedSet & seedSet)
     {
         RUnif::seed(seedSet.is, seedSet.js, seedSet.ks, seedSet.ls);
     }

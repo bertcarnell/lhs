@@ -34,7 +34,7 @@ namespace oacpp
 {
     namespace oaaddelkemp
     {
-        int addelkempncheck(int q, int p, int akn, int ncol)
+        void addelkempncheck(int q, int p, int akn, int ncol)
         {
             std::ostringstream msg;
             if (akn < 2)
@@ -54,8 +54,6 @@ namespace oacpp
                 msg << "The Addelman-Kempthorne construction needs ncol <= 2(q^n-1)(q-1) -1. Can't have ncol = " << ncol << " with n=" << akn << " and q = " << q << "\n";
                 ostringstream_runtime_error(msg);
             }
-
-            return SUCCESS_CHECK;
         }
 
         /* Implement Addelman and Kempthorne's 1961 A.M.S. method with n=3 */
@@ -67,12 +65,7 @@ namespace oacpp
             size_t numin;
             size_t aknu = static_cast<size_t>(akn);
 
-            int test = addelkempncheck(gf.q, gf.p, akn, ncol);
-
-            if (test != SUCCESS_CHECK)
-            {
-                return FAILURE_CHECK;
-            }
+            addelkempncheck(gf.q, gf.p, akn, ncol);
 
             std::vector<int> b(gf.u_q);
             std::vector<int> c(gf.u_q);

@@ -36,7 +36,6 @@
 #include <sstream>
 #include <iostream>
 #include <numeric>
-#include "RWarningException.h"
 
 #ifdef RCOMPILE
 #include <Rcpp.h>
@@ -80,10 +79,11 @@
  * When a method returns an int which is not normally checked
  */
 #define UNCHECKED_RETURN 0
-
 /**
- * Throw with a const string from an ostringstream
+ * When a method returns an int to indicate a warning message
  */
+#define WARNING_CHECK 2
+
 namespace oacpp {
 	/**
 	 * throw a runtime_error with a stringstream message
@@ -94,25 +94,6 @@ namespace oacpp {
     {
         const std::string smsg = msg.str();
         throw std::runtime_error(smsg.c_str());
-    }
-
-    /**
-	 * throw a warning with a streamstring message
-	 * @param msg the warning message
-	 * @throws bclib::RWarningException derived from std::runtime_error
-	 */
-    inline void ostringstream_warning(const std::ostringstream & msg)
-    {
-        const std::string smsg = msg.str();
-
-        if (PRINT_WARNINGS)
-        {
-            PRINT_OUTPUT << smsg.c_str();
-        }
-        else
-        {
-            throw bclib::RWarningException(smsg);
-        }
     }
 }
 

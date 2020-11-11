@@ -54,7 +54,7 @@ namespace oacpp
             } // LCOV_EXCL_STOP
         }
 
-        void OA_strength(int q, bclib::matrix<int> & A, int* str, int verbose)
+        void OA_strength(int q, const bclib::matrix<int> & A, int* str, int verbose)
         {
             *str = -1;
 
@@ -86,7 +86,7 @@ namespace oacpp
             }
         }
 
-        int OA_str0(int q, bclib::matrix<int> & A, int verbose)
+        int OA_str0(int q, const bclib::matrix<int> & A, int verbose)
         {
             size_t nrow = A.rowsize();
             size_t ncol = A.colsize();
@@ -113,7 +113,7 @@ namespace oacpp
             return SUCCESS_CHECK;
         }
 
-        int OA_str1(int q, bclib::matrix<int> & A, int verbose)
+        int OA_str1(int q, const bclib::matrix<int> & A, int verbose)
         {
             size_t nrow = A.rowsize();
             size_t ncol = A.colsize();
@@ -127,7 +127,7 @@ namespace oacpp
                     PRINT_OUTPUT << "The array cannot have strength 1, because the number\n";
                     PRINT_OUTPUT << "of rows " << nrow << " is not a multiple of q = " << q << ".\n";
                 } // LCOV_EXCL_STOP
-                return 0;
+                return FAILURE_CHECK;
             }
 
             lambda = static_cast<int>(nrow) / q;
@@ -150,7 +150,7 @@ namespace oacpp
                             PRINT_OUTPUT << "the number of times A[," << j1 << "] = " << q1 << ".\n";
                             PRINT_OUTPUT << "This happened in " << count << " rows, it should have happened in " << lambda << " rows.\n";
                         } // LCOV_EXCL_STOP
-                        return 0;
+                        return FAILURE_CHECK;
                     }
                 }
                 if (work > MEDWORK && verbose > 0)
@@ -165,7 +165,7 @@ namespace oacpp
             return SUCCESS_CHECK;
         }
 
-        int OA_str2(int q, bclib::matrix<int> & A, int verbose)
+        int OA_str2(int q, const bclib::matrix<int> & A, int verbose)
         {
             size_t nrow = A.rowsize();
             size_t ncol = A.colsize();
@@ -180,7 +180,7 @@ namespace oacpp
                     PRINT_OUTPUT << "Array has only " << ncol << " column(s).  At least two\n";
                     PRINT_OUTPUT << "columns are necessary for strength 2 to make sense.\n";
                 } // LCOV_EXCL_STOP
-                return 0;
+                return FAILURE_CHECK;
             }
             if ((static_cast<int>(nrow) % (q * q)) != 0)
             {
@@ -189,7 +189,7 @@ namespace oacpp
                     PRINT_OUTPUT << "The array cannot have strength 2, because the number\n";
                     PRINT_OUTPUT << "of rows " << nrow << " is not a multiple of q^2 = " << q << "^2 = " << q*q << ".\n";
                 } // LCOV_EXCL_STOP
-                return 0;
+                return FAILURE_CHECK;
             }
 
             lambda = static_cast<int>(nrow) / (q * q);
@@ -217,7 +217,7 @@ namespace oacpp
                                     PRINT_OUTPUT << "the number of times (A[," << j1 << "],A[," << j2 << "]) = (" << q1 << "," << q2 << ").\n";
                                     PRINT_OUTPUT << "This happened in " << count << " rows, it should have happened in " << lambda << " rows.\n";
                                 } // LCOV_EXCL_STOP
-                                return 0;
+                                return FAILURE_CHECK;
                             }
                         }
                     }
@@ -232,10 +232,10 @@ namespace oacpp
             {
                 PRINT_OUTPUT << "The array has strength (at least) 2.\n"; // LCOV_EXCL_LINE
             }
-            return 1;
+            return SUCCESS_CHECK;
         }
 
-        int OA_str3(int q, bclib::matrix<int> & A, int verbose)
+        int OA_str3(int q, const bclib::matrix<int> & A, int verbose)
         {
             size_t nrow = A.rowsize();
             size_t ncol = A.colsize();
@@ -250,7 +250,7 @@ namespace oacpp
                     PRINT_OUTPUT << "Array has only " << ncol << " column(s).  At least three\n";
                     PRINT_OUTPUT << "columns are necessary for strength 3 to make sense.\n";
                 } // LCOV_EXCL_STOP
-                return 0;
+                return FAILURE_CHECK;
             }
             if (static_cast<int>(nrow) % (q * q * q) != 0)
             {
@@ -259,7 +259,7 @@ namespace oacpp
                     PRINT_OUTPUT << "The array cannot have strength 3, because the number\n";
                     PRINT_OUTPUT << "of rows " << nrow << " is not a multiple of q^3 = " << q << "^3 = " << q*q*q << ".\n";
                 } // LCOV_EXCL_STOP
-                return 0;
+                return FAILURE_CHECK;
             }
 
             lambda = static_cast<int>(nrow) / (q * q * q);
@@ -291,7 +291,7 @@ namespace oacpp
                                             PRINT_OUTPUT << "the number of times (A[," << j1 << "],A[," << j2 << "],A[," << j3 << "]) = (" << q1 << "," << q2 << "," << q3 << ").\n";
                                             PRINT_OUTPUT << "This happened in " << count << " rows, it should have happened in " << lambda << " rows.\n";
                                         } // LCOV_EXCL_STOP
-                                        return 0;
+                                        return FAILURE_CHECK;
                                     }
                                 }
                             }
@@ -307,10 +307,10 @@ namespace oacpp
             {
                 PRINT_OUTPUT << "The array has strength (at least) 3.\n"; // LCOV_EXCL_LINE
             }
-            return 1;
+            return SUCCESS_CHECK;
         }
 
-        int OA_str4(int q, bclib::matrix<int> & A, int verbose)
+        int OA_str4(int q, const bclib::matrix<int> & A, int verbose)
         {
             size_t nrow = A.rowsize();
             size_t ncol = A.colsize();
@@ -325,7 +325,7 @@ namespace oacpp
                     PRINT_OUTPUT << "Array has only " << ncol << " column(s).  At least four\n";
                     PRINT_OUTPUT << "columns are necessary for strength 4 to make sense.\n";
                 } // LCOV_EXCL_STOP
-                return 0;
+                return FAILURE_CHECK;
             }
             if (static_cast<int>(nrow) % (q * q * q * q) != 0)
             {
@@ -334,7 +334,7 @@ namespace oacpp
                     PRINT_OUTPUT << "The array cannot have strength 4, because the number\n";
                     PRINT_OUTPUT << "of rows " << nrow << " is not a multiple of q^4 = " << q << "^4 = " << q*q*q*q << ".\n";
                 } // LCOV_EXCL_STOP
-                return 0;
+                return FAILURE_CHECK;
             }
 
             lambda = static_cast<int>(nrow) / (q * q * q * q);
@@ -374,7 +374,7 @@ namespace oacpp
                                                     PRINT_OUTPUT << "the number of times (A[," << j1 << "],A[," << j2 << "],A[," << j3 << "],A[," << j4 << "]) = (" << q1 << "," << q2 << "," << q3 << "," << q4 << ").\n";
                                                     PRINT_OUTPUT << "This happened in " << count << " rows, it should have happened in " << lambda << " rows.\n";
                                                 } // LCOV_EXCL_STOP
-                                                return 0;
+                                                return FAILURE_CHECK;
                                             }
                                         }
                                     }
@@ -393,10 +393,10 @@ namespace oacpp
             {
                 PRINT_OUTPUT << "The array has strength (at least) 4.\n"; // LCOV_EXCL_LINE
             }
-            return 1;
+            return SUCCESS_CHECK;
         }
 
-        int OA_strt(int q, bclib::matrix<int> & A, int t, int verbose)
+        int OA_strt(int q, const bclib::matrix<int> & A, int t, int verbose)
         {
             size_t nrow = A.rowsize();
             size_t ncol = A.colsize();
@@ -412,7 +412,7 @@ namespace oacpp
                     PRINT_OUTPUT << "Don't know how to verify strength " << t << ".  It doesn't\n";
                     PRINT_OUTPUT << "make sense.\n";
                 } // LCOV_EXCL_STOP
-                return 0;
+                return FAILURE_CHECK;
             }
             if (ncol < static_cast<size_t>(t))
             {
@@ -421,7 +421,7 @@ namespace oacpp
                     PRINT_OUTPUT << "Array has only " << ncol << " column(s).  At least " << t << "\n";
                     PRINT_OUTPUT << "columns are necessary for strength " << t << " to make sense.\n";
                 } // LCOV_EXCL_STOP
-                return 0;
+                return FAILURE_CHECK;
             }
             if (t == 0)
             {
@@ -434,7 +434,7 @@ namespace oacpp
                     PRINT_OUTPUT << "The array cannot have strength " << t << ", because the number\n";
                     PRINT_OUTPUT << "of rows " << nrow << " is not a multiple of q^" << t << " = " << q << "^" << t << " = " << primes::ipow(q, t) << ".\n";
                 } // LCOV_EXCL_STOP
-                return 0;
+                return FAILURE_CHECK;
             }
 
             lambda = static_cast<int>(nrow) / primes::ipow(q, t);
@@ -491,7 +491,7 @@ namespace oacpp
                             }
                             PRINT_OUTPUT << "This happened in " << count << " rows, it should have happened in " << lambda << " rows.\n";
                         } // LCOV_EXCL_STOP
-                        return 0;
+                        return FAILURE_CHECK;
                     }
                     for (int i = t - 1; i >= 0; i--) // has to be int
                     {

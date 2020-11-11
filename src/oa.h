@@ -77,7 +77,7 @@ namespace oacpp {
          * @param str
          * @param verbose
          */
-		void OA_strength(int q, bclib::matrix<int> & A, int* str, int verbose);
+		void OA_strength(int q, const bclib::matrix<int> & A, int* str, int verbose);
         
         /**
          * Check strength 0
@@ -86,7 +86,7 @@ namespace oacpp {
          * @param verbose
          * @return 
          */
-		int OA_str0(int q, bclib::matrix<int> & A, int verbose);
+		int OA_str0(int q, const bclib::matrix<int> & A, int verbose);
         
         /**
          * Check strength 1
@@ -95,7 +95,7 @@ namespace oacpp {
          * @param verbose
          * @return 
          */
-		int OA_str1(int q, bclib::matrix<int> & A, int verbose);
+		int OA_str1(int q, const bclib::matrix<int> & A, int verbose);
         
         /**
          * Check strength 2
@@ -104,7 +104,7 @@ namespace oacpp {
          * @param verbose
          * @return 
          */
-		int OA_str2(int q, bclib::matrix<int> & A, int verbose);
+		int OA_str2(int q, const bclib::matrix<int> & A, int verbose);
         
         /**
          * Check strength 3
@@ -113,7 +113,7 @@ namespace oacpp {
          * @param verbose
          * @return 
          */
-		int OA_str3(int q, bclib::matrix<int> & A, int verbose);
+		int OA_str3(int q, const bclib::matrix<int> & A, int verbose);
         
         /**
          * Check strength 4
@@ -122,7 +122,7 @@ namespace oacpp {
          * @param verbose
          * @return 
          */
-		int OA_str4(int q, bclib::matrix<int> & A, int verbose);
+		int OA_str4(int q, const bclib::matrix<int> & A, int verbose);
         
         /**
          * Check an arbitrary strength
@@ -132,7 +132,7 @@ namespace oacpp {
          * @param verbose
          * @return 
          */
-		int OA_strt(int q, bclib::matrix<int> & A, int t, int verbose);
+		int OA_strt(int q, const bclib::matrix<int> & A, int t, int verbose);
 	}
 }// end namespace
 

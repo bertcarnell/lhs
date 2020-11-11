@@ -558,6 +558,16 @@ namespace oacpp {
          * @return the orthogonal array
          */
         const bclib::matrix<int> & getoa();
+        /**
+         * Get available warning message
+         * @return the message
+         */
+        const std::string getMessage();
+        /**
+         * Get the method return code
+         * @return the return code
+         */
+        int getReturnCode();
 
 	private:
         GaloisField m_gf; /**< Galois Field */
@@ -565,7 +575,9 @@ namespace oacpp {
 		int m_nrow; /**< the number of rows in orthogonal array */
         int m_ncol; /**< the number of columns in the orthogonal array */
         int m_q; /**< the number of symbols in the orthogonal array */
-        RUnif m_randomClass;
+        RUnif m_randomClass; /**< a pseudo random number generator */
+        int m_return_code;
+        std::string m_warning_msg;
 
 		/**
          * Create a Galois Field
@@ -624,6 +636,17 @@ namespace oacpp {
     {
         return m_A;
     }
+    inline
+    int COrthogonalArray::getReturnCode()
+    {
+        return m_return_code;
+    }
+    inline
+    const std::string COrthogonalArray::getMessage()
+    {
+        return m_warning_msg;
+    }
+
 }
 
 #endif
