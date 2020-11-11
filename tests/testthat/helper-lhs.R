@@ -33,23 +33,19 @@ encodeOA <- function(X, n)
                           msg = "n must be an integer > 1")
   if (n == 2)
   {
-    X[which(X == 0, arr.ind = TRUE)] <- -1
-    return(X)
+    # 0, 1 => -1, 1
+    X <- X*2 - 1
   } else if (n == 3)
   {
-    X[which(X == 0, arr.ind = TRUE)] <- -1
-    X[which(X == 1, arr.ind = TRUE)] <- 0
-    X[which(X == 2, arr.ind = TRUE)] <- 1
-    return(X)
+    # 0, 1, 2 => -1, 0, 1
+    X <- X - 1
   } else if (n == 4)
   {
-    X[which(X == 0, arr.ind = TRUE)] <- -1
-    X[which(X == 1, arr.ind = TRUE)] <- -1/3
-    X[which(X == 2, arr.ind = TRUE)] <- 1/3
-    X[which(X == 3, arr.ind = TRUE)] <- 1
-    return(X)
+    # 0, 1, 2, 3 => -1, -1/3, 1/3, 1
+    X <- X * 2 / 3 - 1
   } else if (n > 4)
   {
-    stop("Not implemented yet")
+    X <- X * 2 / (n - 1) - 1
   }
+  return(X)
 }

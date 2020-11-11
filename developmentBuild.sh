@@ -12,7 +12,7 @@ OALHSLIBDIR=../oa/src/oalhslib
 LHSLIBDIR=../lhslib/src/lhslib
 DESTDIR=src
 
-BCLIBSRCFILES="CRandom.h matrix.h order.h bclibVersion.h RWarningException.h"
+BCLIBSRCFILES="CRandom.h matrix.h order.h bclibVersion.h"
 LHSLIBSRCFILES="LHSCommonDefines.h geneticLHS.cpp improvedLHS.cpp maximinLHS.cpp \
   optimumLHS.cpp optSeededLHS.cpp randomLHS.cpp utilityLHS.cpp utilityLHS.h lhslibVersion.h"
 OALIBSRCFILES="ak.h ak3.cpp akconst.cpp akn.cpp OACommonDefines.h \

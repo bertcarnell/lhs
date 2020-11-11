@@ -46,6 +46,17 @@ test_that("createBoseBush works", {
   B <- createBoseBush(8, 3)
   expect_equal(nrow(B), 2*8^2)
   expect_equal(ncol(B), 3)
+
+  expect_warning({
+    B <- createBoseBush(8, 17)
+  })
+  expect_equal(nrow(B), 2*8^2)
+  expect_equal(ncol(B), 17)
+  expect_true(checkOA(encodeOA(B, 8L)))
+
+  expect_error({
+    B <- createBoseBush(8, 18)
+  })
 })
 
 test_that("createBush works", {
@@ -58,14 +69,28 @@ test_that("createBush works", {
   B <- createBush(3, 3)
   expect_equal(nrow(B), 3^3)
   expect_equal(ncol(B), 3)
+  expect_true(checkOA(encodeOA(B, 3L)))
 
   B <- createBush(3, 4)
   expect_equal(nrow(B), 3^3)
   expect_equal(ncol(B), 4)
+  expect_true(checkOA(encodeOA(B, 3L)))
 
   B <- createBush(5, 4)
   expect_equal(nrow(B), 5^3)
   expect_equal(ncol(B), 4)
+  expect_true(checkOA(encodeOA(B, 5L)))
+
+  expect_warning({
+    B <- createBush(2, 3)
+  })
+  expect_equal(nrow(B), 2^3)
+  expect_equal(ncol(B), 3)
+  expect_true(checkOA(encodeOA(B, 2L)))
+
+  expect_error({
+    B <- createBush(2, 4)
+  })
 })
 
 test_that("createAddelKemp works", {
@@ -86,6 +111,13 @@ test_that("createAddelKemp works", {
   B <- createAddelKemp(5, 3)
   expect_equal(nrow(B), 2*5^2)
   expect_equal(ncol(B), 3)
+
+  expect_warning({
+    B <- createAddelKemp(q = 3^1, ncol = 2*3 + 1, bRandom = FALSE)
+  }, regexp = "Warning:")
+  expect_true(checkOA(encodeOA(B, 3L)))
+  expect_equal(7, ncol(B))
+  expect_equal(18, nrow(B))
 })
 
 test_that("createAddelKemp3 works", {
@@ -137,11 +169,19 @@ test_that("createBoseBushl works", {
   B <- createBoseBushl(q = 2^2, ncol = 2*2^2, lambda = 2, bRandom = FALSE)
   expect_true(checkOA(encodeOA(B, 4L)))
 
-  #expect_output({
   expect_warning({
     B <- createBoseBushl(q = 2^2, ncol = 2*2^2 + 1, lambda = 2, bRandom = FALSE)
   }, regexp = "Warning:")
   expect_true(checkOA(encodeOA(B, 4L)))
+  expect_equal(9, ncol(B))
+  expect_equal(32, nrow(B))
+
+  expect_warning({
+    B <- createBoseBushl(q = 3^1, ncol = 3*3 + 1, lambda = 3, bRandom = FALSE)
+  }, regexp = "Warning:")
+  expect_true(checkOA(encodeOA(B, 3L)))
+  expect_equal(10, ncol(B))
+  expect_equal(27, nrow(B))
 })
 
 test_that("createAddelKempN works", {

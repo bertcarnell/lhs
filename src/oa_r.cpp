@@ -56,42 +56,37 @@ RcppExport SEXP /*int matrix*/ oa_type1(SEXP /*char*/ type, SEXP /*int*/ q,
       Rcpp_error("q, ncol, and bRandom are not permitted to be NA");
     }
 
-    try {
-      if (stype == typeConstants::BOSE)
-      {
-          oa.bose(qlocal, ncollocal, &nlocal);
-      }
-      else if (stype == typeConstants::BOSEBUSH)
-      {
-          oa.bosebush(qlocal, ncollocal, &nlocal);
-      }
-      else if (stype == typeConstants::BUSH)
-      {
-          oa.bush(qlocal, ncollocal, &nlocal);
-      }
-      else if (stype == typeConstants::ADDELKEMP3)
-      {
-          oa.addelkemp3(qlocal, ncollocal, &nlocal);
-      }
-      else if (stype == typeConstants::ADDELKEMP)
-      {
-          oa.addelkemp(qlocal, ncollocal, &nlocal);
-      }
-      else
-      {
-          std::stringstream sstype;
-          sstype << stype << " is an Unrecognized orthogonal array algorithm";
-          const std::string ssstype = sstype.str();
-          Rcpp_error(ssstype.c_str());
-      }
-    }
-    catch (bclib::RWarningException & e)
+    if (stype == typeConstants::BOSE)
     {
-      Rcpp::warning(e.what());
+        oa.bose(qlocal, ncollocal, &nlocal);
     }
-    catch (...)
+    else if (stype == typeConstants::BOSEBUSH)
     {
-      throw;
+        oa.bosebush(qlocal, ncollocal, &nlocal);
+    }
+    else if (stype == typeConstants::BUSH)
+    {
+        oa.bush(qlocal, ncollocal, &nlocal);
+    }
+    else if (stype == typeConstants::ADDELKEMP3)
+    {
+        oa.addelkemp3(qlocal, ncollocal, &nlocal);
+    }
+    else if (stype == typeConstants::ADDELKEMP)
+    {
+        oa.addelkemp(qlocal, ncollocal, &nlocal);
+    }
+    else
+    {
+        std::stringstream sstype;
+        sstype << stype << " is an Unrecognized orthogonal array algorithm";
+        const std::string ssstype = sstype.str();
+        Rcpp_error(ssstype.c_str());
+    }
+
+    if (oa.getReturnCode() == WARNING_CHECK)
+    {
+        Rcpp::warning(oa.getMessage().c_str());
     }
 
     oarutils::convertToIntegerMatrix<int>(oa.getoa(), rcppA);
@@ -162,37 +157,32 @@ RcppExport SEXP /*int matrix*/ oa_type2(SEXP /*char*/ type, SEXP /*int*/ int1,
         }
     }
 
-    try {
-        if (cvtype[0] == typeConstants::BOSEBUSHL)
-        {
-            // int1 is lambda
-            oa.bosebushl(int1local, qlocal, ncollocal, &nlocal);
-        }
-        else if (cvtype[0] == typeConstants::BUSHT)
-        {
-            // int1 is str
-            oa.busht(int1local, qlocal, ncollocal, &nlocal);
-        }
-        else if (cvtype[0] == typeConstants::ADDELKEMPN)
-        {
-            // int1 is akn
-            oa.addelkempn(int1local, qlocal, ncollocal, &nlocal);
-        }
-        else
-        {
-            std::stringstream sstype;
-            sstype << cvtype[0] << " is an Unrecognized orthogonal array algorithm";
-    		    const std::string ssstype = sstype.str();
-            Rcpp_error(ssstype.c_str());
-        }
-    }
-    catch (bclib::RWarningException & e)
+    if (cvtype[0] == typeConstants::BOSEBUSHL)
     {
-      Rcpp::warning(e.what());
+        // int1 is lambda
+        oa.bosebushl(int1local, qlocal, ncollocal, &nlocal);
     }
-    catch (...)
+    else if (cvtype[0] == typeConstants::BUSHT)
     {
-      throw;
+        // int1 is str
+        oa.busht(int1local, qlocal, ncollocal, &nlocal);
+    }
+    else if (cvtype[0] == typeConstants::ADDELKEMPN)
+    {
+        // int1 is akn
+        oa.addelkempn(int1local, qlocal, ncollocal, &nlocal);
+    }
+    else
+    {
+        std::stringstream sstype;
+        sstype << cvtype[0] << " is an Unrecognized orthogonal array algorithm";
+        const std::string ssstype = sstype.str();
+        Rcpp_error(ssstype.c_str());
+    }
+
+    if (oa.getReturnCode() == WARNING_CHECK)
+    {
+        Rcpp::warning(oa.getMessage().c_str());
     }
 
     oarutils::convertToIntegerMatrix<int>(oa.getoa(), rcppA);
