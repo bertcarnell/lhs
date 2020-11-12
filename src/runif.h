@@ -55,7 +55,7 @@ namespace oacpp
         /** Default Constructor */
         SeedSet() {};
         /** Constructor */
-        SeedSet(int is, int js, int ks, int ls) { is = is; js = js; ks = ks; ls = ls; };
+        SeedSet(int one, int two, int three, int four) { is = one; js = two; ks = three; ls = four; };
 		/** seed i */
         int is;
 		/** seed j */
