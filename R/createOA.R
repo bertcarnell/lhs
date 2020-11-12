@@ -269,14 +269,3 @@ createAddelKempN <- function(q, ncol, exponent, bRandom=TRUE)
   return(.Call("oa_type2", "addelkempn", as.integer(exponent), as.integer(q),
                as.integer(ncol), as.logical(bRandom), PACKAGE = "lhs"))
 }
-
-#' Get the versions of the underlying bclib, oa, and lhslib C++ libraries
-#'
-#' @return String of version information
-#' @export
-#' @examples
-#' getLibraryVersions()
-getLibraryVersions <- function()
-{
-  return(.Call("get_library_versions", PACKAGE = "lhs"))
-}
