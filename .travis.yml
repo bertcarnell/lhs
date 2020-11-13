@@ -14,7 +14,7 @@ jobs:
     - name: "Code Coverage"
       dist: bionic
       r: release
-      after_success: Rscript -e 'covr::codecov(line_exclusions=list("src/COrthogonalArray.cpp", "src/COrthogonalArray.h", "src/CRandom.h", "src/RStandardUniform.h", "src/ak3.cpp", "src/akconst.cpp", "src/akn.cpp", "src/construct.cpp", "src/GaloisField.h", "src/GaloisField.cpp", "src/geneticLHS.cpp", "src/improvedLHS.cpp", "src/matrix.h", "src/maximinLHS.cpp", "src/oa.cpp", "src/oaLHS.cpp", "src/oaLHSUtility.h", "src/optSeededLHS.cpp", "src/optimumLHS.cpp", "src/order.h", "src/primes.cpp", "src/randomLHS.cpp", "src/runif.cpp", "src/runif.h", "src/rutils.cpp", "src/rutils.h", "src/utilityLHS.cpp", "src/utilityLHS.h", "src/xtn.h", "bclibVersion.h", "oalibVersion.h", "lhslibVersion.h"))'
+      after_success: Rscript -e 'covr::codecov(line_exclusions=list("src/COrthogonalArray.cpp", "src/COrthogonalArray.h", "src/CRandom.h", "src/RStandardUniform.h", "src/ak3.cpp", "src/akconst.cpp", "src/akn.cpp", "src/construct.cpp", "src/GaloisField.h", "src/GaloisField.cpp", "src/geneticLHS.cpp", "src/improvedLHS.cpp", "src/matrix.h", "src/maximinLHS.cpp", "src/oa.cpp", "src/oaLHS.cpp", "src/oaLHSUtility.h", "src/optSeededLHS.cpp", "src/optimumLHS.cpp", "src/order.h", "src/primes.cpp", "src/randomLHS.cpp", "src/runif.cpp", "src/runif.h", "src/rutils.cpp", "src/rutils.h", "src/utilityLHS.cpp", "src/utilityLHS.h", "src/xtn.h", "src/bclibVersion.h", "src/oalibVersion.h", "src/lhslibVersion.h", "src/OACommonDefines.h"))'
       r_check_args: ""
     - name: "R-devel on CRAN"
       dist: xenial
