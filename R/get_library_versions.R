@@ -5,9 +5,11 @@
 #' @return a character string containing the versions
 #' @export
 #'
+#' @importFrom utils packageVersion
+#'
 #' @examples
 #' get_library_versions()
 get_library_versions <- function()
 {
-  return(paste(.Call("get_library_versions", PACKAGE = "lhs"), "lhs:", packageVersion("lhs")))
+  return(paste(.Call("get_library_versions", PACKAGE = "lhs"), "lhs:", utils::packageVersion("lhs")))
 }
