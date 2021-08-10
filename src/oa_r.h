@@ -2,18 +2,18 @@
  * @file oa_r.h
  * @author Robert Carnell
  * @copyright Copyright (c) 2013, Robert Carnell
- * 
+ *
  * @license <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License (GPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -30,7 +30,7 @@
 
 /**
  * An entry point for a set of Orthogonal Array algorithms
- * 
+ *
  * @see oacpp::COrthogonalArray::bose
  * @see oacpp::COrthogonalArray::bosebush
  * @see oacpp::COrthogonalArray::bush
@@ -60,6 +60,50 @@ RcppExport SEXP /*int matrix*/ oa_type1(SEXP /*char*/ type, SEXP /*int*/ q, SEXP
  * @return an integer matrix
  */
 RcppExport SEXP /*int matrix*/ oa_type2(SEXP /*char*/ type, SEXP /*int*/ int1, SEXP /*int*/ q, SEXP /*int*/ ncol, SEXP /*bool*/ bRandom);
+/**
+ * Create a Galois Field object
+ * @param q the number of symbols in the array
+ * @return a List Galois field components
+ */
+RcppExport SEXP /*List*/ create_galois_field(SEXP /*int*/ q);
+/**
+ * Multiplication in polynomial representation
+ *
+ * @param p modulus
+ * @param n length of p1 and p2
+ * @param xton characteristic polynomial
+ * @param p1 polynomial 1
+ * @param p2 polynomial 2
+ * @return the product of the polynomials
+ */
+RcppExport SEXP /*IntegerVector*/ poly_prod(SEXP /*int*/ p, SEXP /*int*/ n,
+                                            SEXP /*int vector*/ xton,
+                                            SEXP /*int vector*/ p1,
+                                            SEXP /*int vector*/ p2);
+
+/**
+ * Addition in polynomial representation
+ *
+ * @param p modulus
+ * @param u the length of p1 and p2
+ * @param p1 polynomial 1
+ * @param p2 polynomial 2
+ * @return the sum of the polynomials
+ */
+RcppExport SEXP /*IntegerVector*/ poly_sum(SEXP /*int*/ p, SEXP /*int*/ n,
+                                           SEXP /*int vector*/ p1,
+                                           SEXP /*int vector*/ p2);
+
+/**
+ * Convert polynomial to integer in <code>0..q-1</code>
+ *
+ * @param p polynomial multiplier
+ * @param n the length of poly
+ * @param poly the polynomial
+ * @return an integer
+ */
+RcppExport SEXP /*IntegerVector*/ poly2int(SEXP /*int*/ p, SEXP /*int*/ n,
+                                           SEXP /*int vector*/ poly);
 
 namespace typeConstants
 {

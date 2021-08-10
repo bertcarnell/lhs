@@ -194,3 +194,125 @@ RcppExport SEXP /*int matrix*/ oa_type2(SEXP /*char*/ type, SEXP /*int*/ int1,
   END_RCPP
 }
 
+RcppExport SEXP /*List*/ create_galois_field(SEXP /*int*/ q)
+{
+  BEGIN_RCPP
+    int qlocal = Rcpp::as<int>(q);
+
+    oacpp::GaloisField gf = oacpp::GaloisField(qlocal);
+
+    /** prime modulus exponent q = p^n --- Polynomial vector length */
+    Rcpp::IntegerVector n = Rcpp::IntegerVector::create(gf.n);
+    /** prime modulus q = p^n*/
+    Rcpp::IntegerVector p = Rcpp::IntegerVector::create(gf.p);
+    /** the order of the field q = p^n --- field element vector length */
+    Rcpp::IntegerVector q = Rcpp::IntegerVector::create(gf.q);
+    /** characteristic polynomial of length u_n */
+    Rcpp::IntegerVector xton(gf.xton.begin(), gf.xton.end());
+    /** Indicator of which row of poly is the multiplicative inverse of this row of length u_q */
+    Rcpp::IntegerVector inv(gf.inv.begin(), gf.inv.end());
+    /** row number of which row of poly is the negative (additive inverse) of this row of length u_q */
+    Rcpp::IntegerVector neg(gf.neg.begin(), gf.neg.end());
+    /** root */
+    Rcpp::IntegerVector root(gf.root.begin(), gf.root.end());
+    /** sum field of dimension u_q x u_q*/
+    Rcpp::IntegerMatrix plus(gf.q, gf.q);
+    oarutils::convertToIntegerMatrix<int>(gf.plus, plus);
+    /** product field of dimension u_q x u_q*/
+    Rcpp::IntegerMatrix times(gf.q, gf.q);
+    oarutils::convertToIntegerMatrix<int>(gf.times, times);
+    /** polynomial field of dimension u_q x u_n */
+    Rcpp::IntegerMatrix poly(gf.q, gf.n);
+    oarutils::convertToIntegerMatrix<int>(gf.poly, poly);
+
+    Rcpp::List gf_S3 = Rcpp::List::create(n, p, q, xton, inv, neg, root, plus, times, poly);
+
+    return gf_S3;
+  END_RCPP
+}
+
+
+  /**
+   * Multiplication in polynomial representation
+   *
+   * @param p modulus
+   * @param u_n length of p1 and p2
+   * @param xton characteristic polynomial
+   * @param p1 polynomial 1
+   * @param p2 polynomial 2
+   * @param prod the product of the polynomials
+   */
+RcppExport SEXP /*IntegerVector*/ poly_prod(SEXP /*int*/ p, SEXP /*int*/ n,
+                                            SEXP /*int vector*/ xton,
+                                            SEXP /*int vector*/ p1,
+                                            SEXP /*int vector*/ p2)
+{
+  BEGIN_RCPP
+    int plocal = Rcpp::as<int>(p);
+    int nlocal = Rcpp::as<int>(n);
+    size_t u_n = static_cast<size_t>(nlocal);
+    std::vector<int> xton_ref = Rcpp::as<std::vector<int> >(xton);
+    std::vector<int> p1_ref = Rcpp::as<std::vector<int> >(p1);
+    std::vector<int> p2_ref = Rcpp::as<std::vector<int> >(p2);
+    std::vector<int> prod_ref = std::vector<int>(p1_ref.size());
+
+    oacpp::GaloisField::polyProd(plocal, u_n, xton_ref, p1_ref, p2_ref, prod_ref);
+
+    Rcpp::IntegerVector prod_res(prod_ref.begin(), prod_ref.end());
+
+    return prod_res;
+  END_RCPP
+}
+
+  /**
+   * Addition in polynomial representation
+   *
+   * @param p modulus
+   * @param u_n the length of p1 and p2
+   * @param p1 polynomial 1
+   * @param p2 polynomial 2
+   * @param sum the sum of the polynomials
+   */
+RcppExport SEXP /*IntegerVector*/ poly_sum(SEXP /*int*/ p, SEXP /*int*/ n,
+                                            SEXP /*int vector*/ p1,
+                                            SEXP /*int vector*/ p2)
+{
+  BEGIN_RCPP
+    int plocal = Rcpp::as<int>(p);
+    int nlocal = Rcpp::as<int>(n);
+    size_t u_n = static_cast<size_t>(nlocal);
+    std::vector<int> p1_ref = Rcpp::as<std::vector<int> >(p1);
+    std::vector<int> p2_ref = Rcpp::as<std::vector<int> >(p2);
+    std::vector<int> sum_ref = std::vector<int>(p1_ref.size());
+
+    oacpp::GaloisField::polySum(plocal, u_n, p1_ref, p2_ref, sum_ref);
+
+    Rcpp::IntegerVector sum_res(sum_ref.begin(), sum_ref.end());
+
+    return sum_res;
+  END_RCPP
+}
+
+/**
+   * Convert polynomial to integer in <code>0..q-1</code>
+   *
+   * @param p polynomial multiplier
+   * @param n the length of poly
+   * @param poly the polynomial
+   * @return an integer
+   */
+RcppExport SEXP /*IntegerVector*/ poly2int(SEXP /*int*/ p, SEXP /*int*/ n,
+                                           SEXP /*int vector*/ poly)
+{
+  BEGIN_RCPP
+    int plocal = Rcpp::as<int>(p);
+    int nlocal = Rcpp::as<int>(n);
+    std::vector<int> poly_ref = Rcpp::as<std::vector<int> >(poly);
+    Rcpp::IntegerVector res(1);
+
+    res[0] = oacpp::GaloisField::poly2int(plocal, nlocal, poly_ref);
+
+    return res;
+  END_RCPP
+}
+
