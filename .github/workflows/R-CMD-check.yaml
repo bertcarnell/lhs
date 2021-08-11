@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - master
+      - galoisfield
   pull_request:
     branches:
       - master
@@ -67,7 +68,7 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
-        
+
       - name: Check Standard
         if: ( matrix.config.os == 'ubuntu-16.04' && matrix.config.r == 'devel' ) == false
         env:

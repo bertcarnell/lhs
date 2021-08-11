@@ -11,6 +11,15 @@ test_that("Galois Fields Work", {
   test_field(3, 3, 1)
   test_field(4, 2, 2)
   test_field(9, 3, 2)
+
+  # q cannot be less than 2
+  expect_error(create_galois_field(-1))
+  expect_error(create_galois_field(1))
+  # q must be a prime power
+  expect_error(create_galois_field(100000000))
+  expect_error(create_galois_field(35))
+  # the prime power can't be too large
+  expect_error(create_galois_field(2^30))
 })
 
 test_that("Associative", {
@@ -130,128 +139,20 @@ test_that("Distributive", {
   check_distributive(create_galois_field(8))
 })
 
-
-
-
-
-#   void GaloisFieldTest::testGaloisField()
-#   {
-#     oacpp::GaloisField gf = oacpp::GaloisField(3);
-#
-#     // q = p^n
-#     // 3 = 3^1
-#     bclib::Assert(gf.n == 1);
-#     bclib::Assert(gf.p == 3);
-#     bclib::Assert(gf.q == 3);
-#     checkField(gf);
-#
-#     gf = oacpp::GaloisField(9);
-#
-#     // q = p^n
-#     // 9 = 3^2
-#     bclib::Assert(gf.n == 2);
-#     bclib::Assert(gf.p == 3);
-#     bclib::Assert(gf.q == 9);
-#     // characteristic polynomial of degree n-1=1
-#     // 1 + 2x
-#     bclib::Assert(gf.xton[0] == 1 && gf.xton[1] == 2);
-#     // polynomial field (a,b) a*1 + b*x
-#     // 0,0 1,0 2,0 0,1 1,1 2,1 0,2 1,2 2,2
-#     // 0, 1, 2, x, 1+x 2+x 2x, 1+2x, 2+2x
-#     bclib::Assert(gf.poly.rowsize() == 9 && gf.poly.colsize() == 2);
-#     bclib::Assert(gf.poly(0, 0) == 0 && gf.poly(8, 1) == 2);
-#
-#     checkField(gf);
-#
-#     gf = oacpp::GaloisField(2);
-#     checkField(gf);
-#     gf = oacpp::GaloisField(4);
-#     checkField(gf);
-#     gf = oacpp::GaloisField(8);
-#     checkField(gf);
-#     gf = oacpp::GaloisField(16);
-#     checkField(gf);
-#     gf = oacpp::GaloisField(32);
-#     checkField(gf);
-#     gf = oacpp::GaloisField(27);
-#     checkField(gf);
-#     gf = oacpp::GaloisField(5);
-#     checkField(gf);
-#     gf = oacpp::GaloisField(25);
-#     checkField(gf);
-#     gf = oacpp::GaloisField(7);
-#     checkField(gf);
-#     gf = oacpp::GaloisField(11);
-#     checkField(gf);
-#
-#     ASSERT_NOTHROW(gf = oacpp::GaloisField(3));
-#     ASSERT_THROW(gf = oacpp::GaloisField(-3));
-#     ASSERT_THROW(gf = oacpp::GaloisField(1));
-#     ASSERT_THROW(gf = oacpp::GaloisField(100));
-#     ASSERT_THROW(gf = oacpp::GaloisField(oacpp::primes::ipow(2, 30)));
-#   }
-#
-#   void GaloisFieldTest::testPolySum()
-#   {
-#     std::vector<int> sum = std::vector<int>();
-#
-#     oacpp::GaloisField gf = oacpp::GaloisField(3);
-#     sum = helpersum(0, 1, gf);
-#     bclib::Assert(sum[0] == 1);
-#
-#     gf = oacpp::GaloisField(9);
-#     // characteristic polynomial of degree n-1=1
-#     // 1 + 2x
-#     // polynomial field (a,b) a*1 + b*x
-#     // 0,0 1,0 2,0 0,1 1,1 2,1 0,2 1,2 2,2
-#     // 0, 1, 2, x, 1+x 2+x 2x, 1+2x, 2+2x
-#
-#     // 0,0 plus 1,0
-#     // 0 + 1 % 3 == 1 which is 1,0 in the vector
-#     sum = helpersum(0, 1, gf);
-#     bclib::Assert(sum[0] == 1 && sum[1] == 0);
-#     // 2,2 plus 2,0
-#     // 2+2x + 2 = 4+2x = 4%%3 + 2x = 1 + 2x
-#     sum = helpersum(8, 2, gf);
-#     bclib::Assert(sum[0] == 1 && sum[1] == 2);
-#
-#     gf = oacpp::GaloisField(8);
-#     // n=3, p=2, q=8
-#     // characteristic polynomial 1 + x^2
-#     // polynomial field:
-#       // 0, 1, x, 1+x, x^2, 1+x^2, x+x^2, 1+x+x^2
-#     sum = helpersum(0, 1, gf);
-#     bclib::Assert(sum[0] == 1 && sum[1] == 0 && sum[2] == 0);
-#     // x+x^2 + 1+x+x^2 = 1+2x+2x^2 = 1
-#     sum = helpersum(6, 7, gf);
-#     bclib::Assert(sum[0] == 1 && sum[1] == 0 && sum[2] == 0);
-#   }
-#
-#   void GaloisFieldTest::testPolyProd()
-#   {
-#     oacpp::GaloisField gf = oacpp::GaloisField(3);
-#     std::vector<int> prod = std::vector<int>(gf.u_n);
-#
-#     oacpp::GaloisField::polyProd(gf.p, gf.u_n, gf.xton, gf.poly.getrow(0), gf.poly.getrow(1), prod); // 0*1 %% 3
-#     bclib::Assert(prod == gf.poly.getrow(0));
-#
-#     oacpp::GaloisField::polyProd(gf.p, gf.u_n, gf.xton, gf.poly.getrow(1), gf.poly.getrow(2), prod); // 1*2 %% 3
-#     bclib::Assert(prod == gf.poly.getrow(2));
-#
-#     oacpp::GaloisField::polyProd(gf.p, gf.u_n, gf.xton, gf.poly.getrow(2), gf.poly.getrow(2), prod); // 2*2 %% 3
-#     bclib::Assert(prod == gf.poly.getrow(1));
-#
-#     gf = oacpp::GaloisField(9);
-#     prod.clear();
-#     prod.resize(gf.u_n);
-#     oacpp::GaloisField::polyProd(gf.p, gf.u_n, gf.xton, gf.poly.getrow(0), gf.poly.getrow(1), prod); // 0*1 %% 3
-#     bclib::Assert(prod == gf.poly.getrow(0));
-#
-#     oacpp::GaloisField::polyProd(gf.p, gf.u_n, gf.xton, gf.poly.getrow(1), gf.poly.getrow(8), prod); // 1*(2+2x) %% 1+2x
-#     bclib::Assert(prod == gf.poly.getrow(8));
-#
-#     oacpp::GaloisField::polyProd(gf.p, gf.u_n, gf.xton, gf.poly.getrow(2), gf.poly.getrow(3), prod); // 2*x %% 1+2x
-#     bclib::Assert(prod == gf.poly.getrow(6));
-#   }
-# }
-#
+test_that("Roots", {
+  check_roots <- function(gf)
+  {
+    #gf <- create_galois_field(3)
+    for (i in 1:gf$q)
+    {
+      if (!is.na(gf$root[i])){
+        prod1 <- poly_prod(gf$p, gf$n, gf$xton, gf$poly[gf$root[i] + 1,], gf$poly[gf$root[i] + 1,])
+        expect_equal(gf$poly[i, ], prod1)
+      }
+    }
+  }
+  check_roots(create_galois_field(3))
+  check_roots(create_galois_field(4))
+  check_roots(create_galois_field(9))
+  check_roots(create_galois_field(8))
+})

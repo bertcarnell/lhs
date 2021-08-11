@@ -4,7 +4,19 @@
 #'
 #' @param q The order of the Galois Field q = p^n
 #'
-#' @return a GaloisField object
+#' @return a GaloisField object containing
+#' \describe{
+#'   \item{n}{q = p^n}
+#'   \item{p}{The prime modulus of the field q=p^n}
+#'   \item{q}{The order of the Galois Field q = p^n.  \code{q} must be a prime power.}
+#'   \item{xton}{coefficients of the characteristic polynomial where the first coefficient is on $x^0$, the second is on $x^1$ and so on}
+#'   \item{inv}{An index for which row of \code{poly} (zero based) is the multiplicative inverse of this row.  An \code{NA} indicates that this row of \code{poly} has no inverse.  e.g. c(3, 4) means that row 4=3+1 is the inverse of row 1 and row 5=4+1 is the inverse of row 2}
+#'   \item{neg}{An index for which row of \code{poly} (zero based) is the negative or additive inverse of this row.  An \code{NA} indicates that this row of \code{poly} has no negative.  e.g. c(3, 4) means that row 4=3+1 is the negative of row 1 and row 5=4+1 is the negative of row 2}
+#'   \item{root}{An index for which row of \code{poly} (zero based) is the square root of this row.  An \code{NA} indicates that this row of \code{poly} has no square root.  e.g. c(3, 4) means that row 4=3+1 is the square root of row 1 and row 5=4+1 is the square root of row 2}
+#'   \item{plus}{sum table of the Galois Field}
+#'   \item{times}{multiplication table of the Galois Field}
+#'   \item{poly}{rows are polynomials of the Galois Field where the entries are the coefficients of the polynomial where the first coefficient is on $x^0$, the second is on $x^1$ and so on}
+#' }
 #' @export
 #'
 #' @examples
