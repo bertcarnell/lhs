@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Optimal Augmented Latin Hypercube Sample — optAugmentLHS • lhs</title>
+<title>Create a Galois field — create_galois_field • lhs</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,8 @@
 
 
 
-<meta property="og:title" content="Optimal Augmented Latin Hypercube Sample — optAugmentLHS" />
-<meta property="og:description" content="Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the latin properties of the design.  This function attempts to
-add the points to the design in an optimal way." />
+<meta property="og:title" content="Create a Galois field — create_galois_field" />
+<meta property="og:description" content="Create a Galois field" />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -136,60 +134,45 @@ add the points to the design in an optimal way." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Optimal Augmented Latin Hypercube Sample</h1>
-    <small class="dont-index">Source: <a href='https://github.com/bertcarnell/lhs/blob/master/R/optAugmentLHS.R'><code>R/optAugmentLHS.R</code></a></small>
-    <div class="hidden name"><code>optAugmentLHS.Rd</code></div>
+    <h1>Create a Galois field</h1>
+    <small class="dont-index">Source: <a href='https://github.com/bertcarnell/lhs/blob/master/R/galois_field.R'><code>R/galois_field.R</code></a></small>
+    <div class="hidden name"><code>create_galois_field.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the <em>latin</em> properties of the design.  This function attempts to
-add the points to the design in an optimal way.</p>
+    <p>Create a Galois field</p>
     </div>
 
-    <pre class="usage"><span class='fu'>optAugmentLHS</span><span class='op'>(</span><span class='va'>lhs</span>, m <span class='op'>=</span> <span class='fl'>1</span>, mult <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>create_galois_field</span><span class='op'>(</span><span class='va'>q</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>lhs</th>
-      <td><p>The Latin Hypercube Design to which points are to be added</p></td>
-    </tr>
-    <tr>
-      <th>m</th>
-      <td><p>The number of additional points to add to matrix <code>lhs</code></p></td>
-    </tr>
-    <tr>
-      <th>mult</th>
-      <td><p><code>m*mult</code> random candidate points will be created.</p></td>
+      <th>q</th>
+      <td><p>The order of the Galois Field q = p^n</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code>n</code> by <code>k</code> Latin Hypercube Sample matrix with values uniformly distributed on [0,1]</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>a GaloisField object containing</p><dl>
+  <dt>n</dt><dd><p>q = p^n</p></dd>
+  <dt>p</dt><dd><p>The prime modulus of the field q=p^n</p></dd>
+  <dt>q</dt><dd><p>The order of the Galois Field q = p^n.  <code>q</code> must be a prime power.</p></dd>
+  <dt>xton</dt><dd><p>coefficients of the characteristic polynomial where the first coefficient is on $x^0$, the second is on $x^1$ and so on</p></dd>
+  <dt>inv</dt><dd><p>An index for which row of <code>poly</code> (zero based) is the multiplicative inverse of this row.  An <code>NA</code> indicates that this row of <code>poly</code> has no inverse.  e.g. c(3, 4) means that row 4=3+1 is the inverse of row 1 and row 5=4+1 is the inverse of row 2</p></dd>
+  <dt>neg</dt><dd><p>An index for which row of <code>poly</code> (zero based) is the negative or additive inverse of this row.  An <code>NA</code> indicates that this row of <code>poly</code> has no negative.  e.g. c(3, 4) means that row 4=3+1 is the negative of row 1 and row 5=4+1 is the negative of row 2</p></dd>
+  <dt>root</dt><dd><p>An index for which row of <code>poly</code> (zero based) is the square root of this row.  An <code>NA</code> indicates that this row of <code>poly</code> has no square root.  e.g. c(3, 4) means that row 4=3+1 is the square root of row 1 and row 5=4+1 is the square root of row 2</p></dd>
+  <dt>plus</dt><dd><p>sum table of the Galois Field</p></dd>
+  <dt>times</dt><dd><p>multiplication table of the Galois Field</p></dd>
+  <dt>poly</dt><dd><p>rows are polynomials of the Galois Field where the entries are the coefficients of the polynomial where the first coefficient is on $x^0$, the second is on $x^1$ and so on</p></dd>
 
-    <p>Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the <em>latin</em> properties of the design.  This function attempts to
-add the points to the design in a way that maximizes S optimality.</p>
-<p>S-optimality seeks to maximize the mean distance from each design point to all
-the other points in the design, so the points are as spread out as possible.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+</dl>
 
-    <p>Stein, M.  (1987) Large Sample Properties of Simulations Using Latin Hypercube Sampling.
-  <em>Technometrics</em>. <b>29</b>, 143--151.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>[randomLHS()], [geneticLHS()], [improvedLHS()], [maximinLHS()], and
-  [optimumLHS()] to generate Latin Hypercube Samples.  [optSeededLHS()] and
-  [augmentLHS()] to modify and augment existing designs.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1234</span><span class='op'>)</span>
-<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='randomLHS.html'>randomLHS</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>3</span><span class='op'>)</span>
-<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'>optAugmentLHS</span><span class='op'>(</span><span class='va'>a</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>gf</span> <span class='op'>&lt;-</span> <span class='fu'>create_galois_field</span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>;
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

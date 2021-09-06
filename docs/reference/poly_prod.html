@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Optimal Augmented Latin Hypercube Sample — optAugmentLHS • lhs</title>
+<title>Multiplication in polynomial representation — poly_prod • lhs</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,8 @@
 
 
 
-<meta property="og:title" content="Optimal Augmented Latin Hypercube Sample — optAugmentLHS" />
-<meta property="og:description" content="Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the latin properties of the design.  This function attempts to
-add the points to the design in an optimal way." />
+<meta property="og:title" content="Multiplication in polynomial representation — poly_prod" />
+<meta property="og:description" content="Multiplication in polynomial representation" />
 <meta property="og:image" content="/logo.svg" />
 
 
@@ -136,60 +134,50 @@ add the points to the design in an optimal way." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Optimal Augmented Latin Hypercube Sample</h1>
-    <small class="dont-index">Source: <a href='https://github.com/bertcarnell/lhs/blob/master/R/optAugmentLHS.R'><code>R/optAugmentLHS.R</code></a></small>
-    <div class="hidden name"><code>optAugmentLHS.Rd</code></div>
+    <h1>Multiplication in polynomial representation</h1>
+    <small class="dont-index">Source: <a href='https://github.com/bertcarnell/lhs/blob/master/R/galois_field.R'><code>R/galois_field.R</code></a></small>
+    <div class="hidden name"><code>poly_prod.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the <em>latin</em> properties of the design.  This function attempts to
-add the points to the design in an optimal way.</p>
+    <p>Multiplication in polynomial representation</p>
     </div>
 
-    <pre class="usage"><span class='fu'>optAugmentLHS</span><span class='op'>(</span><span class='va'>lhs</span>, m <span class='op'>=</span> <span class='fl'>1</span>, mult <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>poly_prod</span><span class='op'>(</span><span class='va'>p</span>, <span class='va'>n</span>, <span class='va'>xton</span>, <span class='va'>p1</span>, <span class='va'>p2</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>lhs</th>
-      <td><p>The Latin Hypercube Design to which points are to be added</p></td>
+      <th>p</th>
+      <td><p>modulus</p></td>
     </tr>
     <tr>
-      <th>m</th>
-      <td><p>The number of additional points to add to matrix <code>lhs</code></p></td>
+      <th>n</th>
+      <td><p>length of polynomials</p></td>
     </tr>
     <tr>
-      <th>mult</th>
-      <td><p><code>m*mult</code> random candidate points will be created.</p></td>
+      <th>xton</th>
+      <td><p>characteristic polynomial vector for the field (x to the n power)</p></td>
+    </tr>
+    <tr>
+      <th>p1</th>
+      <td><p>polynomial vector 1</p></td>
+    </tr>
+    <tr>
+      <th>p2</th>
+      <td><p>polynomial vector 2</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An <code>n</code> by <code>k</code> Latin Hypercube Sample matrix with values uniformly distributed on [0,1]</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Augments an existing Latin Hypercube Sample, adding points to the design, while
-maintaining the <em>latin</em> properties of the design.  This function attempts to
-add the points to the design in a way that maximizes S optimality.</p>
-<p>S-optimality seeks to maximize the mean distance from each design point to all
-the other points in the design, so the points are as spread out as possible.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>Stein, M.  (1987) Large Sample Properties of Simulations Using Latin Hypercube Sampling.
-  <em>Technometrics</em>. <b>29</b>, 143--151.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>[randomLHS()], [geneticLHS()], [improvedLHS()], [maximinLHS()], and
-  [optimumLHS()] to generate Latin Hypercube Samples.  [optSeededLHS()] and
-  [augmentLHS()] to modify and augment existing designs.</p></div>
+    <p>the product of p1 and p2</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1234</span><span class='op'>)</span>
-<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='randomLHS.html'>randomLHS</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>3</span><span class='op'>)</span>
-<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'>optAugmentLHS</span><span class='op'>(</span><span class='va'>a</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>gf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_galois_field.html'>create_galois_field</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'>poly_prod</span><span class='op'>(</span><span class='va'>gf</span><span class='op'>$</span><span class='va'>p</span>, <span class='va'>gf</span><span class='op'>$</span><span class='va'>n</span>, <span class='va'>gf</span><span class='op'>$</span><span class='va'>xton</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='va'>a</span> <span class='op'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
