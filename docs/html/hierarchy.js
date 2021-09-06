@@ -9,7 +9,7 @@ var hierarchy =
       [ "bclib::CRandomStandardUniform", "classbclib_1_1_c_random_standard_uniform.html", null ],
       [ "lhs_r::RStandardUniform", "classlhs__r_1_1_r_standard_uniform.html", null ]
     ] ],
-    [ "oacpp::GF", "structoacpp_1_1_g_f.html", null ],
+    [ "oacpp::GaloisField", "classoacpp_1_1_galois_field.html", null ],
     [ "oacpp::RUnif", "classoacpp_1_1_r_unif.html", null ],
     [ "oacpp::SeedSet", "structoacpp_1_1_seed_set.html", null ],
     [ "unary_function", null, [

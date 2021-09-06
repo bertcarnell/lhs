@@ -4,6 +4,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "ak3.cpp", "ak3_8cpp.html", "ak3_8cpp" ],
     [ "akconst.cpp", "akconst_8cpp.html", "akconst_8cpp" ],
     [ "akn.cpp", "akn_8cpp.html", "akn_8cpp" ],
+    [ "bclibVersion.h", "bclib_version_8h_source.html", null ],
     [ "construct.cpp", "construct_8cpp.html", "construct_8cpp" ],
     [ "construct.h", "construct_8h.html", "construct_8h" ],
     [ "COrthogonalArray.cpp", "_c_orthogonal_array_8cpp.html", null ],
@@ -12,19 +13,18 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
       [ "CRandom", "classbclib_1_1_c_random.html", "classbclib_1_1_c_random" ],
       [ "CRandomStandardUniform", "classbclib_1_1_c_random_standard_uniform.html", "classbclib_1_1_c_random_standard_uniform" ]
     ] ],
-    [ "galdef.h", "galdef_8h.html", [
-      [ "GF", "structoacpp_1_1_g_f.html", "structoacpp_1_1_g_f" ]
+    [ "GaloisField.cpp", "_galois_field_8cpp.html", null ],
+    [ "GaloisField.h", "_galois_field_8h.html", [
+      [ "GaloisField", "classoacpp_1_1_galois_field.html", "classoacpp_1_1_galois_field" ]
     ] ],
-    [ "galois.cpp", "galois_8cpp.html", "galois_8cpp" ],
-    [ "galois.h", "galois_8h.html", "galois_8h" ],
     [ "geneticLHS.cpp", "genetic_l_h_s_8cpp.html", "genetic_l_h_s_8cpp" ],
-    [ "gfields.cpp", "gfields_8cpp.html", "gfields_8cpp" ],
     [ "improvedLHS.cpp", "improved_l_h_s_8cpp.html", "improved_l_h_s_8cpp" ],
     [ "lhs_r.cpp", "lhs__r_8cpp.html", "lhs__r_8cpp" ],
     [ "lhs_r.h", "lhs__r_8h.html", "lhs__r_8h" ],
     [ "lhs_r_utilities.cpp", "lhs__r__utilities_8cpp.html", "lhs__r__utilities_8cpp" ],
     [ "lhs_r_utilities.h", "lhs__r__utilities_8h.html", "lhs__r__utilities_8h" ],
     [ "LHSCommonDefines.h", "_l_h_s_common_defines_8h.html", "_l_h_s_common_defines_8h" ],
+    [ "lhslibVersion.h", "lhslib_version_8h.html", null ],
     [ "maximinLHS.cpp", "maximin_l_h_s_8cpp.html", "maximin_l_h_s_8cpp" ],
     [ "oa.cpp", "oa_8cpp.html", "oa_8cpp" ],
     [ "oa.h", "oa_8h.html", "oa_8h" ],
@@ -37,7 +37,8 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "oaLHS.h", "oa_l_h_s_8h.html", "oa_l_h_s_8h" ],
     [ "oalhs_r.cpp", "oalhs__r_8cpp.html", "oalhs__r_8cpp" ],
     [ "oalhs_r.h", "oalhs__r_8h.html", "oalhs__r_8h" ],
-    [ "oaLHSUtility.h", "oa_l_h_s_utility_8h_source.html", null ],
+    [ "oaLHSUtility.h", "oa_l_h_s_utility_8h.html", "oa_l_h_s_utility_8h" ],
+    [ "oalibVersion.h", "oalib_version_8h.html", null ],
     [ "optimumLHS.cpp", "optimum_l_h_s_8cpp.html", "optimum_l_h_s_8cpp" ],
     [ "optSeededLHS.cpp", "opt_seeded_l_h_s_8cpp.html", "opt_seeded_l_h_s_8cpp" ],
     [ "order.h", "order_8h.html", "order_8h" ],
@@ -52,5 +53,6 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "rutils.cpp", "rutils_8cpp.html", "rutils_8cpp" ],
     [ "rutils.h", "rutils_8h.html", "rutils_8h" ],
     [ "utilityLHS.cpp", "utility_l_h_s_8cpp.html", "utility_l_h_s_8cpp" ],
-    [ "utilityLHS.h", "utility_l_h_s_8h.html", "utility_l_h_s_8h" ]
+    [ "utilityLHS.h", "utility_l_h_s_8h.html", "utility_l_h_s_8h" ],
+    [ "xtn.h", "xtn_8h_source.html", null ]
 ];

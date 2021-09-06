@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gf',['GF',['../structoacpp_1_1_g_f.html',1,'oacpp']]]
+  ['galoisfield_229',['GaloisField',['../classoacpp_1_1_galois_field.html',1,'oacpp']]]
 ];

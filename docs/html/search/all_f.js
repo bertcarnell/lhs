@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['q',['q',['../structoacpp_1_1_g_f.html#aa0ba7636b2e339207d8291bc44c0e7e3',1,'oacpp::GF']]]
+  ['q_180',['q',['../classoacpp_1_1_galois_field.html#acc2cdae337536d0f9af090a7b2e0df43',1,'oacpp::GaloisField']]]
 ];
