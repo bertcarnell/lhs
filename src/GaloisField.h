@@ -48,7 +48,7 @@ namespace oacpp {
         std::vector<int> xton;
         /** Indicator of which row of poly is the multiplicative inverse of this row of length u_q */
         std::vector<int> inv;
-        /** row number of which row of poly is the negative (additive inverse) of this row of lenth u_q */
+        /** row number of which row of poly is the negative (additive inverse) of this row of length u_q */
         std::vector<int> neg;
         /** root */
         std::vector<int> root;
@@ -56,7 +56,7 @@ namespace oacpp {
         bclib::matrix<int> plus;
         /** product field of dimension u_q x u_q*/
         bclib::matrix<int> times;
-        /** polynomial field of dimenstion u_q x u_n */
+        /** polynomial field of dimension u_q x u_n */
         bclib::matrix<int> poly;
 
         /**

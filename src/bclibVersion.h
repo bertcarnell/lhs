@@ -22,7 +22,7 @@
 #define	BCLIBVERSION_H
 
 namespace bclib {
-	inline static const char * getVersion() {return "1.0.0";}
+	inline static const char * getVersion() {return "1.0.1";}
 }
 
 #endif
