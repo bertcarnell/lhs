@@ -24,22 +24,23 @@
 - RStudio
   - [ ] Document with `roxygen2` by running `Document` in the UI
   - [ ] Run `testthat` tests by running `Test Package` in the UI
-  - [ ] Build the `.tar.gz` or `R CMD build`
-  - [ ] Run `check` or `R CMD check --as-cran`
+  - [ ] Build the `.tar.gz` or `R CMD build lhs`
+  - [ ] Run `check` or `R CMD check --as-cran lhs_<version>.tar.gz`
   - [ ] In R, create the `pkgdown` site with `pkgdown::build_site()`
 - [ ] `commit` and `push` all updates to `github`
 
 #### rhub
 
 - from R or RStudio
-  - [ ] `rhub::check_for_cran(path="path-to-package/lhs-<version>.tar.gz")`
-  - [ ] `rhub::check_with_valgrind(path="path-to-package/lhs-<version>.tar.gz")`
-  - [ ] `rhub::check_with_sanitizers(path="path-to-package/lhs-<version>.tar.gz")`
+  - [ ] `rhub::check_for_cran(path="path-to-package/lhs_<version>.tar.gz")`
+  - [ ] `rhub::check_with_valgrind(path="path-to-package/lhs_<version>.tar.gz")`
+  - [ ] `rhub::check_with_sanitizers(path="path-to-package/lhs_<version>.tar.gz")`
+  - [ ] `rhub::check_on_solaris(path="path-to-package/lhs_<version>.tar.gz", env_vars = c("_R_CHECK_FORCE_SUGGESTS_" = "false"))`
 
 #### win-builder
 
 - https://win-builder.r-project.org/upload.aspx
-- [ ] upload the `lhs-<version>.tar.gz` from the step above
+- [ ] upload the `lhs_<version>.tar.gz` from the step above
 
 ## Travis and Appveyor
 
@@ -66,7 +67,7 @@
 - [ ] `sh developmentBuild.sh`
 - [ ] `sh cmakeshell.sh`
 - [ ] `R CMD build lhs`
-- [ ] `R CMD check --as-cran --use-valgrind`
+- [ ] `R CMD check --as-cran --use-valgrind lhs_<version>.tar.gz`
 
 ## Reverse Dependencies
 

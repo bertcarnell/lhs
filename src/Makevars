@@ -1,12 +1,2 @@
 PKG_CPPFLAGS=-DRCOMPILE
 CXX_STD=CXX11
-PKG_LIBS=-Wl,-S
-
-#ifeq ($(CXX),g++)
-#PKG_LIBS=-Wl,--strip-debug
-#endif
-
-#ifeq ($(CXX),clang++)
-#PKG_LIBS=-Wl,-strip-debug
-#endif
-
