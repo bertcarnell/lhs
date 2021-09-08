@@ -1,0 +1,45 @@
+on:
+  workflow_dispatch:
+    branches: [ master ]
+
+name: Rhub-checks
+
+jobs:
+  Rhub-checks-job:
+    runs-on: ubuntu-latest
+
+    name: ${{ matrix.config.cmd }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {cmd: rhub::check_with_valgrind}
+#          - {cmd: rhub::check_with_sanitizers}
+#          - {cmd: rhub::check_on_solaris}
+#          - {cmd: rhub::check_for_cran}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: R
+        uses: r-lib/actions/setup-r@master
+
+      - name: Pandoc
+        uses: r-lib/actions/setup-pandoc@master
+
+      - name: Install Dependencies
+        run: |
+          install.packages('pkgbuild', 'knitr', 'rmarkdown')
+        shell: Rscript {0}
+        
+      - name: Build package
+        run: |
+          file_name <- pkgbuild::build("../lhs")
+        shell: Rscript {0}
+
+      - name: Run
+        run: |
+          ${{ matrix.config.cmd }}(path=temp)
+        shell: Rscript {0}
