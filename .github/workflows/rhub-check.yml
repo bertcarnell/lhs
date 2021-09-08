@@ -29,7 +29,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          install.packages('pkgbuild', 'knitr', 'rmarkdown')
+          install.packages(c('pkgbuild', 'knitr', 'rmarkdown'))
         shell: Rscript {0}
         
       - name: Build package
