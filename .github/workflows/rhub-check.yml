@@ -13,9 +13,9 @@ jobs:
       matrix:
         config:
           - {cmd: check_with_valgrind}
-#          - {cmd: rhub::check_with_sanitizers}
-#          - {cmd: rhub::check_on_solaris}
-#          - {cmd: rhub::check_for_cran}
+#          - {cmd: check_with_sanitizers}
+#          - {cmd: check_on_solaris}
+#          - {cmd: check_for_cran}
 
     steps:
       - name: Checkout

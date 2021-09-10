@@ -11,9 +11,9 @@
 This package provides a number of methods for creating and augmenting 
 Latin Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
 
-|<sub>Actions</sub>|<sub>Linux & MacOS</sub>|<sub>Windows</sub>|<sub>Code Coverage</sub>|<sub>CRAN Downloads</sub>|<sub>CRAN</sub>|
-|:---:|:---:|:---:|:---:|:---:|:---:|
-|[![R build status](https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg)](https://github.com/bertcarnell/lhs/actions)|[![Build Status](https://travis-ci.org/bertcarnell/lhs.svg?branch=master)](https://travis-ci.org/bertcarnell/lhs)|[![Build status](https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true)](https://ci.appveyor.com/project/bertcarnell/lhs/branch/master)|[![Coverage status](https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg)](https://codecov.io/github/bertcarnell/lhs?branch=master)|[![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs)|[![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs)|
+|<sub>Actions</sub>|<sub>Windows</sub>|<sub>Code Coverage</sub>|<sub>CRAN Downloads</sub>|<sub>CRAN</sub>|
+|:---:|:---:|:---:|:---:|:---:|
+|[![R build status](https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg)](https://github.com/bertcarnell/lhs/actions)|[![Build status](https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true)](https://ci.appveyor.com/project/bertcarnell/lhs/branch/master)|[![Coverage status](https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg)](https://codecov.io/github/bertcarnell/lhs?branch=master)|[![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs)|[![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs)|
 
 Visit the webpage [here](https://bertcarnell.github.io/lhs/)
 
@@ -94,13 +94,13 @@ W16 <- create_oalhs(10, 3, bChooseLargerDesign = TRUE, bverbose = FALSE)
 
 R-Help Examples of using the LHS package
 
-- [Latin hyper cube sampling from expand.grid()](http://r.789695.n4.nabble.com/R-Latin-hyper-cube-sampling-from-expand-grid-tp816493.html)
-- [Latin Hypercube Sampling with a condition](http://r.789695.n4.nabble.com/Latin-Hypercube-Sampling-with-a-condition-tp3563765.html)
-- [Latin Hypercube with condition sum = 1](http://r.789695.n4.nabble.com/Latin-Hypercube-with-condition-sum-1-tp875487.html)
-- [Latin hypercube sampling](http://r.789695.n4.nabble.com/latin-hypercube-sampling-tp4659028.html)
-- [Latin Hypercube Sample and transformation to uniformly distributed integers or classes](http://r.789695.n4.nabble.com/Latin-Hypercube-Sample-and-transformation-to-uniformly-distributed-integers-or-classes-tp4677804.html)
-- [Latin hypercube sampling from a non-uniform distribution](http://r.789695.n4.nabble.com/Latin-hypercube-sampling-from-a-non-uniform-distribution-tp4743686.html)
-- [Latin Hypercube Sampling when parameters are defined according to specific probability distributions](http://r.789695.n4.nabble.com/Latin-Hypercube-Sampling-when-parameters-are-defined-according-to-specific-probability-distributions-tp4734710.html)
+- [Latin hyper cube sampling from expand.grid()](https://stat.ethz.ch/pipermail/r-help/2007-January/124143.html)
+- [Latin Hypercube Sampling with a condition](https://stat.ethz.ch/pipermail/r-help/2011-June/279906.html)
+- [Latin Hypercube with condition sum = 1](https://stat.ethz.ch/pipermail/r-help/2008-November/180929.html)
+- [Latin hypercube sampling](https://www.mail-archive.com/r-help@r-project.org/msg192704.html)
+- [Latin Hypercube Sample and transformation to uniformly distributed integers or classes](https://stat.ethz.ch/pipermail/r-help/2013-October/361263.html)
+- [Latin hypercube sampling from a non-uniform distribution](https://stat.ethz.ch/pipermail/r-help/2017-August/448475.html)
+- [Latin Hypercube Sampling when parameters are defined according to specific probability distributions](https://stat.ethz.ch/pipermail/r-help/2017-June/447266.html)
 
 StackExchange Examples:
 
@@ -121,4 +121,4 @@ StackExchange Examples:
 
 ## Other
 
-lhs package announcement:  [R-pkgs New R-Packages: Triangle and LHS](http://r.789695.n4.nabble.com/R-pkgs-New-R-Packages-Triangle-and-LHS-tp803930.html)
+lhs package announcement:  [R-pkgs New R-Packages: Triangle and LHS](https://stat.ethz.ch/pipermail/r-packages/2006/000715.html)
