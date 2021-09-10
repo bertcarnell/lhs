@@ -7,7 +7,7 @@ jobs:
     runs-on: windows-latest
 
     name: ${{ matrix.config.cmd }}
-
+    
     strategy:
       fail-fast: false
       matrix:
@@ -35,5 +35,6 @@ jobs:
       - name: Build Package and Run through Rhub
         run: |
           file_name <- pkgbuild::build("../lhs")
+          rhub::validate_email(email = "${{ RHUB_EMAIL }}", token = "${{ RHUB_EMAIL_TOKEN }}")
           rhub::${{ matrix.config.cmd }}(path=file_name)
         shell: Rscript {0}
