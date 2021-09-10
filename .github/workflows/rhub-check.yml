@@ -39,6 +39,6 @@ jobs:
 
       - name: Run
         run: |
-          rhub::${{ matrix.config.cmd }}(path=temp)
+          rhub::${{ matrix.config.cmd }}(path=file_name)
         shell: Rscript {0}
         
