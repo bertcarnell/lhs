@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 jobs:
   Rhub-checks-job:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     name: ${{ matrix.config.cmd }}
 
