@@ -32,13 +32,8 @@ jobs:
           install.packages(c('pkgbuild', 'knitr', 'rmarkdown', 'Rcpp', 'rhub'))
         shell: Rscript {0}
         
-      - name: Build package
+      - name: Build Package and Run through Rhub
         run: |
           file_name <- pkgbuild::build("../lhs")
-        shell: Rscript {0}
-
-      - name: Run
-        run: |
           rhub::${{ matrix.config.cmd }}(path=file_name)
         shell: Rscript {0}
-        
