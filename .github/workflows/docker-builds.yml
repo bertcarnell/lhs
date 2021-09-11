@@ -1,0 +1,61 @@
+name: docker-builds
+
+on:
+  workflow_dispatch:
+    branches: [ master ]
+  push:
+    branches: [ master ]
+  #pull_request:
+  #  branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the Repository
+        uses: actions/checkout@v2
+
+      - name: R
+        uses: r-lib/actions/setup-r@master
+
+      - name: Pandoc
+        uses: r-lib/actions/setup-pandoc@master
+
+      - name: Install Dependencies and Build the Package
+        run: |
+          install.packages(c('pkgbuild', 'knitr', 'rmarkdown', 'Rcpp', 'rhub'))
+          file_name <- pkgbuild::build("../lhs")
+        shell: Rscript {0}
+        
+      - name: Pull Docker and Copy in the Package
+        shell: bash
+        run: |
+          docker pull wch1/r-debug
+          docker run --rm --security-opt seccomp=unconfined --name rdevel wch1/r-debug
+          docker cp ../lhs_*.tar.gz wch1/r-debug:/home
+
+      - name: Valgrind
+        shell: bash
+        run: |
+          docker exec rdevel apt-get install libgmp-dev qpdf
+          docker exec rdevel RDvalgrind -e 'install.packages(c("Rcpp", "testthat", "assertthat", "DoE.base", "knitr", "rmarkdown", "covr"))'
+          docker exec rdevel RDvalgrind CMD check --use-valgrind /home/lhs_*.tar.gz 
+
+      - name: Address Sanitizers
+        shell: bash
+        run: |
+          docker exec rdevel RDsan -e 'install.packages(c("Rcpp", "testthat", "assertthat", "DoE.base", "knitr", "rmarkdown", "covr"))'
+          docker exec rdevel RDsan CMD check --use-valgrind /home/lhs_*.tar.gz 
+
+      - name: Clang Address Sanitizers
+        shell: bash
+        run: |
+          docker exec rdevel RDcsan -e 'install.packages(c("Rcpp", "testthat", "assertthat", "DoE.base", "knitr", "rmarkdown", "covr"))'
+          docker exec rdevel RDcsan CMD check --use-valgrind /home/lhs_*.tar.gz 
+
+      - name: Clean up
+        shell: bash
+        run: |
+          docker kill rdevel
+          docker rm rdevel

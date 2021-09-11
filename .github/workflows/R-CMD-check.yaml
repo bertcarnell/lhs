@@ -97,7 +97,7 @@ jobs:
         
       - name: Code Coverage
         if: matrix.config.os == 'ubuntu-latest' && matrix.config.r == 'release'
-        run: covr::codecov()
+        run: covr::codecov(line_exclusions=list("src/COrthogonalArray.cpp", "src/COrthogonalArray.h", "src/CRandom.h", "src/RStandardUniform.h", "src/ak3.cpp", "src/akconst.cpp", "src/akn.cpp", "src/construct.cpp", "src/GaloisField.h", "src/GaloisField.cpp", "src/geneticLHS.cpp", "src/improvedLHS.cpp", "src/matrix.h", "src/maximinLHS.cpp", "src/oa.cpp", "src/oaLHS.cpp", "src/oaLHSUtility.h", "src/optSeededLHS.cpp", "src/optimumLHS.cpp", "src/order.h", "src/primes.cpp", "src/randomLHS.cpp", "src/runif.cpp", "src/runif.h", "src/rutils.cpp", "src/rutils.h", "src/utilityLHS.cpp", "src/utilityLHS.h", "src/xtn.h", "src/bclibVersion.h", "src/oalibVersion.h", "src/lhslibVersion.h", "src/OACommonDefines.h"))
         shell: Rscript {0}
 
       - name: Upload check results

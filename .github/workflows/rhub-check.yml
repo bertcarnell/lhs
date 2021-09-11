@@ -33,8 +33,17 @@ jobs:
         shell: Rscript {0}
         
       - name: Build Package and Run through Rhub
+        if: ( cmd == "check_on_solaris" ) == false
         run: |
           file_name <- pkgbuild::build("../lhs")
           rhub::validate_email(email = "${{ secrets.RHUB_EMAIL }}", token = "${{ secrets.RHUB_EMAIL_TOKEN }}")
           rhub::${{ matrix.config.cmd }}(path=file_name)
+        shell: Rscript {0}
+
+      - name: Build Package and Run through Rhub
+        if: cmd == "check_on_solaris"
+        run: |
+          file_name <- pkgbuild::build("../lhs")
+          rhub::validate_email(email = "${{ secrets.RHUB_EMAIL }}", token = "${{ secrets.RHUB_EMAIL_TOKEN }}")
+          rhub::${{ matrix.config.cmd }}(path=file_name, env_vars = c("_R_CHECK_FORCE_SUGGESTS_" = "false"))
         shell: Rscript {0}
