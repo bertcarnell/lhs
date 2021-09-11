@@ -32,8 +32,8 @@ jobs:
         shell: bash
         run: |
           docker pull wch1/r-debug
-          docker run --rm --security-opt seccomp=unconfined --name rdevel wch1/r-debug
-          docker cp ../lhs_*.tar.gz rdevel:/home
+          docker run --rm -dit --security-opt seccomp=unconfined --name rdevel wch1/r-debug
+          docker cp ../lhs_*.tar.gz rdevel:home
 
       - name: Valgrind
         shell: bash
@@ -57,5 +57,6 @@ jobs:
       - name: Clean up
         shell: bash
         run: |
+          docker stop rdevel
           docker kill rdevel
           docker rm rdevel
