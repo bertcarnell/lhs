@@ -38,7 +38,7 @@ jobs:
       - name: Valgrind
         shell: bash
         run: |
-          docker exec rdevel apt-get install libgmp-dev qpdf
+          docker exec rdevel apt-get -y install libgmp-dev qpdf
           docker exec rdevel RDvalgrind -e 'install.packages(c("Rcpp", "testthat", "assertthat", "DoE.base", "knitr", "rmarkdown", "covr"))'
           docker exec rdevel RDvalgrind CMD check --use-valgrind /home/lhs_*.tar.gz 
 
