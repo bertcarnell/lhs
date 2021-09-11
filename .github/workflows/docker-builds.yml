@@ -33,7 +33,7 @@ jobs:
         run: |
           docker pull wch1/r-debug
           docker run --rm --security-opt seccomp=unconfined --name rdevel wch1/r-debug
-          docker cp ../lhs_*.tar.gz wch1/r-debug:/home
+          docker cp ../lhs_*.tar.gz rdevel:/home
 
       - name: Valgrind
         shell: bash
