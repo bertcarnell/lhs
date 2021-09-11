@@ -38,25 +38,32 @@ jobs:
       - name: Valgrind
         shell: bash
         run: |
+          test=`docker exec rdevel ls \home | grep .tar.gz`
+          echo $test
           docker exec rdevel apt-get -y install libgmp-dev qpdf
           docker exec rdevel RDvalgrind -e 'install.packages(c("Rcpp", "testthat", "assertthat", "DoE.base", "knitr", "rmarkdown", "covr"))'
-          docker exec rdevel RDvalgrind CMD check --use-valgrind /home/lhs_*.tar.gz 
+          docker exec rdevel RDvalgrind CMD check --use-valgrind /home/$test 
 
       - name: Address Sanitizers
         shell: bash
         run: |
+          test=`docker exec rdevel ls \home | grep .tar.gz`
+          echo $test
           docker exec rdevel RDsan -e 'install.packages(c("Rcpp", "testthat", "assertthat", "DoE.base", "knitr", "rmarkdown", "covr"))'
-          docker exec rdevel RDsan CMD check --use-valgrind /home/lhs_*.tar.gz 
+          docker exec rdevel RDsan CMD check /home/$test 
 
       - name: Clang Address Sanitizers
         shell: bash
         run: |
+          test=`docker exec rdevel ls \home | grep .tar.gz`
+          echo $test
           docker exec rdevel RDcsan -e 'install.packages(c("Rcpp", "testthat", "assertthat", "DoE.base", "knitr", "rmarkdown", "covr"))'
-          docker exec rdevel RDcsan CMD check --use-valgrind /home/lhs_*.tar.gz 
+          docker exec rdevel RDcsan CMD check --use-valgrind /home/$test
 
       - name: Clean up
         shell: bash
         run: |
-          docker stop rdevel
           docker kill rdevel
           docker rm rdevel
+          docker rmi wch1/r-debug
+          
