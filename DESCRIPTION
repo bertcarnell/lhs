@@ -19,8 +19,7 @@ Suggests:
     assertthat,
     DoE.base,
     knitr,
-    rmarkdown,
-    covr
+    rmarkdown
 URL: https://github.com/bertcarnell/lhs
 BugReports: https://github.com/bertcarnell/lhs/issues
 RoxygenNote: 7.1.1
