@@ -42,7 +42,7 @@ jobs:
           echo $test
           docker exec rdevel apt-get -y install libgmp-dev qpdf
           docker exec rdevel RDvalgrind -e 'install.packages(c("Rcpp", "testthat", "assertthat", "DoE.base", "knitr", "rmarkdown"))'
-          docker exec rdevel RDvalgrind CMD check --use-valgrind /home/$test 
+          docker exec rdevel RDvalgrind CMD check --use-valgrind --ignore-vignettes /home/$test 
 
       - name: Address Sanitizers
         shell: bash
@@ -50,7 +50,7 @@ jobs:
           test=`docker exec rdevel ls \home | grep .tar.gz`
           echo $test
           docker exec rdevel RDsan -e 'install.packages(c("Rcpp", "testthat", "assertthat", "DoE.base", "knitr", "rmarkdown"))'
-          docker exec rdevel RDsan CMD check /home/$test 
+          docker exec rdevel RDsan CMD check --ignore-vignettes /home/$test 
 
       - name: Clang Address Sanitizers
         shell: bash
@@ -58,7 +58,7 @@ jobs:
           test=`docker exec rdevel ls \home | grep .tar.gz`
           echo $test
           docker exec rdevel RDcsan -e 'install.packages(c("Rcpp", "testthat", "assertthat", "DoE.base", "knitr", "rmarkdown"))'
-          docker exec rdevel RDcsan CMD check --use-valgrind /home/$test
+          docker exec rdevel RDcsan CMD check --ignore-vignettes /home/$test
 
       - name: Clean up
         shell: bash
