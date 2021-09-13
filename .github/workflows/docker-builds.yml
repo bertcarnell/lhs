@@ -63,7 +63,6 @@ jobs:
       - name: Clean up
         shell: bash
         run: |
-          docker kill rdevel
-          docker rm rdevel
+          docker stop rdevel # also removes the docker since we ran it with --rm
           docker rmi wch1/r-debug
           
