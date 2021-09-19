@@ -29,23 +29,27 @@
   - [ ] In R, create the `pkgdown` site with `pkgdown::build_site()`
 - [ ] `commit` and `push` all updates to `github`
 
-#### rhub
+## Github Actions Checks
 
-- from R or RStudio
-  - [ ] `rhub::check_for_cran(path="path-to-package/lhs_<version>.tar.gz")`
-  - [ ] `rhub::check_with_valgrind(path="path-to-package/lhs_<version>.tar.gz")`
-  - [ ] `rhub::check_with_sanitizers(path="path-to-package/lhs_<version>.tar.gz")`
-  - [ ] `rhub::check_on_solaris(path="path-to-package/lhs_<version>.tar.gz", env_vars = c("_R_CHECK_FORCE_SUGGESTS_" = "false"))`
+### R CMD check on Mac, Windows, and Linux
 
-#### win-builder
+- [ ] Check the results of the `R-CMD-Check.yaml` checks on all platforms
+
+### rhub checks
+
+- [ ] Mannually trigger the `rhub` checks in Github actions `rhub-checks.yml`
+- [ ] Check the results of rhub checks on email
+
+## Other Checks
+
+### win-builder
 
 - https://win-builder.r-project.org/upload.aspx
 - [ ] upload the `lhs_<version>.tar.gz` from the step above
 
-## Travis and Appveyor
+### Appveyor
 
-- check travis and appveyor results once built
-  - [ ] https://travis-ci.org/bertcarnell/lhs
+- check appveyor results once built
   - [ ] https://ci.appveyor.com/project/bertcarnell/lhs/branch/master
 
 ## Local Linux
@@ -82,4 +86,3 @@
 
 - [ ] [form](https://cran.r-project.org/submit.html)
 - [ ] Tag the github repository with the version
-
