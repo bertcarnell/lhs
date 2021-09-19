@@ -15,11 +15,15 @@ Latin Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
 |:---:|:---:|:---:|:---:|:---:|
 |[![R build status](https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg)](https://github.com/bertcarnell/lhs/actions)|[![Build status](https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true)](https://ci.appveyor.com/project/bertcarnell/lhs/branch/master)|[![Coverage status](https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg)](https://codecov.io/github/bertcarnell/lhs?branch=master)|[![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs)|[![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs)|
 
+## Connections
+
 Visit the webpage [here](https://bertcarnell.github.io/lhs/)
 
 See the Doxygen documentation [here](https://bertcarnell.github.io/lhs/html/index.html)
 
 The reverse dependency checks for `lhs` can be found [here](etc/revdep_README.md).
+
+Docker images used in testing can be found [here](https://hub.docker.com/repository/docker/bertcarnell/lhs-debug)
 
 ## Installation
 
