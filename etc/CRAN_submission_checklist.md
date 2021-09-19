@@ -1,5 +1,18 @@
 # CRAN Submission Checklist
 
+## Docker Prep
+
+- [ ] Prepare docker images for docker checks
+    - In the `bertcarnell/lhs-debug` repository
+    - [ ] `docker build -t wch1/r-devel --no-cache r-devel`
+    - [ ] `docker build -t wch1/r-debug-1 r-debug-1`
+    - [ ] `docker build -t wch1/r-debug-2 r-debug-2`
+    - [ ] `docker build -t wch1/r-debug-3 r-debug-3`
+    - [ ] `docker build -t wch1/r-debug-4 r-debug-4`
+    - [ ] `docker build -t wch1/r-debug r-debug`
+    - [ ] `docker build -t bertcarnell/lhs-debug lhs-debug`
+    - [ ] `docker push bertcarnell/lhs-debug`
+
 ## Local Windows
 
 - [ ] Run `bclib` tests in PowerShell
@@ -39,6 +52,10 @@
 
 - [ ] Mannually trigger the `rhub` checks in Github actions `rhub-checks.yml`
 - [ ] Check the results of rhub checks on email
+
+### Valgrind, gcc ASAN, and clang ASAN memory checks
+
+- [ ] Check the results of `docker-builds.yml`
 
 ## Other Checks
 
