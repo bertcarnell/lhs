@@ -1,5 +1,18 @@
 on:
   push:
+    paths-ignore:
+      - 'appveyor.yml'
+      - 'developmentBuild.sh'
+      - 'docs/**'
+      - 'Doxyfile'
+      - 'etc/**'
+      - 'lhs.Rproj'
+      - 'logo.svg'
+      - 'pkgdown/**'
+      - 'README.md'
+      - 'README.Rmd'
+      - 'refs/**'
+      - 'SECURITY.md'
     branches:
       - master
   pull_request:
@@ -94,7 +107,7 @@ jobs:
           R_DONT_USE_TK: true
         run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--use-valgrind"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
-        
+
       - name: Code Coverage
         if: matrix.config.os == 'windows-latest' && matrix.config.r == 'release'
         run: |

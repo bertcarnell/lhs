@@ -13,7 +13,9 @@ if (length(args) == 0) {
 
 ################################################################################
 stopifnot(require(devtools))
-get_rev_deps <- function(x) tools::package_dependencies(packages = x, which = "most")
+
+get_rev_deps <- function(x) tools::package_dependencies(packages = x,
+                                                        which = c("Depends", "Imports", "LinkingTo"))
 
 rev_dep_req_install <- function(rev_req)
 {
@@ -22,18 +24,19 @@ rev_dep_req_install <- function(rev_req)
   packages_requiring_installation <- NULL
   for (i in seq_along(rev_depends_ureq))
   {
-    # don't need to check or install the target_pacakge
+    # don't need to check or install the target_package
     if (rev_depends_ureq[i] == target_package)
       next
     # print separators to make scanning easier
     cat("\n\n")
     cat("---------------------------------------------------------------------\n")
-    cat(paste(":::::::", rev_depends_ureq[i], "(", i, "of", 
+    cat(paste(":::::::", rev_depends_ureq[i], "(", i, "of",
       length(rev_depends_ureq), "):::::::::::::::::::::::::::::::\n"))
     if (!require(rev_depends_ureq[i], character.only = TRUE))
     {
       packages_requiring_installation <- c(packages_requiring_installation, rev_depends_ureq[i])
-      install.packages(rev_depends_ureq[i], repos="https://cran.rstudio.com", dependencies = TRUE)
+      install.packages(rev_depends_ureq[i], repos="https://cran.rstudio.com",
+                       dependencies = c("Depends", "Imports", "LinkingTo"), quiet = TRUE)
     }
     # after installation check the result and error if not working
     if (!require(rev_depends_ureq[i], character.only = TRUE))
@@ -58,9 +61,12 @@ lhs_rev_imports_req <- lapply(lhs_rev_imports, get_rev_deps)
 lhs_rev_suggests_req <- lapply(lhs_rev_suggests, get_rev_deps)
 
 # Install the packages if they are not already installed
-installed_depends <- rev_dep_req_install(lhs_rev_depends_req)
-installed_imports <- rev_dep_req_install(lhs_rev_imports_req)
-installed_suggests <- rev_dep_req_install(lhs_rev_suggests_req)
+installed_depends <- installed_imports <- installed_suggests <- ""
+tryCatch({
+  installed_depends <- rev_dep_req_install(lhs_rev_depends_req)
+  installed_imports <- rev_dep_req_install(lhs_rev_imports_req)
+  installed_suggests <- rev_dep_req_install(lhs_rev_suggests_req)
+}, error = function(e) print(e), warnings = function(w) print(w))
 
 # Print the packages that required installation to add to the debian packages section
 all_unique <- unique(c(installed_depends, installed_imports, installed_suggests))

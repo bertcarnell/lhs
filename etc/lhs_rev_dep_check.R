@@ -1,169 +1,94 @@
+# docker run
+# -ti
+# --rm
+# -v /mnt/c/repositories/lhs:/home/docker/lhs
+# -w /home/docker
+# -u docker
+# --name lhs_revdep_check
+# rev_dep_step1
+# Rscript /home/docker/lhs/etc/lhs_rev_dep_check2.R`
+
 pkg <- "lhs"
-pkg_path <- ".."
-dependencies <- c("Depends", "Suggests", "Imports")
-restart <- NA # NA to run all dependencies or the name of a package to restart from
-extraArgs <- list(laGP = "--no-vignettes",
-                  ENMTools = "--no-examples")
+cran_version <- "1.1.3"
 
-require(callr)
-require(assertthat)
-require(withr)
+etc_dir <- file.path("/home", "docker", "lhs", "etc")
+etc_txt <- file.path(etc_dir, "revdep_README.md")
+
+old_dir <- file.path("revdep", "old")
+new_dir <- file.path("revdep", "new")
+
 require(devtools)
-if (!require(revdepcheck))
-{
-  devtools::install_github("r-lib/revdepcheck")
-  require(revdepcheck)
-}
-require(rcmdcheck)
 
-################################################################################
-# functions
-check_and_create_dir <- function(newdir)
+cat("\n\n\tCreating directories\n")
+if (!file.exists(file.path("revdep")))
+  dir.create(file.path("revdep"))
+if (!file.exists(old_dir))
+  dir.create(old_dir)
+if (!file.exists(new_dir))
+  dir.create(new_dir)
+
+cat("\tBuilding\n")
+built_pkg <- devtools::build(pkg)
+
+cat(paste0("\tCopying ", built_pkg, "\n"))
+file.copy(built_pkg, new_dir)
+
+cat("\tDownloading .tar.gz\n")
+download.file(paste0("https://cran.r-project.org/src/contrib/", pkg, "_", cran_version, ".tar.gz"),
+              destfile = file.path(old_dir, paste0(pkg, "_", cran_version, ".tar.gz")))
+
+cat("\tChecking New\n")
+new_results <- tools::check_packages_in_dir(dir = new_dir,
+                                            reverse = list(which = c("Depends", "Imports")))
+
+cat("\tChecking Old\n")
+old_results <- tools::check_packages_in_dir(dir = old_dir,
+                                            reverse = list(which = c("Depends", "Imports")))
+
+cat(paste0("# Reverse Dependency Checks for package ", pkg, " ", Sys.time(), "\n"),
+    file = etc_txt)
+
+cat("\n## Old Results\n\n", file = etc_txt, append = TRUE)
+capture.output(summary(old_results), file = etc_txt, append = TRUE)
+
+cat("\n## New Results\n\n", file = etc_txt, append = TRUE)
+capture.output(summary(new_results), file = etc_txt, append = TRUE)
+
+cat("\n## Differences\n", file = etc_txt, append = TRUE)
+
+new_detail <- tools::check_packages_in_dir_details(new_dir)
+old_detail <- tools::check_packages_in_dir_details(old_dir)
+
+for (this_pkg in unique(c(old_detail$Package, new_detail$Package)))
 {
-  if (!file.exists(newdir))
+  if (this_pkg == pkg)
+    next
+  old_rows <- which(old_detail$Package == this_pkg)
+  new_rows <- which(new_detail$Package == this_pkg)
+
+  for (i in seq_along(new_rows))
   {
-    dir.create(newdir, recursive = TRUE)
+    if (new_detail[new_rows[i],]$Output %in% old_detail[old_rows,]$Output)
+    {
+      next
+    } else
+    {
+      cat(paste0("\n### ", this_pkg, "\n\n"), file = etc_txt, append = TRUE)
+      cat(paste0("- Version:  ", new_detail$Version[new_rows[i]], "\n"), file = etc_txt, append = TRUE)
+      cat(paste0("- Check:  ", new_detail$Check[new_rows[i]], "\n"), file = etc_txt, append = TRUE)
+      cat(paste0("- Status:  ", new_detail$Status[new_rows[i]], "\n"), file = etc_txt, append = TRUE)
+      cat(paste0("- Output: ", new_detail$Output[new_rows[i]], "\n"), file = etc_txt, append = TRUE)
+      cat(paste0("- Flags:  ", new_detail$Flags[new_rows[i]], "\n"), file = etc_txt, append = TRUE)
+    }
   }
-  return(newdir)
 }
 
-print_section <- function(oldtext, newtext, typetext, output_filename)
-{
-  if (length(oldtext) != length(newtext) || 
-      (length(oldtext) > 0 && length(newtext) > 0 && !all(oldtext == newtext)))
-  {
-    cat(file=output_filename, "#### ", typetext, "\n\n")
-    if (length(oldtext) > 0) cat(file=output_filename, "- Old version:\n\n", oldtext, "\n\n")
-    if (length(newtext) > 0) cat(file=output_filename, "- New version:\n\n", newtext, "\n\n")
-  } else
-  {
-    cat(file=output_filename, "#### No Change In ", typetext, "\n\n")
-    cat(file=output_filename, oldtext, "\n\n")
-  }
-}
+cat("\n## Alternate Differences\n\n", file = etc_txt, append = TRUE)
+changes <- tools::check_packages_in_dir_changes(dir = new_dir, old = old_dir, output = TRUE)
+capture.output(print(changes), file = etc_txt, append = TRUE)
 
-################################################################################
-# Create directory structure
-revdep_path <- check_and_create_dir(file.path(pkg_path, "revdep"))
-revdep_library_path <- check_and_create_dir(file.path(revdep_path, "library", pkg))
-revdep_library_path_new <- check_and_create_dir(file.path(revdep_library_path, "new"))
-revdep_library_path_old <- check_and_create_dir(file.path(revdep_library_path, "old"))
-revdep_check_path <- check_and_create_dir(file.path(revdep_path, "checks"))
+save(new_results, old_results, changes,
+     file = file.path(etc_dir, "reverse_dependency_results.Rdata"))
 
-################################################################################
-# install old package and dependencies
-
-if (!file.exists(file.path(revdep_library_path_old, pkg)))
-{
-  deps <- tools::package_dependencies(pkg)[[pkg]]
-
-  install.packages(pkg, lib = revdep_library_path_old)
-  install.packages(deps, lib = revdep_library_path_old)
-} else
-{
-  cat("old package already installed\n")
-}
-
-################################################################################
-# install new package and dependencies
-
-if (!file.exists(file.path(revdep_library_path_new, pkg)))
-{
-  out <- callr::rcmd("build", cmdargs = pkg_path)
-  assertthat::assert_that(out$status == 0, msg = "R CMD build failed on the new package")
-  pkg_tar_ball <- list.files(path = '.', pattern = pkg)
-  install.packages(pkg_tar_ball, lib = revdep_library_path_new, repos = NULL)
-  install.packages(deps, lib = revdep_library_path_new)
-} else
-{
-  cat("new package already installed\n")
-}
-
-################################################################################
-# check reverse dependencies
-revdeps <- devtools::revdep(pkg = pkg, dependencies = dependencies)
-if (!is.na(restart))
-{
-  ind <- which(revdeps == restart)
-  revdeps <- revdeps[-1:-(ind-1)]
-}
-
-if (file.exists(file.path("revdep.out.Rdata")))
-{
-  load(file = file.path("revdep.out.Rdata"))
-  if (length(rcmd_output_new) != length(revdeps))
-  {
-    rcmd_output_new <- vector("list", length(revdeps))
-    rcmd_output_old <- vector("list", length(revdeps))
-  }
-} else 
-{
-  rcmd_output_new <- vector("list", length(revdeps))
-  rcmd_output_old <- vector("list", length(revdeps))
-}
-
-for (i in seq_along(revdeps))
-{
-  revdep <- revdeps[i]
-
-  cat("\n", paste(rep("-", 80), collapse=""), "\n")
-  cat(paste("-----", revdep, "(", i, "of", length(revdeps), ")-----\n"))
-  cat(paste(rep("-", 80), collapse=""), "\n")
-
-  revdep_check_path_curr <- check_and_create_dir(file.path(revdep_check_path, revdep))
-  revdep_check_path_curr_old <- check_and_create_dir(file.path(revdep_check_path_curr, "old"))
-  revdep_check_path_curr_new <- check_and_create_dir(file.path(revdep_check_path_curr, "new"))
-
-  temp <- download.packages(revdep, destdir = revdep_check_path_curr, type = "source")
-  tarball <- temp[1,2]
-
-  extraArgs_local <- NULL
-  if (exists(pkg, where=extraArgs))
-  {
-    extraArgs_local <- extraArgs[[pkg]]
-  }
-
-  cat("\nOLD PACKAGE\n")
-  withr::with_envvar(
-    revdepcheck::revdep_env_vars(force_suggests = TRUE),
-    rcmd_output_old[[i]] <- rcmdcheck::rcmdcheck(
-      path = tarball,
-      libpath = c(revdep_library_path_old, .libPaths()),
-      args = c("--as-cran", extraArgs_local),
-      check_dir = revdep_check_path_curr_old
-    )
-  )
-
-  cat("\nNEW PACKAGE\n")
-  withr::with_envvar(
-    revdepcheck::revdep_env_vars(force_suggests = TRUE),
-    rcmd_output_new[[i]] <- rcmdcheck::rcmdcheck(
-      path = tarball,
-      libpath = c(revdep_library_path_new, .libPaths()),
-      args = c("--as-cran", extraArgs_local),
-      check_dir = revdep_check_path_curr_new
-    )
-  )
-  # Collect up the results for a markdown report
-  save(rcmd_output_new, rcmd_output_old, file = file.path("revdep.out.Rdata"))
-}
-
-assertthat::assert_that(length(rcmd_output_new) == length(rcmd_output_old),
-                        msg = "Unexpected error:  new check output and old check output mismatch")
-
-output_file <- file(file.path("revdep_README.md"), "wt")
-cat(file=output_file, "# Reverse Dependency Checks for package ", pkg, "\n")
-cat(file=output_file, as.character(Sys.time()), "\n\n")
-
-for (i in seq_along(rcmd_output_old))
-{
-  x <- rcmd_output_old[[i]]
-  y <- rcmd_output_new[[i]]
-  cat(file=output_file, "## ", x$package, " ", x$version, "\n\n")
-  
-  print_section(x$errors, y$errors, "Errors", output_file)
-  print_section(x$warnings, y$warnings, "Warnings", output_file)
-  print_section(x$notes, y$notes, "Notes", output_file)
-}
-close(output_file)
+cat("\tDone\n")
 
