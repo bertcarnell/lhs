@@ -13,6 +13,9 @@ on:
       - 'README.Rmd'
       - 'refs/**'
       - 'SECURITY.md'
+      - '.github/docker-builds.yml'
+      - '.github/rev-dep-check.yaml'
+      - '.github/rhub-check.yml'
     branches:
       - master
   pull_request:
