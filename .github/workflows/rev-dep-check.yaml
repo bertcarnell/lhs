@@ -1,0 +1,38 @@
+name: Rev-Dep-Check
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the Repository
+        uses: actions/checkout@v2
+
+      - name: R
+        uses: r-lib/actions/setup-r@master
+
+      - name: Build the Package
+        run: |
+          R CMD build --no-build-vignettes ../lhs
+
+      - name: Pull Docker and Copy in the Package
+        shell: bash
+        run: |
+          docker pull bertcarnell/lhs_revdep
+          ls -alh
+          cd ..
+          pwd
+          ls -alh
+          cd lhs
+          docker run -dti --rm --security-opt seccomp=unconfined -v /mnt/c/repositories:/home/docker -w /home/docker -u docker --name lhs_revdep_check bertcarnell/lhs_revdep Rscript /home/docker/lhs/etc/lhs_rev_dep_check.R
+
+      - name: Clean up
+        shell: bash
+        run: |
+          docker stop lhs_revdep_check # also removes the docker since we ran it with --rm
