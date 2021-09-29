@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -103,7 +103,6 @@
 <table class="table">
 <thead><tr class="header">
 <th align="center"><sub>Actions</sub></th>
-<th align="center"><sub>Linux &amp; MacOS</sub></th>
 <th align="center"><sub>Windows</sub></th>
 <th align="center"><sub>Code Coverage</sub></th>
 <th align="center"><sub>CRAN Downloads</sub></th>
@@ -111,16 +110,20 @@
 </tr></thead>
 <tbody><tr class="odd">
 <td align="center"><a href="https://github.com/bertcarnell/lhs/actions"><img src="https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg" alt="R build status"></a></td>
-<td align="center"><a href="https://travis-ci.org/bertcarnell/lhs"><img src="https://travis-ci.org/bertcarnell/lhs.svg?branch=master" alt="Build Status"></a></td>
 <td align="center"><a href="https://ci.appveyor.com/project/bertcarnell/lhs/branch/master"><img src="https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true" alt="Build status"></a></td>
 <td align="center"><a href="https://codecov.io/github/bertcarnell/lhs?branch=master"><img src="https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg" alt="Coverage status"></a></td>
 <td align="center"><a href="https://cran.r-project.org/package=lhs"><img src="https://cranlogs.r-pkg.org/badges/lhs"></a></td>
 <td align="center"><a href="https://cran.r-project.org/package=lhs"><img src="https://www.r-pkg.org/badges/version/lhs" alt="CRAN status"></a></td>
 </tr></tbody>
 </table>
+<div id="connections" class="section level2">
+<h2 class="hasAnchor">
+<a href="#connections" class="anchor"></a>Connections</h2>
 <p>Visit the webpage <a href="https://bertcarnell.github.io/lhs/">here</a></p>
 <p>See the Doxygen documentation <a href="https://bertcarnell.github.io/lhs/html/index.html">here</a></p>
 <p>The reverse dependency checks for <code>lhs</code> can be found <a href="etc/revdep_README.html">here</a>.</p>
+<p>Docker images used in testing can be found <a href="https://hub.docker.com/repository/docker/bertcarnell/lhs-debug">here</a></p>
+</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -130,7 +133,7 @@
 <p>You can also install the development version of <code>lhs</code> from here with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"bertcarnell/lhs"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"bertcarnell/lhs"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
@@ -209,13 +212,13 @@
 <a href="#help" class="anchor"></a>Help</h2>
 <p>R-Help Examples of using the LHS package</p>
 <ul>
-<li><a href="http://r.789695.n4.nabble.com/R-Latin-hyper-cube-sampling-from-expand-grid-tp816493.html">Latin hyper cube sampling from expand.grid()</a></li>
-<li><a href="http://r.789695.n4.nabble.com/Latin-Hypercube-Sampling-with-a-condition-tp3563765.html">Latin Hypercube Sampling with a condition</a></li>
-<li><a href="http://r.789695.n4.nabble.com/Latin-Hypercube-with-condition-sum-1-tp875487.html">Latin Hypercube with condition sum = 1</a></li>
-<li><a href="http://r.789695.n4.nabble.com/latin-hypercube-sampling-tp4659028.html">Latin hypercube sampling</a></li>
-<li><a href="http://r.789695.n4.nabble.com/Latin-Hypercube-Sample-and-transformation-to-uniformly-distributed-integers-or-classes-tp4677804.html">Latin Hypercube Sample and transformation to uniformly distributed integers or classes</a></li>
-<li><a href="http://r.789695.n4.nabble.com/Latin-hypercube-sampling-from-a-non-uniform-distribution-tp4743686.html">Latin hypercube sampling from a non-uniform distribution</a></li>
-<li><a href="http://r.789695.n4.nabble.com/Latin-Hypercube-Sampling-when-parameters-are-defined-according-to-specific-probability-distributions-tp4734710.html">Latin Hypercube Sampling when parameters are defined according to specific probability distributions</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2007-January/124143.html">Latin hyper cube sampling from expand.grid()</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2011-June/279906.html">Latin Hypercube Sampling with a condition</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2008-November/180929.html">Latin Hypercube with condition sum = 1</a></li>
+<li><a href="https://www.mail-archive.com/r-help@r-project.org/msg192704.html">Latin hypercube sampling</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2013-October/361263.html">Latin Hypercube Sample and transformation to uniformly distributed integers or classes</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2017-August/448475.html">Latin hypercube sampling from a non-uniform distribution</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2017-June/447266.html">Latin Hypercube Sampling when parameters are defined according to specific probability distributions</a></li>
 </ul>
 <p>StackExchange Examples:</p>
 <ul>
@@ -238,7 +241,7 @@
 <div id="other" class="section level2">
 <h2 class="hasAnchor">
 <a href="#other" class="anchor"></a>Other</h2>
-<p>lhs package announcement: <a href="http://r.789695.n4.nabble.com/R-pkgs-New-R-Packages-Triangle-and-LHS-tp803930.html">R-pkgs New R-Packages: Triangle and LHS</a></p>
+<p>lhs package announcement: <a href="https://stat.ethz.ch/pipermail/r-packages/2006/000715.html">R-pkgs New R-Packages: Triangle and LHS</a></p>
 </div>
 
   </div>
