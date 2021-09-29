@@ -22,6 +22,23 @@ environment:
   - R_VERSION: release
     R_ARCH: x64
 
+skip_commits:
+  files:
+    - docs/*
+    - '**/*.html'
+    - 'developmentBuild.sh'
+    - 'docs/**'
+    - 'Doxyfile'
+    - 'etc/**'
+    - 'lhs.Rproj'
+    - 'logo.svg'
+    - 'pkgdown/**'
+    - 'README.md'
+    - 'README.Rmd'
+    - 'refs/**'
+    - 'SECURITY.md'
+    - '.github/**'
+
 build_script:
   - travis-tool.sh install_deps
 
