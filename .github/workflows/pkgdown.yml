@@ -34,6 +34,6 @@ jobs:
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add doc/*.*
+          git add docs/*.*
           git commit -m 'Automatic build of lhs website'
           git push
