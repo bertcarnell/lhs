@@ -8,10 +8,18 @@
 # rev_dep_step1
 # Rscript /home/docker/lhs/etc/lhs_rev_dep_check2.R`
 
-pkg <- "lhs"
-cran_version <- "1.1.3"
+args = commandArgs(trailingOnly=TRUE)
 
-etc_dir <- file.path("/home", "docker", "lhs", "etc")
+if (length(args) != 3) {
+  stop("Three arguments are required (pkg, cran_version, which_type)")
+} else 
+{
+  pkg <- "lhs"
+  cran_version <- "1.1.3"
+  which_type <- c("Depends")
+}
+
+etc_dir <- file.path("/home", "docker", pkg, "etc")
 etc_txt <- file.path(etc_dir, "revdep_README.md")
 
 old_dir <- file.path("revdep", "old")
@@ -39,11 +47,11 @@ download.file(paste0("https://cran.r-project.org/src/contrib/", pkg, "_", cran_v
 
 cat("\tChecking New\n")
 new_results <- tools::check_packages_in_dir(dir = new_dir,
-                                            reverse = list(which = c("Depends", "Imports")))
+                                            reverse = list(which = which_type))
 
 cat("\tChecking Old\n")
 old_results <- tools::check_packages_in_dir(dir = old_dir,
-                                            reverse = list(which = c("Depends", "Imports")))
+                                            reverse = list(which = which_type))
 
 cat(paste0("# Reverse Dependency Checks for package ", pkg, " ", Sys.time(), "\n"),
     file = etc_txt)
