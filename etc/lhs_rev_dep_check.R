@@ -10,17 +10,24 @@
 
 args = commandArgs(trailingOnly=TRUE)
 
-if (length(args) != 3) {
+if (length(args) != 3 & length(args[1]) == 1 & length(args[2]) == 1 & length(args[2]) == 1) {
   stop("Three arguments are required (pkg, cran_version, which_type)")
 } else 
 {
-  pkg <- "lhs"
-  cran_version <- "1.1.3"
-  which_type <- c("Depends")
+  if (!(args[3] %in% c("Depends", "Imports", "Suggests")))
+  {
+	stop("The third argument must be Depends, Imports, or Suggests")
+  }
+  pkg <- args[1]
+  cran_version <- args[2]
+  which_type <- args[3]
+  # pkg <- "lhs"
+  # cran_version <- "1.1.3"
+  # which_type <- "Depends"
 }
 
 etc_dir <- file.path("/home", "docker", pkg, "etc")
-etc_txt <- file.path(etc_dir, "revdep_README.md")
+etc_txt <- file.path(etc_dir, paste0("revdep_README_", which_type, ".md"))
 
 old_dir <- file.path("revdep", "old")
 new_dir <- file.path("revdep", "new")

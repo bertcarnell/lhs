@@ -1,3 +1,4 @@
+name: Rev-Dep-Check
 
 on:
   workflow_dispatch:
@@ -44,9 +45,9 @@ jobs:
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git add etc/revdep_README.md
           git pull
-          git commit -m 'Automatic Reverse Dependency Check Results'
+          git add etc/revdep_README_${{ matrix.config.which_type }}.md
+          git commit -m 'Automatic Reverse Dependency Check Results for ${{ matrix.config.which_type }}'
           git push
 
       - name: Clean up
