@@ -33,7 +33,7 @@ jobs:
       - name: install Doxygen
         shell: bash
         run: |
-          sudo apt-get install -y doxygen graphviz ttf-freefont
+          sudo apt-get install -y doxygen graphviz
           
       - name: run Doxygen
         shell: bash
