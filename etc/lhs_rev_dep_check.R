@@ -55,7 +55,7 @@ download.file(paste0("https://cran.r-project.org/src/contrib/", pkg, "_", cran_v
 cat("\tChecking New\n")
 new_results <- tools::check_packages_in_dir(dir = new_dir,
                                             check_args = c("--no-build-vignettes", "--no-manual"),
-											check_env = c("_R_CHECK_FORCE_SUGGESTS_" = ifelse(which_type == "Suggests", TRUE, FALSE)),
+											check_env = c("_R_CHECK_FORCE_SUGGESTS_" = ifelse(which_type == "Suggests", "TRUE", "FALSE")),
                                             reverse = list(which = which_type))
 
 warnings()
@@ -63,7 +63,7 @@ warnings()
 cat("\tChecking Old\n")
 old_results <- tools::check_packages_in_dir(dir = old_dir,
                                             check_args = c("--no-build-vignettes", "--no-manual"),
-											check_env = c("_R_CHECK_FORCE_SUGGESTS_" = ifelse(which_type == "Suggests", TRUE, FALSE)),
+											check_env = c("_R_CHECK_FORCE_SUGGESTS_" = ifelse(which_type == "Suggests", "TRUE", "FALSE")),
                                             reverse = list(which = which_type))
 
 warnings()
