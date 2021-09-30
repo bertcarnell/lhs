@@ -5,7 +5,7 @@ on:
     tags: ['*']
   workflow_dispatch:
 
-name: pkgdown
+name: pkgdown & Doxygen
 
 jobs:
   pkgdown:
@@ -29,6 +29,16 @@ jobs:
         shell: bash
         run: |
           Rscript -e 'pkgdown::build_site()'
+          
+      - name: install Doxygen
+        shell: bash
+        run: |
+          sudo apt-get install -y doxygen graphviz ttf-freefont
+          
+      - name: run Doxygen
+        shell: bash
+        run: |
+          doxygen Doxyfile
 
       - name: Deploy package
         run: |
