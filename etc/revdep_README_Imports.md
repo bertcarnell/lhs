@@ -1,17 +1,17 @@
-# Reverse Dependency Checks for package lhs 2021-09-30 03:26:50
+# Reverse Dependency Checks for package lhs 2021-09-30 16:50:20
 
 ## Old Results
 
 Check results for packages in dir '/home/docker/revdep/old':
 
 Check status summary:
-attempt to set 'rownames' on an object with no dimensions
+Failed to produce results:  attempt to set 'rownames' on an object with no dimensions
 ## New Results
 
 Check results for packages in dir '/home/docker/revdep/new':
 
 Check status summary:
-attempt to set 'rownames' on an object with no dimensions
+Failed to produce results:  attempt to set 'rownames' on an object with no dimensions
 ## Differences
 
 ## Alternate Differences
