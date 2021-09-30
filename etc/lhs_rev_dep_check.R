@@ -64,14 +64,22 @@ old_results <- tools::check_packages_in_dir(dir = old_dir,
 											check_env = c("_R_CHECK_FORCE_SUGGESTS" = (which_type == "Suggests")),
                                             reverse = list(which = which_type))
 
+cat("\tWriting Results\n")
+
 cat(paste0("# Reverse Dependency Checks for package ", pkg, " ", Sys.time(), "\n"),
     file = etc_txt)
 
 cat("\n## Old Results\n\n", file = etc_txt, append = TRUE)
-capture.output(summary(old_results), file = etc_txt, append = TRUE)
+tryCatch({
+  capture.output(summary(old_results), file = etc_txt, append = TRUE)
+}, error = function(e) cat(e, file = etc_txt, append = TRUE))
 
 cat("\n## New Results\n\n", file = etc_txt, append = TRUE)
-capture.output(summary(new_results), file = etc_txt, append = TRUE)
+tryCatch({
+  capture.output(summary(new_results), file = etc_txt, append = TRUE)
+}, error = function(e) cat(e, file = etc_txt, append = TRUE))
+
+cat("\tLooping through Differences\n")
 
 cat("\n## Differences\n", file = etc_txt, append = TRUE)
 
@@ -102,12 +110,14 @@ for (this_pkg in unique(c(old_detail$Package, new_detail$Package)))
   }
 }
 
+cat("\tAlternative Differences\n")
+
 cat("\n## Alternate Differences\n\n", file = etc_txt, append = TRUE)
 changes <- tools::check_packages_in_dir_changes(dir = new_dir, old = old_dir, output = TRUE)
 capture.output(print(changes), file = etc_txt, append = TRUE)
 
-save(new_results, old_results, changes,
-     file = file.path(etc_dir, "reverse_dependency_results.Rdata"))
+#save(new_results, old_results, changes,
+#     file = file.path(etc_dir, "reverse_dependency_results.Rdata"))
 
 cat("\tDone\n")
 
