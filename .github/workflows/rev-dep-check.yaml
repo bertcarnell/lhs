@@ -13,8 +13,8 @@ jobs:
       matrix:
         config:
           - {which_type: 'Depends'}
-          #- {which_type: 'Imports'}
-          #- {which_type: 'Suggests'}
+          - {which_type: 'Imports'}
+          - {which_type: 'Suggests'}
     
     name: Rev-Dep-Check ${{ matrix.config.which_type }}
 
