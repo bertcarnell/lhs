@@ -59,7 +59,7 @@ if (which_type == "Suggests")
 {
 	new_results <- tools::check_packages_in_dir(dir = new_dir,
 												check_args = c("--no-build-vignettes", "--no-manual"),
-												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = TRUE),
+												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = "TRUE"),
 												reverse = list(which = which_type))
 
 	warnings()
@@ -67,7 +67,7 @@ if (which_type == "Suggests")
 	cat("\tChecking Old\n")
 	old_results <- tools::check_packages_in_dir(dir = old_dir,
 												check_args = c("--no-build-vignettes", "--no-manual"),
-												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = TRUE),
+												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = "TRUE"),
 												reverse = list(which = which_type))
 
 	warnings()
@@ -75,7 +75,7 @@ if (which_type == "Suggests")
 {
 	new_results <- tools::check_packages_in_dir(dir = new_dir,
 												check_args = c("--no-build-vignettes", "--no-manual"),
-												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = FALSE),
+												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = "FALSE"),
 												reverse = list(which = which_type))
 
 	warnings()
@@ -83,7 +83,7 @@ if (which_type == "Suggests")
 	cat("\tChecking Old\n")
 	old_results <- tools::check_packages_in_dir(dir = old_dir,
 												check_args = c("--no-build-vignettes", "--no-manual"),
-												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = FALSE),
+												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = "FALSE"),
 												reverse = list(which = which_type))
 
 	warnings()
