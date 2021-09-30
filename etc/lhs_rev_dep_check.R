@@ -53,20 +53,41 @@ download.file(paste0("https://cran.r-project.org/src/contrib/", pkg, "_", cran_v
               destfile = file.path(old_dir, paste0(pkg, "_", cran_version, ".tar.gz")))
 
 cat("\tChecking New\n")
-new_results <- tools::check_packages_in_dir(dir = new_dir,
-                                            check_args = c("--no-build-vignettes", "--no-manual"),
-											check_env = c("_R_CHECK_FORCE_SUGGESTS_" = ifelse(which_type == "Suggests", "TRUE", "FALSE")),
-                                            reverse = list(which = which_type))
 
-warnings()
+# can't seem to programmatically set the TRUE/FALSE.  Have to separate with an IF
+if (which_type == "Suggests")
+{
+	new_results <- tools::check_packages_in_dir(dir = new_dir,
+												check_args = c("--no-build-vignettes", "--no-manual"),
+												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = TRUE),
+												reverse = list(which = which_type))
 
-cat("\tChecking Old\n")
-old_results <- tools::check_packages_in_dir(dir = old_dir,
-                                            check_args = c("--no-build-vignettes", "--no-manual"),
-											check_env = c("_R_CHECK_FORCE_SUGGESTS_" = ifelse(which_type == "Suggests", "TRUE", "FALSE")),
-                                            reverse = list(which = which_type))
+	warnings()
 
-warnings()
+	cat("\tChecking Old\n")
+	old_results <- tools::check_packages_in_dir(dir = old_dir,
+												check_args = c("--no-build-vignettes", "--no-manual"),
+												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = TRUE),
+												reverse = list(which = which_type))
+
+	warnings()
+} else
+{
+	new_results <- tools::check_packages_in_dir(dir = new_dir,
+												check_args = c("--no-build-vignettes", "--no-manual"),
+												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = FALSE),
+												reverse = list(which = which_type))
+
+	warnings()
+
+	cat("\tChecking Old\n")
+	old_results <- tools::check_packages_in_dir(dir = old_dir,
+												check_args = c("--no-build-vignettes", "--no-manual"),
+												check_env = c("_R_CHECK_FORCE_SUGGESTS_" = FALSE),
+												reverse = list(which = which_type))
+
+	warnings()
+}
 
 cat("\tWriting Results\n")
 
