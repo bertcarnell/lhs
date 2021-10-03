@@ -12,7 +12,7 @@ args = commandArgs(trailingOnly=TRUE)
 
 if (length(args) != 3 & length(args[1]) == 1 & length(args[2]) == 1 & length(args[2]) == 1) {
   stop("Three arguments are required (pkg, cran_version, which_type)")
-} else 
+} else
 {
   if (!(args[3] %in% c("Depends", "Imports", "Suggests")))
   {
@@ -54,42 +54,23 @@ download.file(paste0("https://cran.r-project.org/src/contrib/", pkg, "_", cran_v
 
 cat("\tChecking New\n")
 
-# can't seem to programmatically set the TRUE/FALSE.  Have to separate with an IF
-if (which_type == "Suggests")
-{
-	Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "TRUE")
-	new_results <- tools::check_packages_in_dir(dir = new_dir,
-												check_args = c("--no-build-vignettes", "--no-manual"),
-												#check_env = c("_R_CHECK_FORCE_SUGGESTS_" = "TRUE"),
-												reverse = list(which = which_type))
+# Don't want to install any extra suggested packages because it takes much longer
+#   And does not complete in the 3 hr allotted by github
+Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")
+new_results <- tools::check_packages_in_dir(dir = new_dir,
+											check_args = c("--no-build-vignettes", "--no-manual"),
+											#check_env = c("_R_CHECK_FORCE_SUGGESTS_" = "FALSE"),
+											reverse = list(which = which_type))
 
-	warnings()
+warnings()
 
-	cat("\tChecking Old\n")
-	old_results <- tools::check_packages_in_dir(dir = old_dir,
-												check_args = c("--no-build-vignettes", "--no-manual"),
-												#check_env = c("_R_CHECK_FORCE_SUGGESTS_" = "TRUE"),
-												reverse = list(which = which_type))
+cat("\tChecking Old\n")
+old_results <- tools::check_packages_in_dir(dir = old_dir,
+											check_args = c("--no-build-vignettes", "--no-manual"),
+											#check_env = c("_R_CHECK_FORCE_SUGGESTS_" = "FALSE"),
+											reverse = list(which = which_type))
 
-	warnings()
-} else
-{
-	Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")
-	new_results <- tools::check_packages_in_dir(dir = new_dir,
-												check_args = c("--no-build-vignettes", "--no-manual"),
-												#check_env = c("_R_CHECK_FORCE_SUGGESTS_" = "FALSE"),
-												reverse = list(which = which_type))
-
-	warnings()
-
-	cat("\tChecking Old\n")
-	old_results <- tools::check_packages_in_dir(dir = old_dir,
-												check_args = c("--no-build-vignettes", "--no-manual"),
-												#check_env = c("_R_CHECK_FORCE_SUGGESTS_" = "FALSE"),
-												reverse = list(which = which_type))
-
-	warnings()
-}
+warnings()
 
 cat("\tWriting Results\n")
 
@@ -108,7 +89,7 @@ tryCatch({
 
 cat("\tLooping through Differences\n")
 
-cat("\n## Differences\n", file = etc_txt, append = TRUE)
+cat("\n## Differences Checking for Exact Message Matches\n", file = etc_txt, append = TRUE)
 
 new_detail <- tools::check_packages_in_dir_details(new_dir)
 old_detail <- tools::check_packages_in_dir_details(old_dir)
@@ -139,7 +120,7 @@ for (this_pkg in unique(c(old_detail$Package, new_detail$Package)))
 
 cat("\tAlternative Differences\n")
 
-cat("\n## Alternate Differences\n\n", file = etc_txt, append = TRUE)
+cat("\n## Differences using check_packages_in_dir_changes()\n\n", file = etc_txt, append = TRUE)
 changes <- tools::check_packages_in_dir_changes(dir = new_dir, old = old_dir, output = TRUE)
 capture.output(print(changes), file = etc_txt, append = TRUE)
 
