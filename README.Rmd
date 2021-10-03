@@ -13,7 +13,7 @@ output: md_document
   </table>
 </div>
 
-```{r setup echo=FALSE}
+```{r setup, echo=FALSE}
 require(knitr)
 ```
 
