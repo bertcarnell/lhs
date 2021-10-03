@@ -1,4 +1,4 @@
-# Reverse Dependency Checks for package lhs 2021-09-30 19:18:55
+# Reverse Dependency Checks for package lhs 2021-10-03 19:55:22
 
 ## Old Results
 
@@ -50,7 +50,7 @@ rdepends_tuneRanger ... WARN
 * checking whether package ‘tuneRanger’ can be installed ... WARNING
 * checking LazyData ... NOTE
 
-## Differences
+## Differences Checking for Exact Message Matches
 
 ### tuneRanger
 
@@ -62,7 +62,7 @@ rdepends_tuneRanger ... WARN
 See ‘/home/docker/revdep/new/tuneRanger.Rcheck/00install.out’ for details.
 - Flags:  --no-manual --no-build-vignettes
 
-## Alternate Differences
+## Differences using check_packages_in_dir_changes()
 
 Package: tuneRanger
 Check: whether package can be installed
