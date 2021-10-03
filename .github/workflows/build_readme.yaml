@@ -1,0 +1,40 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/master/examples
+
+on:
+  push:
+    paths:
+      - 'README.Rmd'
+    workflow_dispatch:
+
+name: Build-README
+
+jobs:
+  pkgdown:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-pandoc@v1
+
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: rmarkdown knitr
+
+      - name: Render README
+        run: |
+          R CMD INSTALL ../lhs
+          Rscript -e 'rmarkdown::render("README.Rmd")'
+
+      - name: commit README
+        run: |
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git add README.md
+          git commit -m 'Automatic build of README.md'
+          git push

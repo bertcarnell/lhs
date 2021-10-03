@@ -13,10 +13,11 @@ output: md_document
   </table>
 </div>
 
-`lhs` provides a number of methods for creating and augmenting 
-Latin Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
+```{r setup echo=FALSE}
+require(knitr)
+```
 
-```{r echo=FALSE, results="asis"}
+```{r badges, echo=FALSE, results="asis"}
 cat(paste0("|<sub>", 
            paste0(
              c("Actions", "Windows", "Code Coverage", "Website", "Doxygen", "CRAN Downloads", "CRAN"), 
@@ -38,7 +39,8 @@ cat(paste0("|",
 
 # lhs
 
-## Connections
+`lhs` provides a number of methods for creating and augmenting 
+Latin Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
 
 - Reverse Dependency Checks
     - [Depends](etc/revdep_README_Depends.md)
@@ -46,28 +48,28 @@ cat(paste0("|",
     - [Suggests](etc/revdep_README_Suggests.md)
 - Docker Images for Testing
     - [lhs-debug](https://hub.docker.com/repository/docker/bertcarnell/lhs-debug)
-    - [lhs-revdep](https://hub.docker.com/repository/docker/bertcarnell/lhs_revdep)
-    
+    - [lhs-revdep](https://hub.docker.com/repository/docker/bertcarnell/lhs_revdep) built from [here](https://github.com/bertcarnell/r-debug)
+
 ## Installation
 
 You can install the released version of `lhs` from [CRAN](https://CRAN.R-project.org) with:
 
-```{r echo=TRUE, eval=FALSE}
+```{r install1, echo=TRUE, eval=FALSE}
 install.packages("lhs")
 ```
 
 You can also install the development version of `lhs` from github with:
 
-```{r echo=TRUE, eval=FALSE}
+```{r install2, echo=TRUE, eval=FALSE}
 if (!require(devtools)) install.packages("devtools")
 devtools::install_github("bertcarnell/lhs")
 ```
 
-## Examples
+## Quick Start
 
 Create a random LHS with 10 samples and 3 variables:
 
-```{r echo=TRUE}
+```{r random, echo=TRUE}
 require(lhs)
 set.seed(1776)
 X <- randomLHS(n = 10, k = 3)
@@ -75,7 +77,7 @@ X <- randomLHS(n = 10, k = 3)
 
 Create a design that is more optimal than the random case:
 
-```{r echo=TRUE}
+```{r compare, echo=TRUE}
 X_gen <- geneticLHS(10, 3, pop = 100, gen = 5, pMut = 0.1)
 X_max1 <- maximinLHS(10, 3, method = "build", dup = 5)
 X_max2 <- maximinLHS(10, 3, method = "iterative", optimize.on = "result", eps = 0.01, maxIter = 300)
@@ -83,7 +85,7 @@ X_imp <- improvedLHS(10, 3, dup = 5)
 X_opt <- optimumLHS(10, 3, maxSweeps = 10, eps = 0.01)
 ```
 
-```{r echo=FALSE}
+```{r compare.table, echo=FALSE}
 df1 <-   data.frame(
   method = c("random","genetic","maximin","maximin","improved","optimum"),
   mean_dist = c(mean(dist(X)), mean(dist(X_gen)), mean(dist(X_max1)),
@@ -96,7 +98,7 @@ knitr::kable(df1[order(df1$min_dist, decreasing = TRUE),],
 
 Augment an existing design:
 
-```{r echo=TRUE}
+```{r augment, echo=TRUE}
 Y <- randomLHS(10, 5)
 Z <- augmentLHS(Y, 2)
 dim(Z)
@@ -104,7 +106,7 @@ dim(Z)
 
 Build an orthogonal array LHS:
 
-```{r echo=TRUE}
+```{r oalhs, echo=TRUE}
 # a 9 row design is returned because a 10 row design is not possible with these algorithms
 W9 <- create_oalhs(10, 3, bChooseLargerDesign = FALSE, bverbose = FALSE)
 dim(W9)
