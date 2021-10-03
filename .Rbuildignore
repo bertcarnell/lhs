@@ -17,5 +17,6 @@
 ^pkgdown$
 ^logo\.svg$
 ^README\.md$
+^README\.Rmd$
 ^\.github$
 ^SECURITY\.md$
