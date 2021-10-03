@@ -17,6 +17,7 @@ on:
       - '.github/workflows/rev-dep-check.yaml'
       - '.github/workflows/rhub-check.yml'
       - '.github/workflows/pkgdown.yml'
+      - '.github/workflows/build_readme.yaml'
     branches:
       - master
   pull_request:
