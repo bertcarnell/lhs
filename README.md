@@ -1,3 +1,4 @@
+<div>
 <table>
 <tr>
 <td>
@@ -5,9 +6,9 @@
 </td>
 </tr>
 </table>
+</div>
 
-`lhs` provides a number of methods for creating and augmenting Latin
-Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
+    ## Loading required package: knitr
 
 <table>
 <thead>
@@ -34,9 +35,11 @@ Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
 </tbody>
 </table>
 
-# lhs
+lhs
+===
 
-## Connections
+`lhs` provides a number of methods for creating and augmenting Latin
+Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
 
 -   Reverse Dependency Checks
     -   [Depends](etc/revdep_README_Depends.md)
@@ -45,8 +48,10 @@ Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
 -   Docker Images for Testing
     -   [lhs-debug](https://hub.docker.com/repository/docker/bertcarnell/lhs-debug)
     -   [lhs-revdep](https://hub.docker.com/repository/docker/bertcarnell/lhs_revdep)
+        built from [here](https://github.com/bertcarnell/r-debug)
 
-## Installation
+Installation
+------------
 
 You can install the released version of `lhs` from
 [CRAN](https://CRAN.R-project.org) with:
@@ -58,7 +63,8 @@ You can also install the development version of `lhs` from github with:
     if (!require(devtools)) install.packages("devtools")
     devtools::install_github("bertcarnell/lhs")
 
-## Examples
+Quick Start
+-----------
 
 Create a random LHS with 10 samples and 3 variables:
 
@@ -148,7 +154,8 @@ Build an orthogonal array LHS:
 
     ## [1] 16  3
 
-## Help
+Help
+----
 
 R-Help Examples of using the LHS package
 
@@ -204,7 +211,8 @@ StackExchange Examples:
 -   [Is it necessary to shuffle X coordinates in Latin hypercube
     Sampling?](https://stats.stackexchange.com/questions/498492/is-it-necessary-to-shuffle-x-coordinates-in-latin-hypercube-sampling-lhc)
 
-## Other
+Other
+-----
 
 lhs package announcement: [R-pkgs New R-Packages: Triangle and
 LHS](https://stat.ethz.ch/pipermail/r-packages/2006/000715.html)
