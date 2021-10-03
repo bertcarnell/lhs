@@ -1,4 +1,4 @@
-# Reverse Dependency Checks for package lhs 2021-09-30 21:07:30
+# Reverse Dependency Checks for package lhs 2021-10-03 22:00:58
 
 ## Old Results
 
@@ -140,7 +140,7 @@ rdepends_yager ... NOTE
 rdepends_yap ... NOTE
 * checking LazyData ... NOTE
 
-## Differences
+## Differences Checking for Exact Message Matches
 
 ### mcMST
 
@@ -182,7 +182,7 @@ See ‘/home/docker/revdep/new/tramnet.Rcheck/00install.out’ for details.
 See ‘/home/docker/revdep/new/varycoef.Rcheck/00install.out’ for details.
 - Flags:  --no-manual --no-build-vignettes
 
-## Alternate Differences
+## Differences using check_packages_in_dir_changes()
 
 Package: mcMST
 Check: whether package can be installed
