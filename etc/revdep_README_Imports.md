@@ -1,13 +1,13 @@
-# Reverse Dependency Checks for package lhs 2021-10-04 04:19:40
+# Reverse Dependency Checks for package lhs 2021-10-04 19:55:35
 
 ## Old Results
 
 Check results for packages in dir '/home/docker/revdep/old':
 
 Check status summary:
-                  WARN NOTE OK
-  Source packages    0    1  0
-  Reverse depends    4   14 16
+                  ERROR WARN NOTE OK
+  Source packages     0    0    1  0
+  Reverse depends     2    3   15 14
 
 Check results summary:
 lhs ... NOTE
@@ -16,13 +16,19 @@ rdepends_activegp ... OK
 rdepends_binaryGP ... NOTE
 * checking LazyData ... NOTE
 rdepends_DoE.wrapper ... NOTE
+* checking package dependencies ... NOTE
+* checking Rd cross-references ... NOTE
 * checking LazyData ... NOTE
 rdepends_DSAIDE ... NOTE
+* checking package dependencies ... NOTE
 * checking installed package size ... NOTE
-rdepends_DSAIRM ... OK
+rdepends_DSAIRM ... NOTE
+* checking package dependencies ... NOTE
 rdepends_DynamicGP ... OK
 rdepends_EasyABC ... OK
-rdepends_ENMTools ... OK
+rdepends_ENMTools ... NOTE
+* checking package dependencies ... NOTE
+* checking Rd cross-references ... NOTE
 rdepends_GPfit ... OK
 rdepends_GPM ... OK
 rdepends_grapherator ... NOTE
@@ -39,11 +45,17 @@ rdepends_mcMST ... WARN
 * checking whether package ‘mcMST’ can be installed ... WARNING
 * checking dependencies in R code ... NOTE
 * checking LazyData ... NOTE
-rdepends_mlrintermbo ... NOTE
+rdepends_mlrintermbo ... ERROR
+* checking package dependencies ... NOTE
 * checking LazyData ... NOTE
-rdepends_mlrMBO ... WARN
+* checking examples ... ERROR
+* checking tests ... ERROR
+rdepends_mlrMBO ... ERROR
+* checking package dependencies ... NOTE
 * checking whether package ‘mlrMBO’ can be installed ... WARNING
+* checking Rd cross-references ... NOTE
 * checking LazyData ... NOTE
+* checking tests ... ERROR
 rdepends_nlrx ... OK
 rdepends_optim.functions ... NOTE
 * checking LazyData ... NOTE
@@ -59,12 +71,15 @@ rdepends_rrepast ... OK
 rdepends_sensobol ... OK
 rdepends_tools4uplift ... OK
 rdepends_tramnet ... WARN
+* checking package dependencies ... NOTE
 * checking whether package ‘tramnet’ can be installed ... WARNING
 rdepends_TREXr ... NOTE
 * checking dependencies in R code ... NOTE
 rdepends_varycoef ... WARN
+* checking package dependencies ... NOTE
 * checking whether package ‘varycoef’ can be installed ... WARNING
 * checking dependencies in R code ... NOTE
+* checking Rd cross-references ... NOTE
 rdepends_yager ... NOTE
 * checking LazyData ... NOTE
 rdepends_yap ... NOTE
@@ -75,9 +90,9 @@ rdepends_yap ... NOTE
 Check results for packages in dir '/home/docker/revdep/new':
 
 Check status summary:
-                  WARN NOTE OK
-  Source packages    0    1  0
-  Reverse depends    4   14 16
+                  ERROR WARN NOTE OK
+  Source packages     0    0    1  0
+  Reverse depends     2    3   15 14
 
 Check results summary:
 lhs ... NOTE
@@ -86,13 +101,19 @@ rdepends_activegp ... OK
 rdepends_binaryGP ... NOTE
 * checking LazyData ... NOTE
 rdepends_DoE.wrapper ... NOTE
+* checking package dependencies ... NOTE
+* checking Rd cross-references ... NOTE
 * checking LazyData ... NOTE
 rdepends_DSAIDE ... NOTE
+* checking package dependencies ... NOTE
 * checking installed package size ... NOTE
-rdepends_DSAIRM ... OK
+rdepends_DSAIRM ... NOTE
+* checking package dependencies ... NOTE
 rdepends_DynamicGP ... OK
 rdepends_EasyABC ... OK
-rdepends_ENMTools ... OK
+rdepends_ENMTools ... NOTE
+* checking package dependencies ... NOTE
+* checking Rd cross-references ... NOTE
 rdepends_GPfit ... OK
 rdepends_GPM ... OK
 rdepends_grapherator ... NOTE
@@ -109,11 +130,17 @@ rdepends_mcMST ... WARN
 * checking whether package ‘mcMST’ can be installed ... WARNING
 * checking dependencies in R code ... NOTE
 * checking LazyData ... NOTE
-rdepends_mlrintermbo ... NOTE
+rdepends_mlrintermbo ... ERROR
+* checking package dependencies ... NOTE
 * checking LazyData ... NOTE
-rdepends_mlrMBO ... WARN
+* checking examples ... ERROR
+* checking tests ... ERROR
+rdepends_mlrMBO ... ERROR
+* checking package dependencies ... NOTE
 * checking whether package ‘mlrMBO’ can be installed ... WARNING
+* checking Rd cross-references ... NOTE
 * checking LazyData ... NOTE
+* checking tests ... ERROR
 rdepends_nlrx ... OK
 rdepends_optim.functions ... NOTE
 * checking LazyData ... NOTE
@@ -129,12 +156,15 @@ rdepends_rrepast ... OK
 rdepends_sensobol ... OK
 rdepends_tools4uplift ... OK
 rdepends_tramnet ... WARN
+* checking package dependencies ... NOTE
 * checking whether package ‘tramnet’ can be installed ... WARNING
 rdepends_TREXr ... NOTE
 * checking dependencies in R code ... NOTE
 rdepends_varycoef ... WARN
+* checking package dependencies ... NOTE
 * checking whether package ‘varycoef’ can be installed ... WARNING
 * checking dependencies in R code ... NOTE
+* checking Rd cross-references ... NOTE
 rdepends_yager ... NOTE
 * checking LazyData ... NOTE
 rdepends_yap ... NOTE
