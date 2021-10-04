@@ -1,6 +1,9 @@
 ---
 title: "lhs"
-output: md_document
+output: 
+  md_document:
+    variant: markdown_github
+  
 ---
 
 <div>
@@ -93,7 +96,8 @@ df1 <-   data.frame(
   min_dist = c(min(dist(X)), min(dist(X_gen)), min(dist(X_max1)),
                min(dist(X_max2)), min(dist(X_imp)), min(dist(X_opt))))
 knitr::kable(df1[order(df1$min_dist, decreasing = TRUE),],
-             col.names = c("Method", "Mean Distance", "Minimum Distance"))
+             col.names = c("Method", "Mean Distance", "Minimum Distance"),
+             digits = 4)
 ```
 
 Augment an existing design:
