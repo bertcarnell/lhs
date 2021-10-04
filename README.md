@@ -10,30 +10,9 @@
 
     ## Loading required package: knitr
 
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><sub>Actions</sub></th>
-<th style="text-align: center;"><sub>Windows</sub></th>
-<th style="text-align: center;"><sub>Code Coverage</sub></th>
-<th style="text-align: center;"><sub>Website</sub></th>
-<th style="text-align: center;"><sub>Doxygen</sub></th>
-<th style="text-align: center;"><sub>CRAN Downloads</sub></th>
-<th style="text-align: center;"><sub>CRAN</sub></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><a href="https://github.com/bertcarnell/lhs/actions"><img src="https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg" alt="R build status" /></a></td>
-<td style="text-align: center;"><a href="https://ci.appveyor.com/project/bertcarnell/lhs/branch/master"><img src="https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true" alt="Build status" /></a></td>
-<td style="text-align: center;"><a href="https://codecov.io/github/bertcarnell/lhs?branch=master"><img src="https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg" alt="Coverage status" /></a></td>
-<td style="text-align: center;"><a href="https://bertcarnell.github.io/lhs/"><img src="https://img.shields.io/badge/pkgdown-lhs-blue.svg" /></a></td>
-<td style="text-align: center;"><a href="https://bertcarnell.github.io/lhs/html/index.html"><img src="https://img.shields.io/badge/Doxygen-lhs-blue.svg" /></a></td>
-<td style="text-align: center;"><a href="https://cran.r-project.org/package=lhs"><img src="https://cranlogs.r-pkg.org/badges/lhs" /></a></td>
-<td style="text-align: center;"><a href="https://cran.r-project.org/package=lhs"><img src="https://www.r-pkg.org/badges/version/lhs" alt="CRAN status" /></a></td>
-</tr>
-</tbody>
-</table>
+|                                                          <sub>Actions</sub>                                                         |                                                                           <sub>Windows</sub>                                                                          |                                                              <sub>Code Coverage</sub>                                                              |                                      <sub>Website</sub>                                      |                                              <sub>Doxygen</sub>                                             |                               <sub>CRAN Downloads</sub>                              |                                           <sub>CRAN</sub>                                          |
+|:-----------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------:|
+| [![R build status](https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg)](https://github.com/bertcarnell/lhs/actions) | [![Build status](https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true)](https://ci.appveyor.com/project/bertcarnell/lhs/branch/master) | [![Coverage status](https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg)](https://codecov.io/github/bertcarnell/lhs?branch=master) | [![](https://img.shields.io/badge/pkgdown-lhs-blue.svg)](https://bertcarnell.github.io/lhs/) | [![](https://img.shields.io/badge/Doxygen-lhs-blue.svg)](https://bertcarnell.github.io/lhs/html/index.html) | [![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs) | [![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs) |
 
 lhs
 ===
@@ -56,101 +35,77 @@ Installation
 You can install the released version of `lhs` from
 [CRAN](https://CRAN.R-project.org) with:
 
-    install.packages("lhs")
+``` r
+install.packages("lhs")
+```
 
 You can also install the development version of `lhs` from github with:
 
-    if (!require(devtools)) install.packages("devtools")
-    devtools::install_github("bertcarnell/lhs")
+``` r
+if (!require(devtools)) install.packages("devtools")
+devtools::install_github("bertcarnell/lhs")
+```
 
 Quick Start
 -----------
 
 Create a random LHS with 10 samples and 3 variables:
 
-    require(lhs)
+``` r
+require(lhs)
+```
 
     ## Loading required package: lhs
 
-    set.seed(1776)
-    X <- randomLHS(n = 10, k = 3)
+``` r
+set.seed(1776)
+X <- randomLHS(n = 10, k = 3)
+```
 
 Create a design that is more optimal than the random case:
 
-    X_gen <- geneticLHS(10, 3, pop = 100, gen = 5, pMut = 0.1)
-    X_max1 <- maximinLHS(10, 3, method = "build", dup = 5)
-    X_max2 <- maximinLHS(10, 3, method = "iterative", optimize.on = "result", eps = 0.01, maxIter = 300)
-    X_imp <- improvedLHS(10, 3, dup = 5)
-    X_opt <- optimumLHS(10, 3, maxSweeps = 10, eps = 0.01)
+``` r
+X_gen <- geneticLHS(10, 3, pop = 100, gen = 5, pMut = 0.1)
+X_max1 <- maximinLHS(10, 3, method = "build", dup = 5)
+X_max2 <- maximinLHS(10, 3, method = "iterative", optimize.on = "result", eps = 0.01, maxIter = 300)
+X_imp <- improvedLHS(10, 3, dup = 5)
+X_opt <- optimumLHS(10, 3, maxSweeps = 10, eps = 0.01)
+```
 
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;">Method</th>
-<th style="text-align: right;">Mean Distance</th>
-<th style="text-align: right;">Minimum Distance</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">6</td>
-<td style="text-align: left;">optimum</td>
-<td style="text-align: right;">0.7289469</td>
-<td style="text-align: right;">0.4597657</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">genetic</td>
-<td style="text-align: right;">0.7189860</td>
-<td style="text-align: right;">0.4058587</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">maximin</td>
-<td style="text-align: right;">0.7245922</td>
-<td style="text-align: right;">0.3974934</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">improved</td>
-<td style="text-align: right;">0.7028446</td>
-<td style="text-align: right;">0.3871904</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">maximin</td>
-<td style="text-align: right;">0.7295788</td>
-<td style="text-align: right;">0.3611274</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">random</td>
-<td style="text-align: right;">0.7067224</td>
-<td style="text-align: right;">0.2708864</td>
-</tr>
-</tbody>
-</table>
+|     | Method   |  Mean Distance|  Minimum Distance|
+|:----|:---------|--------------:|-----------------:|
+| 6   | optimum  |         0.7289|            0.4598|
+| 2   | genetic  |         0.7190|            0.4059|
+| 4   | maximin  |         0.7246|            0.3975|
+| 5   | improved |         0.7028|            0.3872|
+| 3   | maximin  |         0.7296|            0.3611|
+| 1   | random   |         0.7067|            0.2709|
 
 Augment an existing design:
 
-    Y <- randomLHS(10, 5)
-    Z <- augmentLHS(Y, 2)
-    dim(Z)
+``` r
+Y <- randomLHS(10, 5)
+Z <- augmentLHS(Y, 2)
+dim(Z)
+```
 
     ## [1] 12  5
 
 Build an orthogonal array LHS:
 
-    # a 9 row design is returned because a 10 row design is not possible with these algorithms
-    W9 <- create_oalhs(10, 3, bChooseLargerDesign = FALSE, bverbose = FALSE)
-    dim(W9)
+``` r
+# a 9 row design is returned because a 10 row design is not possible with these algorithms
+W9 <- create_oalhs(10, 3, bChooseLargerDesign = FALSE, bverbose = FALSE)
+dim(W9)
+```
 
     ## [1] 9 3
 
-    # a 16 row design is returned because a 10 row design is not possible with these algorithms
-    W16 <- create_oalhs(10, 3, bChooseLargerDesign = TRUE, bverbose = FALSE)
-    dim(W16)
+``` r
+# a 16 row design is returned because a 10 row design is not possible with these algorithms
+W16 <- create_oalhs(10, 3, bChooseLargerDesign = TRUE, bverbose = FALSE)
+dim(W16)
+```
 
     ## [1] 16  3
 
