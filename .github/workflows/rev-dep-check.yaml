@@ -7,15 +7,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     strategy:
       fail-fast: false
       matrix:
         config:
           - {which_type: 'Depends'}
-          - {which_type: 'Imports'}
-          - {which_type: 'Suggests'}
-    
+          #- {which_type: 'Imports'}
+          #- {which_type: 'Suggests'}
+
     name: Rev-Dep-Check ${{ matrix.config.which_type }}
 
     steps:
@@ -35,7 +35,7 @@ jobs:
           chmod -R a+rw /home/runner/work/lhs
           docker run -dti --rm --security-opt seccomp=unconfined -v /home/runner/work/lhs:/home/docker -w /home/docker -u docker --name lhs_revdep_check bertcarnell/lhs_revdep
           docker exec lhs_revdep_check Rscript /home/docker/lhs/etc/lhs_rev_dep_check.R "lhs" "1.1.3" ${{ matrix.config.which_type }}
-          
+
       - name:  Upload artifact
         uses: actions/upload-artifact@v2.2.4
         with:
