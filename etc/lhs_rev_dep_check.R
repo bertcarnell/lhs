@@ -260,8 +260,23 @@ my_check_packages_in_dir <-
       on.exit(tools:::close_virtual_X11_db(pid), add = TRUE)
     }
 
-    depends <-
-      tools::package_dependencies(pnames, available, which = "most")
+    ## (10/4/2021)
+    ## changing this to which = c("Depends", "Imports", "LinkingTo") instead of
+    ## "most" which also includes "Suggests" when _R_CHECK_FORCE_SUGGESTS_ is false
+    include_suggests <- tools:::config_val_to_logical(
+      Sys.getenv("_R_CHECK_FORCE_SUGGESTS_", "TRUE"))
+
+    if (include_suggests)
+    {
+      ## Default
+      depends <-
+        tools::package_dependencies(pnames, available, which = "most")
+    } else
+    {
+      ## When _R_CHECK_FORCE_SUGGESTS_ == FALSE
+      depends <-
+        tools::package_dependencies(pnames, available, which = c("Depends", "Imports", "LinkingTo"))
+    }
     depends <- setdiff(unique(unlist(depends, use.names = FALSE)),
                        tools:::.get_standard_package_names()$base)
 
