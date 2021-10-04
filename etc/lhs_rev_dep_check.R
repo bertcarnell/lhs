@@ -353,8 +353,11 @@ my_check_packages_in_dir <-
     Sys.setenv(R_LIBS = paste(libs, collapse = .Platform$path.sep))
     on.exit(Sys.setenv(R_LIBS = oldrlibs), add = TRUE)
 
+    message(sprintf("Starting Checks with _R_CHECK_FORCE_SUGGESTS = %s",
+                    Sys.getenv("_R_CHECK_FORCE_SUGGESTS_")))
+
     check_package <- function(pfile, args_db = NULL, env_db = NULL) {
-      message(sprintf("checking %s ...", pfile))
+      message(sprintf("checking %s %s ...", pfile, Sys.time()))
       pname <- sub("_.*", "", basename(pfile))
       out <- file.path(outdir,
                        sprintf("check_%s_stdout.txt", pname))
