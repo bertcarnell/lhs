@@ -360,7 +360,7 @@ my_check_packages_in_dir <-
                        sprintf("check_%s_stdout.txt", pname))
       err <- file.path(outdir,
                        sprintf("check_%s_stderr.txt", pname))
-      lim <- get_timeout(Sys.getenv("_R_CHECK_ELAPSED_TIMEOUT_"))
+      lim <- tools:::get_timeout(Sys.getenv("_R_CHECK_ELAPSED_TIMEOUT_"))
       system.time(system2(file.path(R.home("bin"), "R"),
                           c("CMD",
                             "check",
