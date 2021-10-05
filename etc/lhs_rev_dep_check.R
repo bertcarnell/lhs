@@ -46,6 +46,16 @@ my_check_packages_in_dir <-
            clean = TRUE,
            ...)
   {
+    # dir <- file.path("C:", "repositories", "lhs", "revdep")
+    # check_args <- c("--no-build-vignettes", "--no-manual")
+    # check_args_db <- list(laGP = "--no-vignettes")
+    # reverse <- list(which = "Depends")
+    # check_env <- character()
+    # xvfb <- FALSE
+    # Ncpus <- 1
+    # clean <- TRUE
+    # Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")
+
     owd <- getwd()
     dir <- normalizePath(dir)
     setwd(dir)
@@ -79,9 +89,9 @@ my_check_packages_in_dir <-
     ## * a logical, Xvfb is used only if identical to TRUE;
     ## * something else, then as.character(xvfb) gives the Xvfb options.
     xvfb_options <- "-screen 0 1280x1024x24"
-    if(os_type == "windows")
+    if(os_type == "windows") {
       xvfb <- FALSE
-    else if(is.logical(xvfb)) {
+    } else if(is.logical(xvfb)) {
       if(!isTRUE(xvfb))
         xvfb <- FALSE
     } else {
@@ -89,10 +99,11 @@ my_check_packages_in_dir <-
       xvfb <- TRUE
     }
 
-    curl <- if(os_type == "windows")
+    curl <- if(os_type == "windows") {
       sprintf("file:///%s", dir)
-    else
+    } else {
       sprintf("file://%s", dir)
+    }
 
     libdir <- file.path(dir, "Library")
     dir.create(libdir, showWarnings = FALSE)
@@ -466,8 +477,10 @@ cat("\tChecking New\n")
 # Don't want to install any extra suggested packages because it takes much longer
 #   And does not complete in the 3 hr allotted by github
 Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "FALSE")
+# laGP has --no-vignettes in its CRAN checks
 new_results <- my_check_packages_in_dir(dir = new_dir,
 											check_args = c("--no-build-vignettes", "--no-manual"),
+											check_args_db = list(laGP = "--no-vignettes"),
 											reverse = list(which = which_type))
 
 warnings()
@@ -475,6 +488,7 @@ warnings()
 cat("\tChecking Old\n")
 old_results <- my_check_packages_in_dir(dir = old_dir,
 											check_args = c("--no-build-vignettes", "--no-manual"),
+											check_args_db = list(laGP = "--no-vignettes"),
 											reverse = list(which = which_type))
 
 warnings()
