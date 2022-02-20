@@ -16,7 +16,7 @@ output:
   </table>
 </div>
 
-```{r setup, echo=FALSE}
+```{r setup, include=FALSE}
 require(knitr)
 ```
 
