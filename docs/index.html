@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,18 +40,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -74,7 +70,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/bertcarnell/lhs/">
+  <a href="https://github.com/bertcarnell/lhs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -99,189 +95,226 @@
 </td>
 </tr></table>
 </div>
-<p>This package provides a number of methods for creating and augmenting Latin Hypercube Samples and Orthogonal Array Latin Hypercube Samples.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="center"><sub>Actions</sub></th>
 <th align="center"><sub>Windows</sub></th>
 <th align="center"><sub>Code Coverage</sub></th>
+<th align="center"><sub>Website</sub></th>
+<th align="center"><sub>Doxygen</sub></th>
 <th align="center"><sub>CRAN Downloads</sub></th>
 <th align="center"><sub>CRAN</sub></th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="center"><a href="https://github.com/bertcarnell/lhs/actions"><img src="https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg" alt="R build status"></a></td>
-<td align="center"><a href="https://ci.appveyor.com/project/bertcarnell/lhs/branch/master"><img src="https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true" alt="Build status"></a></td>
-<td align="center"><a href="https://codecov.io/github/bertcarnell/lhs?branch=master"><img src="https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg" alt="Coverage status"></a></td>
-<td align="center"><a href="https://cran.r-project.org/package=lhs"><img src="https://cranlogs.r-pkg.org/badges/lhs"></a></td>
-<td align="center"><a href="https://cran.r-project.org/package=lhs"><img src="https://www.r-pkg.org/badges/version/lhs" alt="CRAN status"></a></td>
+<td align="center"><a href="https://github.com/bertcarnell/lhs/actions" class="external-link"><img src="https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg" alt="R build status"></a></td>
+<td align="center"><a href="https://ci.appveyor.com/project/bertcarnell/lhs/branch/master" class="external-link"><img src="https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true" alt="Build status"></a></td>
+<td align="center"><a href="https://codecov.io/github/bertcarnell/lhs?branch=master" class="external-link"><img src="https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg" alt="Coverage status"></a></td>
+<td align="center"><a href="https://bertcarnell.github.io/lhs/" class="external-link"><img src="https://img.shields.io/badge/pkgdown-lhs-blue.svg"></a></td>
+<td align="center"><a href="https://bertcarnell.github.io/lhs/html/index.html" class="external-link"><img src="https://img.shields.io/badge/Doxygen-lhs-blue.svg"></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=lhs" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/lhs"></a></td>
+<td align="center"><a href="https://cran.r-project.org/package=lhs" class="external-link"><img src="https://www.r-pkg.org/badges/version/lhs" alt="CRAN status"></a></td>
 </tr></tbody>
 </table>
-<div id="connections" class="section level2">
-<h2 class="hasAnchor">
-<a href="#connections" class="anchor"></a>Connections</h2>
-<p>Visit the webpage <a href="https://bertcarnell.github.io/lhs/">here</a></p>
-<p>See the Doxygen documentation <a href="https://bertcarnell.github.io/lhs/html/index.html">here</a></p>
-<p>The reverse dependency checks for <code>lhs</code> can be found <a href="etc/revdep_README.html">here</a>.</p>
-<p>Docker images used in testing can be found <a href="https://hub.docker.com/repository/docker/bertcarnell/lhs-debug">here</a></p>
-</div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of <code>lhs</code> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="section level1">
+<div class="page-header"><h1 id="lhs">lhs<a class="anchor" aria-label="anchor" href="#lhs"></a>
+</h1></div>
+<p><code>lhs</code> provides a number of methods for creating and augmenting Latin Hypercube Samples and Orthogonal Array Latin Hypercube Samples.</p>
+<ul>
+<li>Reverse Dependency Checks
+<ul>
+<li><a href="etc/revdep_README_Depends.html">Depends</a></li>
+<li><a href="etc/revdep_README_Imports.html">Imports</a></li>
+<li><a href="etc/revdep_README_Suggests.html">Suggests</a></li>
+</ul>
+</li>
+<li>Docker Images for Testing
+<ul>
+<li><a href="https://hub.docker.com/repository/docker/bertcarnell/lhs-debug" class="external-link">lhs-debug</a></li>
+<li>
+<a href="https://hub.docker.com/repository/docker/bertcarnell/lhs_revdep" class="external-link">lhs-revdep</a> built from <a href="https://github.com/bertcarnell/r-debug" class="external-link">here</a>
+</li>
+</ul>
+</li>
+</ul>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the released version of <code>lhs</code> from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"lhs"</span><span class="op">)</span></code></pre></div>
-<p>You can also install the development version of <code>lhs</code> from here with:</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"lhs"</span><span class="op">)</span></code></pre></div>
+<p>You can also install the development version of <code>lhs</code> from github with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"bertcarnell/lhs"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h2>
+<div class="section level2">
+<h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
+</h2>
 <p>Create a random LHS with 10 samples and 3 variables:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bertcarnell/lhs">lhs</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1776</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bertcarnell/lhs" class="external-link">lhs</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## Loading required package: lhs</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1776</span><span class="op">)</span>
 <span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/randomLHS.html">randomLHS</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
 <p>Create a design that is more optimal than the random case:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geneticLHS.html">geneticLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, pop <span class="op">=</span> <span class="fl">100</span>, gen <span class="op">=</span> <span class="fl">5</span>, pMut <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/maximinLHS.html">maximinLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, method <span class="op">=</span> <span class="st">"build"</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">D</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/maximinLHS.html">maximinLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, method <span class="op">=</span> <span class="st">"iterative"</span>, optimize.on <span class="op">=</span> <span class="st">"result"</span>, eps <span class="op">=</span> <span class="fl">0.01</span>, maxIter <span class="op">=</span> <span class="fl">300</span><span class="op">)</span>
-<span class="va">E</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/improvedLHS.html">improvedLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">G</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/optimumLHS.html">optimumLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, maxSweeps <span class="op">=</span> <span class="fl">10</span>, eps <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"random"</span>,<span class="st">"genetic"</span>,<span class="st">"maximin"</span>,<span class="st">"maximin"</span>,<span class="st">"improved"</span>,<span class="st">"optimum"</span><span class="op">)</span>,
-           mean_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span>,
-                         <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">D</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">G</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
-           min_dist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">B</span><span class="op">)</span><span class="op">)</span>,
-                        <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">D</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">E</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html">dist</a></span><span class="op">(</span><span class="va">G</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">X_gen</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geneticLHS.html">geneticLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, pop <span class="op">=</span> <span class="fl">100</span>, gen <span class="op">=</span> <span class="fl">5</span>, pMut <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>
+<span class="va">X_max1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/maximinLHS.html">maximinLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, method <span class="op">=</span> <span class="st">"build"</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<span class="va">X_max2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/maximinLHS.html">maximinLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, method <span class="op">=</span> <span class="st">"iterative"</span>, optimize.on <span class="op">=</span> <span class="st">"result"</span>, eps <span class="op">=</span> <span class="fl">0.01</span>, maxIter <span class="op">=</span> <span class="fl">300</span><span class="op">)</span>
+<span class="va">X_imp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/improvedLHS.html">improvedLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<span class="va">X_opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/optimumLHS.html">optimumLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, maxSweeps <span class="op">=</span> <span class="fl">10</span>, eps <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th>Method</th>
-<th>Mean Distance</th>
-<th>Minimum Distance</th>
+<th align="left"></th>
+<th align="left">Method</th>
+<th align="right">Mean Distance</th>
+<th align="right">Minimum Distance</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>random</td>
-<td>0.7067224</td>
-<td>0.2708864</td>
+<td align="left">6</td>
+<td align="left">optimum</td>
+<td align="right">0.7289</td>
+<td align="right">0.4598</td>
 </tr>
 <tr class="even">
-<td>genetic</td>
-<td>0.7189860</td>
-<td>0.4058587</td>
+<td align="left">2</td>
+<td align="left">genetic</td>
+<td align="right">0.7190</td>
+<td align="right">0.4059</td>
 </tr>
 <tr class="odd">
-<td>maximin</td>
-<td>0.7295788</td>
-<td>0.3611274</td>
+<td align="left">4</td>
+<td align="left">maximin</td>
+<td align="right">0.7246</td>
+<td align="right">0.3975</td>
 </tr>
 <tr class="even">
-<td>maximin</td>
-<td>0.7245922</td>
-<td>0.3974934</td>
+<td align="left">5</td>
+<td align="left">improved</td>
+<td align="right">0.7028</td>
+<td align="right">0.3872</td>
 </tr>
 <tr class="odd">
-<td>improved</td>
-<td>0.7028446</td>
-<td>0.3871904</td>
+<td align="left">3</td>
+<td align="left">maximin</td>
+<td align="right">0.7296</td>
+<td align="right">0.3611</td>
 </tr>
 <tr class="even">
-<td>optimum</td>
-<td>0.7289469</td>
-<td>0.4597657</td>
+<td align="left">1</td>
+<td align="left">random</td>
+<td align="right">0.7067</td>
+<td align="right">0.2709</td>
 </tr>
 </tbody>
 </table>
 <p>Augment an existing design:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span>
-<span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/augmentLHS.html">augmentLHS</a></span><span class="op">(</span><span class="va">Y</span>, <span class="fl">2</span><span class="op">)</span></code></pre></div>
-<p>Build an orthogonal array LHS:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span>
+<span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/augmentLHS.html">augmentLHS</a></span><span class="op">(</span><span class="va">Y</span>, <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## [1] 12  5</span></span></code></pre></div>
+<p>Build an orthogonal array LHS:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># a 9 row design is returned because a 10 row design is not possible with these algorithms</span>
 <span class="va">W9</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_oalhs.html">create_oalhs</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, bChooseLargerDesign <span class="op">=</span> <span class="cn">FALSE</span>, bverbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="co"># a 16 row design is returned because a 10 row design is not possible with these algorithms</span>
-<span class="va">W16</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_oalhs.html">create_oalhs</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, bChooseLargerDesign <span class="op">=</span> <span class="cn">TRUE</span>, bverbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">W9</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## [1] 9 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># a 16 row design is returned because a 10 row design is not possible with these algorithms</span>
+<span class="va">W16</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_oalhs.html">create_oalhs</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, bChooseLargerDesign <span class="op">=</span> <span class="cn">TRUE</span>, bverbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">W16</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## [1] 16  3</span></span></code></pre></div>
 </div>
-<div id="help" class="section level2">
-<h2 class="hasAnchor">
-<a href="#help" class="anchor"></a>Help</h2>
+<div class="section level2">
+<h2 id="help">Help<a class="anchor" aria-label="anchor" href="#help"></a>
+</h2>
 <p>R-Help Examples of using the LHS package</p>
 <ul>
-<li><a href="https://stat.ethz.ch/pipermail/r-help/2007-January/124143.html">Latin hyper cube sampling from expand.grid()</a></li>
-<li><a href="https://stat.ethz.ch/pipermail/r-help/2011-June/279906.html">Latin Hypercube Sampling with a condition</a></li>
-<li><a href="https://stat.ethz.ch/pipermail/r-help/2008-November/180929.html">Latin Hypercube with condition sum = 1</a></li>
-<li><a href="https://www.mail-archive.com/r-help@r-project.org/msg192704.html">Latin hypercube sampling</a></li>
-<li><a href="https://stat.ethz.ch/pipermail/r-help/2013-October/361263.html">Latin Hypercube Sample and transformation to uniformly distributed integers or classes</a></li>
-<li><a href="https://stat.ethz.ch/pipermail/r-help/2017-August/448475.html">Latin hypercube sampling from a non-uniform distribution</a></li>
-<li><a href="https://stat.ethz.ch/pipermail/r-help/2017-June/447266.html">Latin Hypercube Sampling when parameters are defined according to specific probability distributions</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2007-January/124143.html" class="external-link">Latin hyper cube sampling from expand.grid()</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2011-June/279906.html" class="external-link">Latin Hypercube Sampling with a condition</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2008-November/180929.html" class="external-link">Latin Hypercube with condition sum = 1</a></li>
+<li><a href="https://www.mail-archive.com/r-help@r-project.org/msg192704.html" class="external-link">Latin hypercube sampling</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2013-October/361263.html" class="external-link">Latin Hypercube Sample and transformation to uniformly distributed integers or classes</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2017-August/448475.html" class="external-link">Latin hypercube sampling from a non-uniform distribution</a></li>
+<li><a href="https://stat.ethz.ch/pipermail/r-help/2017-June/447266.html" class="external-link">Latin Hypercube Sampling when parameters are defined according to specific probability distributions</a></li>
 </ul>
 <p>StackExchange Examples:</p>
 <ul>
-<li><a href="https://stats.stackexchange.com/questions/370983/latin-hypercube-around-set-points">Latin Hypercube around set points</a></li>
-<li><a href="https://stats.stackexchange.com/questions/388963/latin-hypercube-sampling-with-categorical-variables">Latin hypercube sampling with categorical variables</a></li>
-<li><a href="https://stats.stackexchange.com/questions/147789/are-latin-hypercube-samples-uncorrelated">Are Latin hypercube samples uncorrelated</a></li>
-<li><a href="https://stats.stackexchange.com/questions/407262/stopping-rule-for-latin-hypercube-sampling-lhs">Stopping rule for Latin hypercube sampling (LHS)</a></li>
-<li><a href="https://stats.stackexchange.com/questions/411085/is-a-group-of-random-hypercube-samples-equivalent-to-a-single-latin-hypercube-wi">Is a group of random hypercube samples equivalent to a single latin hypercube with more samples?</a></li>
-<li><a href="https://stats.stackexchange.com/questions/439271/taking-samples-of-data-using-latin-hypercube-sampling">Taking samples of data using Latin Hypercube Sampling</a></li>
-<li><a href="https://stats.stackexchange.com/questions/460918/number-of-parameter-sets-generated-by-latin-hyercube-sampling">Number of parameter sets generated by latin hyercube sampling</a></li>
-<li><a href="https://stats.stackexchange.com/questions/465492/is-there-a-way-to-check-if-sample-obeys-the-latin-hypercube-sampling-rule">Is there a way to check if sample obeys the Latin Hypercube Sampling rule?</a></li>
-<li><a href="https://stats.stackexchange.com/questions/468202/effectiveness-of-latin-hypercube-sampling">Effectiveness of Latin Hypercube Sampling</a></li>
-<li><a href="https://stats.stackexchange.com/questions/468293/dividing-cdf-rather-than-pdf-equally-in-latin-hypercube-sampling">Dividing CDF rather than PDF equally in Latin Hypercube Sampling</a></li>
-<li><a href="https://stats.stackexchange.com/questions/469963/stratified-sampling-qmc-simulation-for-compound-poisson-rv">Stratified sampling / QMC simulation for compound Poisson rv</a></li>
-<li><a href="https://stats.stackexchange.com/questions/474911/using-latin-hypercube-sampling-with-a-condition-that-the-sum-of-two-variables-sh">Using Latin Hypercube Sampling with a condition that the sum of two variables should be less than one</a></li>
-<li><a href="https://stats.stackexchange.com/questions/444997/how-to-generate-a-design-for-a-response-surface-with-a-discrete-input-random-var">How to generate a design for a response surface with a discrete input random variable?</a></li>
-<li><a href="https://stats.stackexchange.com/questions/498492/is-it-necessary-to-shuffle-x-coordinates-in-latin-hypercube-sampling-lhc">Is it necessary to shuffle X coordinates in Latin hypercube Sampling?</a></li>
+<li><a href="https://stats.stackexchange.com/questions/370983/latin-hypercube-around-set-points" class="external-link">Latin Hypercube around set points</a></li>
+<li><a href="https://stats.stackexchange.com/questions/388963/latin-hypercube-sampling-with-categorical-variables" class="external-link">Latin hypercube sampling with categorical variables</a></li>
+<li><a href="https://stats.stackexchange.com/questions/147789/are-latin-hypercube-samples-uncorrelated" class="external-link">Are Latin hypercube samples uncorrelated</a></li>
+<li><a href="https://stats.stackexchange.com/questions/407262/stopping-rule-for-latin-hypercube-sampling-lhs" class="external-link">Stopping rule for Latin hypercube sampling (LHS)</a></li>
+<li><a href="https://stats.stackexchange.com/questions/411085/is-a-group-of-random-hypercube-samples-equivalent-to-a-single-latin-hypercube-wi" class="external-link">Is a group of random hypercube samples equivalent to a single latin hypercube with more samples?</a></li>
+<li><a href="https://stats.stackexchange.com/questions/439271/taking-samples-of-data-using-latin-hypercube-sampling" class="external-link">Taking samples of data using Latin Hypercube Sampling</a></li>
+<li><a href="https://stats.stackexchange.com/questions/460918/number-of-parameter-sets-generated-by-latin-hyercube-sampling" class="external-link">Number of parameter sets generated by latin hyercube sampling</a></li>
+<li><a href="https://stats.stackexchange.com/questions/465492/is-there-a-way-to-check-if-sample-obeys-the-latin-hypercube-sampling-rule" class="external-link">Is there a way to check if sample obeys the Latin Hypercube Sampling rule?</a></li>
+<li><a href="https://stats.stackexchange.com/questions/468202/effectiveness-of-latin-hypercube-sampling" class="external-link">Effectiveness of Latin Hypercube Sampling</a></li>
+<li><a href="https://stats.stackexchange.com/questions/468293/dividing-cdf-rather-than-pdf-equally-in-latin-hypercube-sampling" class="external-link">Dividing CDF rather than PDF equally in Latin Hypercube Sampling</a></li>
+<li><a href="https://stats.stackexchange.com/questions/469963/stratified-sampling-qmc-simulation-for-compound-poisson-rv" class="external-link">Stratified sampling / QMC simulation for compound Poisson rv</a></li>
+<li><a href="https://stats.stackexchange.com/questions/474911/using-latin-hypercube-sampling-with-a-condition-that-the-sum-of-two-variables-sh" class="external-link">Using Latin Hypercube Sampling with a condition that the sum of two variables should be less than one</a></li>
+<li><a href="https://stats.stackexchange.com/questions/444997/how-to-generate-a-design-for-a-response-surface-with-a-discrete-input-random-var" class="external-link">How to generate a design for a response surface with a discrete input random variable?</a></li>
+<li><a href="https://stats.stackexchange.com/questions/498492/is-it-necessary-to-shuffle-x-coordinates-in-latin-hypercube-sampling-lhc" class="external-link">Is it necessary to shuffle X coordinates in Latin hypercube Sampling?</a></li>
 </ul>
 </div>
-<div id="other" class="section level2">
-<h2 class="hasAnchor">
-<a href="#other" class="anchor"></a>Other</h2>
-<p>lhs package announcement: <a href="https://stat.ethz.ch/pipermail/r-packages/2006/000715.html">R-pkgs New R-Packages: Triangle and LHS</a></p>
+<div class="section level2">
+<h2 id="other">Other<a class="anchor" aria-label="anchor" href="#other"></a>
+</h2>
+<p>lhs package announcement: <a href="https://stat.ethz.ch/pipermail/r-packages/2006/000715.html" class="external-link">R-pkgs New R-Packages: Triangle and LHS</a></p>
+</div>
 </div>
 
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=lhs">https://​cloud.r-project.org/​package=lhs</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/bertcarnell/lhs/">https://​github.com/​bertcarnell/​lhs/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/bertcarnell/lhs/issues">https://​github.com/​bertcarnell/​lhs/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=lhs" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/bertcarnell/lhs/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/bertcarnell/lhs/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></small></li>
+<li><small><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing lhs</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Rob Carnell <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Rob Carnell.</p>
+  <p></p>
+<p>Developed by Rob Carnell.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -289,6 +322,8 @@
 
   
 
+
+  
 
   </body>
 </html>
