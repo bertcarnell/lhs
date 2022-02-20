@@ -1,20 +1,21 @@
-# Reverse Dependency Checks for package lhs 2021-10-05 14:13:48
+# Reverse Dependency Checks for package lhs 2022-02-20 03:39:36
 
 ## Old Results
 
 Check results for packages in dir '/home/docker/revdep/old':
 
 Check status summary:
-                  NOTE OK
-  Source packages    1  0
-  Reverse depends   10 10
+                  ERROR NOTE OK
+  Source packages     0    1  0
+  Reverse depends     1   10  9
 
 Check results summary:
 lhs ... NOTE
 * checking installed package size ... NOTE
 rdepends_BayesianTools ... NOTE
 * checking LazyData ... NOTE
-rdepends_ChemoSpec2D ... OK
+rdepends_ChemoSpec2D ... ERROR
+* checking package dependencies ... ERROR
 rdepends_comparer ... NOTE
 * checking dependencies in R code ... NOTE
 rdepends_ContourFunctions ... OK
@@ -48,16 +49,17 @@ rdepends_vdg ... OK
 Check results for packages in dir '/home/docker/revdep/new':
 
 Check status summary:
-                  NOTE OK
-  Source packages    1  0
-  Reverse depends   10 10
+                  ERROR NOTE OK
+  Source packages     0    1  0
+  Reverse depends     1   10  9
 
 Check results summary:
 lhs ... NOTE
 * checking installed package size ... NOTE
 rdepends_BayesianTools ... NOTE
 * checking LazyData ... NOTE
-rdepends_ChemoSpec2D ... OK
+rdepends_ChemoSpec2D ... ERROR
+* checking package dependencies ... ERROR
 rdepends_comparer ... NOTE
 * checking dependencies in R code ... NOTE
 rdepends_ContourFunctions ... OK
