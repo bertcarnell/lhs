@@ -95,6 +95,8 @@ jobs:
         if: ( matrix.config.os == 'ubuntu-latest' && matrix.config.r == 'devel' ) == false
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
+          _R_CHECK_LENGTH_1_CONDITION_: true
+          _R_CHECK_LENGTH_0_LOGIC2_: true
         run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
         shell: Rscript {0}
 
