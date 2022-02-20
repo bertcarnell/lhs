@@ -86,3 +86,6 @@ Version 1.1.2
 
 Version 1.1.3
   Corrected compilation flag issue on Solaris
+
+Version 1.1.4
+  Correct error in logical statement with length > 1

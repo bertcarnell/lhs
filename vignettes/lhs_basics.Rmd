@@ -43,8 +43,8 @@ graph2dLHS <- function(Alhs)
 graph2dLHSTransform <- function(Alhs, transform1, transform2, min1, max1, min2, max2)
 {
   stopifnot(ncol(Alhs) == 2)
-  stopifnot(all(Alhs[,1] <= max1 && Alhs[,1] >= min1))
-  stopifnot(all(Alhs[,2] <= max2 && Alhs[,2] >= min2))
+  stopifnot(all(Alhs[,1] <= max1 & Alhs[,1] >= min1))
+  stopifnot(all(Alhs[,2] <= max2 & Alhs[,2] >= min2))
   sims <- nrow(Alhs)
   breaks <- seq(0,1,length = sims + 1)[2:(sims)]
   breaksTransformed1 <- sapply(breaks, transform1)
