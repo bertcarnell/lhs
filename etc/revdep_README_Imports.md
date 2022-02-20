@@ -1,4 +1,4 @@
-# Reverse Dependency Checks for package lhs 2021-10-05 14:38:50
+# Reverse Dependency Checks for package lhs 2022-02-20 04:21:51
 
 ## Old Results
 
@@ -7,7 +7,7 @@ Check results for packages in dir '/home/docker/revdep/old':
 Check status summary:
                   ERROR WARN NOTE OK
   Source packages     0    0    1  0
-  Reverse depends     2    3   15 14
+  Reverse depends     2    3   15 15
 
 Check results summary:
 lhs ... NOTE
@@ -69,6 +69,7 @@ rdepends_poems ... NOTE
 rdepends_profExtrema ... OK
 rdepends_rrepast ... OK
 rdepends_sensobol ... OK
+rdepends_SOAs ... OK
 rdepends_tools4uplift ... OK
 rdepends_tramnet ... WARN
 * checking package dependencies ... NOTE
@@ -92,7 +93,7 @@ Check results for packages in dir '/home/docker/revdep/new':
 Check status summary:
                   ERROR WARN NOTE OK
   Source packages     0    0    1  0
-  Reverse depends     2    3   15 14
+  Reverse depends     2    3   15 15
 
 Check results summary:
 lhs ... NOTE
@@ -154,6 +155,7 @@ rdepends_poems ... NOTE
 rdepends_profExtrema ... OK
 rdepends_rrepast ... OK
 rdepends_sensobol ... OK
+rdepends_SOAs ... OK
 rdepends_tools4uplift ... OK
 rdepends_tramnet ... WARN
 * checking package dependencies ... NOTE
