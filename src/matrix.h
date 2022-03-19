@@ -1,7 +1,7 @@
 /**
  * @file matrix.h
  * @author Robert Carnell
- * @copyright Copyright (c) 2013, Robert Carnell
+ * @copyright Copyright (c) 2022, Robert Carnell
  * 
  * @license <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
@@ -386,7 +386,7 @@ private:
  * @tparam ISROWWISE a boolean to indicate if the matrix is iterated row-wise
  */
 template <class T, bool ISROWWISE>
-class matrixIter : public std::iterator<std::forward_iterator_tag, T>
+class matrixIter
 {
     friend class matrixConstIter<T, ISROWWISE>;
 private:
@@ -394,6 +394,13 @@ private:
     typename matrix<T>::size_type rows; /**< the row being pointed to */
     typename matrix<T>::size_type cols; /**< the column being pointed to */
 public:
+	// required elements of an iterator class (inherited from std::iterator before it was deprecated)
+    using iterator_category = std::forward_iterator_tag;
+    using value_type = T;
+    using difference_type = T;
+    using pointer = T*;
+    using reference = T&;
+
     /**
      * Constructor
      * @param mat the matrix being indexed
@@ -429,7 +436,7 @@ public:
  * @tparam ISROWWISE a boolean to indicate if the matrix is iterated row-wise
  */
 template <class T, bool ISROWWISE>
-class matrixConstIter : public std::iterator<std::forward_iterator_tag, T>
+class matrixConstIter
 {
     friend class matrixIter<T, ISROWWISE>;
 private:
@@ -437,6 +444,13 @@ private:
     typename matrix<T>::size_type rows; /**< the row being pointed to */
     typename matrix<T>::size_type cols; /**< the column being pointed to */
 public:
+	// required elements of an iterator class (inherited from std::iterator before it was deprecated)
+    using iterator_category = std::forward_iterator_tag;
+    using value_type = T;
+    using difference_type = T;
+    using pointer = T*;
+    using reference = T&;
+
     /**
      * Constructor
      * @param mat the matrix being indexed

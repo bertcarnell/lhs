@@ -89,3 +89,7 @@ Version 1.1.3
 
 Version 1.1.4
   Correct error in logical statement with length > 1
+  
+Version 1.1.5
+  std::iterator, std::binary_function, and std::unary_funcation were removed since they are deprecated in c++17 and later
+  

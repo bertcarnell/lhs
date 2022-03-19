@@ -1,7 +1,7 @@
 /**
  * @file utilityLHS.h
  * @author Robert Carnell
- * @copyright Copyright (c) 2014, Robert Carnell
+ * @copyright Copyright (c) 2022, Robert Carnell
  * 
  * License <a href="http://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License (LGPL v3)</a>
  * This program is free software: you can redistribute it and/or modify
@@ -98,11 +98,10 @@ namespace lhslib
 
     /**
      * calculate the squared distance between two values.
-     * A type of <code>std::binar_function</code>.
      * @tparam T the type of values for the Arg1, Arg2, and return
      */
     template <class T>
-    struct squareDifference : public std::binary_function<T, T, T> /*arg1, arg2, return */
+    struct squareDifference
     {
         /**
          * Calculate the squared distance between two values
@@ -186,15 +185,15 @@ namespace lhslib
     }
 
     /**
-     * A unary_function to invert a number in a STL algorithm
+     * A function to invert a number in a STL algorithm
      * @tparam T the type of number to invert
      * @tparam W the type of the result.  (normally a double or float)
      */
     template <class T, class W>
-    struct invert : public std::unary_function<T, W> /*arg1, return */
+    struct invert
     {
         /**
-         * A unary_function to invert a number
+         * A function to invert a number
          * @param x the object to invert
          * @return the inverse of x
          */
