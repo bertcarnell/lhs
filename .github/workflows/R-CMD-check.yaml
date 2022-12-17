@@ -20,6 +20,8 @@ on:
       - '.github/workflows/build_readme.yaml'
     branches:
       - master
+    tags:
+      - none
   pull_request:
     branches:
       - master

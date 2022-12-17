@@ -9,7 +9,8 @@ name: pkgdown & Doxygen
 
 jobs:
   pkgdown:
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
