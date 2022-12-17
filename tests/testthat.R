@@ -1,4 +1,4 @@
-if (require(testthat))
+if (require(testthat, quietly = TRUE))
 {
   library(lhs)
   test_check("lhs")
