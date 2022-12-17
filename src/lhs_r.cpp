@@ -310,7 +310,7 @@ RcppExport SEXP geneticLHS_cpp(SEXP /*int*/ n, SEXP /*int*/ k, SEXP /*int*/ pop,
   END_RCPP
 }
 
-RcppExport SEXP get_library_versions()
+RcppExport SEXP get_library_versions(void)
 {
   BEGIN_RCPP
     Rcpp::CharacterVector rresult = Rcpp::CharacterVector(1);

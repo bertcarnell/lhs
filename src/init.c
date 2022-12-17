@@ -11,7 +11,7 @@
 extern SEXP create_galois_field(SEXP);
 extern SEXP create_oalhs(SEXP, SEXP, SEXP, SEXP);
 extern SEXP geneticLHS_cpp(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
-extern SEXP get_library_versions();
+extern SEXP get_library_versions(void);
 extern SEXP improvedLHS_cpp(SEXP, SEXP, SEXP);
 extern SEXP maximinLHS_cpp(SEXP, SEXP, SEXP);
 extern SEXP oa_to_lhs(SEXP, SEXP, SEXP, SEXP);
