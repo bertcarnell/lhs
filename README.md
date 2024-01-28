@@ -1,4 +1,3 @@
-<div>
 <table>
 <tr>
 <td>
@@ -6,14 +5,12 @@
 </td>
 </tr>
 </table>
-</div>
 
-|                                                          <sub>Actions</sub>                                                         |                                                                           <sub>Windows</sub>                                                                          |                                                              <sub>Code Coverage</sub>                                                              |                                      <sub>Website</sub>                                      |                                              <sub>Doxygen</sub>                                             |                               <sub>CRAN Downloads</sub>                              |                                           <sub>CRAN</sub>                                          |
-|:-----------------------------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------:|
+|                                                         <sub>Actions</sub>                                                          |                                                                          <sub>Windows</sub>                                                                           |                                                              <sub>Code Coverage</sub>                                                              |                                      <sub>Website</sub>                                      |                                             <sub>Doxygen</sub>                                              |                              <sub>CRAN Downloads</sub>                               |                                          <sub>CRAN</sub>                                           |
+|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
 | [![R build status](https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg)](https://github.com/bertcarnell/lhs/actions) | [![Build status](https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true)](https://ci.appveyor.com/project/bertcarnell/lhs/branch/master) | [![Coverage status](https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg)](https://codecov.io/github/bertcarnell/lhs?branch=master) | [![](https://img.shields.io/badge/pkgdown-lhs-blue.svg)](https://bertcarnell.github.io/lhs/) | [![](https://img.shields.io/badge/Doxygen-lhs-blue.svg)](https://bertcarnell.github.io/lhs/html/index.html) | [![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs) | [![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs) |
 
-lhs
-===
+# lhs
 
 `lhs` provides a number of methods for creating and augmenting Latin
 Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
@@ -27,8 +24,7 @@ Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
     -   [lhs-revdep](https://hub.docker.com/repository/docker/bertcarnell/lhs_revdep)
         built from [here](https://github.com/bertcarnell/r-debug)
 
-Installation
-------------
+## Installation
 
 You can install the released version of `lhs` from
 [CRAN](https://CRAN.R-project.org) with:
@@ -44,8 +40,7 @@ if (!require(devtools)) install.packages("devtools")
 devtools::install_github("bertcarnell/lhs")
 ```
 
-Quick Start
------------
+## Quick Start
 
 Create a random LHS with 10 samples and 3 variables:
 
@@ -70,14 +65,14 @@ X_imp <- improvedLHS(10, 3, dup = 5)
 X_opt <- optimumLHS(10, 3, maxSweeps = 10, eps = 0.01)
 ```
 
-|     | Method   |  Mean Distance|  Minimum Distance|
+|     | Method   | Mean Distance | Minimum Distance |
 |:----|:---------|--------------:|-----------------:|
-| 6   | optimum  |         0.7289|            0.4598|
-| 2   | genetic  |         0.7190|            0.4059|
-| 4   | maximin  |         0.7246|            0.3975|
-| 5   | improved |         0.7028|            0.3872|
-| 3   | maximin  |         0.7296|            0.3611|
-| 1   | random   |         0.7067|            0.2709|
+| 6   | optimum  |        0.7289 |           0.4598 |
+| 2   | genetic  |        0.7190 |           0.4059 |
+| 4   | maximin  |        0.7246 |           0.3975 |
+| 5   | improved |        0.7028 |           0.3872 |
+| 3   | maximin  |        0.7296 |           0.3611 |
+| 1   | random   |        0.7067 |           0.2709 |
 
 Augment an existing design:
 
@@ -107,8 +102,7 @@ dim(W16)
 
     ## [1] 16  3
 
-Help
-----
+## Help
 
 R-Help Examples of using the LHS package
 
@@ -164,8 +158,7 @@ StackExchange Examples:
 -   [Is it necessary to shuffle X coordinates in Latin hypercube
     Sampling?](https://stats.stackexchange.com/questions/498492/is-it-necessary-to-shuffle-x-coordinates-in-latin-hypercube-sampling-lhc)
 
-Other
------
+## Other
 
 lhs package announcement: [R-pkgs New R-Packages: Triangle and
 LHS](https://stat.ethz.ch/pipermail/r-packages/2006/000715.html)
