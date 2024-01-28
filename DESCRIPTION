@@ -22,5 +22,5 @@ Suggests:
     rmarkdown
 URL: https://github.com/bertcarnell/lhs
 BugReports: https://github.com/bertcarnell/lhs/issues
-RoxygenNote: 7.2.2
+RoxygenNote: 7.3.0
 VignetteBuilder: knitr

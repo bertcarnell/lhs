@@ -18,7 +18,8 @@
 #' @param a a minimum integer
 #' @param b a maximum integer
 #' @param X multiple columns of an LHS sample on (0,1)
-#' @param alpha Dirichlet distribution parameters.  $\alpha > 1$
+#' @param alpha Dirichlet distribution parameters.  All \code{alpha >= 1} The marginal
+#' mean probability of the Dirichlet distribution is given by \code{alpha[i] / sum(alpha)}
 #'
 #' @return the transformed column or columns
 #' @export
@@ -52,9 +53,10 @@ q_integer <- function(p, a, b)
   stopifnot(as.integer(b) == b)
 
   floor(p*(b - a + 1)) + a
+}
 
 #' @rdname quanttrans
-}
+#' @importFrom stats qgamma
 #'
 #' @export
 q_dirichlet <- function(X, alpha)
@@ -70,7 +72,7 @@ q_dirichlet <- function(X, alpha)
   ind <- which(alpha != 0)
   for(i in ind)
   {
-    Y[,i] <- qgamma(X[,i], alpha[i], 1)
+    Y[,i] <- stats::qgamma(X[,i], alpha[i], 1)
   }
   Y <- Y / rowSums(Y)
   return(Y)

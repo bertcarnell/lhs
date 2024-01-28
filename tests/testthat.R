@@ -5,3 +5,4 @@ if (require(testthat, quietly = TRUE))
 } else {
   cat("\ntestthat not available for testing\n")
 }
+cat("\n\n")

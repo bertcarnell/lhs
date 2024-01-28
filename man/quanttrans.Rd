@@ -23,7 +23,8 @@ q_dirichlet(X, alpha)
 
 \item{X}{multiple columns of an LHS sample on (0,1)}
 
-\item{alpha}{Dirichlet distribution parameters.  $\alpha > 1$}
+\item{alpha}{Dirichlet distribution parameters.  All \code{alpha >= 1} The marginal
+mean probability of the Dirichlet distribution is given by \code{alpha[i] / sum(alpha)}}
 }
 \value{
 the transformed column or columns
