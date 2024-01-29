@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.7</span>
       </span>
     </div>
 
@@ -88,14 +88,21 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div>
 <table class="table"><tr>
 <td>
 <img align="left" width="200" height="200" src="logo.svg">
 </td>
 </tr></table>
-</div>
-<table class="table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+</colgroup>
 <thead><tr class="header">
 <th align="center"><sub>Actions</sub></th>
 <th align="center"><sub>Windows</sub></th>
@@ -141,29 +148,29 @@
 </h2>
 <p>You can install the released version of <code>lhs</code> from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"lhs"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"lhs"</span><span class="op">)</span></span></code></pre></div>
 <p>You can also install the development version of <code>lhs</code> from github with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"bertcarnell/lhs"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"bertcarnell/lhs"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="quick-start">Quick Start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
 <p>Create a random LHS with 10 samples and 3 variables:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bertcarnell/lhs" class="external-link">lhs</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## Loading required package: lhs</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bertcarnell/lhs" class="external-link">lhs</a></span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Loading required package: lhs</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1776</span><span class="op">)</span>
-<span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/randomLHS.html">randomLHS</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1776</span><span class="op">)</span></span>
+<span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/randomLHS.html">randomLHS</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <p>Create a design that is more optimal than the random case:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">X_gen</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geneticLHS.html">geneticLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, pop <span class="op">=</span> <span class="fl">100</span>, gen <span class="op">=</span> <span class="fl">5</span>, pMut <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>
-<span class="va">X_max1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/maximinLHS.html">maximinLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, method <span class="op">=</span> <span class="st">"build"</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">X_max2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/maximinLHS.html">maximinLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, method <span class="op">=</span> <span class="st">"iterative"</span>, optimize.on <span class="op">=</span> <span class="st">"result"</span>, eps <span class="op">=</span> <span class="fl">0.01</span>, maxIter <span class="op">=</span> <span class="fl">300</span><span class="op">)</span>
-<span class="va">X_imp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/improvedLHS.html">improvedLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">X_opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/optimumLHS.html">optimumLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, maxSweeps <span class="op">=</span> <span class="fl">10</span>, eps <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">X_gen</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/geneticLHS.html">geneticLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, pop <span class="op">=</span> <span class="fl">100</span>, gen <span class="op">=</span> <span class="fl">5</span>, pMut <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span>
+<span><span class="va">X_max1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/maximinLHS.html">maximinLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, method <span class="op">=</span> <span class="st">"build"</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">X_max2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/maximinLHS.html">maximinLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, method <span class="op">=</span> <span class="st">"iterative"</span>, optimize.on <span class="op">=</span> <span class="st">"result"</span>, eps <span class="op">=</span> <span class="fl">0.01</span>, maxIter <span class="op">=</span> <span class="fl">300</span><span class="op">)</span></span>
+<span><span class="va">X_imp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/improvedLHS.html">improvedLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">X_opt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/optimumLHS.html">optimumLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, maxSweeps <span class="op">=</span> <span class="fl">10</span>, eps <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left"></th>
@@ -212,21 +219,21 @@
 </table>
 <p>Augment an existing design:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span>
-<span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/augmentLHS.html">augmentLHS</a></span><span class="op">(</span><span class="va">Y</span>, <span class="fl">2</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## [1] 12  5</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">Z</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/augmentLHS.html">augmentLHS</a></span><span class="op">(</span><span class="va">Y</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">Z</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 12  5</span></span></code></pre></div>
 <p>Build an orthogonal array LHS:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># a 9 row design is returned because a 10 row design is not possible with these algorithms</span>
-<span class="va">W9</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_oalhs.html">create_oalhs</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, bChooseLargerDesign <span class="op">=</span> <span class="cn">FALSE</span>, bverbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">W9</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## [1] 9 3</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># a 9 row design is returned because a 10 row design is not possible with these algorithms</span></span>
+<span><span class="va">W9</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_oalhs.html">create_oalhs</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, bChooseLargerDesign <span class="op">=</span> <span class="cn">FALSE</span>, bverbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">W9</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 9 3</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># a 16 row design is returned because a 10 row design is not possible with these algorithms</span>
-<span class="va">W16</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_oalhs.html">create_oalhs</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, bChooseLargerDesign <span class="op">=</span> <span class="cn">TRUE</span>, bverbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">W16</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## [1] 16  3</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># a 16 row design is returned because a 10 row design is not possible with these algorithms</span></span>
+<span><span class="va">W16</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_oalhs.html">create_oalhs</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span>, bChooseLargerDesign <span class="op">=</span> <span class="cn">TRUE</span>, bverbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">W16</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 16  3</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="help">Help<a class="anchor" aria-label="anchor" href="#help"></a>
@@ -314,7 +321,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
