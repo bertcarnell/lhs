@@ -39,6 +39,9 @@ multivariate distribution is not unique.  \code{qdirichlet} is also not the inde
 those quantiles do not sum to one.  \code{qdirichlet} is the quantile of the underlying gamma functions, normalized.
 This has been tested to show that \code{qdirichlet} approximates the Dirichlet distribution well and creates the correct marginal means and variances
 when using a Latin hypercube sample
+
+\code{q_factor} divides the [0,1] interval into \code{nlevel(fact)} equal sections
+and assigns values in those sections to the factor level.
 }
 \examples{
 X <- randomLHS(20, 6)

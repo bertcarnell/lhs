@@ -8,7 +8,7 @@ checkLatinHypercube <- function(X)
     return(FALSE)
   if (any(is.na(X)))
     return(FALSE)
-  # check that the matrix is a latin hypercube
+  # check that the matrix is a Latin hypercube
   g <- function(Y)
   {
     # check that this column contains all the cells
@@ -29,8 +29,8 @@ checkOA <- function(X)
 
 encodeOA <- function(X, n)
 {
-  assertthat::assert_that(n > 1 & is.integer(n),
-                          msg = "n must be an integer > 1")
+  stopifnot(n > 1)
+  stopifnot(is.integer(n))
   if (n == 2)
   {
     # 0, 1 => -1, 1

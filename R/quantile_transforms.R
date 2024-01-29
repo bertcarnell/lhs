@@ -11,6 +11,9 @@
 #' This has been tested to show that \code{qdirichlet} approximates the Dirichlet distribution well and creates the correct marginal means and variances
 #' when using a Latin hypercube sample
 #'
+#' \code{q_factor} divides the [0,1] interval into \code{nlevel(fact)} equal sections
+#' and assigns values in those sections to the factor level.
+#'
 #' @rdname quanttrans
 #'
 #' @param p a vector of LHS samples on (0,1)
@@ -33,13 +36,17 @@
 #' Y[,4:6] <- q_dirichlet(X[,4:6], c(2,3,4))
 q_factor <- function(p, fact)
 {
-  stopifnot(is.factor(fact))
-  stopifnot(is.numeric(p))
-  stopifnot(p >= 0 & p <= 1)
+  if (!is.factor(fact)) {
+    stop("fact must be a factor or ordered")
+  }
+  if (!is.numeric(p) | any(p < 0) | any(p > 1)) {
+    stop("p must be a numeric between 0 and 1")
+  }
 
   nlev <- nlevels(fact)
 
-  cut(p, breaks = (0:nlev) / nlev, labels = levels(fact))
+  cut(p, breaks = (0:nlev) / nlev, labels = levels(fact),
+      ordered_result = is.ordered(fact))
 }
 
 #' @rdname quanttrans
@@ -47,10 +54,17 @@ q_factor <- function(p, fact)
 #' @export
 q_integer <- function(p, a, b)
 {
-  stopifnot(is.numeric(p))
-  stopifnot(p >= 0 & p <= 1)
-  stopifnot(as.integer(a) == a)
-  stopifnot(as.integer(b) == b)
+  if (!is.numeric(p) | any(p < 0) | any(p > 1)) {
+    stop("p must be a numeric between 0 and 1")
+  }
+  if (!is.integer(a) | !is.integer(b)) {
+    if (any(as.integer(a) != a) | any(as.integer(b) != b)) {
+      stop("a and b must be integers or numerics that do not require coersion to integers")
+    }
+  }
+  if (b < a) {
+    stop("b must be greater than a")
+  }
 
   floor(p*(b - a + 1)) + a
 }
@@ -62,11 +76,16 @@ q_integer <- function(p, a, b)
 q_dirichlet <- function(X, alpha)
 {
   lena <- length(alpha)
-  stopifnot(is.matrix(X))
+  if (!is.matrix(X)) {
+    stop("X must be a matrix for qdirichlet")
+  }
   sims <- dim(X)[1]
-  stopifnot(dim(X)[2] == lena)
-  if(any(is.na(alpha)) || any(is.na(X)))
+  if (dim(X)[2] != lena) {
+    stop("the number of columns of X must be equal to the length of alpha in qdirichlet")
+  }
+  if(any(is.na(alpha)) || any(is.na(X))) {
     stop("NA values not allowed in qdirichlet")
+  }
 
   Y <- matrix(0, nrow=sims, ncol=lena)
   ind <- which(alpha != 0)
