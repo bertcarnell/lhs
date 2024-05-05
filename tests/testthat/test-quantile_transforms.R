@@ -1,3 +1,7 @@
+# Copyright 2024 Robert Carnell
+
+context("test-quantile_transformations")
+
 test_that("q_factor works", {
   p <- randomLHS(n=5, k=1)
   fact <- factor(LETTERS[1:4])

@@ -1,0 +1,166 @@
+---
+title: "Examples of Correlated and Multivariate Latin hypercubes"
+author: "Rob Carnell"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Examples of Correlated and Multivariate Latin hypercubes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteAuthor{Rob Carnell}
+  %\VignetteKeyword{lhs}
+  %\VignetteKeyword{latin hypercube}
+  %\VignetteKeyword{correlated}
+  %\VignetteKeyword{multivariate}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+source("VignetteCommonCode.R")
+require(lhs)
+```
+
+Generally, Latin hypercubes are drawn in a way that makes the marginal distributions
+for the uniform Latin hypercube and transformed Latin hypercube independent.  In
+some cases researches want to use Latin hypercubes to study problem areas where
+the marginal distributions are correlated or come from a multivariate distribution.
+
+There are a variety of methods to create such a Latin hypercube.  The method used 
+in this package is to draw and transform an uncorrelated hypercube and then
+use the columnwise-pairwise algorithm to adjust to a set of pre-defined conditions.
+A set of predefined conditions are not always achievable.
+
+## Example 1: Simple Correlation
+
+Assumptions:
+
+- $X_1 \sim uniform(2, 4)$
+- $X_2 \sim Normal(1, 3)$
+- $X_3 \sim Exponential(3)$
+- $X_4 \sim LogNormal(1, 1)$
+- $cor(x_1, x_2) = 0.3$
+- $cor(x_3, x_4) = 0.5$
+
+```{r}
+lhs_A <- correlatedLHS(lhs::randomLHS(30, 4),
+                       marginal_transform_function = function(W, ...) {
+                         W[,1] <- qunif(W[,1], 2, 4)
+                         W[,2] <- qnorm(W[,2], 1, 3)
+                         W[,3] <- qexp(W[,3], 3)
+                         W[,4] <- qlnorm(W[,4], 1, 1)
+                         return(W)
+                       },
+                       cost_function = function(W, ...) {
+                         (cor(W[,1], W[,2]) - 0.3)^2 + (cor(W[,3], W[,4]) - 0.5)^2
+                       },
+                       debug = FALSE, maxiter = 1000)
+```
+
+Check that the desired correlations were created:
+
+```{r}
+cor(lhs_A$transformed_lhs[,1:2])[1,2]
+cor(lhs_A$transformed_lhs[,3:4])[1,2]
+```
+
+## Example 2: Dirichlet distribution
+
+Assume that we want $X$ to be Dirichlet distributed with $\alpha = 4,3,2,1$
+
+Therefore the margins of the Dirichlet are:
+
+- $X_1 ~ beta(4, 10-4)$
+- $X_2 ~ beta(3, 10-3)$
+- $X_3 ~ beta(2, 10-2)$
+- $X_4 ~ beta(1, 10-1)$
+
+### Method 1: `correlatedLHS`
+
+```{r}
+lhs_B <- correlatedLHS(lhs::randomLHS(30, 4),
+                       marginal_transform_function = function(W, ...) {
+                         W[,1] <- qbeta(W[,1], 4, 6)
+                         W[,2] <- qbeta(W[,2], 3, 7)
+                         W[,3] <- qbeta(W[,3], 2, 8)
+                         W[,4] <- qbeta(W[,4], 1, 9)
+                         return(W)
+                       },
+                       cost_function = function(W, ...) {
+                         sum((apply(W, 1, sum) - 1)^2)
+                       },
+                       debug = FALSE,
+                       maxiter = 1000)
+```
+
+Check properties
+
+```{r}
+range(apply(lhs_B$transformed_lhs, 1, sum)) # close to 1
+apply(lhs_B$transformed_lhs, 2, mean) # close to 4/10, 3/10, 2/10, 1/10
+```
+
+### Method 2: `q_dirichlet`
+
+```{r}
+lhs_B <- lhs::q_dirichlet(lhs::randomLHS(30, 4), c(4,3,2,1))
+```
+
+Check properties
+
+```{r}
+all(abs(apply(lhs_B, 1, sum) - 1) < 1E-9) # all exactly 1
+apply(lhs_B, 2, mean) # close to 4/10, 3/10, 2/10, 1/10
+```
+
+## Example 3: Rejection Sample 
+
+Assumptions:
+
+- $X_1 \sim uniform(1, 4)$
+- $X_2 \sim uniform(10^{-6}, 2)$
+- $X_3 \sim uniform(2, 6)$
+- $X_4 \sim uniform(10^{-6}, 0.1)$
+- $lower < \prod_{i=1}^4 X_i < upper$
+
+First build an empirical sample using rejection sampling
+
+```{r}
+set.seed(3803)
+N <- 100000
+
+reject_samp <- data.frame(
+  v1 = runif(N, 1, 4),
+  v2 = runif(N, 1E-6, 2),
+  v3 = runif(N, 2, 6),
+  v4 = runif(N, 1E-6, 0.1)
+)
+
+p <- with(reject_samp, v1*v2*v3*v4)
+ind <- which(p < 1 & p > 0.3)
+reject_samp <- reject_samp[ind,]
+```
+
+Now build the correlated sample using the reject sample as an empirical
+distribution function and the boundaries as a cost function.
+
+```{r}
+lhs_C <- correlatedLHS(lhs::randomLHS(30, 4),
+                       marginal_transform_function = function(W, empirical_sample, ...) {
+                         res <- W
+                         for (i in 1:ncol(W)) {
+                           res[,i] <- quantile(empirical_sample[,i], probs = W[,i])
+                         }
+                         return(res)
+                       },
+                       cost_function = function(W, ...) {
+                         p <- W[,1]*W[,2]*W[,3]*W[,4]
+                         pp <- length(which(p > 0.3 & p < 1)) / nrow(W)
+                         return(1-pp)
+                       },
+                       debug = FALSE,
+                       maxiter = 10000,
+                       empirical_sample = reject_samp)
+```

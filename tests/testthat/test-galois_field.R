@@ -1,3 +1,7 @@
+# Copyright 2024 Robert Carnell
+
+context("test-galois_field")
+
 test_that("Galois Fields Work", {
   test_field <- function(q, p, n)
   {

@@ -76,7 +76,7 @@ q_integer <- function(p, a, b)
 q_dirichlet <- function(X, alpha)
 {
   lena <- length(alpha)
-  if (!is.matrix(X)) {
+  if (!is.matrix(X) & !is.data.frame(X)) {
     stop("X must be a matrix for qdirichlet")
   }
   sims <- dim(X)[1]
