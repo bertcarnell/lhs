@@ -13,6 +13,9 @@
     <loc>/articles/augment_lhs.html</loc>
   </url>
   <url>
+    <loc>/articles/correlated_lhs.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
   </url>
   <url>
@@ -644,6 +647,9 @@
   </url>
   <url>
     <loc>/reference/augmentLHS.html</loc>
+  </url>
+  <url>
+    <loc>/reference/correlatedLHS.html</loc>
   </url>
   <url>
     <loc>/reference/createAddelKemp.html</loc>
