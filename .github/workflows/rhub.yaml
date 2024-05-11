@@ -61,7 +61,7 @@ jobs:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
       - name: Set Additional Check Arguments
-      - run: |
+        run: |
           if [ ${{ matrix.config.label }} == 'nosuggests' ]; then
             export CHECK_ARGS='$CHECK_ARGS --ignore-vignettes'
             export BUILD_ARGS='$BUILD_ARGS --no-build-vignettes'
