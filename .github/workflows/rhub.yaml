@@ -15,7 +15,7 @@ on:
       config:
         description: 'A comma separated list of R-hub platforms to use.'
         type: string
-        default: 'linux,windows,macos,macos-arm64, atlas,clang-asan,clang16,clang17,clang18,dnottest,gcc13,intel,mkl,nold,nosuggests,ubuntu-clang,ubuntu-gcc12,ubuntu-next,ubuntu-release,valgrind'
+        default: 'linux,windows,macos,macos-arm64,atlas,clang-asan,clang16,clang17,clang18,donttest,gcc13,intel,mkl,nold,nosuggests,ubuntu-clang,ubuntu-gcc12,ubuntu-next,ubuntu-release,valgrind'
       name:
         description: 'Run name. You can leave this empty now.'
         type: string
