@@ -63,8 +63,8 @@ jobs:
       - name: Set Additional Check Arguments
         run: |
           if [ ${{ matrix.config.label }} == 'nosuggests' ]; then
-            export CHECK_ARGS='$CHECK_ARGS --ignore-vignettes'
-            export BUILD_ARGS='$BUILD_ARGS --no-build-vignettes'
+            export CHECK_ARGS="${CHECK_ARGS} --ignore-vignettes"
+            export BUILD_ARGS="${BUILD_ARGS} --no-build-vignettes"
           fi
           echo $CHECK_ARGS
           echo $BUILD_ARGS
