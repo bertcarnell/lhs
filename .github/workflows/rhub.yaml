@@ -60,13 +60,12 @@ jobs:
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
-      - name: Test Set
+      - name: Test Set if NoSuggests
+        if: ${{ matrix.config.name == 'nosuggests' }}
+        # CHECK_ARGS from https://github.com/r-hub/containers/blob/main/containers/nosuggests/Dockerfile
         run: |
-          print(Sys.getenv("CHECK_ARGS"))
-          print(Sys.getenv("BUILD_ARGS"))
-          Sys.setenv(CHECK_ARGS = paste0(Sys.getenv("CHECK_ARGS"), " ", "--ignore-vignettes"))
-          Sys.setenv(BUILD_ARGS = paste0(Sys.getenv("BUILD_ARGS"), " ", "--no-build-vignettes"))
-        shell: Rscript {0}
+          export CHECK_ARGS="--extra-arch --ignore-vignettes"
+          export BUILD_ARGS="--no-build-vignettes"
       - name: Test Get
         run: |
           print(Sys.getenv("CHECK_ARGS"))

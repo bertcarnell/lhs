@@ -18,6 +18,7 @@ on:
       - '.github/workflows/rhub-check.yml'
       - '.github/workflows/pkgdown.yml'
       - '.github/workflows/build_readme.yaml'
+      - '.github/workflows/rhub.yaml'
     branches:
       - master
     tags:
