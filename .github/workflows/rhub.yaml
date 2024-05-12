@@ -61,7 +61,7 @@ jobs:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
       - name: Test Set if NoSuggests
-        if: ${{ matrix.config.label== 'nosuggests' }}
+        if: ${{ matrix.config.label == 'nosuggests' }}
         # CHECK_ARGS from https://github.com/r-hub/containers/blob/main/containers/nosuggests/Dockerfile
         run: |
           export CHECK_ARGS="--extra-arch --ignore-vignettes"
