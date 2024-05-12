@@ -62,15 +62,15 @@ jobs:
           job-config: ${{ matrix.config.job-config }}
       - name: Test Set
         run: |
-          print(Sys.getenv("BUILD_ARGS"))
           print(Sys.getenv("CHECK_ARGS"))
-          Sys.setenv(paste0(Sys.getenv("CHECK_ARGS"), " ", "--ignore-vignettes"))
-          Sys.setevn(paste0(Sys.getenv("BUILD_ARGS"), " ", "--no-build-vignettes"))
+          print(Sys.getenv("BUILD_ARGS"))
+          Sys.setenv(CHECK_ARGS = paste0(Sys.getenv("CHECK_ARGS"), " ", "--ignore-vignettes"))
+          Sys.setevn(BUILD_ARGS = paste0(Sys.getenv("BUILD_ARGS"), " ", "--no-build-vignettes"))
         shell: Rscript {0}
       - name: Test Get
         run: |
-          print(Sys.getenv("BUILD_ARGS"))
           print(Sys.getenv("CHECK_ARGS"))
+          print(Sys.getenv("BUILD_ARGS"))
         shell: Rscript {0}
       - uses: r-hub/actions/run-check@v1
         with:
