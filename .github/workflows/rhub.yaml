@@ -65,7 +65,7 @@ jobs:
           print(Sys.getenv("CHECK_ARGS"))
           print(Sys.getenv("BUILD_ARGS"))
           Sys.setenv(CHECK_ARGS = paste0(Sys.getenv("CHECK_ARGS"), " ", "--ignore-vignettes"))
-          Sys.setevn(BUILD_ARGS = paste0(Sys.getenv("BUILD_ARGS"), " ", "--no-build-vignettes"))
+          Sys.setenv(BUILD_ARGS = paste0(Sys.getenv("BUILD_ARGS"), " ", "--no-build-vignettes"))
         shell: Rscript {0}
       - name: Test Get
         run: |
