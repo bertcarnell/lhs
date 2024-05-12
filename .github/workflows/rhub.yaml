@@ -60,14 +60,18 @@ jobs:
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
-      - name: Set Additional Check Arguments
+      - name: Test Set
         run: |
-          if [ ${{ matrix.config.label }} == 'nosuggests' ]; then
-            export CHECK_ARGS="${CHECK_ARGS} --ignore-vignettes"
-            export BUILD_ARGS="${BUILD_ARGS} --no-build-vignettes"
-          fi
-          echo $CHECK_ARGS
-          echo $BUILD_ARGS
+          print(Sys.getenv("BUILD_ARGS"))
+          print(Sys.getenv("CHECK_ARGS"))
+          Sys.setenv(paste0(Sys.getenv("CHECK_ARGS"), " ", "--ignore-vignettes"))
+          Sys.setevn(paste0(Sys.getenv("BUILD_ARGS"), " ", "--no-build-vignettes"))
+        shell: Rscript {0}
+      - name: Test Get
+        run: |
+          print(Sys.getenv("BUILD_ARGS"))
+          print(Sys.getenv("CHECK_ARGS"))
+        shell: Rscript {0}
       - uses: r-hub/actions/run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
