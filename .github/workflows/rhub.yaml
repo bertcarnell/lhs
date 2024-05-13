@@ -67,8 +67,8 @@ jobs:
         run: |
           echo $CHECK_ARGS
           echo $BUILD_ARGS
-          export CHECK_ARGS="--extra-arch --ignore-vignettes"
-          export BUILD_ARGS="--no-build-vignettes"
+          echo "CHECK_ARGS='--extra-arch --ignore-vignettes'" >> $GITHUB_ENV
+          echo "BUILD_ARGS='--no-build-vignettes'" >> $GITHUB_ENV
           echo $CHECK_ARGS
           echo $BUILD_ARGS
       - name: Test get
