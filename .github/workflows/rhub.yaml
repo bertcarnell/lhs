@@ -64,10 +64,11 @@ jobs:
           job-config: ${{ matrix.config.job-config }}
       - name: Test setting Variables
         if: matrix.config.label == 'nosuggests'
+        # --extra-arch must be second
         run: |
           echo $CHECK_ARGS
           echo $BUILD_ARGS
-          echo "CHECK_ARGS='--extra-arch --ignore-vignettes'" >> $GITHUB_ENV
+          echo "CHECK_ARGS='--ignore-vignettes --extra-arch'" >> $GITHUB_ENV
           echo "BUILD_ARGS='--no-build-vignettes'" >> $GITHUB_ENV
           echo $CHECK_ARGS
           echo $BUILD_ARGS
