@@ -68,10 +68,8 @@ jobs:
         run: |
           echo $CHECK_ARGS
           echo $BUILD_ARGS
-          echo "CHECK_ARGS=--ignore-vignettes\ --extra-arch" >> $GITHUB_ENV
+          echo "CHECK_ARGS=--ignore-vignettes --extra-arch" >> $GITHUB_ENV
           echo "BUILD_ARGS=--no-build-vignettes" >> $GITHUB_ENV
-          echo $CHECK_ARGS
-          echo $BUILD_ARGS
       - name: Test get
         if: matrix.config.label == 'nosuggests'
         run: |
