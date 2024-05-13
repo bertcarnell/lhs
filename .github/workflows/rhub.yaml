@@ -62,19 +62,18 @@ jobs:
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
-      - name: Test setting Variables
+      - name: Environment Variable for nosuggests
         if: matrix.config.label == 'nosuggests'
         # --extra-arch must be second
+        # https://github.com/r-hub/containers/blob/main/containers/nosuggests/Dockerfile
         run: |
-          echo $CHECK_ARGS
-          echo $BUILD_ARGS
           echo "CHECK_ARGS=--ignore-vignettes --extra-arch" >> $GITHUB_ENV
           echo "BUILD_ARGS=--no-build-vignettes" >> $GITHUB_ENV
-      - name: Test get
-        if: matrix.config.label == 'nosuggests'
+      - name: Environment Variable for atlas
+        if: matrix.config.label == 'atlas'
+        # https://rstudio.github.io/r-manuals/r-ints/Tools.html
         run: |
-          echo $CHECK_ARGS
-          echo $BUILD_ARGS
+          echo "_R_CHECK_COMPILATION_FLAGS_=false" >> $GITHUB_ENV
       - uses: r-hub/actions/run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
