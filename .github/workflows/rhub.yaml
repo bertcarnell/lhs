@@ -74,8 +74,8 @@ jobs:
         # https://rstudio.github.io/r-manuals/r-ints/Tools.html
         # atlas also seems to be missing libsvml.so from intel-openapi-runtime-blas
         run: |
-          apt update
-          apt install -y intel-openapi-runtime-libs
+          apt-get update
+          apt-get install -y intel-openapi-runtime-libs
           echo "_R_CHECK_COMPILATION_FLAGS_=false" >> $GITHUB_ENV
       - uses: r-hub/actions/run-check@v1
         with:
