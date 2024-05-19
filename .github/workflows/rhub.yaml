@@ -58,10 +58,10 @@ jobs:
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
-      - name: Ensure gmp is installed for DoE.base
+      - name: Try to install libsvml.so
         if: matrix.config.label == 'atlas'
         run: |
-          yum install -y gmp-devel
+          yum install -y clang15-libs
       - uses: r-hub/actions/setup-deps@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
