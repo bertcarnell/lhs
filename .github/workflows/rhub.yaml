@@ -58,6 +58,10 @@ jobs:
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
+      - name: Ensure gmp is installed for DoE.base
+        if: matrix.config.label == 'atlas'
+        run: |
+          yum install -y gmp-devel
       - uses: r-hub/actions/setup-deps@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
@@ -69,14 +73,6 @@ jobs:
         run: |
           echo "CHECK_ARGS=--ignore-vignettes --extra-arch" >> $GITHUB_ENV
           echo "BUILD_ARGS=--no-build-vignettes" >> $GITHUB_ENV
-      - name: Environment Variable for atlas
-        if: matrix.config.label == 'atlas'
-        # https://rstudio.github.io/r-manuals/r-ints/Tools.html
-        # atlas also seems to be missing libsvml.so from intel-openapi-runtime-blas
-        run: |
-          dnf update
-          dnf install -y gcc
-          echo "_R_CHECK_COMPILATION_FLAGS_=false" >> $GITHUB_ENV
       - uses: r-hub/actions/run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
