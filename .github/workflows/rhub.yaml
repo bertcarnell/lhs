@@ -74,6 +74,11 @@ jobs:
         # https://rstudio.github.io/r-manuals/r-ints/Tools.html
         run: |
           echo "_R_CHECK_COMPILATION_FLAGS_=false" >> $GITHUB_ENV
+      - name: Environment variable for ASAN
+        if: matrix.config.label == 'asan'
+        # https://github.com/llvm/llvm-project/issues/59432
+        run: |
+          echo "ASAN_OPTIONS=alloc_dealloc_mismatch=0" >> $GITHUB_ENV
       - uses: r-hub/actions/run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}

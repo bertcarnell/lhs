@@ -21,10 +21,15 @@ test_that("createBose works", {
   expect_equal(nrow(B), 5^2)
   expect_equal(ncol(B), 4)
 
+  # Error: q, ncol, and n should be integers
   expect_error(.Call("oa_type1", "bose", 3, 3L, FALSE))
+  # Error: type should be a character and bRandom should be a logical
   expect_error(.Call("oa_type1", 0, 3L, 3L, FALSE))
+  # Error: q, ncol, and bRandom can only be of length 1
   expect_error(.Call("oa_type1", "bose", c(3L, 4L), 3L, FALSE))
+  # Error: q, ncol, and bRandom are not permitted to be NA
   expect_error(.Call("oa_type1", "bose", as.integer(NA), 3L, FALSE))
+  # Error: bob is an Unrecognized orthogonal array algorithm
   expect_error(.Call("oa_type1", "bob", 3L, 3L, FALSE))
 })
 
@@ -47,6 +52,11 @@ test_that("createBoseBush works", {
   expect_equal(nrow(B), 2*8^2)
   expect_equal(ncol(B), 3)
 
+  # Warning message:
+  # In createBoseBush(8, 17) :
+  #  Warning: The Bose-Bush construction with ncol = 2q+1
+  # has a defect.  While it is still an OA(2q^2,2q+1,q,2),
+  # there exist some pairs of rows that agree in three columns.
   expect_warning({
     B <- createBoseBush(8, 17)
   })
