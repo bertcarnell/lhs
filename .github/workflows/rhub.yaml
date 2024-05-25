@@ -68,7 +68,7 @@ jobs:
         if: matrix.config.label == 'atlas' || matrix.config.label == 'gcc13' || matrix.config.label == 'mkl'
         run: |
           yum install -y gmp-devel pandoc texlive
-          Rscript -e 'install.packages(c("knitr", "rmarkdown", "Rcpp", "testthat", "DoE.base"), repos = "https://cran.case.edu")'
+          Rscript -e 'install.packages(c("rcmdcheck", "knitr", "rmarkdown", "Rcpp", "testthat", "DoE.base"), repos = "https://cran.case.edu")'
       - name: Environment Variable for nosuggests
         if: matrix.config.label == 'nosuggests'
         # --extra-arch must be second
@@ -79,8 +79,11 @@ jobs:
       - name: Environment variable for ASAN
         if: matrix.config.label == 'clang-asan'
         # https://github.com/llvm/llvm-project/issues/59432
+        # Also found memory errors in the font libraries when building vignettes
         run: |
           echo "ASAN_OPTIONS=alloc_dealloc_mismatch=0" >> $GITHUB_ENV
+          echo "CHECK_ARGS=--ignore-vignettes --extra-arch" >> $GITHUB_ENV
+          echo "BUILD_ARGS=--no-build-vignettes" >> $GITHUB_ENV
       - uses: r-hub/actions/run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
