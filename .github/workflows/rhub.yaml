@@ -59,13 +59,13 @@ jobs:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
       - uses: r-hub/actions/setup-deps@v1
-        if: matrix.config.label != 'atlas' & matrix.config.label != 'gcc13' & matrix.config.label != 'mkl'
+        if: matrix.config.label != 'atlas' && matrix.config.label != 'gcc13' && matrix.config.label != 'mkl'
         with:
           token: ${{ secrets.RHUB_TOKEN }}
           job-config: ${{ matrix.config.job-config }}
           pak-version: stable
       - name: cachem replacement
-        if: matrix.config.label == 'atlas' | matrix.config.label == 'gcc13' | matrix.config.label == 'mkl'
+        if: matrix.config.label == 'atlas' || matrix.config.label == 'gcc13' || matrix.config.label == 'mkl'
         run: |
           yum install -y gmp-devel pandoc texlive
           Rscript -e 'install.packages(c("knitr", "rmarkdown", "Rcpp", "testthat", "DoE.base"), repos = "https://cran.case.edu")'
