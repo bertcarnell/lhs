@@ -69,11 +69,6 @@ jobs:
         run: |
           echo "CHECK_ARGS=--ignore-vignettes --extra-arch" >> $GITHUB_ENV
           echo "BUILD_ARGS=--no-build-vignettes" >> $GITHUB_ENV
-      - name: Environment Variable for atlas
-        if: matrix.config.label == 'atlas'
-        # https://rstudio.github.io/r-manuals/r-ints/Tools.html
-        run: |
-          echo "_R_CHECK_COMPILATION_FLAGS_=false" >> $GITHUB_ENV
       - name: Environment variable for ASAN
         if: matrix.config.label == 'asan'
         # https://github.com/llvm/llvm-project/issues/59432
