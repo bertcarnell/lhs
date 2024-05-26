@@ -84,13 +84,9 @@ jobs:
           echo "BUILD_ARGS=--no-build-vignettes" >> $GITHUB_ENV
       - name: Bad CXXFLAGS for atlas
         if: matrix.config.label == 'atlas'
+        # throws a warning on non-portable compilation flags
         run: |
-          echo "CXXFLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
-          echo "CXX11FLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
-          echo "CXX14FLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
-          echo "CXX17FLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
-          echo "CXX20FLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
-          echo "CXX23FLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
+          echo "_R_CHECK_COMPILATION_FLAGS_=false" >> $GITHUB_ENV
       - uses: r-hub/actions/run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}

@@ -74,7 +74,7 @@ test_that("degenerate LHS problem is fixed", {
 })
 
 # in version 1.0.1 and prior, this did not necessarily cause a segfault
-#    in all attempts.  It was a relatively random occurence
+#    in all attempts.  It was a relatively random occurrence
 test_that("Segfault does not occur with gctorture", {
   for (i in 1:20)
   {

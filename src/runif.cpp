@@ -2,26 +2,26 @@
  * @file runif.cpp
  * @author Robert Carnell
  * @copyright Copyright (c) 2013, Robert Carnell
- * 
+ *
  * License:  This file may be freely used and shared according to the original license.
- * 
+ *
  * Reference:
  * <ul><li><a href="http://lib.stat.cmu.edu/designs/">Statlib Designs</a></li>
  * <li><a href="http://lib.stat.cmu.edu/designs/oa.c">Owen's Orthogonal Array Algorithms</a></li></ul>
- * 
+ *
  * Original Header:
  * <blockquote>
  * These programs construct and manipulate orthogonal arrays.  They were prepared by
- * 
+ *
  * - Art Owen
  * - Department of Statistics
  * - Sequoia Hall
  * - Stanford CA 94305
- * 
- * They may be freely used and shared.  This code comes 
+ *
+ * They may be freely used and shared.  This code comes
  * with no warranty of any kind.  Use it at your own
  * risk.
- * 
+ *
  * I thank the Semiconductor Research Corporation and
  * the National Science Foundation for supporting this
  * work.
@@ -32,24 +32,22 @@
 
 namespace oacpp
 {
-	RUnif::RUnif() : RUnif(1, 2, 3, 4)
-	{
-	}
+  RUnif::RUnif() : RUnif(1, 2, 3, 4)
+  {
+  }
 
-    RUnif::RUnif(int is, int js, int ks, int ls)
-    {
-		m_jent = m_i = m_j = m_k = m_l = ip = jp = 0;
-		c = cd = cm = 0.0;
-        u = std::vector<double>(SEED_VECTOR_LENGTH);
-        u.assign(SEED_VECTOR_LENGTH, 0.0);
-        RUnif::seed(is, js, ks, ls);
-	}
-    
+  RUnif::RUnif(int is, int js, int ks, int ls)
+  {
+    m_jent = m_i = m_j = m_k = m_l = ip = jp = 0;
+    c = cd = cm = 0.0;
+    RUnif::seed(is, js, ks, ls);
+  }
+
     void RUnif::seed(SeedSet & seedSet)
     {
         RUnif::seed(seedSet.is, seedSet.js, seedSet.ks, seedSet.ls);
     }
-    
+
     int RUnif::mod(int a, int b)
     {
         int ans;
@@ -98,7 +96,7 @@ namespace oacpp
             ostringstream_runtime_error(msg);
         }
     }
-    
+
     SeedSet RUnif::getSeedSet()
     {
         SeedSet s = SeedSet();
