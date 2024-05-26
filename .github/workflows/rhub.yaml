@@ -86,6 +86,11 @@ jobs:
         if: matrix.config.label == 'atlas'
         run: |
           echo "CXXFLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
+          echo "CXX11FLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
+          echo "CXX14FLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
+          echo "CXX17FLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
+          echo "CXX20FLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
+          echo "CXX23FLAGS=-g -O2 -Wall -pedantic -mtune=native -fexceptions -fstack-protector-strong -fstack-clash-protection -fcf-protection" >> $GITHUB_ENV
       - uses: r-hub/actions/run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
