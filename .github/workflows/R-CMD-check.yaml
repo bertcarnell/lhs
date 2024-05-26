@@ -55,59 +55,33 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: R setup-pandoc@master
+      - name: Setup R
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: ${{ matrix.config.r }}
 
-      - name: Pandoc setup-pandoc@master
-        uses: r-lib/actions/setup-pandoc@v2
-
-      - name: Query dependencies
-        run: |
-          install.packages('remotes')
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
-          writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
-        shell: Rscript {0}
-
-      - name: Cache R packages
-        if: runner.os != 'Windows'
-        uses: actions/cache@v3
+      - name: Setup R dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
-          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
-
-      - name: Install system dependencies
-        if: runner.os == 'Linux'
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          Rscript -e "remotes::install_github('r-hub/sysreqs')"
-          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sudo -s eval "$sysreqs"
-          sudo apt-get install libcurl4-openssl-dev
-
-      - name: Install dependencies
-        run: |
-          remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("rcmdcheck")
-        shell: Rscript {0}
+          extra-packages: any::rcmdcheck
+          needs: check
 
       - name: Check Standard
+        uses: r-lib/actions/check-r-package@v2
         if: ( matrix.config.os == 'ubuntu-latest' && matrix.config.r == 'devel' ) == false
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
           _R_CHECK_LENGTH_1_CONDITION_: true
           _R_CHECK_LENGTH_0_LOGIC2_: true
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
-        shell: Rscript {0}
+        with:
+          args: 'c("--no-manual", "--as-cran")'
 
       - name: Install Valgrind (Linux-rdevel only)
         if: matrix.config.os == 'ubuntu-latest' && matrix.config.r == 'devel'
         run: sudo apt-get install valgrind
 
       - name: Check Valgrind (Linux-rdevel only)
+        uses: r-lib/actions/check-r-packages@v2
         if: matrix.config.os == 'ubuntu-latest' && matrix.config.r == 'devel'
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
@@ -116,8 +90,8 @@ jobs:
           # https://www.stats.ox.ac.uk/pub/bdr/memtests/README.txt
           RJAVA_JVM_STACK_WORKAROUND: 0
           R_DONT_USE_TK: true
-        run: rcmdcheck::rcmdcheck(args = c("--no-manual", "--use-valgrind"), error_on = "warning", check_dir = "check")
-        shell: Rscript {0}
+        with:
+          args: 'c("--no-manual", "--as-cran")'
 
       - name: Code Coverage
         if: matrix.config.os == 'windows-latest' && matrix.config.r == 'release'
@@ -125,10 +99,3 @@ jobs:
           install.packages("covr")
           covr::codecov(line_exclusions=list("src/COrthogonalArray.cpp", "src/COrthogonalArray.h", "src/CRandom.h", "src/RStandardUniform.h", "src/ak3.cpp", "src/akconst.cpp", "src/akn.cpp", "src/construct.cpp", "src/GaloisField.h", "src/GaloisField.cpp", "src/geneticLHS.cpp", "src/improvedLHS.cpp", "src/matrix.h", "src/maximinLHS.cpp", "src/oa.cpp", "src/oaLHS.cpp", "src/oaLHSUtility.h", "src/optSeededLHS.cpp", "src/optimumLHS.cpp", "src/order.h", "src/primes.cpp", "src/randomLHS.cpp", "src/runif.cpp", "src/runif.h", "src/rutils.cpp", "src/rutils.h", "src/utilityLHS.cpp", "src/utilityLHS.h", "src/xtn.h", "src/bclibVersion.h", "src/oalibVersion.h", "src/lhslibVersion.h", "src/OACommonDefines.h"))
         shell: Rscript {0}
-
-      - name: Upload check results
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
-          path: check

@@ -77,7 +77,6 @@ jobs:
       - name: Environment variable for ASAN
         if: matrix.config.label == 'clang-asan'
         # https://github.com/llvm/llvm-project/issues/59432
-        # Also found memory errors in the font libraries when building vignettes
         run: |
           echo "ASAN_OPTIONS=alloc_dealloc_mismatch=0" >> $GITHUB_ENV
           echo "CHECK_ARGS=--ignore-vignettes --extra-arch" >> $GITHUB_ENV
@@ -85,8 +84,10 @@ jobs:
       - name: Bad CXXFLAGS for atlas
         if: matrix.config.label == 'atlas'
         # throws a warning on non-portable compilation flags
+        # Can's set _R_CHECK_COMPILATION_FLAGS_=FALSE because --as-cran resets it
+        # instead, allow for the flags that are a problem
         run: |
-          echo "_R_CHECK_COMPILATION_FLAGS_=FALSE" >> $GITHUB_ENV
+          echo '_R_CHECK_COMPILATION_FLAGS_KNOWN_="-Werror=format-security -Werror=implicit-function-declaration -Wno-ignored-attributes -Wno-parentheses -Wp,-D_FORTIFY_SOURCE=3"' >> $GITHUB_ENV
       - uses: r-hub/actions/run-check@v1
         with:
           token: ${{ secrets.RHUB_TOKEN }}
