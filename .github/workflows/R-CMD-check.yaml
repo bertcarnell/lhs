@@ -81,7 +81,7 @@ jobs:
         run: sudo apt-get install valgrind
 
       - name: Check Valgrind (Linux-rdevel only)
-        uses: r-lib/actions/check-r-packages@v2
+        uses: r-lib/actions/check-r-package@v2
         if: matrix.config.os == 'ubuntu-latest' && matrix.config.r == 'devel'
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
