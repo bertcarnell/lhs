@@ -28,12 +28,13 @@
 #' @export
 #'
 #' @examples
-#' X <- randomLHS(20, 6)
-#' Y <- X
+#' X <- randomLHS(20, 7)
+#' Y <- as.data.frame(X)
 #' Y[,1] <- qnorm(X[,1], 2, 0.5)
 #' Y[,2] <- q_factor(X[,2], factor(LETTERS[c(1,3,5,7,8)]))
 #' Y[,3] <- q_integer(X[,3], 5, 17)
 #' Y[,4:6] <- q_dirichlet(X[,4:6], c(2,3,4))
+#' Y[,7] <- q_factor(X[,7], ordered(LETTERS[c(1,3,5,7,8)]))
 q_factor <- function(p, fact)
 {
   if (!is.factor(fact)) {
