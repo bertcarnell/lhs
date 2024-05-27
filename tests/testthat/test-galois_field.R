@@ -160,3 +160,40 @@ test_that("Roots", {
   check_roots(create_galois_field(9))
   check_roots(create_galois_field(8))
 })
+
+test_that("poly_prod", {
+  gf <- create_galois_field(4)
+  # poly_prod(gf$p, gf$n, gf$xton, gf$poly[1,], gf$poly[2,])
+  # n != length(xton)
+  expect_error(poly_prod(gf$p, gf$n, gf$xton[1], gf$poly[1,], gf$poly[2,]))
+  # n != length(p1)
+  expect_error(poly_prod(gf$p, gf$n, gf$xton, gf$poly[1,1], gf$poly[2,]))
+  # n != length(p2)
+  expect_error(poly_prod(gf$p, gf$n, gf$xton, gf$poly[1,], gf$poly[2,1]))
+  # entries of polynomials > p
+  expect_error(poly_prod(gf$p, gf$n, gf$xton, c(7,7), gf$poly[2,]))
+  # entries of polynomials < 0
+  expect_error(poly_prod(gf$p, gf$n, gf$xton, c(-7,-7), gf$poly[2,]))
+})
+
+test_that("poly_sum", {
+  gf <- create_galois_field(4)
+  # n != length(p1)
+  expect_error(poly_sum(gf$p, gf$n, gf$poly[1,1], gf$poly[2,]))
+  # n != length(p2)
+  expect_error(poly_sum(gf$p, gf$n, gf$poly[1,], gf$poly[2,1]))
+  # entries of polynomials > p
+  expect_error(poly_sum(gf$p, gf$n, c(7,7), gf$poly[2,]))
+  # entries of polynomials < 0
+  expect_error(poly_sum(gf$p, gf$n, c(-7,-7), gf$poly[2,]))
+})
+
+test_that("poly2int", {
+  gf <- create_galois_field(4)
+  # n != length(poly)
+  expect_error(poly2int(gf$p, gf$n, gf$poly[1,1]))
+  # entries of polynomials > p
+  expect_error(poly2int(gf$p, gf$n, c(7,7)))
+  # entries of polynomials < 0
+  expect_error(poly2int(gf$p, gf$n, c(-7,-7)))
+})

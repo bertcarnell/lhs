@@ -84,7 +84,7 @@ jobs:
       - name: Bad CXXFLAGS for atlas
         if: matrix.config.label == 'atlas'
         # throws a warning on non-portable compilation flags
-        # Can's set _R_CHECK_COMPILATION_FLAGS_=FALSE because --as-cran resets it
+        # Can't set _R_CHECK_COMPILATION_FLAGS_=FALSE because --as-cran resets it
         # instead, allow for the flags that are a problem
         run: |
           echo '_R_CHECK_COMPILATION_FLAGS_KNOWN_="-Werror=format-security -Werror=implicit-function-declaration -Wno-ignored-attributes -Wno-parentheses -Wp,-D_FORTIFY_SOURCE=3"' >> $GITHUB_ENV
