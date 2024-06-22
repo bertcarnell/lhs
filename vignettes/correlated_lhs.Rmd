@@ -105,7 +105,7 @@ apply(lhs_B$transformed_lhs, 2, mean) # close to 4/10, 3/10, 2/10, 1/10
 ### Method 2: `q_dirichlet`
 
 ```{r}
-lhs_B <- lhs::q_dirichlet(lhs::randomLHS(30, 4), c(4,3,2,1))
+lhs_B <- lhs::qdirichlet(lhs::randomLHS(30, 4), c(4,3,2,1))
 ```
 
 Check properties

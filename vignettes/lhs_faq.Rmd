@@ -15,11 +15,12 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 require(lhs)
+set.seed(2893)
 ```
 
 ## Question 1
 
-I am looking for a package which gives me latin hyper cube samples 
+I am looking for a package which gives me Latin hypercube samples 
 from a grid of values: 
 
 ```{r q1}
@@ -51,74 +52,25 @@ head(Y)
 ```
 
 If you want integers only in the sample, 
-then we must be careful about what we mean by a Latin hypercube 
-sample.  If you wanted exactly 3 points, then you could divide up the range 
-[1,10] into three almost equal parts and sample from `1:3`, `4:6`, and `7:10`.  The 
-problem is that it wouldn't be uniform sample across the range. (7 would be 
-sampled less often than 2 for example) 
-
-To do a Latin hypercube sample on the intgers, you should have a 
-number of integers on the margins which have the number of points sampled as a 
-common factor.  For example if you sample 3 points from `1:9`, and `21:32` then 
-you could sample as follows: 
+then you can use `qinteger`.
 
 ```{r a12}
-a <- c(sample(1:3,1), sample(4:6, 1), sample(7:9, 1)) 
-b <- c(sample(21:24,1), sample(25:28, 1), sample(29:32,1))
-```
+X <- randomLHS(3, 2)
+X[,1] <- qinteger(X[,1], 1, 10)
+X[,2] <- qinteger(X[,2], 20, 30)
 
-and then randomly permute the entries of `a` and `b`. 
-
-Or more generally, take `n` samples from the list of integer groups: 
-
-```{r a13}
-integerLHS <- function(n, intGroups) 
-{ 
-  stopifnot(all(lapply(intGroups, function(X) length(X) %% n) == 0)) 
-  stopifnot(require(lhs)) 
-  stopifnot(is.list(intGroups)) 
-  ranges <- lapply(intGroups, function(X) max(X) - min(X)) 
-  A <- matrix(nrow = n, ncol = length(intGroups)) 
-  for (j in 1:length(ranges)) 
-  { 
-    sequ <- order(runif(n)) 
-    if (length(intGroups[[1]]) > 1) 
-    { 
-      spacing <- intGroups[[j]][2] - intGroups[[j]][1] 
-    } else stop("must have more than 1 intGroup") 
-    for (k in 1:n) 
-    { 
-      i <- sequ[k] 
-      a <- min(intGroups[[j]]) + (i - 1)*(ranges[[j]] + spacing)/n 
-      b <- min(intGroups[[j]]) + i*(ranges[[j]] + spacing)/n - 1 
-      if (a < b) 
-      { 
-        A[k,j] <- sample(seq(a,b,spacing), 1) 
-      } else if (a == b) 
-      { 
-        A[k,j] <- a 
-      } else stop("error") 
-    } 
-  } 
-  return(A) 
-} 
-
-integerLHS(10, list(1:10, 31:40)) 
-integerLHS(5, list(1:10, 31:40)) 
-integerLHS(2, list(1:10, 31:40)) 
-integerLHS(5, list(1:20, 31:60, 101:115)) 
-integerLHS(5, list(seq(2,20,2), 31:60, 101:115)) 
+head(X)
 ```
 
 ## Question 2
 
-I am trying to do a Latin Hypercube Sampling (LHS) to a 5-parameter 
+I am trying to do a Latin hypercube Sampling (LHS) to a 5-parameter 
 design matrix. I want the combination of the 
 first three parameters to sum up to 1 (which obviously do not) 
 
 If I divide each of these parameters with the sum, the uniform distribution is 
 lost. Is there a way to maintain the random LHS (with uniformly 
-distributed parameters) so that the refered condition is fulfilled? 
+distributed parameters) so that the referred condition is fulfilled? 
 
 ### Answer
 
@@ -126,10 +78,7 @@ In my experience with Latin hypercube samples, most people draw the sample on
 a uniform hypercube and then transform the uniform cube to have new 
 distributions on the margins.  The transformed distributions are not 
 necessarily uniform.  It is possible to draw a Latin hypercube with correlated 
-margins and I hope to add that to my package in the future.  I have also done 
-transforms such that the transformed marginal distributions are correlated (as 
-you have in your example).  I have not seen a correlated set of uniform 
-marginal distributions such that the margins sum to one, however.  I'll make a 
+margins and have them sum to one using `qdirichlet`, but they will not be uniform.  I'll make a 
 quick example argument that explains the difficulty... 
 
 In two dimensions, you could draw this which is uniform and correlated. 
@@ -155,42 +104,14 @@ hist(y, main = "")
 hist(z, main = "") 
 ```
 
-The commmon practice in your situation is draw the `K` parameters together as a 
-uniform Latin hypercube on `0-1` and then transform the margins of the hypercube 
-to the desired distributions. 
-
-Easy Example 
-* Parameter 1: normal(1, 2) 
-* Parameter 2: normal(3, 4) 
-* Parameter 3: uniform(5, 10) 
-
-```{r a3, fig.width=5, fig.height=5}
-N <- 1000 
-x <- randomLHS(N, 3) 
-y <- x 
-y[,1] <- qnorm(x[,1], 1, 2) 
-y[,2] <- qnorm(x[,2], 3, 4) 
-y[,3] <- qunif(x[,3], 5, 10) 
-
-par(mfrow = c(2,2)) 
-dummy <- apply(x, 2, hist, main = "") 
-
-par(mfrow = c(2,2)) 
-dummy <- apply(y, 2, hist, main = "") 
-```
-
 The transformed distributions maintain their "Latin" properties, but are in 
-the form of new distributions. 
-
-In your case, you'd like the first three columns to be transformed into a 
-correlated set that sums to one.  Still follow the pattern... 
+the form of new distributions.  The Dirichlet distribution is built for this purpose.
 
 ```{r a24, fig.width=5, fig.height=5}
+N <- 1000
 x <- randomLHS(N, 5) 
 y <- x 
-y[,1] <- x[,1]/rowSums(x[,1:3]) 
-y[,2] <- x[,2]/rowSums(x[,1:3]) 
-y[,3] <- x[,3]/rowSums(x[,1:3]) 
+y[,1:3] <- qdirichlet(x[,1:3], c(1, 1, 1))
 y[,4] <- x[,4] 
 y[,5] <- x[,5] 
 
@@ -211,63 +132,18 @@ pairs(x)
 pairs(y, col = "red") 
 ```
 
-But, the "Latin" properties of the first three margins are maintained as in 
-this smaller example... 
-
-```{r a26}
-N <- 10 
-x <- randomLHS(N, 5) 
-y <- x 
-y[,1] <- x[,1]/rowSums(x[,1:3]) 
-y[,2] <- x[,2]/rowSums(x[,1:3]) 
-y[,3] <- x[,3]/rowSums(x[,1:3]) 
-y[,4] <- x[,4] 
-y[,5] <- x[,5] 
-
-pairs(x) 
-pairs(y, col = "red") 
-```
-
 ## Question 3
 
 How do I create a Latin hypercube that ranges between between 0 and 1 and sums to 1?
 
 ### Answer
 
-I have an imperfect solution to this problem using a Dirichlet distribution.   
-The Dirichlet seems to keep the range of the values larger once they are 
-normalized.  The result is not uniformly distributed on (0,1) anymore, but 
+I have a solution to this problem using a Dirichlet distribution.  
+The result is not uniformly distributed on (0,1) anymore, but 
 instead is Dirichlet distributed with the parameters alpha.  The Latin 
 properties are maintained. 
 
 ```{r qdirichlet}
-qdirichlet <- function(X, alpha) 
-{ 
-  # qdirichlet is not an exact quantile function since the quantile of a 
-  #  multivariate distribtion is not unique 
-  # qdirichlet is also not the quantiles of the marginal distributions since 
-  #  those quantiles do not sum to one 
-  # qdirichlet is the quantile of the underlying gamma functions, normalized 
-  # This has been tested to show that qdirichlet approximates the dirichlet 
-  #  distribution well and creates the correct marginal means and variances 
-  #  when using a latin hypercube sample 
-  lena <- length(alpha) 
-  stopifnot(is.matrix(X)) 
-  sims <- dim(X)[1] 
-  stopifnot(dim(X)[2] == lena) 
-  if (any(is.na(alpha)) || any(is.na(X))) 
-    stop("NA values not allowed in qdirichlet") 
-
-  Y <- matrix(0, nrow = sims, ncol = lena) 
-  ind <- which(alpha != 0) 
-  for (i in ind) 
-  { 
-    Y[,i] <- qgamma(X[,i], alpha[i], 1) 
-  } 
-  Y <- Y / rowSums(Y) 
-  return(Y) 
-} 
-
 X <- randomLHS(1000, 7) 
 Y <- qdirichlet(X, rep(1,7)) 
 stopifnot(all(abs(rowSums(Y) - 1) < 1E-12)) 
@@ -282,7 +158,7 @@ range(wss)
 
 ## Question 5
 
-I need to use Latin hypercube sampling for my own custome functions.
+I need to use Latin hypercube sampling for my own custom functions.
 
 ### Answer
 
@@ -326,32 +202,21 @@ I need a Latin hypercube sample on an integer set or a set of colors.
 
 ```{r q6, fig.height=5, fig.width=5}
 N <- 1000 
-set.seed(1919) 
 
 x <- randomLHS(N, 4) 
-y <- x 
-# uniform on 1-10 
-y[,1] <- ceiling(qunif(x[,1], 0, 10)) 
+y <- as.data.frame(x) 
+# uniform integers on 1-10 
+y[,1] <- qinteger(x[,1], 1, 10)
 # three colors 1,2,3 
-y[,2] <- ceiling(qunif(x[,2], 0, 3)) 
+y[,2] <- qfactor(x[,2], factor(c("R", "G", "B"))) 
 # other distributions 
 y[,3] <- qunif(x[,3], 5, 10) 
 y[,4] <- qnorm(x[,4], 0, 2) 
 
-par(mfrow=c(2,2)) 
-dummy <- apply(x, 2, hist, main="") 
+table(y[,1])
+table(y[,2])
 
-par(mfrow=c(2,2)) 
-plot(1:10, c(table(y[,1])), type="h", col="blue", lwd=2, ylim=c(0,120), 
-ylab="Frequency", xlab="y[,1]") 
-plot(1:3, c(table(y[,2])), type="h", col="blue", lwd=2, ylim=c(0,400), 
-ylab="Frequency", xlab="y[,2]") 
 hist(y[,3], main="") 
 hist(y[,4], main="") 
-
-# change to color names 
-z <- as.data.frame(y) 
-z[,2] <- factor(y[,2], labels=c("R","G","B")) 
-z[1:10,] 
 ```
 

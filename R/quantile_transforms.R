@@ -1,15 +1,17 @@
-# Copyright 2023 Robert Carnell
+# Copyright 2024 Robert Carnell
 
 #' Quantile Transformations
 #'
 #' A collection of functions that transform the margins of a Latin hypercube
-#' sample in non-standard ways
+#' sample in multiple ways
 #'
 #' \code{qdirichlet} is not an exact quantile function since the quantile of a
-#' multivariate distribution is not unique.  \code{qdirichlet} is also not the independent quantiles of the marginal distributions since
-#' those quantiles do not sum to one.  \code{qdirichlet} is the quantile of the underlying gamma functions, normalized.
-#' This has been tested to show that \code{qdirichlet} approximates the Dirichlet distribution well and creates the correct marginal means and variances
-#' when using a Latin hypercube sample
+#' multivariate distribution is not unique.  \code{qdirichlet} is also not the
+#' independent quantiles of the marginal distributions since
+#' those quantiles do not sum to one.  \code{qdirichlet} is the quantile of the
+#' underlying gamma functions, normalized.  This is the same procedure that
+#' is used to generate random deviates from the Dirichlet distribution therefore
+#' it will produce transformed Latin hypercube samples with the intended distribution.
 #'
 #' \code{q_factor} divides the [0,1] interval into \code{nlevel(fact)} equal sections
 #' and assigns values in those sections to the factor level.
@@ -31,11 +33,11 @@
 #' X <- randomLHS(20, 7)
 #' Y <- as.data.frame(X)
 #' Y[,1] <- qnorm(X[,1], 2, 0.5)
-#' Y[,2] <- q_factor(X[,2], factor(LETTERS[c(1,3,5,7,8)]))
-#' Y[,3] <- q_integer(X[,3], 5, 17)
-#' Y[,4:6] <- q_dirichlet(X[,4:6], c(2,3,4))
-#' Y[,7] <- q_factor(X[,7], ordered(LETTERS[c(1,3,5,7,8)]))
-q_factor <- function(p, fact)
+#' Y[,2] <- qfactor(X[,2], factor(LETTERS[c(1,3,5,7,8)]))
+#' Y[,3] <- qinteger(X[,3], 5, 17)
+#' Y[,4:6] <- qdirichlet(X[,4:6], c(2,3,4))
+#' Y[,7] <- qfactor(X[,7], ordered(LETTERS[c(1,3,5,7,8)]))
+qfactor <- function(p, fact)
 {
   if (!is.factor(fact)) {
     stop("fact must be a factor or ordered")
@@ -53,7 +55,7 @@ q_factor <- function(p, fact)
 #' @rdname quanttrans
 #'
 #' @export
-q_integer <- function(p, a, b)
+qinteger <- function(p, a, b)
 {
   if (!is.numeric(p) | any(p < 0) | any(p > 1)) {
     stop("p must be a numeric between 0 and 1")
@@ -74,7 +76,7 @@ q_integer <- function(p, a, b)
 #' @importFrom stats qgamma
 #'
 #' @export
-q_dirichlet <- function(X, alpha)
+qdirichlet <- function(X, alpha)
 {
   lena <- length(alpha)
   if (!is.matrix(X) & !is.data.frame(X)) {
