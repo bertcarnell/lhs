@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.2.0</span>
       </span>
     </div>
 
@@ -143,9 +143,10 @@ always achievable.</p>
 <p>Check that the desired correlations were created:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">lhs_A</span><span class="op">$</span><span class="va">transformed_lhs</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
-<span><span class="co">#&gt; [1] 0.300014</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">lhs_A</span><span class="op">$</span><span class="va">transformed_lhs</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
-<span><span class="co">#&gt; [1] 0.4999289</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.3000406</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">lhs_A</span><span class="op">$</span><span class="va">transformed_lhs</span><span class="op">[</span>,<span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="co">#&gt; [1] 0.4998679</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example-2-dirichlet-distribution">Example 2: Dirichlet distribution<a class="anchor" aria-label="anchor" href="#example-2-dirichlet-distribution"></a>
@@ -163,7 +164,7 @@ Dirichlet distributed with <span class="math inline">\(\alpha =
 <div class="section level3">
 <h3 id="method-1-correlatedlhs">Method 1: <code>correlatedLHS</code><a class="anchor" aria-label="anchor" href="#method-1-correlatedlhs"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lhs_B</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlatedLHS.html">correlatedLHS</a></span><span class="op">(</span><span class="fu">lhs</span><span class="fu">::</span><span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">4</span><span class="op">)</span>,</span>
 <span>                       marginal_transform_function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">W</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>                         <span class="va">W</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Beta.html" class="external-link">qbeta</a></span><span class="op">(</span><span class="va">W</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span></span>
@@ -178,23 +179,25 @@ Dirichlet distributed with <span class="math inline">\(\alpha =
 <span>                       debug <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                       maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
 <p>Check properties</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">lhs_B</span><span class="op">$</span><span class="va">transformed_lhs</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span><span class="op">)</span> <span class="co"># close to 1</span></span>
-<span><span class="co">#&gt; [1] 0.9711814 1.1036998</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">lhs_B</span><span class="op">$</span><span class="va">transformed_lhs</span>, <span class="fl">2</span>, <span class="va">mean</span><span class="op">)</span> <span class="co"># close to 4/10, 3/10, 2/10, 1/10</span></span>
-<span><span class="co">#&gt; [1] 0.40112406 0.29789676 0.19805637 0.09960962</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 0.9625536 1.0504560</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">lhs_B</span><span class="op">$</span><span class="va">transformed_lhs</span>, <span class="fl">2</span>, <span class="va">mean</span><span class="op">)</span> <span class="co"># close to 4/10, 3/10, 2/10, 1/10</span></span>
+<span><span class="co">#&gt; [1] 0.40054562 0.30170254 0.20228521 0.09803438</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="method-2-q_dirichlet">Method 2: <code>q_dirichlet</code><a class="anchor" aria-label="anchor" href="#method-2-q_dirichlet"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lhs_B</span> <span class="op">&lt;-</span> <span class="fu">lhs</span><span class="fu">::</span><span class="fu"><a href="../reference/quanttrans.html">qdirichlet</a></span><span class="op">(</span><span class="fu">lhs</span><span class="fu">::</span><span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">4</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Check properties</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">lhs_B</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1E-9</span><span class="op">)</span> <span class="co"># all exactly 1</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">lhs_B</span>, <span class="fl">2</span>, <span class="va">mean</span><span class="op">)</span> <span class="co"># close to 4/10, 3/10, 2/10, 1/10</span></span>
-<span><span class="co">#&gt; [1] 0.39600968 0.30673110 0.20180114 0.09545808</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">lhs_B</span>, <span class="fl">2</span>, <span class="va">mean</span><span class="op">)</span> <span class="co"># close to 4/10, 3/10, 2/10, 1/10</span></span>
+<span><span class="co">#&gt; [1] 0.4008212 0.3024493 0.1938541 0.1028755</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -212,7 +215,7 @@ Dirichlet distributed with <span class="math inline">\(\alpha =
 upper\)</span></li>
 </ul>
 <p>First build an empirical sample using rejection sampling</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">3803</span><span class="op">)</span></span>
 <span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">100000</span></span>
 <span></span>
@@ -229,7 +232,7 @@ upper\)</span></li>
 <p>Now build the correlated sample using the reject sample as an
 empirical distribution function and the boundaries as a cost
 function.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lhs_C</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correlatedLHS.html">correlatedLHS</a></span><span class="op">(</span><span class="fu">lhs</span><span class="fu">::</span><span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">4</span><span class="op">)</span>,</span>
 <span>                       marginal_transform_function <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">W</span>, <span class="va">empirical_sample</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>                         <span class="va">res</span> <span class="op">&lt;-</span> <span class="va">W</span></span>
@@ -266,7 +269,7 @@ function.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
 </div>
 
       </footer>
