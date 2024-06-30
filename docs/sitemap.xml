@@ -4,12 +4,6 @@
     <loc>/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/SECURITY.html</loc>
-  </url>
-  <url>
     <loc>/articles/augment_lhs.html</loc>
   </url>
   <url>
@@ -28,61 +22,19 @@
     <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>/html/_c_orthogonal_array_8cpp.html</loc>
-  </url>
-  <url>
-    <loc>/html/_c_orthogonal_array_8h.html</loc>
-  </url>
-  <url>
-    <loc>/html/_c_orthogonal_array_8h_source.html</loc>
-  </url>
-  <url>
-    <loc>/html/_c_random_8h.html</loc>
-  </url>
-  <url>
-    <loc>/html/_c_random_8h_source.html</loc>
-  </url>
-  <url>
-    <loc>/html/_galois_field_8cpp.html</loc>
-  </url>
-  <url>
-    <loc>/html/_galois_field_8h.html</loc>
-  </url>
-  <url>
-    <loc>/html/_galois_field_8h_source.html</loc>
-  </url>
-  <url>
-    <loc>/html/_l_h_s_common_defines_8h.html</loc>
-  </url>
-  <url>
-    <loc>/html/_l_h_s_common_defines_8h_source.html</loc>
-  </url>
-  <url>
-    <loc>/html/_o_a_common_defines_8h.html</loc>
-  </url>
-  <url>
-    <loc>/html/_o_a_common_defines_8h_source.html</loc>
-  </url>
-  <url>
-    <loc>/html/_r_standard_uniform_8h.html</loc>
-  </url>
-  <url>
-    <loc>/html/_r_standard_uniform_8h_source.html</loc>
-  </url>
-  <url>
     <loc>/html/ak3_8cpp.html</loc>
-  </url>
-  <url>
-    <loc>/html/ak_8h.html</loc>
-  </url>
-  <url>
-    <loc>/html/ak_8h_source.html</loc>
   </url>
   <url>
     <loc>/html/akconst_8cpp.html</loc>
   </url>
   <url>
     <loc>/html/akn_8cpp.html</loc>
+  </url>
+  <url>
+    <loc>/html/ak_8h.html</loc>
+  </url>
+  <url>
+    <loc>/html/ak_8h_source.html</loc>
   </url>
   <url>
     <loc>/html/annotated.html</loc>
@@ -178,6 +130,12 @@
     <loc>/html/index.html</loc>
   </url>
   <url>
+    <loc>/html/lhslib_version_8h.html</loc>
+  </url>
+  <url>
+    <loc>/html/lhslib_version_8h_source.html</loc>
+  </url>
+  <url>
     <loc>/html/lhs__r_8cpp.html</loc>
   </url>
   <url>
@@ -196,19 +154,13 @@
     <loc>/html/lhs__r__utilities_8h_source.html</loc>
   </url>
   <url>
-    <loc>/html/lhslib_version_8h.html</loc>
-  </url>
-  <url>
-    <loc>/html/lhslib_version_8h_source.html</loc>
-  </url>
-  <url>
     <loc>/html/maximin_l_h_s_8cpp.html</loc>
   </url>
   <url>
-    <loc>/html/namespacelhs__r.html</loc>
+    <loc>/html/namespacelhslib.html</loc>
   </url>
   <url>
-    <loc>/html/namespacelhslib.html</loc>
+    <loc>/html/namespacelhs__r.html</loc>
   </url>
   <url>
     <loc>/html/namespacemembers.html</loc>
@@ -241,6 +193,21 @@
     <loc>/html/namespaces.html</loc>
   </url>
   <url>
+    <loc>/html/oalhs__r_8cpp.html</loc>
+  </url>
+  <url>
+    <loc>/html/oalhs__r_8h.html</loc>
+  </url>
+  <url>
+    <loc>/html/oalhs__r_8h_source.html</loc>
+  </url>
+  <url>
+    <loc>/html/oalib_version_8h.html</loc>
+  </url>
+  <url>
+    <loc>/html/oalib_version_8h_source.html</loc>
+  </url>
+  <url>
     <loc>/html/oa_8cpp.html</loc>
   </url>
   <url>
@@ -248,24 +215,6 @@
   </url>
   <url>
     <loc>/html/oa_8h_source.html</loc>
-  </url>
-  <url>
-    <loc>/html/oa__r_8cpp.html</loc>
-  </url>
-  <url>
-    <loc>/html/oa__r_8h.html</loc>
-  </url>
-  <url>
-    <loc>/html/oa__r_8h_source.html</loc>
-  </url>
-  <url>
-    <loc>/html/oa__r__utils_8cpp.html</loc>
-  </url>
-  <url>
-    <loc>/html/oa__r__utils_8h.html</loc>
-  </url>
-  <url>
-    <loc>/html/oa__r__utils_8h_source.html</loc>
   </url>
   <url>
     <loc>/html/oa_l_h_s_8cpp.html</loc>
@@ -286,25 +235,28 @@
     <loc>/html/oa_main_page.html</loc>
   </url>
   <url>
-    <loc>/html/oalhs__r_8cpp.html</loc>
+    <loc>/html/oa__r_8cpp.html</loc>
   </url>
   <url>
-    <loc>/html/oalhs__r_8h.html</loc>
+    <loc>/html/oa__r_8h.html</loc>
   </url>
   <url>
-    <loc>/html/oalhs__r_8h_source.html</loc>
+    <loc>/html/oa__r_8h_source.html</loc>
   </url>
   <url>
-    <loc>/html/oalib_version_8h.html</loc>
+    <loc>/html/oa__r__utils_8cpp.html</loc>
   </url>
   <url>
-    <loc>/html/oalib_version_8h_source.html</loc>
+    <loc>/html/oa__r__utils_8h.html</loc>
   </url>
   <url>
-    <loc>/html/opt_seeded_l_h_s_8cpp.html</loc>
+    <loc>/html/oa__r__utils_8h_source.html</loc>
   </url>
   <url>
     <loc>/html/optimum_l_h_s_8cpp.html</loc>
+  </url>
+  <url>
+    <loc>/html/opt_seeded_l_h_s_8cpp.html</loc>
   </url>
   <url>
     <loc>/html/order_8h.html</loc>
@@ -643,7 +595,52 @@
     <loc>/html/xtn_8h_source.html</loc>
   </url>
   <url>
+    <loc>/html/_c_orthogonal_array_8cpp.html</loc>
+  </url>
+  <url>
+    <loc>/html/_c_orthogonal_array_8h.html</loc>
+  </url>
+  <url>
+    <loc>/html/_c_orthogonal_array_8h_source.html</loc>
+  </url>
+  <url>
+    <loc>/html/_c_random_8h.html</loc>
+  </url>
+  <url>
+    <loc>/html/_c_random_8h_source.html</loc>
+  </url>
+  <url>
+    <loc>/html/_galois_field_8cpp.html</loc>
+  </url>
+  <url>
+    <loc>/html/_galois_field_8h.html</loc>
+  </url>
+  <url>
+    <loc>/html/_galois_field_8h_source.html</loc>
+  </url>
+  <url>
+    <loc>/html/_l_h_s_common_defines_8h.html</loc>
+  </url>
+  <url>
+    <loc>/html/_l_h_s_common_defines_8h_source.html</loc>
+  </url>
+  <url>
+    <loc>/html/_o_a_common_defines_8h.html</loc>
+  </url>
+  <url>
+    <loc>/html/_o_a_common_defines_8h_source.html</loc>
+  </url>
+  <url>
+    <loc>/html/_r_standard_uniform_8h.html</loc>
+  </url>
+  <url>
+    <loc>/html/_r_standard_uniform_8h_source.html</loc>
+  </url>
+  <url>
     <loc>/index.html</loc>
+  </url>
+  <url>
+    <loc>/LICENSE.html</loc>
   </url>
   <url>
     <loc>/reference/augmentLHS.html</loc>
@@ -706,10 +703,10 @@
     <loc>/reference/optAugmentLHS.html</loc>
   </url>
   <url>
-    <loc>/reference/optSeededLHS.html</loc>
+    <loc>/reference/optimumLHS.html</loc>
   </url>
   <url>
-    <loc>/reference/optimumLHS.html</loc>
+    <loc>/reference/optSeededLHS.html</loc>
   </url>
   <url>
     <loc>/reference/poly2int.html</loc>
@@ -728,5 +725,8 @@
   </url>
   <url>
     <loc>/reference/runifint.html</loc>
+  </url>
+  <url>
+    <loc>/SECURITY.html</loc>
   </url>
 </urlset>

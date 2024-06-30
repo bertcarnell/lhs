@@ -1,24 +1,35 @@
-# Reverse Dependency Checks for package lhs 2022-02-20 04:21:51
+# Reverse Dependency Checks for package lhs 2024-06-23 02:28:07.162848
 
 ## Old Results
 
 Check results for packages in dir '/home/docker/revdep/old':
 
 Check status summary:
-                  ERROR WARN NOTE OK
-  Source packages     0    0    1  0
-  Reverse depends     2    3   15 15
+                  ERROR WARNING NOTE OK
+  Source packages     0       0    1  0
+  Reverse depends     3       1   23 10
 
 Check results summary:
 lhs ... NOTE
+* checking C++ specification ... NOTE
 * checking installed package size ... NOTE
-rdepends_activegp ... OK
+rdepends_acebayes ... NOTE
+* checking C++ specification ... NOTE
+* checking Rd files ... NOTE
+rdepends_activegp ... NOTE
+* checking dependencies in R code ... NOTE
+rdepends_BayesianPlatformDesignTimeTrend ... NOTE
+* checking installed package size ... NOTE
+* checking for GNU extensions in Makefiles ... NOTE
 rdepends_binaryGP ... NOTE
 * checking LazyData ... NOTE
+rdepends_dgpsi ... WARNING
+* checking package dependencies ... NOTE
+* checking running R code from vignettes ... WARNING
 rdepends_DoE.wrapper ... NOTE
 * checking package dependencies ... NOTE
+* checking Rd files ... NOTE
 * checking Rd cross-references ... NOTE
-* checking LazyData ... NOTE
 rdepends_DSAIDE ... NOTE
 * checking package dependencies ... NOTE
 * checking installed package size ... NOTE
@@ -30,60 +41,57 @@ rdepends_ENMTools ... NOTE
 * checking package dependencies ... NOTE
 * checking Rd cross-references ... NOTE
 rdepends_GPfit ... OK
-rdepends_GPM ... OK
+rdepends_GPM ... NOTE
+* checking C++ specification ... NOTE
+* checking Rd files ... NOTE
 rdepends_grapherator ... NOTE
 * checking dependencies in R code ... NOTE
 * checking LazyData ... NOTE
-rdepends_hydroPSO ... OK
-rdepends_imabc ... OK
+rdepends_hmer ... NOTE
+* checking package dependencies ... NOTE
+rdepends_imabc ... NOTE
+* checking Rd files ... NOTE
 rdepends_inaparc ... NOTE
-* checking LazyData ... NOTE
-rdepends_LVGP ... OK
+* checking Rd files ... NOTE
+rdepends_LVGP ... NOTE
+* checking Rd files ... NOTE
 rdepends_MaOEA ... NOTE
-* checking LazyData ... NOTE
-rdepends_mcMST ... WARN
-* checking whether package ‘mcMST’ can be installed ... WARNING
-* checking dependencies in R code ... NOTE
 * checking LazyData ... NOTE
 rdepends_mlrintermbo ... ERROR
 * checking package dependencies ... NOTE
-* checking LazyData ... NOTE
 * checking examples ... ERROR
 * checking tests ... ERROR
 rdepends_mlrMBO ... ERROR
 * checking package dependencies ... NOTE
-* checking whether package ‘mlrMBO’ can be installed ... WARNING
+* checking Rd files ... NOTE
 * checking Rd cross-references ... NOTE
-* checking LazyData ... NOTE
 * checking tests ... ERROR
-rdepends_nlrx ... OK
+rdepends_nlrx ... ERROR
+* checking package dependencies ... NOTE
+* checking tests ... ERROR
 rdepends_optim.functions ... NOTE
 * checking LazyData ... NOTE
+rdepends_OSFD ... OK
 rdepends_OUwie ... OK
 rdepends_ParBayesianOptimization ... NOTE
-* checking LazyData ... NOTE
-rdepends_penalizedSVM ... NOTE
-* checking dependencies in R code ... NOTE
-rdepends_poems ... NOTE
-* checking dependencies in R code ... NOTE
-rdepends_profExtrema ... OK
+* checking package dependencies ... NOTE
+rdepends_profExtrema ... NOTE
+* checking Rd files ... NOTE
+rdepends_RNAmf ... OK
 rdepends_rrepast ... OK
 rdepends_sensobol ... OK
 rdepends_SOAs ... OK
+rdepends_spsh ... NOTE
+* checking Rd files ... NOTE
 rdepends_tools4uplift ... OK
-rdepends_tramnet ... WARN
+rdepends_tramnet ... NOTE
 * checking package dependencies ... NOTE
-* checking whether package ‘tramnet’ can be installed ... WARNING
-rdepends_TREXr ... NOTE
-* checking dependencies in R code ... NOTE
-rdepends_varycoef ... WARN
+rdepends_tuneRanger ... NOTE
+* checking Rd cross-references ... NOTE
+rdepends_varycoef ... NOTE
 * checking package dependencies ... NOTE
-* checking whether package ‘varycoef’ can be installed ... WARNING
-* checking dependencies in R code ... NOTE
 * checking Rd cross-references ... NOTE
 rdepends_yager ... NOTE
-* checking LazyData ... NOTE
-rdepends_yap ... NOTE
 * checking LazyData ... NOTE
 
 ## New Results
@@ -91,20 +99,30 @@ rdepends_yap ... NOTE
 Check results for packages in dir '/home/docker/revdep/new':
 
 Check status summary:
-                  ERROR WARN NOTE OK
-  Source packages     0    0    1  0
-  Reverse depends     2    3   15 15
+                  ERROR WARNING NOTE OK
+  Source packages     0       0    1  0
+  Reverse depends     3       1   23 10
 
 Check results summary:
 lhs ... NOTE
 * checking installed package size ... NOTE
-rdepends_activegp ... OK
+rdepends_acebayes ... NOTE
+* checking C++ specification ... NOTE
+* checking Rd files ... NOTE
+rdepends_activegp ... NOTE
+* checking dependencies in R code ... NOTE
+rdepends_BayesianPlatformDesignTimeTrend ... NOTE
+* checking installed package size ... NOTE
+* checking for GNU extensions in Makefiles ... NOTE
 rdepends_binaryGP ... NOTE
 * checking LazyData ... NOTE
+rdepends_dgpsi ... WARNING
+* checking package dependencies ... NOTE
+* checking running R code from vignettes ... WARNING
 rdepends_DoE.wrapper ... NOTE
 * checking package dependencies ... NOTE
+* checking Rd files ... NOTE
 * checking Rd cross-references ... NOTE
-* checking LazyData ... NOTE
 rdepends_DSAIDE ... NOTE
 * checking package dependencies ... NOTE
 * checking installed package size ... NOTE
@@ -116,146 +134,60 @@ rdepends_ENMTools ... NOTE
 * checking package dependencies ... NOTE
 * checking Rd cross-references ... NOTE
 rdepends_GPfit ... OK
-rdepends_GPM ... OK
+rdepends_GPM ... NOTE
+* checking C++ specification ... NOTE
+* checking Rd files ... NOTE
 rdepends_grapherator ... NOTE
 * checking dependencies in R code ... NOTE
 * checking LazyData ... NOTE
-rdepends_hydroPSO ... OK
-rdepends_imabc ... OK
+rdepends_hmer ... NOTE
+* checking package dependencies ... NOTE
+rdepends_imabc ... NOTE
+* checking Rd files ... NOTE
 rdepends_inaparc ... NOTE
-* checking LazyData ... NOTE
-rdepends_LVGP ... OK
+* checking Rd files ... NOTE
+rdepends_LVGP ... NOTE
+* checking Rd files ... NOTE
 rdepends_MaOEA ... NOTE
-* checking LazyData ... NOTE
-rdepends_mcMST ... WARN
-* checking whether package ‘mcMST’ can be installed ... WARNING
-* checking dependencies in R code ... NOTE
 * checking LazyData ... NOTE
 rdepends_mlrintermbo ... ERROR
 * checking package dependencies ... NOTE
-* checking LazyData ... NOTE
 * checking examples ... ERROR
 * checking tests ... ERROR
 rdepends_mlrMBO ... ERROR
 * checking package dependencies ... NOTE
-* checking whether package ‘mlrMBO’ can be installed ... WARNING
+* checking Rd files ... NOTE
 * checking Rd cross-references ... NOTE
-* checking LazyData ... NOTE
 * checking tests ... ERROR
-rdepends_nlrx ... OK
+rdepends_nlrx ... ERROR
+* checking package dependencies ... NOTE
+* checking tests ... ERROR
 rdepends_optim.functions ... NOTE
 * checking LazyData ... NOTE
+rdepends_OSFD ... OK
 rdepends_OUwie ... OK
 rdepends_ParBayesianOptimization ... NOTE
-* checking LazyData ... NOTE
-rdepends_penalizedSVM ... NOTE
-* checking dependencies in R code ... NOTE
-rdepends_poems ... NOTE
-* checking dependencies in R code ... NOTE
-rdepends_profExtrema ... OK
+* checking package dependencies ... NOTE
+rdepends_profExtrema ... NOTE
+* checking Rd files ... NOTE
+rdepends_RNAmf ... OK
 rdepends_rrepast ... OK
 rdepends_sensobol ... OK
 rdepends_SOAs ... OK
+rdepends_spsh ... NOTE
+* checking Rd files ... NOTE
 rdepends_tools4uplift ... OK
-rdepends_tramnet ... WARN
+rdepends_tramnet ... NOTE
 * checking package dependencies ... NOTE
-* checking whether package ‘tramnet’ can be installed ... WARNING
-rdepends_TREXr ... NOTE
-* checking dependencies in R code ... NOTE
-rdepends_varycoef ... WARN
+rdepends_tuneRanger ... NOTE
+* checking Rd cross-references ... NOTE
+rdepends_varycoef ... NOTE
 * checking package dependencies ... NOTE
-* checking whether package ‘varycoef’ can be installed ... WARNING
-* checking dependencies in R code ... NOTE
 * checking Rd cross-references ... NOTE
 rdepends_yager ... NOTE
-* checking LazyData ... NOTE
-rdepends_yap ... NOTE
 * checking LazyData ... NOTE
 
 ## Differences Checking for Exact Message Matches
 
-### mcMST
-
-- Version:  1.0.1
-- Check:  whether package can be installed
-- Status:  WARNING
-- Output: Found the following significant warnings:
-  Warning: no DISPLAY variable so Tk is not available
-See ‘/home/docker/revdep/new/mcMST.Rcheck/00install.out’ for details.
-- Flags:  --no-manual --no-build-vignettes
-
-### mlrMBO
-
-- Version:  1.1.5
-- Check:  whether package can be installed
-- Status:  WARNING
-- Output: Found the following significant warnings:
-  Warning: no DISPLAY variable so Tk is not available
-See ‘/home/docker/revdep/new/mlrMBO.Rcheck/00install.out’ for details.
-- Flags:  --no-manual --no-build-vignettes
-
-### tramnet
-
-- Version:  0.0-6
-- Check:  whether package can be installed
-- Status:  WARNING
-- Output: Found the following significant warnings:
-  Warning: no DISPLAY variable so Tk is not available
-See ‘/home/docker/revdep/new/tramnet.Rcheck/00install.out’ for details.
-- Flags:  --no-manual --no-build-vignettes
-
-### varycoef
-
-- Version:  0.3.1
-- Check:  whether package can be installed
-- Status:  WARNING
-- Output: Found the following significant warnings:
-  Warning: no DISPLAY variable so Tk is not available
-See ‘/home/docker/revdep/new/varycoef.Rcheck/00install.out’ for details.
-- Flags:  --no-manual --no-build-vignettes
-
 ## Differences using check_packages_in_dir_changes()
 
-Package: mcMST
-Check: whether package can be installed
-Old result: WARNING
-  Found the following significant warnings:
-    Warning: no DISPLAY variable so Tk is not available
-  See ‘/home/docker/revdep/old/mcMST.Rcheck/00install.out’ for details.
-New result: WARNING
-  Found the following significant warnings:
-    Warning: no DISPLAY variable so Tk is not available
-  See ‘/home/docker/revdep/new/mcMST.Rcheck/00install.out’ for details.
-
-Package: mlrMBO
-Check: whether package can be installed
-Old result: WARNING
-  Found the following significant warnings:
-    Warning: no DISPLAY variable so Tk is not available
-  See ‘/home/docker/revdep/old/mlrMBO.Rcheck/00install.out’ for details.
-New result: WARNING
-  Found the following significant warnings:
-    Warning: no DISPLAY variable so Tk is not available
-  See ‘/home/docker/revdep/new/mlrMBO.Rcheck/00install.out’ for details.
-
-Package: tramnet
-Check: whether package can be installed
-Old result: WARNING
-  Found the following significant warnings:
-    Warning: no DISPLAY variable so Tk is not available
-  See ‘/home/docker/revdep/old/tramnet.Rcheck/00install.out’ for details.
-New result: WARNING
-  Found the following significant warnings:
-    Warning: no DISPLAY variable so Tk is not available
-  See ‘/home/docker/revdep/new/tramnet.Rcheck/00install.out’ for details.
-
-Package: varycoef
-Check: whether package can be installed
-Old result: WARNING
-  Found the following significant warnings:
-    Warning: no DISPLAY variable so Tk is not available
-  See ‘/home/docker/revdep/old/varycoef.Rcheck/00install.out’ for details.
-New result: WARNING
-  Found the following significant warnings:
-    Warning: no DISPLAY variable so Tk is not available
-  See ‘/home/docker/revdep/new/varycoef.Rcheck/00install.out’ for details.

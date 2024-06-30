@@ -27,7 +27,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	texlive-extra-utils \
 	texlive-fonts-extra \
 	texlive-fonts-recommended \
-	texlive-generic-recommended \
 	texlive-latex-base \
 	texlive-latex-extra \
 	texlive-latex-recommended \
@@ -100,7 +99,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
   r-cran-readr \
   r-cran-reshape2 \
   r-cran-reticulate \
-  r-cran-rgdal \
   r-cran-rlang \
   r-cran-rstudioapi \
   r-cran-scales \
@@ -110,7 +108,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
   r-cran-sp \
   r-cran-spam \
   r-cran-spatstat \
-  r-cran-spatstat.core \
   r-cran-spatstat.geom \
   r-cran-statmod \
   r-cran-tgp \

@@ -10,19 +10,19 @@
 
 args = commandArgs(trailingOnly=TRUE)
 
-if (length(args) != 3 & length(args[1]) == 1 & length(args[2]) == 1 & length(args[2]) == 1) {
-  stop("Three arguments are required (pkg, cran_version, which_type)")
+if (length(args) != 2 & length(args[1]) == 1 & length(args[2]) == 1) {
+  stop("Two arguments are required (pkg, which_type)")
 } else
 {
-  if (!(args[3] %in% c("Depends", "Imports", "Suggests")))
+  if (!(args[2] %in% c("Depends", "Imports", "Suggests")))
   {
 	stop("The third argument must be Depends, Imports, or Suggests")
   }
   pkg <- args[1]
-  cran_version <- args[2]
-  which_type <- args[3]
+  cran_version <- utils::available.packages()["lhs", "Version"]
+  which_type <- args[2]
   # pkg <- "lhs"
-  # cran_version <- "1.1.3"
+  # cran_version <- "1.1.6"
   # which_type <- "Depends"
 }
 

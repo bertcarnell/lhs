@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,23 +40,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.7</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -62,6 +58,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/augment_lhs.html">An Example of Augmenting a Latin Hypercube</a>
+    </li>
+    <li>
+      <a href="../articles/correlated_lhs.html">Examples of Correlated and Multivariate Latin hypercubes</a>
     </li>
     <li>
       <a href="../articles/lhs_basics.html">Basic Latin hypercube samples and designs with package lhs</a>
@@ -74,7 +73,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/bertcarnell/lhs/">
+  <a href="https://github.com/bertcarnell/lhs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -89,383 +88,267 @@
 
       
 
-      </header><script src="lhs_faq_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Latin Hypercube Samples - Questions</h1>
-                        <h4 class="author">Rob Carnell</h4>
+                        <h4 data-toc-skip class="author">Rob
+Carnell</h4>
             
-            <h4 class="date">2021-09-06</h4>
+            <h4 data-toc-skip class="date">2024-06-30</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/bertcarnell/lhs/blob/master/vignettes/lhs_faq.Rmd"><code>vignettes/lhs_faq.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/bertcarnell/lhs/blob/HEAD/vignettes/lhs_faq.Rmd" class="external-link"><code>vignettes/lhs_faq.Rmd</code></a></small>
       <div class="hidden name"><code>lhs_faq.Rmd</code></div>
 
     </div>
 
     
     
-<div id="question-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#question-1" class="anchor"></a>Question 1</h2>
-<p>I am looking for a package which gives me latin hyper cube samples from a grid of values:</p>
+<div class="section level2">
+<h2 id="question-1">Question 1<a class="anchor" aria-label="anchor" href="#question-1"></a>
+</h2>
+<p>I am looking for a package which gives me Latin hypercube samples
+from a grid of values:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> 
-<span class="va">b</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">30</span><span class="op">)</span> 
-<span class="va">dataGrid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html">expand.grid</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span></code></pre></div>
-<div id="answer" class="section level3">
-<h3 class="hasAnchor">
-<a href="#answer" class="anchor"></a>Answer</h3>
-<p>The <code>lhs</code> package returns a uniformly distributed stratified sample from the unit hypercube. The marginal distributions can then be transformed to your distribution of choice. If you wanted a uniform Latin hypercube on [1,10] and [20,30] with 22 samples, you could do:</p>
+<code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> </span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">20</span><span class="op">:</span><span class="fl">30</span><span class="op">)</span> </span>
+<span><span class="va">dataGrid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span><span class="va">a</span>, <span class="va">b</span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="answer">Answer<a class="anchor" aria-label="anchor" href="#answer"></a>
+</h3>
+<p>The <code>lhs</code> package returns a uniformly distributed
+stratified sample from the unit hypercube. The marginal distributions
+can then be transformed to your distribution of choice. If you wanted a
+uniform Latin hypercube on [1,10] and [20,30] with 22 samples, you could
+do:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">2</span><span class="op">)</span> 
-<span class="va">X</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">9</span><span class="op">*</span><span class="va">X</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> 
-<span class="va">X</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">20</span> <span class="op">+</span> <span class="fl">10</span><span class="op">*</span><span class="va">X</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> 
-
-<span class="co"># OR </span>
-
-<span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">2</span><span class="op">)</span> 
-<span class="va">Y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">qunif</a></span><span class="op">(</span><span class="va">Y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span> 
-<span class="va">Y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">qunif</a></span><span class="op">(</span><span class="va">Y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span> 
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>
-<span class="co">#&gt;          [,1]     [,2]</span>
-<span class="co">#&gt; [1,] 5.681035 21.73347</span>
-<span class="co">#&gt; [2,] 7.440464 24.99314</span>
-<span class="co">#&gt; [3,] 5.124658 21.08900</span>
-<span class="co">#&gt; [4,] 6.274872 20.01738</span>
-<span class="co">#&gt; [5,] 3.860701 23.33944</span>
-<span class="co">#&gt; [6,] 2.357909 22.86173</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span>
-<span class="co">#&gt;          [,1]     [,2]</span>
-<span class="co">#&gt; [1,] 7.924432 24.13663</span>
-<span class="co">#&gt; [2,] 7.139062 25.32379</span>
-<span class="co">#&gt; [3,] 8.483899 26.75699</span>
-<span class="co">#&gt; [4,] 5.756974 27.06118</span>
-<span class="co">#&gt; [5,] 8.006960 24.93194</span>
-<span class="co">#&gt; [6,] 2.397084 20.64365</span></code></pre></div>
-<p>If you want integers only in the sample, then we must be careful about what we mean by a Latin hypercube sample. If you wanted exactly 3 points, then you could divide up the range [1,10] into three almost equal parts and sample from <code>1:3</code>, <code>4:6</code>, and <code>7:10</code>. The problem is that it wouldn’t be uniform sample across the range. (7 would be sampled less often than 2 for example)</p>
-<p>To do a Latin hypercube sample on the intgers, you should have a number of integers on the margins which have the number of points sampled as a common factor. For example if you sample 3 points from <code>1:9</code>, and <code>21:32</code> then you could sample as follows:</p>
+<code class="sourceCode R"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span><span class="va">X</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">9</span><span class="op">*</span><span class="va">X</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> </span>
+<span><span class="va">X</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">20</span> <span class="op">+</span> <span class="fl">10</span><span class="op">*</span><span class="va">X</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> </span>
+<span></span>
+<span><span class="co"># OR </span></span>
+<span></span>
+<span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">22</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span><span class="va">Y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">qunif</a></span><span class="op">(</span><span class="va">Y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span> </span>
+<span><span class="va">Y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">qunif</a></span><span class="op">(</span><span class="va">Y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          [,1]     [,2]</span></span>
+<span><span class="co">#&gt; [1,] 9.360227 21.96763</span></span>
+<span><span class="co">#&gt; [2,] 4.808267 28.84202</span></span>
+<span><span class="co">#&gt; [3,] 1.960651 27.97779</span></span>
+<span><span class="co">#&gt; [4,] 7.200957 21.79375</span></span>
+<span><span class="co">#&gt; [5,] 1.200379 28.40089</span></span>
+<span><span class="co">#&gt; [6,] 4.091125 24.84824</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          [,1]     [,2]</span></span>
+<span><span class="co">#&gt; [1,] 8.284968 29.24988</span></span>
+<span><span class="co">#&gt; [2,] 5.525437 28.53956</span></span>
+<span><span class="co">#&gt; [3,] 8.981331 27.07328</span></span>
+<span><span class="co">#&gt; [4,] 2.887880 23.40239</span></span>
+<span><span class="co">#&gt; [5,] 1.730310 29.07440</span></span>
+<span><span class="co">#&gt; [6,] 7.708760 27.45095</span></span></code></pre></div>
+<p>If you want integers only in the sample, then you can use
+<code>qinteger</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">4</span><span class="op">:</span><span class="fl">6</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">7</span><span class="op">:</span><span class="fl">9</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> 
-<span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">21</span><span class="op">:</span><span class="fl">24</span>,<span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">25</span><span class="op">:</span><span class="fl">28</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">29</span><span class="op">:</span><span class="fl">32</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>and then randomly permute the entries of <code>a</code> and <code>b</code>.</p>
-<p>Or more generally, take <code>n</code> samples from the list of integer groups:</p>
+<code class="sourceCode R"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">X</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quanttrans.html">qinteger</a></span><span class="op">(</span><span class="va">X</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">X</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quanttrans.html">qinteger</a></span><span class="op">(</span><span class="va">X</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="fl">20</span>, <span class="fl">30</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      [,1] [,2]</span></span>
+<span><span class="co">#&gt; [1,]    4   24</span></span>
+<span><span class="co">#&gt; [2,]    8   28</span></span>
+<span><span class="co">#&gt; [3,]    5   20</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="question-2">Question 2<a class="anchor" aria-label="anchor" href="#question-2"></a>
+</h2>
+<p>I am trying to do a Latin hypercube Sampling (LHS) to a 5-parameter
+design matrix. I want the combination of the first three parameters to
+sum up to 1 (which obviously do not)</p>
+<p>If I divide each of these parameters with the sum, the uniform
+distribution is lost. Is there a way to maintain the random LHS (with
+uniformly distributed parameters) so that the referred condition is
+fulfilled?</p>
+<div class="section level3">
+<h3 id="answer-1">Answer<a class="anchor" aria-label="anchor" href="#answer-1"></a>
+</h3>
+<p>In my experience with Latin hypercube samples, most people draw the
+sample on a uniform hypercube and then transform the uniform cube to
+have new distributions on the margins. The transformed distributions are
+not necessarily uniform. It is possible to draw a Latin hypercube with
+correlated margins and have them sum to one using
+<code>qdirichlet</code>, but they will not be uniform. I’ll make a quick
+example argument that explains the difficulty…</p>
+<p>In two dimensions, you could draw this which is uniform and
+correlated.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">integerLHS</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">n</span>, <span class="va">intGroups</span><span class="op">)</span> 
-<span class="op">{</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">intGroups</span>, <span class="kw">function</span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="op">%%</span> <span class="va">n</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bertcarnell/lhs">lhs</a></span><span class="op">)</span><span class="op">)</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">is.list</a></span><span class="op">(</span><span class="va">intGroups</span><span class="op">)</span><span class="op">)</span> 
-  <span class="va">ranges</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">intGroups</span>, <span class="kw">function</span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">)</span> 
-  <span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="va">n</span>, ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">intGroups</span><span class="op">)</span><span class="op">)</span> 
-  <span class="kw">for</span> <span class="op">(</span><span class="va">j</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">ranges</span><span class="op">)</span><span class="op">)</span> 
-  <span class="op">{</span> 
-    <span class="va">sequ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> 
-    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">intGroups</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> 
-    <span class="op">{</span> 
-      <span class="va">spacing</span> <span class="op">&lt;-</span> <span class="va">intGroups</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">-</span> <span class="va">intGroups</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> 
-    <span class="op">}</span> <span class="kw">else</span> <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"must have more than 1 intGroup"</span><span class="op">)</span> 
-    <span class="kw">for</span> <span class="op">(</span><span class="va">k</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span><span class="op">)</span> 
-    <span class="op">{</span> 
-      <span class="va">i</span> <span class="op">&lt;-</span> <span class="va">sequ</span><span class="op">[</span><span class="va">k</span><span class="op">]</span> 
-      <span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">intGroups</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="va">i</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span><span class="op">*</span><span class="op">(</span><span class="va">ranges</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">spacing</span><span class="op">)</span><span class="op">/</span><span class="va">n</span> 
-      <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">intGroups</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span> <span class="va">i</span><span class="op">*</span><span class="op">(</span><span class="va">ranges</span><span class="op">[[</span><span class="va">j</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span> <span class="va">spacing</span><span class="op">)</span><span class="op">/</span><span class="va">n</span> <span class="op">-</span> <span class="fl">1</span> 
-      <span class="kw">if</span> <span class="op">(</span><span class="va">a</span> <span class="op">&lt;</span> <span class="va">b</span><span class="op">)</span> 
-      <span class="op">{</span> 
-        <span class="va">A</span><span class="op">[</span><span class="va">k</span>,<span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="va">a</span>,<span class="va">b</span>,<span class="va">spacing</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span> 
-      <span class="op">}</span> <span class="kw">else</span> <span class="kw">if</span> <span class="op">(</span><span class="va">a</span> <span class="op">==</span> <span class="va">b</span><span class="op">)</span> 
-      <span class="op">{</span> 
-        <span class="va">A</span><span class="op">[</span><span class="va">k</span>,<span class="va">j</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">a</span> 
-      <span class="op">}</span> <span class="kw">else</span> <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"error"</span><span class="op">)</span> 
-    <span class="op">}</span> 
-  <span class="op">}</span> 
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span> 
-<span class="op">}</span> 
-
-<span class="fu">integerLHS</span><span class="op">(</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">31</span><span class="op">:</span><span class="fl">40</span><span class="op">)</span><span class="op">)</span> 
-<span class="co">#&gt;       [,1] [,2]</span>
-<span class="co">#&gt;  [1,]    2   38</span>
-<span class="co">#&gt;  [2,]    8   33</span>
-<span class="co">#&gt;  [3,]    6   40</span>
-<span class="co">#&gt;  [4,]   10   39</span>
-<span class="co">#&gt;  [5,]    9   36</span>
-<span class="co">#&gt;  [6,]    1   31</span>
-<span class="co">#&gt;  [7,]    3   32</span>
-<span class="co">#&gt;  [8,]    4   34</span>
-<span class="co">#&gt;  [9,]    7   35</span>
-<span class="co">#&gt; [10,]    5   37</span>
-<span class="fu">integerLHS</span><span class="op">(</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">31</span><span class="op">:</span><span class="fl">40</span><span class="op">)</span><span class="op">)</span> 
-<span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,]   10   36</span>
-<span class="co">#&gt; [2,]    4   31</span>
-<span class="co">#&gt; [3,]    6   37</span>
-<span class="co">#&gt; [4,]    2   40</span>
-<span class="co">#&gt; [5,]    7   33</span>
-<span class="fu">integerLHS</span><span class="op">(</span><span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fl">31</span><span class="op">:</span><span class="fl">40</span><span class="op">)</span><span class="op">)</span> 
-<span class="co">#&gt;      [,1] [,2]</span>
-<span class="co">#&gt; [1,]    7   31</span>
-<span class="co">#&gt; [2,]    5   39</span>
-<span class="fu">integerLHS</span><span class="op">(</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>, <span class="fl">31</span><span class="op">:</span><span class="fl">60</span>, <span class="fl">101</span><span class="op">:</span><span class="fl">115</span><span class="op">)</span><span class="op">)</span> 
-<span class="co">#&gt;      [,1] [,2] [,3]</span>
-<span class="co">#&gt; [1,]    4   41  109</span>
-<span class="co">#&gt; [2,]   14   35  110</span>
-<span class="co">#&gt; [3,]   11   54  103</span>
-<span class="co">#&gt; [4,]   20   43  113</span>
-<span class="co">#&gt; [5,]    6   56  106</span>
-<span class="fu">integerLHS</span><span class="op">(</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">20</span>,<span class="fl">2</span><span class="op">)</span>, <span class="fl">31</span><span class="op">:</span><span class="fl">60</span>, <span class="fl">101</span><span class="op">:</span><span class="fl">115</span><span class="op">)</span><span class="op">)</span> 
-<span class="co">#&gt;      [,1] [,2] [,3]</span>
-<span class="co">#&gt; [1,]    4   51  103</span>
-<span class="co">#&gt; [2,]   16   46  111</span>
-<span class="co">#&gt; [3,]   10   32  113</span>
-<span class="co">#&gt; [4,]    6   38  106</span>
-<span class="co">#&gt; [5,]   18   60  107</span></code></pre></div>
-</div>
-</div>
-<div id="question-2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#question-2" class="anchor"></a>Question 2</h2>
-<p>I am trying to do a Latin Hypercube Sampling (LHS) to a 5-parameter design matrix. I want the combination of the first three parameters to sum up to 1 (which obviously do not)</p>
-<p>If I divide each of these parameters with the sum, the uniform distribution is lost. Is there a way to maintain the random LHS (with uniformly distributed parameters) so that the refered condition is fulfilled?</p>
-<div id="answer-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#answer-1" class="anchor"></a>Answer</h3>
-<p>In my experience with Latin hypercube samples, most people draw the sample on a uniform hypercube and then transform the uniform cube to have new distributions on the margins. The transformed distributions are not necessarily uniform. It is possible to draw a Latin hypercube with correlated margins and I hope to add that to my package in the future. I have also done transforms such that the transformed marginal distributions are correlated (as you have in your example). I have not seen a correlated set of uniform marginal distributions such that the margins sum to one, however. I’ll make a quick example argument that explains the difficulty…</p>
-<p>In two dimensions, you could draw this which is uniform and correlated.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span>, length <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> 
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">x</span> 
-<span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="va">y</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> 
-<span class="co">#&gt; [1] TRUE</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span>, length <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">x</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">x</span> <span class="op">+</span> <span class="va">y</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">x</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/a21-1.png" width="700"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">y</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">y</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/a21-2.png" width="700"></p>
-<p>But in three dimensions, it is hard to maintain uniformity because large samples on the first uniform margin overweight the small samples on the other margins.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span>, length <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> 
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span> <span class="op">-</span> <span class="va">x</span><span class="op">)</span> 
-<span class="va">z</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">x</span> <span class="op">-</span> <span class="va">y</span> 
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </code></pre></div>
+<p>But in three dimensions, it is hard to maintain uniformity because
+large samples on the first uniform margin overweight the small samples
+on the other margins.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span>, length <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">1</span> <span class="op">-</span> <span class="va">x</span><span class="op">)</span> </span>
+<span><span class="va">z</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op">-</span> <span class="va">x</span> <span class="op">-</span> <span class="va">y</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">x</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/a22-1.png" width="700"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">y</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">y</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/a22-2.png" width="700"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">z</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">z</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/a22-3.png" width="700"></p>
-<p>The commmon practice in your situation is draw the <code>K</code> parameters together as a uniform Latin hypercube on <code>0-1</code> and then transform the margins of the hypercube to the desired distributions.</p>
-<p>Easy Example * Parameter 1: normal(1, 2) * Parameter 2: normal(3, 4) * Parameter 3: uniform(5, 10)</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1000</span> 
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="va">N</span>, <span class="fl">3</span><span class="op">)</span> 
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">qunif</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span> 
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> 
-<span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span>, <span class="va">hist</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> 
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
-<p><img src="lhs_faq_files/figure-html/a3-1.png" width="480"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">2</span>, <span class="va">hist</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </code></pre></div>
-<p><img src="lhs_faq_files/figure-html/a3-2.png" width="480"></p>
-<p>The transformed distributions maintain their “Latin” properties, but are in the form of new distributions.</p>
-<p>In your case, you’d like the first three columns to be transformed into a correlated set that sums to one. Still follow the pattern…</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="va">N</span>, <span class="fl">5</span><span class="op">)</span> 
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span> 
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span> 
-<span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span>, <span class="va">hist</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> 
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<p>The transformed distributions maintain their “Latin” properties, but
+are in the form of new distributions. The Dirichlet distribution is
+built for this purpose.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="va">N</span>, <span class="fl">5</span><span class="op">)</span> </span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> </span>
+<span><span class="va">y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quanttrans.html">qdirichlet</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">y</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> </span>
+<span><span class="va">y</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span> </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span>, <span class="va">hist</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/a24-1.png" width="480"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">2</span>, <span class="va">hist</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> 
-
-<span class="fu"><a href="https://rdrr.io/r/base/all.equal.html">all.equal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> 
-<span class="co">#&gt; [1] TRUE</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">2</span>, <span class="va">hist</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/a24-2.png" width="480"></p>
 <p>The uniform properties are gone as you can see here…</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/a25-1.png" width="700"></p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">y</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">y</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/a25-2.png" width="700"></p>
-<p>But, the “Latin” properties of the first three margins are maintained as in this smaller example…</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">10</span> 
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="va">N</span>, <span class="fl">5</span><span class="op">)</span> 
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>,<span class="fl">5</span><span class="op">]</span> 
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </code></pre></div>
-<p><img src="lhs_faq_files/figure-html/a26-1.png" width="700"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">y</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </code></pre></div>
-<p><img src="lhs_faq_files/figure-html/a26-2.png" width="700"></p>
 </div>
 </div>
-<div id="question-3" class="section level2">
-<h2 class="hasAnchor">
-<a href="#question-3" class="anchor"></a>Question 3</h2>
-<p>How do I create a Latin hypercube that ranges between between 0 and 1 and sums to 1?</p>
-<div id="answer-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#answer-2" class="anchor"></a>Answer</h3>
-<p>I have an imperfect solution to this problem using a Dirichlet distribution.<br>
-The Dirichlet seems to keep the range of the values larger once they are normalized. The result is not uniformly distributed on (0,1) anymore, but instead is Dirichlet distributed with the parameters alpha. The Latin properties are maintained.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">qdirichlet</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">X</span>, <span class="va">alpha</span><span class="op">)</span> 
-<span class="op">{</span> 
-  <span class="co"># qdirichlet is not an exact quantile function since the quantile of a </span>
-  <span class="co">#  multivariate distribtion is not unique </span>
-  <span class="co"># qdirichlet is also not the quantiles of the marginal distributions since </span>
-  <span class="co">#  those quantiles do not sum to one </span>
-  <span class="co"># qdirichlet is the quantile of the underlying gamma functions, normalized </span>
-  <span class="co"># This has been tested to show that qdirichlet approximates the dirichlet </span>
-  <span class="co">#  distribution well and creates the correct marginal means and variances </span>
-  <span class="co">#  when using a latin hypercube sample </span>
-  <span class="va">lena</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">)</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">is.matrix</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">)</span> 
-  <span class="va">sims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> 
-  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">==</span> <span class="va">lena</span><span class="op">)</span> 
-  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">)</span><span class="op">)</span> <span class="op">||</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> 
-    <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"NA values not allowed in qdirichlet"</span><span class="op">)</span> 
-
-  <span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">0</span>, nrow <span class="op">=</span> <span class="va">sims</span>, ncol <span class="op">=</span> <span class="va">lena</span><span class="op">)</span> 
-  <span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">alpha</span> <span class="op">!=</span> <span class="fl">0</span><span class="op">)</span> 
-  <span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="va">ind</span><span class="op">)</span> 
-  <span class="op">{</span> 
-    <span class="va">Y</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html">qgamma</a></span><span class="op">(</span><span class="va">X</span><span class="op">[</span>,<span class="va">i</span><span class="op">]</span>, <span class="va">alpha</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, <span class="fl">1</span><span class="op">)</span> 
-  <span class="op">}</span> 
-  <span class="va">Y</span> <span class="op">&lt;-</span> <span class="va">Y</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span> 
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span> 
-<span class="op">}</span> 
-
-<span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">7</span><span class="op">)</span> 
-<span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu">qdirichlet</span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">7</span><span class="op">)</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1E-12</span><span class="op">)</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span> 
-<span class="co">#&gt; [1] 2.701015e-05 7.691528e-01</span>
-
-<span class="va">ws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">7</span><span class="op">)</span> 
-<span class="va">wsSums</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">ws</span><span class="op">)</span> 
-<span class="va">wss</span> <span class="op">&lt;-</span> <span class="va">ws</span> <span class="op">/</span> <span class="va">wsSums</span> 
-<span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span><span class="va">wss</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1E-12</span><span class="op">)</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="va">wss</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1.226865e-05 6.191527e-01</span></code></pre></div>
+<div class="section level2">
+<h2 id="question-3">Question 3<a class="anchor" aria-label="anchor" href="#question-3"></a>
+</h2>
+<p>How do I create a Latin hypercube that ranges between between 0 and 1
+and sums to 1?</p>
+<div class="section level3">
+<h3 id="answer-2">Answer<a class="anchor" aria-label="anchor" href="#answer-2"></a>
+</h3>
+<p>I have a solution to this problem using a Dirichlet
+distribution.<br>
+The result is not uniformly distributed on (0,1) anymore, but instead is
+Dirichlet distributed with the parameters alpha. The Latin properties
+are maintained.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">7</span><span class="op">)</span> </span>
+<span><span class="va">Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quanttrans.html">qdirichlet</a></span><span class="op">(</span><span class="va">X</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">7</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1E-12</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">Y</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; [1] 5.076098e-06 8.393811e-01</span></span>
+<span></span>
+<span><span class="va">ws</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">7</span><span class="op">)</span> </span>
+<span><span class="va">wsSums</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">ws</span><span class="op">)</span> </span>
+<span><span class="va">wss</span> <span class="op">&lt;-</span> <span class="va">ws</span> <span class="op">/</span> <span class="va">wsSums</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowSums</a></span><span class="op">(</span><span class="va">wss</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span> <span class="op">&lt;</span> <span class="fl">1E-12</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="va">wss</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2.648948e-05 5.038924e-01</span></span></code></pre></div>
 </div>
 </div>
-<div id="question-5" class="section level2">
-<h2 class="hasAnchor">
-<a href="#question-5" class="anchor"></a>Question 5</h2>
-<p>I need to use Latin hypercube sampling for my own custome functions.</p>
-<div id="answer-3" class="section level3">
-<h3 class="hasAnchor">
-<a href="#answer-3" class="anchor"></a>Answer</h3>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bertcarnell/lhs">lhs</a></span><span class="op">)</span> 
-
-<span class="co"># functions you described </span>
-<span class="va">T1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span> <span class="va">t</span><span class="op">*</span><span class="va">t</span> 
-<span class="va">WL1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">T1</span>, <span class="va">t</span><span class="op">)</span> <span class="va">T1</span><span class="op">*</span><span class="va">t</span> 
-<span class="va">BE1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">WL1</span>, <span class="va">T1</span>, <span class="va">t</span><span class="op">)</span> <span class="va">WL1</span><span class="op">*</span><span class="va">T1</span><span class="op">*</span><span class="va">t</span> 
-
-<span class="co"># t is distributed according to some pdf (e.g. normal) </span>
-<span class="co"># draw a lhs with 512 rows and 3 columns (one for each function) </span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">512</span>, <span class="fl">3</span><span class="op">)</span> 
-<span class="co"># transform the three columns to a normal distribution (these could be any </span>
-<span class="co"># distribution) </span>
-<span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">2</span>, <span class="kw">function</span><span class="op">(</span><span class="va">columny</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="va">columny</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> 
-<span class="co"># transform t using the functions provided </span>
-<span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span> 
-  <span class="fu">T1</span><span class="op">(</span><span class="va">t</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>, 
-  <span class="fu">WL1</span><span class="op">(</span><span class="fu">T1</span><span class="op">(</span><span class="va">t</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="va">t</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span>, 
-  <span class="fu">BE1</span><span class="op">(</span><span class="fu">WL1</span><span class="op">(</span><span class="fu">T1</span><span class="op">(</span><span class="va">t</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">)</span>, <span class="va">t</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">)</span>, <span class="fu">T1</span><span class="op">(</span><span class="va">t</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">)</span>, <span class="va">t</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">)</span> 
-<span class="op">)</span> 
-<span class="co"># check the results </span>
-<span class="co"># these should be approximately uniform </span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> 
-<span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">2</span>, <span class="va">hist</span>, breaks <span class="op">=</span> <span class="fl">50</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> 
-<span class="co"># these should be approximately normal </span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<div class="section level2">
+<h2 id="question-5">Question 5<a class="anchor" aria-label="anchor" href="#question-5"></a>
+</h2>
+<p>I need to use Latin hypercube sampling for my own custom
+functions.</p>
+<div class="section level3">
+<h3 id="answer-3">Answer<a class="anchor" aria-label="anchor" href="#answer-3"></a>
+</h3>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/bertcarnell/lhs" class="external-link">lhs</a></span><span class="op">)</span> </span>
+<span></span>
+<span><span class="co"># functions you described </span></span>
+<span><span class="va">T1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">t</span><span class="op">)</span> <span class="va">t</span><span class="op">*</span><span class="va">t</span> </span>
+<span><span class="va">WL1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">T1</span>, <span class="va">t</span><span class="op">)</span> <span class="va">T1</span><span class="op">*</span><span class="va">t</span> </span>
+<span><span class="va">BE1</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">WL1</span>, <span class="va">T1</span>, <span class="va">t</span><span class="op">)</span> <span class="va">WL1</span><span class="op">*</span><span class="va">T1</span><span class="op">*</span><span class="va">t</span> </span>
+<span></span>
+<span><span class="co"># t is distributed according to some pdf (e.g. normal) </span></span>
+<span><span class="co"># draw a lhs with 512 rows and 3 columns (one for each function) </span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">512</span>, <span class="fl">3</span><span class="op">)</span> </span>
+<span><span class="co"># transform the three columns to a normal distribution (these could be any </span></span>
+<span><span class="co"># distribution) </span></span>
+<span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">2</span>, <span class="kw">function</span><span class="op">(</span><span class="va">columny</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="va">columny</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co"># transform t using the functions provided </span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span> </span>
+<span>  <span class="fu">T1</span><span class="op">(</span><span class="va">t</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span>, </span>
+<span>  <span class="fu">WL1</span><span class="op">(</span><span class="fu">T1</span><span class="op">(</span><span class="va">t</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="va">t</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span>, </span>
+<span>  <span class="fu">BE1</span><span class="op">(</span><span class="fu">WL1</span><span class="op">(</span><span class="fu">T1</span><span class="op">(</span><span class="va">t</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">)</span>, <span class="va">t</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">)</span>, <span class="fu">T1</span><span class="op">(</span><span class="va">t</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">)</span>, <span class="va">t</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span><span class="op">)</span> </span>
+<span><span class="op">)</span> </span>
+<span><span class="co"># check the results </span></span>
+<span><span class="co"># these should be approximately uniform </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">2</span>, <span class="va">hist</span>, breaks <span class="op">=</span> <span class="fl">50</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span>
+<span><span class="co"># these should be approximately normal </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/custom-1.png" width="480"></p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">t</span>, <span class="fl">2</span>, <span class="va">hist</span>, breaks <span class="op">=</span> <span class="fl">50</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> 
-<span class="co"># these should be the results of the functions </span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">t</span>, <span class="fl">2</span>, <span class="va">hist</span>, breaks <span class="op">=</span> <span class="fl">50</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span>
+<span><span class="co"># these should be the results of the functions </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/custom-2.png" width="480"></p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">result</span>, <span class="fl">2</span>, <span class="va">hist</span>, breaks <span class="op">=</span> <span class="fl">50</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">result</span>, <span class="fl">2</span>, <span class="va">hist</span>, breaks <span class="op">=</span> <span class="fl">50</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/custom-3.png" width="480"></p>
 </div>
 </div>
-<div id="question-6" class="section level2">
-<h2 class="hasAnchor">
-<a href="#question-6" class="anchor"></a>Question 6</h2>
-<p>I need a Latin hypercube sample on an integer set or a set of colors.</p>
-<div id="answer-4" class="section level3">
-<h3 class="hasAnchor">
-<a href="#answer-4" class="anchor"></a>Answer</h3>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1000</span> 
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1919</span><span class="op">)</span> 
-
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="va">N</span>, <span class="fl">4</span><span class="op">)</span> 
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> 
-<span class="co"># uniform on 1-10 </span>
-<span class="va">y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">qunif</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span> 
-<span class="co"># three colors 1,2,3 </span>
-<span class="va">y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">qunif</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="fl">0</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> 
-<span class="co"># other distributions </span>
-<span class="va">y</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">qunif</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span> 
-<span class="va">y</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span> 
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> 
-<span class="va">dummy</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">2</span>, <span class="va">hist</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> </code></pre></div>
+<div class="section level2">
+<h2 id="question-6">Question 6<a class="anchor" aria-label="anchor" href="#question-6"></a>
+</h2>
+<p>I need a Latin hypercube sample on an integer set or a set of
+colors.</p>
+<div class="section level3">
+<h3 id="answer-4">Answer<a class="anchor" aria-label="anchor" href="#answer-4"></a>
+</h3>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1000</span> </span>
+<span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="va">N</span>, <span class="fl">4</span><span class="op">)</span> </span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </span>
+<span><span class="co"># uniform integers on 1-10 </span></span>
+<span><span class="va">y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quanttrans.html">qinteger</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co"># three colors 1,2,3 </span></span>
+<span><span class="va">y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/quanttrans.html">qfactor</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"R"</span>, <span class="st">"G"</span>, <span class="st">"B"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="co"># other distributions </span></span>
+<span><span class="va">y</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">qunif</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span> </span>
+<span><span class="va">y</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span>, <span class="fl">0</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   1   2   3   4   5   6   7   8   9  10 </span></span>
+<span><span class="co">#&gt; 100 100 100 100 100 100 100 100 100 100</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   B   G   R </span></span>
+<span><span class="co">#&gt; 334 333 333</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/q6-1.png" width="480"></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>, type<span class="op">=</span><span class="st">"h"</span>, col<span class="op">=</span><span class="st">"blue"</span>, lwd<span class="op">=</span><span class="fl">2</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">120</span><span class="op">)</span>, 
-ylab<span class="op">=</span><span class="st">"Frequency"</span>, xlab<span class="op">=</span><span class="st">"y[,1]"</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>, type<span class="op">=</span><span class="st">"h"</span>, col<span class="op">=</span><span class="st">"blue"</span>, lwd<span class="op">=</span><span class="fl">2</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">400</span><span class="op">)</span>, 
-ylab<span class="op">=</span><span class="st">"Frequency"</span>, xlab<span class="op">=</span><span class="st">"y[,2]"</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> 
-<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> </code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> </span></code></pre></div>
 <p><img src="lhs_faq_files/figure-html/q6-2.png" width="480"></p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># change to color names </span>
-<span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span> 
-<span class="va">z</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">y</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"R"</span>,<span class="st">"G"</span>,<span class="st">"B"</span><span class="op">)</span><span class="op">)</span> 
-<span class="va">z</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span> 
-<span class="co">#&gt;    V1 V2       V3          V4</span>
-<span class="co">#&gt; 1   9  R 9.944182  2.94805877</span>
-<span class="co">#&gt; 2   4  R 8.530678 -0.19388895</span>
-<span class="co">#&gt; 3   8  G 8.095066 -0.89251244</span>
-<span class="co">#&gt; 4   4  G 8.198067 -0.45032286</span>
-<span class="co">#&gt; 5  10  G 6.523280 -4.09957931</span>
-<span class="co">#&gt; 6  10  B 6.227534 -0.05631367</span>
-<span class="co">#&gt; 7   2  B 7.177990  3.84640466</span>
-<span class="co">#&gt; 8   8  G 6.881714  0.58980996</span>
-<span class="co">#&gt; 9   9  G 7.111466  0.45285007</span>
-<span class="co">#&gt; 10  2  R 6.172652  1.93023633</span></code></pre></div>
 </div>
 </div>
   </div>
@@ -481,11 +364,13 @@ ylab<span class="op">=</span><span class="st">"Frequency"</span>, xlab<span clas
 
 
       <footer><div class="copyright">
-  <p>Developed by Rob Carnell.</p>
+  <p></p>
+<p>Developed by Rob Carnell.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -493,6 +378,8 @@ ylab<span class="op">=</span><span class="st">"Frequency"</span>, xlab<span clas
 
   
 
+
+  
 
   </body>
 </html>

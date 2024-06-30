@@ -32,9 +32,9 @@ create_install_lines <- function(pkgs)
   res <- NULL
   for (i in seq_along(pkgs))
   {
-    resp <- jsonlite::fromJSON(paste0("https://sources.debian.org/api/search/r-cran-", pkgs[i]))
+    resp <- jsonlite::fromJSON(paste0("https://sources.debian.org/api/search/r-cran-", tolower(pkgs[i])))
     if (!is.null(resp$results$exact))
-      res <- c(res, paste0("r-cran-", pkgs[i], " \\"))
+      res <- c(res, paste0("r-cran-", tolower(pkgs[i]), " \\"))
     else
       install_extra <- c(install_extra, pkgs[i])
   }

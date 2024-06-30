@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,23 +40,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.7</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -62,6 +58,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/augment_lhs.html">An Example of Augmenting a Latin Hypercube</a>
+    </li>
+    <li>
+      <a href="../articles/correlated_lhs.html">Examples of Correlated and Multivariate Latin hypercubes</a>
     </li>
     <li>
       <a href="../articles/lhs_basics.html">Basic Latin hypercube samples and designs with package lhs</a>
@@ -74,7 +73,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/bertcarnell/lhs/">
+  <a href="https://github.com/bertcarnell/lhs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -89,146 +88,126 @@
 
       
 
-      </header><script src="lhs_basics_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Basic Latin hypercube samples and designs with package lhs</h1>
-                        <h4 class="author">Rob Carnell</h4>
+      <h1 data-toc-skip>Basic Latin hypercube samples and designs with
+package lhs</h1>
+                        <h4 data-toc-skip class="author">Rob
+Carnell</h4>
             
-            <h4 class="date">2021-09-06</h4>
+            <h4 data-toc-skip class="date">2024-06-30</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/bertcarnell/lhs/blob/master/vignettes/lhs_basics.Rmd"><code>vignettes/lhs_basics.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/bertcarnell/lhs/blob/HEAD/vignettes/lhs_basics.Rmd" class="external-link"><code>vignettes/lhs_basics.Rmd</code></a></small>
       <div class="hidden name"><code>lhs_basics.Rmd</code></div>
 
     </div>
 
     
     
-<div id="theory-of-latin-hypercube-sampling" class="section level3">
-<h3 class="hasAnchor">
-<a href="#theory-of-latin-hypercube-sampling" class="anchor"></a>Theory of Latin Hypercube Sampling</h3>
-<p>For the technical basis of Latin Hypercube Sampling (LHS) and Latin Hypercube Designs (LHD) please see: * Stein, Michael. <em>Large Sample Properties of Simulations Using Latin Hypercube Sampling</em> Technometrics, Vol 28, No 2, 1987. * McKay, MD, et.al. <em>A Comparison of Three Methods for Selecting Values of Input Variables in the Analysis of Output from a Computer Code</em> Technometrics, Vol 21, No 2, 1979.</p>
-<p>This package was created to bring these designs to R and to implement many of the articles that followed on optimized sampling methods.</p>
+<div class="section level3">
+<h3 id="theory-of-latin-hypercube-sampling">Theory of Latin Hypercube Sampling<a class="anchor" aria-label="anchor" href="#theory-of-latin-hypercube-sampling"></a>
+</h3>
+<p>For the technical basis of Latin Hypercube Sampling (LHS) and Latin
+Hypercube Designs (LHD) please see: * Stein, Michael. <em>Large Sample
+Properties of Simulations Using Latin Hypercube Sampling</em>
+Technometrics, Vol 28, No 2, 1987. * McKay, MD, et.al. <em>A Comparison
+of Three Methods for Selecting Values of Input Variables in the Analysis
+of Output from a Computer Code</em> Technometrics, Vol 21, No 2,
+1979.</p>
+<p>This package was created to bring these designs to R and to implement
+many of the articles that followed on optimized sampling methods.</p>
 </div>
-<div id="create-a-simple-lhs" class="section level3">
-<h3 class="hasAnchor">
-<a href="#create-a-simple-lhs" class="anchor"></a>Create a Simple LHS</h3>
+<div class="section level3">
+<h3 id="create-a-simple-lhs">Create a Simple LHS<a class="anchor" aria-label="anchor" href="#create-a-simple-lhs"></a>
+</h3>
 <p>Basic LHS’s are created using <code>randomLHS</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># set the seed for reproducibility</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1111</span><span class="op">)</span>
-<span class="co"># a design with 5 samples from 4 parameters</span>
-<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span><span class="op">)</span> 
-<span class="va">A</span>
-<span class="co">#&gt;           [,1]       [,2]      [,3]      [,4]</span>
-<span class="co">#&gt; [1,] 0.6328827 0.48424369 0.1678234 0.1974741</span>
-<span class="co">#&gt; [2,] 0.2124960 0.88111537 0.6069217 0.4771109</span>
-<span class="co">#&gt; [3,] 0.1277885 0.64327868 0.3612360 0.9862456</span>
-<span class="co">#&gt; [4,] 0.8935830 0.27182878 0.4335808 0.6052341</span>
-<span class="co">#&gt; [5,] 0.5089423 0.02269382 0.8796676 0.2036678</span></code></pre></div>
-<p>In general, the LHS is uniform on the margins until transformed (<a href="#X">Figure 1</a>):</p>
+<code class="sourceCode R"><span><span class="co"># set the seed for reproducibility</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1111</span><span class="op">)</span></span>
+<span><span class="co"># a design with 5 samples from 4 parameters</span></span>
+<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span><span class="op">)</span> </span>
+<span><span class="va">A</span></span>
+<span><span class="co">#&gt;           [,1]       [,2]      [,3]      [,4]</span></span>
+<span><span class="co">#&gt; [1,] 0.6328827 0.48424369 0.1678234 0.1974741</span></span>
+<span><span class="co">#&gt; [2,] 0.2124960 0.88111537 0.6069217 0.4771109</span></span>
+<span><span class="co">#&gt; [3,] 0.1277885 0.64327868 0.3612360 0.9862456</span></span>
+<span><span class="co">#&gt; [4,] 0.8935830 0.27182878 0.4335808 0.6052341</span></span>
+<span><span class="co">#&gt; [5,] 0.5089423 0.02269382 0.8796676 0.2036678</span></span></code></pre></div>
+<p>In general, the LHS is uniform on the margins until transformed
+(<a href="#X">Figure 1</a>):</p>
 <div id="X" style="text-align:center;text-size:11pt;font-weight:bold">
 Figure 1. Two dimensions of a Uniform random LHS with 5 samples
 </div>
 <p><img src="lhs_basics_files/figure-html/figureX-1.png" width="480" style="display: block; margin: auto;"></p>
-<p>It is common to transform the margins of the design (the columns) into other distributions (<a href="#Y">Figure 2</a>)</p>
+<p>It is common to transform the margins of the design (the columns)
+into other distributions (<a href="#Y">Figure 2</a>)</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span>
-<span class="va">B</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="va">A</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">B</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html">qlnorm</a></span><span class="op">(</span><span class="va">A</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, meanlog <span class="op">=</span> <span class="fl">0.5</span>, sdlog <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">B</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">A</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>
-<span class="va">B</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">qunif</a></span><span class="op">(</span><span class="va">A</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span>, min <span class="op">=</span> <span class="fl">7</span>, max <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>
-<span class="va">B</span>
-<span class="co">#&gt;             [,1]      [,2]      [,3]     [,4]</span>
-<span class="co">#&gt; [1,]  0.33949794 1.5848575 0.1678234 7.592422</span>
-<span class="co">#&gt; [2,] -0.79779049 5.3686737 0.6069217 8.431333</span>
-<span class="co">#&gt; [3,] -1.13690757 2.3803237 0.3612360 9.958737</span>
-<span class="co">#&gt; [4,]  1.24581019 0.8982639 0.4335808 8.815702</span>
-<span class="co">#&gt; [5,]  0.02241694 0.2228973 0.8796676 7.611003</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">A</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">B</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">qnorm</a></span><span class="op">(</span><span class="va">A</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">B</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">qlnorm</a></span><span class="op">(</span><span class="va">A</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, meanlog <span class="op">=</span> <span class="fl">0.5</span>, sdlog <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">B</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">A</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span></span>
+<span><span class="va">B</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">qunif</a></span><span class="op">(</span><span class="va">A</span><span class="op">[</span>,<span class="fl">4</span><span class="op">]</span>, min <span class="op">=</span> <span class="fl">7</span>, max <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">B</span></span>
+<span><span class="co">#&gt;             [,1]      [,2]      [,3]     [,4]</span></span>
+<span><span class="co">#&gt; [1,]  0.33949794 1.5848575 0.1678234 7.592422</span></span>
+<span><span class="co">#&gt; [2,] -0.79779049 5.3686737 0.6069217 8.431333</span></span>
+<span><span class="co">#&gt; [3,] -1.13690757 2.3803237 0.3612360 9.958737</span></span>
+<span><span class="co">#&gt; [4,]  1.24581019 0.8982639 0.4335808 8.815702</span></span>
+<span><span class="co">#&gt; [5,]  0.02241694 0.2228973 0.8796676 7.611003</span></span></code></pre></div>
 <div id="Y" style="text-align:center;text-size:11pt;font-weight:bold">
 Figure 2. Two dimensions of a transformed random LHS with 5 samples
 </div>
 <p><img src="lhs_basics_files/figure-html/figureY-1.png" width="480" style="display: block; margin: auto;"></p>
 </div>
-<div id="optimizing-the-design" class="section level3">
-<h3 class="hasAnchor">
-<a href="#optimizing-the-design" class="anchor"></a>Optimizing the Design</h3>
-<p>The LHS can be optimized using a number of methods in the <code>lhs</code> package. Each method attempts to improve on the random design by ensuring that the selected points are as uncorrelated and space filling as possible. <a href="#tab1">Table 1</a> shows some results. <a href="#Z">Figure 3</a>, <a href="#W">Figure 4</a>, and <a href="#G">Figure 5</a> show corresponding plots.</p>
+<div class="section level3">
+<h3 id="optimizing-the-design">Optimizing the Design<a class="anchor" aria-label="anchor" href="#optimizing-the-design"></a>
+</h3>
+<p>The LHS can be optimized using a number of methods in the
+<code>lhs</code> package. Each method attempts to improve on the random
+design by ensuring that the selected points are as uncorrelated and
+space filling as possible. <a href="#tab1">Table 1</a> shows some
+results. <a href="#Z">Figure 3</a>, <a href="#W">Figure 4</a>, and
+<a href="#G">Figure 5</a> show corresponding plots.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span>
-<span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span><span class="op">)</span>
-<span class="va">A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimumLHS.html">optimumLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, maxSweeps <span class="op">=</span> <span class="fl">4</span>, eps <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>
-<span class="va">A2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/maximinLHS.html">maximinLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">A3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/improvedLHS.html">improvedLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="va">A4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geneticLHS.html">geneticLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, pop <span class="op">=</span> <span class="fl">1000</span>, gen <span class="op">=</span> <span class="fl">8</span>, pMut <span class="op">=</span> <span class="fl">0.1</span>, criterium <span class="op">=</span> <span class="st">"S"</span><span class="op">)</span>
-<span class="va">A5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geneticLHS.html">geneticLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, pop <span class="op">=</span> <span class="fl">1000</span>, gen <span class="op">=</span> <span class="fl">8</span>, pMut <span class="op">=</span> <span class="fl">0.1</span>, criterium <span class="op">=</span> <span class="st">"Maximin"</span><span class="op">)</span></code></pre></div>
-<hr>
-<div id="tab1" style="text-align:center;text-size:11pt;font-weight:bold">
-Table 1. Sample results and metrics of various LHS algorithms
-</div>
-<table class="table">
-<colgroup>
-<col width="22%">
-<col width="25%">
-<col width="25%">
-<col width="25%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">Method</th>
-<th align="center">Min Distance btwn pts</th>
-<th align="center">Mean Distance btwn pts</th>
-<th align="center">Max Correlation btwn pts</th>
-</tr></thead>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span></span>
+<span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span><span class="op">)</span></span>
+<span><span class="va">A1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/optimumLHS.html">optimumLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, maxSweeps <span class="op">=</span> <span class="fl">4</span>, eps <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span>
+<span><span class="va">A2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/maximinLHS.html">maximinLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">A3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/improvedLHS.html">improvedLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, dup <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="va">A4</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geneticLHS.html">geneticLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, pop <span class="op">=</span> <span class="fl">1000</span>, gen <span class="op">=</span> <span class="fl">8</span>, pMut <span class="op">=</span> <span class="fl">0.1</span>, criterium <span class="op">=</span> <span class="st">"S"</span><span class="op">)</span></span>
+<span><span class="va">A5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/geneticLHS.html">geneticLHS</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">10</span>, pop <span class="op">=</span> <span class="fl">1000</span>, gen <span class="op">=</span> <span class="fl">8</span>, pMut <span class="op">=</span> <span class="fl">0.1</span>, criterium <span class="op">=</span> <span class="st">"Maximin"</span><span class="op">)</span></span></code></pre></div>
+<table style="width:8%;" class="table">
+<colgroup><col width="8%"></colgroup>
 <tbody>
 <tr class="odd">
-<td align="left">randomLHS</td>
-<td align="center">0.6346585</td>
-<td align="center">1.2913235</td>
-<td align="center">0.5173006</td>
+<td></td>
 </tr>
 <tr class="even">
-<td align="left">optimumLHS</td>
-<td align="center">0.8717797</td>
-<td align="center">1.3001892</td>
-<td align="center">0.1268209</td>
-</tr>
-<tr class="odd">
-<td align="left">maximinLHS</td>
-<td align="center">0.595395</td>
-<td align="center">1.2835191</td>
-<td align="center">0.2983643</td>
-</tr>
-<tr class="even">
-<td align="left">improvedLHS</td>
-<td align="center">0.6425673</td>
-<td align="center">1.2746711</td>
-<td align="center">0.5711527</td>
-</tr>
-<tr class="odd">
-<td align="left">geneticLHS (S)</td>
-<td align="center">0.8340751</td>
-<td align="center">1.3026543</td>
-<td align="center">0.3971539</td>
-</tr>
-<tr class="even">
-<td align="left">geneticLHS (Maximin)</td>
-<td align="center">0.8105733</td>
-<td align="center">1.2933412</td>
-<td align="center">0.5605546</td>
+<td>Method | Min Distance btwn pts | Mean Distance btwn pts | Max
+Correlation btwn pts :—–|:—–:|:—–:|:—–: randomLHS | 0.6346585 |
+1.2913235 | 0.5173006 optimumLHS | 0.8717797 | 1.3001892 | 0.1268209
+maximinLHS | 0.595395 | 1.2835191 | 0.2983643 improvedLHS | 0.6425673 |
+1.2746711 | 0.5711527 geneticLHS (S) | 0.8340751 | 1.3026543 | 0.3971539
+geneticLHS (Maximin) | 0.8105733 | 1.2933412 | 0.5605546</td>
 </tr>
 </tbody>
 </table>
-<hr>
 <div id="Z" style="text-align:center;text-size:11pt;font-weight:bold">
 Figure 3. Pairwise margins of a randomLHS
 </div>
 <p><img src="lhs_basics_files/figure-html/Z-1.png" width="672" style="display: block; margin: auto;"></p>
-<hr>
-<div id="W" style="text-align:center;text-size:11pt;font-weight:bold">
-Figure 4. Pairwise margins of a optimumLHS
-</div>
-<p><img src="lhs_basics_files/figure-html/W-1.png" width="672" style="display: block; margin: auto;"></p>
-<hr>
+<table style="width:8%;" class="table">
+<colgroup><col width="8%"></colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td><img src="lhs_basics_files/figure-html/W-1.png" width="672" style="display: block; margin: auto;"></td>
+</tr>
+</tbody>
+</table>
 <div id="G" style="text-align:center;text-size:11pt;font-weight:bold">
 Figure 5. Pairwise margins of a maximinLHS
 </div>
@@ -245,11 +224,13 @@ Figure 5. Pairwise margins of a maximinLHS
 
 
       <footer><div class="copyright">
-  <p>Developed by Rob Carnell.</p>
+  <p></p>
+<p>Developed by Rob Carnell.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -257,6 +238,8 @@ Figure 5. Pairwise margins of a maximinLHS
 
   
 
+
+  
 
   </body>
 </html>

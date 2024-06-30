@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,23 +40,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lhs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.1.7</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -62,6 +58,9 @@
   <ul class="dropdown-menu" role="menu">
 <li>
       <a href="../articles/augment_lhs.html">An Example of Augmenting a Latin Hypercube</a>
+    </li>
+    <li>
+      <a href="../articles/correlated_lhs.html">Examples of Correlated and Multivariate Latin hypercubes</a>
     </li>
     <li>
       <a href="../articles/lhs_basics.html">Basic Latin hypercube samples and designs with package lhs</a>
@@ -74,7 +73,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/bertcarnell/lhs/">
+  <a href="https://github.com/bertcarnell/lhs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -89,91 +88,144 @@
 
       
 
-      </header><script src="augment_lhs_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>An Example of Augmenting a Latin Hypercube</h1>
-                        <h4 class="author">Rob Carnell</h4>
+                        <h4 data-toc-skip class="author">Rob
+Carnell</h4>
             
-            <h4 class="date">2021-09-06</h4>
+            <h4 data-toc-skip class="date">2024-06-30</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/bertcarnell/lhs/blob/master/vignettes/augment_lhs.Rmd"><code>vignettes/augment_lhs.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/bertcarnell/lhs/blob/HEAD/vignettes/augment_lhs.Rmd" class="external-link"><code>vignettes/augment_lhs.Rmd</code></a></small>
       <div class="hidden name"><code>augment_lhs.Rmd</code></div>
 
     </div>
 
     
     
-<p>Suppose that a computer simulation study is being designed that requires expensive runs. A Latin hypercube design is desired for this simulation so that the expectation of the simulation output can be estimated efficiently given the distributions of the input variables. Latin hypercubes are most often used in highly dimensional problems, but the example shown is of small dimension. Suppose further that the total extent of funding is uncertain. Enough money is available for 5 runs, and there is a chance that there will be enough for 5 more. However, if the money for the additional 5 runs does not materialize, then the first 5 runs must be a Latin hypercube alone. A design for this situation can be created using the <code>lhs</code> package.</p>
-<p>First create a random Latin hypercube using the <code><a href="../reference/randomLHS.html">randomLHS(n, k)</a></code> command:</p>
+<p>Suppose that a computer simulation study is being designed that
+requires expensive runs. A Latin hypercube design is desired for this
+simulation so that the expectation of the simulation output can be
+estimated efficiently given the distributions of the input variables.
+Latin hypercubes are most often used in highly dimensional problems, but
+the example shown is of small dimension. Suppose further that the total
+extent of funding is uncertain. Enough money is available for 5 runs,
+and there is a chance that there will be enough for 5 more. However, if
+the money for the additional 5 runs does not materialize, then the first
+5 runs must be a Latin hypercube alone. A design for this situation can
+be created using the <code>lhs</code> package.</p>
+<p>First create a random Latin hypercube using the
+<code>randomLHS(n, k)</code> command:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">2</span><span class="op">)</span></code></pre></div>
-<p>An example of this hypercube is shown in <a href="#X">Figure 1</a>. Note that the <em>Latin</em> property of the hypercube requires that each of the 5 equal probability intervals be filled (i.e. each row and each column is filled with one point). Also notice that the exact location of the design point is randomly sampled from within that cell using a uniform distribution for each marginal variable.</p>
-<hr>
-<div id="X" style="text-align:center;text-size:11pt;font-weight:bold">
-Figure 1. A randomly produced Latin Hypercube with uniform marginal distributions for 2 parameters with 5 simulations
-</div>
-<div id="section" class="section level2">
-<h2 class="hasAnchor">
-<a href="#section" class="anchor"></a><img src="augment_lhs_files/figure-html/original5-1.png" width="480" style="display: block; margin: auto;">
-</h2>
-<p>Next, in order to augment the design with more points use <code><a href="../reference/augmentLHS.html">augmentLHS(lhs, m)</a></code>. The following will add 5 more points to the design:</p>
+<code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+<p>An example of this hypercube is shown in <a href="#X">Figure 1</a>.
+Note that the <em>Latin</em> property of the hypercube requires that
+each of the 5 equal probability intervals be filled (i.e. each row and
+each column is filled with one point). Also notice that the exact
+location of the design point is randomly sampled from within that cell
+using a uniform distribution for each marginal variable.</p>
+<table style="width:8%;" class="table">
+<colgroup><col width="8%"></colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td><img src="augment_lhs_files/figure-html/original5-1.png" width="480" style="display: block; margin: auto;"></td>
+</tr>
+</tbody>
+</table>
+<p>Next, in order to augment the design with more points use
+<code>augmentLHS(lhs, m)</code>. The following will add 5 more points to
+the design:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/augmentLHS.html">augmentLHS</a></span><span class="op">(</span><span class="va">A</span>, <span class="fl">5</span><span class="op">)</span></code></pre></div>
-<p>The <code>augmentLHS</code> function works by re-dividing the original design into <code>n+m</code> intervals (e.g. 5+5=10) keeping the original design points exactly in the same position. It then randomly fills the empty row-column sets. The results are shown in <a href="#Y">Figure 2</a>.</p>
-<hr>
-<div id="Y" style="text-align:center;text-size:11pt;font-weight:bold">
-Figure 2. A randomly produced Latin Hypercube of 5 points (red) with 5 augmented points (blue). Each parameter has a uniform marginal distribution.
-</div>
-</div>
-<div id="section-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#section-1" class="anchor"></a><img src="augment_lhs_files/figure-html/augmented10-1.png" width="480" style="display: block; margin: auto;">
-</h2>
-<p>The <code>augmentLHS</code> function uses the following algorithm (see the documentation for <code>augmentLHS</code>):</p>
+<code class="sourceCode R"><span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/augmentLHS.html">augmentLHS</a></span><span class="op">(</span><span class="va">A</span>, <span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<p>The <code>augmentLHS</code> function works by re-dividing the
+original design into <code>n+m</code> intervals (e.g. 5+5=10) keeping
+the original design points exactly in the same position. It then
+randomly fills the empty row-column sets. The results are shown in
+<a href="#Y">Figure 2</a>.</p>
+<table style="width:8%;" class="table">
+<colgroup><col width="8%"></colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td><img src="augment_lhs_files/figure-html/augmented10-1.png" width="480" style="display: block; margin: auto;"></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>augmentLHS</code> function uses the following algorithm
+(see the documentation for <code>augmentLHS</code>):</p>
 <ul>
-<li>Create a new <code>(n+m)</code> by <code>k</code> matrix to hold the candidate points after the design has been re-partitioned into <code>(n+m)^2</code> cells, where <code>n</code> is number of points in the original <code>lhs</code> matrix.</li>
-<li>Then randomly sweep through each column (1…<code>k</code>) in the repartitioned design to find the missing cells.</li>
-<li>For each column (variable), randomly search for an empty row, generate a random value that fits in that row, record the value in the new matrix. The new matrix can contain more than <code>m</code> points unless <code>m = 2n</code>, in which case the new matrix will contain exactly <code>m</code> filled rows.</li>
-<li>Finally, keep only the first <code>m</code> rows of the new matrix. It is guaranteed that there will be <code>m</code> full rows (points) in the new matrix. The deleted rows are partially full. The additional candidate points are selected randomly because of the random search used to find empty cells.</li>
+<li>Create a new <code>(n+m)</code> by <code>k</code> matrix to hold the
+candidate points after the design has been re-partitioned into
+<code>(n+m)^2</code> cells, where <code>n</code> is number of points in
+the original <code>lhs</code> matrix.</li>
+<li>Then randomly sweep through each column (1…<code>k</code>) in the
+repartitioned design to find the missing cells.</li>
+<li>For each column (variable), randomly search for an empty row,
+generate a random value that fits in that row, record the value in the
+new matrix. The new matrix can contain more than <code>m</code> points
+unless <code>m = 2n</code>, in which case the new matrix will contain
+exactly <code>m</code> filled rows.</li>
+<li>Finally, keep only the first <code>m</code> rows of the new matrix.
+It is guaranteed that there will be <code>m</code> full rows (points) in
+the new matrix. The deleted rows are partially full. The additional
+candidate points are selected randomly because of the random search used
+to find empty cells.</li>
 </ul>
-<p>Also notice that because the original points are randomly placed within the cells, depending on how you bin the marginal distributions, a histogram (of x1 for example) will not necessarily be exactly uniform.</p>
-<p>Now, the augmenting points do not necessarily form a Latin Hypercube themselves. The original design and augmenting points may form a Latin Hypercube, or there may be more than one point per row in the augmented design. If the augmented points are equal to the number of original points, then a strictly uniform Latin hypercube is guaranteed. An example of an augmented design which is not uniform in the marginal distributions is given in <a href="#Z">Figure 3</a> and <a href="#W">Figure 4</a>. The commands were:</p>
+<p>Also notice that because the original points are randomly placed
+within the cells, depending on how you bin the marginal distributions, a
+histogram (of x1 for example) will not necessarily be exactly
+uniform.</p>
+<p>Now, the augmenting points do not necessarily form a Latin Hypercube
+themselves. The original design and augmenting points may form a Latin
+Hypercube, or there may be more than one point per row in the augmented
+design. If the augmented points are equal to the number of original
+points, then a strictly uniform Latin hypercube is guaranteed. An
+example of an augmented design which is not uniform in the marginal
+distributions is given in <a href="#Z">Figure 3</a> and
+<a href="#W">Figure 4</a>. The commands were:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">2</span><span class="op">)</span>
-<span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/augmentLHS.html">augmentLHS</a></span><span class="op">(</span><span class="va">A</span>, <span class="fl">3</span><span class="op">)</span></code></pre></div>
-<hr>
-<div id="Z" style="text-align:center;text-size:11pt;font-weight:bold">
-Figure 3. Original design with 7 points
-</div>
-</div>
-<div id="section-2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#section-2" class="anchor"></a><img src="augment_lhs_files/figure-html/Z-1.png" width="480" style="display: block; margin: auto;">
-</h2>
+<code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/randomLHS.html">randomLHS</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">B</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/augmentLHS.html">augmentLHS</a></span><span class="op">(</span><span class="va">A</span>, <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<table style="width:8%;" class="table">
+<colgroup><col width="8%"></colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+</tr>
+<tr class="even">
+<td><img src="augment_lhs_files/figure-html/Z-1.png" width="480" style="display: block; margin: auto;"></td>
+</tr>
+</tbody>
+</table>
 <div id="W" style="text-align:center;text-size:11pt;font-weight:bold">
-Figure 4. Augmented design with 3 additional points. Note that row 9 has 2 points and row 3 has none.
+Figure 4. Augmented design with 3 additional points. Note that row 9 has
+2 points and row 3 has none.
 </div>
 <p><img src="augment_lhs_files/figure-html/W-1.png" width="480" style="display: block; margin: auto;"></p>
-</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
 
 
       <footer><div class="copyright">
-  <p>Developed by Rob Carnell.</p>
+  <p></p>
+<p>Developed by Rob Carnell.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -181,6 +233,8 @@ Figure 4. Augmented design with 3 additional points. Note that row 9 has 2 point
 
   
 
+
+  
 
   </body>
 </html>
