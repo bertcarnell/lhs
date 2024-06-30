@@ -34,7 +34,8 @@ A <- createBose(3, 3, FALSE)
 B <- createBose(5, 4, TRUE)
 }
 \references{
-Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and
+Integration in high dimensions. \url{https://lib.stat.cmu.edu/designs/oa.c}. 1994
 R.C. Bose (1938) Sankhya Vol 3 pp 323-338
 }
 \seealso{

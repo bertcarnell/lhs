@@ -34,7 +34,8 @@ A <- createBoseBush(4, 3, FALSE)
 B <- createBoseBush(8, 3, TRUE)
 }
 \references{
-Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and
+Integration in high dimensions. \url{https://lib.stat.cmu.edu/designs/oa.c}. 1994
 R.C. Bose and K.A. Bush (1952) Annals of Mathematical Statistics, Vol 23 pp 508-524.
 }
 \seealso{

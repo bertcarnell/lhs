@@ -19,7 +19,8 @@
 #' @return an orthogonal array
 #' @export
 #' @references
-#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and
+#' Integration in high dimensions. \url{https://lib.stat.cmu.edu/designs/oa.c}. 1994
 #' R.C. Bose (1938) Sankhya Vol 3 pp 323-338
 #' @examples
 #' A <- createBose(3, 3, FALSE)
@@ -52,7 +53,8 @@ createBose <- function(q, ncol, bRandom=TRUE)
 #' @return an orthogonal array
 #' @export
 #' @references
-#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and
+#' Integration in high dimensions. \url{https://lib.stat.cmu.edu/designs/oa.c}. 1994
 #' R.C. Bose and K.A. Bush (1952) Annals of Mathematical Statistics, Vol 23 pp 508-524.
 #' @examples
 #' A <- createBoseBush(4, 3, FALSE)
@@ -85,7 +87,8 @@ createBoseBush <- function(q, ncol, bRandom=TRUE)
 #' @return an orthogonal array
 #' @export
 #' @references
-#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and
+#' Integration in high dimensions. \url{https://lib.stat.cmu.edu/designs/oa.c}. 1994
 #' K.A. Bush (1952) Annals of Mathematical Statistics, Vol 23 pp 426-434
 #' @examples
 #' A <- createBush(3, 3, FALSE)
@@ -118,7 +121,8 @@ createBush <- function(q, ncol, bRandom=TRUE)
 #' @return an orthogonal array
 #' @export
 #' @references
-#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and
+#' Integration in high dimensions. \url{https://lib.stat.cmu.edu/designs/oa.c}. 1994
 #' S. Addelman and O. Kempthorne (1961) Annals of Mathematical Statistics, Vol 32 pp 1167-1176.
 #' @examples
 #' A <- createAddelKemp(3, 3, TRUE)
@@ -153,7 +157,8 @@ createAddelKemp <- function(q, ncol, bRandom=TRUE)
 #' @return an orthogonal array
 #' @export
 #' @references
-#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and
+#' Integration in high dimensions. \url{https://lib.stat.cmu.edu/designs/oa.c}. 1994
 #' S. Addelman and O. Kempthorne (1961) Annals of Mathematical Statistics, Vol 32 pp 1167-1176.
 #' @examples
 #' A <- createAddelKemp3(3, 3, TRUE)
@@ -187,7 +192,8 @@ createAddelKemp3 <- function(q, ncol, bRandom=TRUE)
 #' @return an orthogonal array
 #' @export
 #' @references
-#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and
+#' Integration in high dimensions. \url{https://lib.stat.cmu.edu/designs/oa.c}. 1994
 #' K.A. Bush (1952) Annals of Mathematical Statistics, Vol 23 pp 426-434
 #' @examples
 #' set.seed(1234)
@@ -224,7 +230,8 @@ createBusht <- function(q, ncol, strength, bRandom=TRUE)
 #' @return an orthogonal array
 #' @export
 #' @references
-#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+#' Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and
+#' Integration in high dimensions. \url{https://lib.stat.cmu.edu/designs/oa.c}. 1994
 #' R.C. Bose and K.A. Bush (1952) Annals of Mathematical Statistics, Vol 23 pp 508-524.
 #' @examples
 #' A <- createBoseBushl(3, 3, 3, TRUE)

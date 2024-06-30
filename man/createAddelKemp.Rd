@@ -34,7 +34,8 @@ A <- createAddelKemp(3, 3, TRUE)
 B <- createAddelKemp(3, 5, FALSE)
 }
 \references{
-Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and Integration in high dimenstions. \url{http://lib.stat.cmu.edu/designs/oa.c}. 1994
+Owen, Art.  Orthogonal Arrays for: Computer Experiments, Visualizations, and
+Integration in high dimensions. \url{https://lib.stat.cmu.edu/designs/oa.c}. 1994
 S. Addelman and O. Kempthorne (1961) Annals of Mathematical Statistics, Vol 32 pp 1167-1176.
 }
 \seealso{

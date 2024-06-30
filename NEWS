@@ -124,3 +124,11 @@ Changes in version 1.1.6 (2022-12-17)
 
 - Bug fix for a warning on CRAN "init.c:14:33: warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]"
 
+Changes in version 1.1.7 (2023-06-30)
+
+- Added correlated LHS samples and new quantile functions
+
+Changes in version 1.2.0 (2023-06-30)
+
+- Updates for CRAN checks
+
