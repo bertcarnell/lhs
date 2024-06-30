@@ -23,13 +23,12 @@ require(knitr)
 ```{r badges, echo=FALSE, results="asis"}
 cat(paste0("|<sub>", 
            paste0(
-             c("Actions", "Windows", "Code Coverage", "Website", "Doxygen", "CRAN Downloads", "CRAN"), 
+             c("Actions", "Code Coverage", "Website", "Doxygen", "CRAN Downloads", "CRAN"), 
              collapse="</sub>|<sub>"), 
            "</sub>|\n"))
-cat(paste0("|", paste0(rep(":---:", 7), collapse="|"), "|\n"))
+cat(paste0("|", paste0(rep(":---:", 6), collapse="|"), "|\n"))
 cat(paste0("|", 
            paste0(c("[![R build status](https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg)](https://github.com/bertcarnell/lhs/actions)",
-                    "[![Build status](https://ci.appveyor.com/api/projects/status/5h8gjnq6a30r8y37/branch/master?svg=true)](https://ci.appveyor.com/project/bertcarnell/lhs/branch/master)",
                     "[![Coverage status](https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg)](https://codecov.io/github/bertcarnell/lhs?branch=master)",
                     "[![](https://img.shields.io/badge/pkgdown-lhs-blue.svg)](https://bertcarnell.github.io/lhs/)",
                     "[![](https://img.shields.io/badge/Doxygen-lhs-blue.svg)](https://bertcarnell.github.io/lhs/html/index.html)",
