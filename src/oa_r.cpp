@@ -124,7 +124,7 @@ RcppExport SEXP /*int matrix*/ oa_type2(SEXP /*char*/ type, SEXP /*int*/ int1,
     if (ivq.size() > 1 || ivncol.size() > 1 || lvbRandom.size() > 1 ||
             ivint1.size() > 1 || cvtype.size() > 1)
     {
-        ::Rf_error("q, ncol, type, and bRandom can only be of length 1");
+        Rcpp_error("q, ncol, type, and bRandom can only be of length 1");
     }
 
     int qlocal = Rcpp::as<int>(q);
