@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Rob Carnell \email{bertcarnell@gmail.com}
+\strong{Maintainer}: Rob Carnell \email{bertcarnell@gmail.com} (\href{https://orcid.org/0009-0009-0465-7564}{ORCID})
 
 }
 \keyword{internal}

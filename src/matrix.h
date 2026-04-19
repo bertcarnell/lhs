@@ -168,7 +168,8 @@ private:
       T* data() {return elements.data();};
       
       /// get the internal data vector
-      std::vector<T> getDataVector() const {return elements;};
+      const std::vector<T> & getDataVector() const {return elements;};
+      std::vector<T> & getDataVector() {return elements;};
       
       /// Default Constructor with zero rows and zero columns 
       matrix();
@@ -299,15 +300,6 @@ private:
           elements.assign(rows*cols, x);
       };
 
-      /**
-       * fill the matrix with a value
-       * @param x the value to fill the matrix with
-       */
-      //void fill(const T x)
-      //{
-      //    elements.assign(rows*cols, x);
-      //};
-      
       /// Clear the matrix to zero rows and columns
       void clear();
 
