@@ -22,7 +22,7 @@
 #define	LHSLIBVERSION_H
 
 namespace lhslib {
-	inline static const char * getVersion() {return "1.0.1";}
+	inline static const char * getVersion() {return "1.1.0";}
 }
 
 #endif

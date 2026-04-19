@@ -97,6 +97,9 @@ namespace lhslib
         /* move backwards through the result matrix columns */
         for (vsize_type ucount = nsamples - 1; ucount > 0; ucount--)
         {
+#ifdef RCOMPILE
+            Rcpp::checkUserInterrupt();
+#endif
             //unsigned int ucount = static_cast<unsigned int>(count);
             for (msize_type irow = 0; irow < nparameters; irow++)
             {

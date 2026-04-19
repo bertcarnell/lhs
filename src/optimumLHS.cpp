@@ -118,6 +118,9 @@ namespace lhslib
             /* iterate over the columns */
             for (msize_type j = 0; j < nparameters; j++)
             {
+#ifdef RCOMPILE
+                Rcpp::checkUserInterrupt();
+#endif
                 optimalityRecordIndex = 0;
                 /* iterate over the rows for the first point from 0 to N-2 */
                 for (msize_type i = 0; i < (nsamples - 1); i++)
