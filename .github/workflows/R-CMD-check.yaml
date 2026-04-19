@@ -40,10 +40,15 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: 'release'}
+          - {os: windows-latest, r: '4.0.0'} # Minimum from Description
+          - {os: windows-latest, r: '4.4.3'} # old patched version
+          - {os: windows-latest, r: 'release'} # 4.5 series
           - {os: windows-latest, r: 'devel'}
           - {os: macOS-latest, r: 'release'}
           - {os: macOS-latest, r: 'devel'}
+          - {os: ubuntu-latest, r: '4.0.0'}
+          - {os: ubuntu-latest, r: '4.3.3'}
+          - {os: ubuntu-latest, r: '4.4.3'}
           - {os: ubuntu-latest, r: 'release'}
           - {os: ubuntu-latest, r: 'devel'}
 
