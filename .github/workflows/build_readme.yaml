@@ -4,13 +4,12 @@ on:
   push:
     paths:
       - 'README.Rmd'
-    tags: none
   workflow_dispatch:
 
 name: Build-README
 
 jobs:
-  pkgdown:
+  readme:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
