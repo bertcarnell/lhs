@@ -11,7 +11,7 @@ Authors@R:
 Description: Provides a number of methods for creating and augmenting Latin Hypercube Samples and Orthogonal Array Latin Hypercube Samples.
 License: GPL-3
 Encoding: UTF-8
-Depends: R (>= 4.0.0)
+Depends: R (>= 4.1.0)
 LinkingTo: 
     Rcpp
 Imports: 

@@ -35,7 +35,7 @@ cat(paste0("|",
 
                     "[![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs)",
                     "[![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs)", 
-					"[![](https://zenodo.org/badge/DOI/10.5281/zenodo.19656143.svg)](https://doi.org/10.5281/zenodo.10685575)")
+					"[![](https://zenodo.org/badge/DOI/10.5281/zenodo.19656143.svg)](https://doi.org/10.5281/zenodo.10685575)"),
                   collapse="|"), 
            "|"))
 		   
