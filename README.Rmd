@@ -34,10 +34,11 @@ cat(paste0("|",
                     "[![](https://img.shields.io/badge/Doxygen-lhs-blue.svg)](https://bertcarnell.github.io/lhs/html/index.html)",
 
                     "[![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs)",
-                    "[![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs)"), 
-					"[![](https://doi.org/10.5281/zenodo.19656143)](https://doi.org/10.5281/zenodo.10685575)"
+                    "[![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs)", 
+					"[![](https://zenodo.org/badge/DOI/10.5281/zenodo.19656143.svg)](https://doi.org/10.5281/zenodo.10685575)")
                   collapse="|"), 
            "|"))
+		   
 ```
 
 # lhs
