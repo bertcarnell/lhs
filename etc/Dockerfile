@@ -53,109 +53,167 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 ## install the reverse dependencies
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -t unstable -y \
-  r-cran-checkmate \
-  r-cran-ggplot2 \
-  r-cran-hypergeo \
-  r-cran-igraph \
-  r-cran-lubridate \
-  r-cran-mlr \
-  r-cran-msm \
-  r-cran-pracma \
-  r-cran-ranger \
-  r-cran-stringr
+r-cran-bbmisc \
+r-cran-dplyr \
+r-cran-ggplot2 \
+r-cran-lhs \
+r-cran-mlr \
+r-cran-paramhelpers \
+r-cran-ranger \
+r-cran-rcpparmadillo \
+r-cran-rlang \
+r-cran-rmarkdown
 
 ## install the reverse imports
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -t unstable -y \
   r-cran-ape \
   r-cran-backports \
+  r-cran-benchmarkme \
+  r-cran-bh \
+  r-cran-biasedurn \
+  r-cran-biocmanager \
   r-cran-callr \
+  r-cran-checkmate \
+  r-cran-cli \
+  r-cran-collapse \
+  r-cran-combinat \
   r-cran-corpcor \
   r-cran-crayon \
   r-cran-data.table \
   r-cran-deldir \
+  r-cran-desolve \
+  r-cran-dicedesign \
   r-cran-digest \
-  r-cran-dplyr \
+  r-cran-doparallel \
+  r-cran-dorng \
+  r-cran-dosnow \
   r-cran-e1071 \
+  r-cran-ellipse \
+  r-cran-fields \
+  r-cran-filelock \
   r-cran-forcats \
   r-cran-foreach \
   r-cran-furrr \
-  r-cran-geosphere \
+  r-cran-future \
+  r-cran-future.apply \
+  r-cran-ggally \
+  r-cran-ggforce \
   r-cran-ggpubr \
   r-cran-glmnet \
+  r-cran-gridbase \
+  r-cran-gridextra \
+  r-cran-igraph \
   r-cran-interp \
+  r-cran-isoband \
   r-cran-iterators \
+  r-cran-jsonlite \
+  r-cran-kableextra \
   r-cran-knitr \
+  r-cran-lifecycle \
   r-cran-magrittr \
+  r-cran-matrixstats \
+  r-cran-mcmcpack \
+  r-cran-microbenchmark \
+  r-cran-minpack.lm \
+  r-cran-mlmetrics \
+  r-cran-mvnfast \
   r-cran-nloptr \
+  r-cran-numderiv \
+  r-cran-optimparallel \
+  r-cran-parallelmap \
+  r-cran-partitions \
+  r-cran-patchwork \
   r-cran-pbapply \
   r-cran-phangorn \
   r-cran-phytools \
   r-cran-plotly \
   r-cran-pls \
+  r-cran-pracma \
+  r-cran-progressr \
   r-cran-purrr \
   r-cran-quantreg \
+  r-cran-r.utils \
+  r-cran-r6 \
+  r-cran-rann \
   r-cran-raster \
+  r-cran-rcppeigen \
+  r-cran-rcppparallel \
+  r-cran-rdpack \
   r-cran-readr \
+  r-cran-reshape \
   r-cran-reshape2 \
   r-cran-reticulate \
-  r-cran-rlang \
+  r-cran-rstan \
+  r-cran-rstantools \
   r-cran-rstudioapi \
   r-cran-scales \
-  r-cran-scatterplot3d \
   r-cran-sf \
+  r-cran-sfsmisc \
   r-cran-shiny \
-  r-cran-sp \
   r-cran-spam \
-  r-cran-spatstat \
   r-cran-spatstat.geom \
-  r-cran-statmod \
-  r-cran-tgp \
+  r-cran-spatstat.random \
+  r-cran-stanheaders \
+  r-cran-stringr \
+  r-cran-tensora \
+  r-cran-terra \
   r-cran-tibble \
   r-cran-tidyr \
   r-cran-truncnorm \
+  r-cran-uuid \
   r-cran-vegan \
-  r-cran-vioplot
+  r-cran-viridis \
+  r-cran-visnetwork \
+  r-cran-xml
 
 ## install the reverse suggests
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -t unstable -y \
   r-cran-assertthat \
   r-cran-bookdown \
-  r-cran-bridgesampling \
   r-cran-caret \
-  r-cran-coda \
   r-cran-colorspace \
   r-cran-covr \
+  r-cran-deoptim \
   r-cran-devtools \
-  r-cran-dfoptim \
+  r-cran-dials \
   r-cran-eaf \
-  r-cran-ellipse \
   r-cran-emoa \
   r-cran-fastmatch \
-  r-cran-fields \
-  r-cran-geometry \
+  r-cran-ggrepel \
+  r-cran-glue \
+  r-cran-hardhat \
+  r-cran-ids \
+  r-cran-insight \
   r-cran-irace \
   r-cran-irlba \
   r-cran-kernlab \
-  r-cran-mclust \
   r-cran-mda \
   r-cran-mlbench \
+  r-cran-modeldata \
+  r-cran-nleqslv \
   r-cran-plyr \
-  r-cran-progress \
-  r-cran-proxy \
-  r-cran-reshape \
-  r-cran-rmarkdown \
+  r-cran-processx \
+  r-cran-proto \
+  r-cran-r.rsp \
+  r-cran-rcpproll \
+  r-cran-recipes \
+  r-cran-rgenoud \
   r-cran-roxygen2 \
+  r-cran-rsample \
   r-cran-shape \
-  r-cran-testit \
+  r-cran-spacefillr \
+  r-cran-stringi \
   r-cran-testthat \
+  r-cran-tgp \
   r-cran-tinytest \
-  r-cran-tmvtnorm
+  r-cran-vctrs \
+  r-cran-viridislite
 
 # reverse depends
-RUN Rscript -e "install.packages(c('acebayes','ATmet','BBmisc','compare','DEoptim','DiceDesign','DiceKriging','FME','metRology','mlrMBO','mtk','mvtnorm','netgen','ParamHelpers','randtoolbox','RcppArmadillo','Rdpack','rgl','sensitivity','smoof','spsh','tuneRanger','XML'), dependencies = c('Depends','Imports','LinkingTo'))"
+RUN Rscript -e "install.packages(c('acebayes','compare','ContourFunctions','DiceKriging','mlrMBO','OSFD','randtoolbox','smoof','tuneRanger','twinning'), dependencies = c('Depends','Imports','LinkingTo'))"
 # reverse imports
-RUN Rscript -e "install.packages(c('abc','activegp','adaptivetau','AlgDesign','basefun','bbotk','BiasedUrn','binaryGP','chron','CVXR','dbscan','deSolve','dismo','DoE.base','DoE.wrapper','doParallel','doSNOW','DSAIDE','DSAIRM','DynamicGP','EasyABC','ecr','ENMeval','ENMTools','FrF2','gdistance','geiger','genalg','GenSA','GPfit','GPM','grapherator','gridExtra','gtools','hetGP','Hmisc','hydroGOF','hydroPSO','hydroTSM','imabc','inaparc','kpeaks','KrigInv','latticeExtra','logitnorm','LVGP','MaOEA','matrixStats','mcMST','microbenchmark','mlegp','MLmetrics','mlr3misc','mlr3tuning','mlrintermbo','mlt','mnormt','nlrx','nsga2R','numDeriv','optim.functions','optimParallel','OUwie','paleotree','paradox','parallelMap','ParBayesianOptimization','penalizedSVM','pGPx','phylolm','poems','profExtrema','progressr','R6','RandomFields','rcdd','RColorBrewer','Rfast','rgeos','rJava','rrepast','rsm','sandwich','sensobol','solaR','tensorA','tools4uplift','tram','tramnet','trend','TREXr','varycoef','xlsx','yager','yap','zoo'), dependencies = c('Depends','Imports','LinkingTo'))"
+RUN Rscript -e "install.packages(c('abc','adaptivetau','AlgDesign','basefun','BayesianPlatformDesignTimeTrend','bbotk','binaryGP','clhs','conf.design','CVXR','dgpsi','dismo','DNAmf','DoE.base','DoE.wrapper','DSAIDE','DSAIRM','EasyABC','ENMeval','ENMTools','ezECM','fossil','FrF2','gamlss','gamlss.dist','gdistance','geiger','genalg','GenSA','ggseqplot','GPfit','GpGp','grapherator','gtools','hmer','hydroMOPSO','hydroTSM','imabc','inaparc','klaR','kpeaks','KrigInv','laGP','latticeExtra','logitnorm','LVGP','MaOEA','metRology','mlr3misc','mlr3tuning','mlrintermbo','mlt','mnormt','MuFiMeshGP','mvtnorm','nlrx','nls.multstart','nntmvn','nsga2R','optim.functions','OUwie','paleotree','paradox','pdist','pGPx','phylolm','plgp','poems','profExtrema','qs2','rcdd','RColorBrewer','RcppHungarian','Rfast','rJava','RNAmf','rrepast','rsm','sandwich','sensitivity','sensobol','seqHMM','SOAs','SVEMnet','tools4uplift','topolow','tram','TraMineR','tramnet','trend','TruncatedNormal','varycoef','xlsx','yager','zoo'), dependencies = c('Depends','Imports','LinkingTo'))"
 # reverse suggests
-RUN Rscript -e "install.packages(c('AcceptanceSampling','akima','BayesianTools','car','carrier','CGP','ChemoSpec2D','ChemoSpecUtils','CMLS','comparer','ContourFunctions','crs','DepthProc','DHARMa','DiceEval','DiceOptim','DiceView','Dodge','doRNG','dynparam','dynutils','emulator','fdapace','flacco','FNN','gap','GAparsimony','GauPro','GGally','GPareto','IDPmisc','IGP','laGP','LearnBayes','liGP','maximin','mco','mistat','moko','monomvn','multiway','OptimaRegion','pinp','plgp','qcc','R.rsp','R.utils','randomForest','RANN','RcppEigen','RcppGSL','RcppRoll','Rdsdp','readJDX','RKHSMetaMod','robustbase','SACOBRA','snow','ThreeWay','tseries','vdg','Vdgraph','xgboost'), dependencies = c('Depends','Imports','LinkingTo'))"
+RUN Rscript -e "install.packages(c('akima','binaryRL','box','carrier','ChemoSpec2D','ChemoSpecUtils','cmaes','CMLS','coro','CPoptim','crs','DepthProc','DiceOptim','doFuture','dynemu','dynparam','dynutils','fastGHQuad','flacco','GA','GAparsimony','GauPro','geomtextpath','ggDoE','GPvecchia','hetGP','keras','keras3','kindling','lbfgs','leapgp','lgr','maximin','mco','mirai','mixopt','mlr3','mlr3learners','mlr3mbo','mlr3pipelines','monomvn','multiRL','multiway','NeuralNetTools','nls2','nlstools','OptimaRegion','parsnip','pso','quadprog','quarto','Rdsdp','readJDX','redux','robustbase','rush','sfd','splitfngr','testthatmulti','ThreeWay','tictoc','torch','tune','unrepx','VeccTMVN','vip','workflows','xgboost','yardstick'), dependencies = c('Depends','Imports','LinkingTo'))"

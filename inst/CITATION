@@ -1,0 +1,9 @@
+bibentry(
+  bibtype = "Manual",
+  title = "{lhs}: Latin Hypercube Samples",
+  author = "Rob Carnell",
+  year = "2026",
+  note = "R package version 1.2.1",
+  url = "https://cran.r-project.org/package=lhs",
+  doi = "10.32614/CRAN.package.lhs"
+)

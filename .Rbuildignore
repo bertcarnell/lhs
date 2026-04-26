@@ -20,3 +20,5 @@
 ^README\.Rmd$
 ^\.github$
 ^SECURITY\.md$
+^\.positai$
+^\.claude$
