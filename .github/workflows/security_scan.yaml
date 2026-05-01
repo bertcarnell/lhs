@@ -9,9 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          ref: ${{ github.sha }}
           fetch-depth: 2
       - uses: anthropics/claude-code-security-review@main
+        id: security-review
         with:
-          comment-pr: true
+          comment-pr: false
           claude-api-key: ${{ secrets.CLAUDE_API_KEY }}
+      - name: Display Security Review Results
+        run: |
+          echo "Security Review Output:"
+          echo "${{ steps.security-review.outputs.review }}"
