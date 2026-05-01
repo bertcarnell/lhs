@@ -5,7 +5,7 @@ import requests
 from pathlib import Path
 
 # Settings for the Claude API
-API_KEY = os.get('CLAUDE_API_KEY')
+API_KEY = os.getenv('CLAUDE_API_KEY')
 API_URL = 'https://api.claude.ai/analyze'
 
 # Function to analyze the codebase for security issues
