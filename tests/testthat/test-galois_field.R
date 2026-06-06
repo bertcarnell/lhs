@@ -26,6 +26,43 @@ test_that("Galois Fields Work", {
   expect_error(create_galois_field(2^30))
 })
 
+test_that("Larger prime power bases work (issue #61)", {
+  # Prior to this fix the largest supported base for a prime power was 47, so
+  # GF(53^2) and larger could not be created.  Bases up to 127 are now included.
+  # Only small (n == 2) fields are exercised here to keep the q x q field tables
+  # to a reasonable size.
+  for (base in c(53, 59, 61))
+  {
+    q <- base^2
+    gf <- create_galois_field(q)
+    expect_equal(gf$p, base)
+    expect_equal(gf$q, q)
+    expect_equal(gf$n, 2)
+    expect_equal(length(gf$xton), 2)
+    expect_equal(dim(gf$plus), c(q, q))
+    expect_equal(dim(gf$times), c(q, q))
+
+    # spot check the field axioms on a handful of elements (a full check would
+    # be O(q^3) and far too slow for these sizes)
+    zero <- c(0, 0)
+    one <- c(1, 0)
+    set.seed(base)
+    for (i in sample.int(q, 5))
+    {
+      # additive inverse
+      sum1 <- poly_sum(gf$p, gf$n, gf$poly[i, ], gf$poly[gf$neg[i] + 1, ])
+      expect_equal(sum1, zero)
+      # multiplicative inverse (every non-zero element has one in a field)
+      if (!is.na(gf$inv[i]))
+      {
+        prod1 <- poly_prod(gf$p, gf$n, gf$xton, gf$poly[i, ],
+                           gf$poly[gf$inv[i] + 1, ])
+        expect_equal(prod1, one)
+      }
+    }
+  }
+})
+
 test_that("Associative", {
   check_associative <- function(gf){
     for (i in 1:gf$q)

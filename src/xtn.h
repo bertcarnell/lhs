@@ -1,6 +1,6 @@
 /*
  * NOTE: This file should be excluded from the Doxygen build
- ****** COMPUTER GENERATED etc/CreatePowerCylce.R ******
+ ****** COMPUTER GENERATED etc/CreatePowerCycle.R ******
  *
  * file xtn.h
  * author Robert Carnell
@@ -385,4 +385,165 @@ else if (q == primes::ipow(47,4)) xtn = {42, 0, 0, 46};
 // GF(47^5) = GF(229345007)
 // x^5 = 5 + 46x
 else if (q == primes::ipow(47,5)) xtn = {5, 46, 0, 0, 0};
+// ---------------------------------------------------------------------------
+// Bases for prime powers with base p in (47, 127] added to address issue #61
+// (https://github.com/bertcarnell/lhs/issues/61).  As with the entries above,
+// each xtn defines a primitive (hence irreducible) polynomial
+//   x^n = xtn[0] + xtn[1] x + ... + xtn[n-1] x^(n-1)  (mod p)
+// and exponents are included while p^n < 1e9.  See etc/CreatePowerCycle.R.
+// ---------------------------------------------------------------------------
+// GF(53^2) = GF(2809)
+// x^2 = 2 + 5x
+else if (q == primes::ipow(53,2)) xtn = {2, 5};
+// GF(53^3) = GF(148877)
+// x^3 = 2 + x^2
+else if (q == primes::ipow(53,3)) xtn = {2, 0, 1};
+// GF(53^4) = GF(7890481)
+// x^4 = 2 + x^2 + x^3
+else if (q == primes::ipow(53,4)) xtn = {2, 0, 1, 1};
+// GF(53^5) = GF(418195493)
+// x^5 = 2 + 2x^4
+else if (q == primes::ipow(53,5)) xtn = {2, 0, 0, 0, 2};
+// GF(59^2) = GF(3481)
+// x^2 = 3 + x
+else if (q == primes::ipow(59,2)) xtn = {3, 1};
+// GF(59^3) = GF(205379)
+// x^3 = 2 + 4x^2
+else if (q == primes::ipow(59,3)) xtn = {2, 0, 4};
+// GF(59^4) = GF(12117361)
+// x^4 = 3 + 19x^3
+else if (q == primes::ipow(59,4)) xtn = {3, 0, 0, 19};
+// GF(59^5) = GF(714924299)
+// x^5 = 2 + 3x^4
+else if (q == primes::ipow(59,5)) xtn = {2, 0, 0, 0, 3};
+// GF(61^2) = GF(3721)
+// x^2 = 2 + 3x
+else if (q == primes::ipow(61,2)) xtn = {2, 3};
+// GF(61^3) = GF(226981)
+// x^3 = 2 + 3x^2
+else if (q == primes::ipow(61,3)) xtn = {2, 0, 3};
+// GF(61^4) = GF(13845841)
+// x^4 = 2 + 2x^3
+else if (q == primes::ipow(61,4)) xtn = {2, 0, 0, 2};
+// GF(61^5) = GF(844596301)
+// x^5 = 2 + 8x^4
+else if (q == primes::ipow(61,5)) xtn = {2, 0, 0, 0, 8};
+// GF(67^2) = GF(4489)
+// x^2 = 4 + 2x
+else if (q == primes::ipow(67,2)) xtn = {4, 2};
+// GF(67^3) = GF(300763)
+// x^3 = 2 + 2x^2
+else if (q == primes::ipow(67,3)) xtn = {2, 0, 2};
+// GF(67^4) = GF(20151121)
+// x^4 = 4 + 5x^3
+else if (q == primes::ipow(67,4)) xtn = {4, 0, 0, 5};
+// GF(71^2) = GF(5041)
+// x^2 = 2 + 3x
+else if (q == primes::ipow(71,2)) xtn = {2, 3};
+// GF(71^3) = GF(357911)
+// x^3 = 7 + 4x^2
+else if (q == primes::ipow(71,3)) xtn = {7, 0, 4};
+// GF(71^4) = GF(25411681)
+// x^4 = 2 + 3x^3
+else if (q == primes::ipow(71,4)) xtn = {2, 0, 0, 3};
+// GF(73^2) = GF(5329)
+// x^2 = 5 + x
+else if (q == primes::ipow(73,2)) xtn = {5, 1};
+// GF(73^3) = GF(389017)
+// x^3 = 5 + x^2
+else if (q == primes::ipow(73,3)) xtn = {5, 0, 1};
+// GF(73^4) = GF(28398241)
+// x^4 = 5 + 5x^3
+else if (q == primes::ipow(73,4)) xtn = {5, 0, 0, 5};
+// GF(79^2) = GF(6241)
+// x^2 = 2 + 2x
+else if (q == primes::ipow(79,2)) xtn = {2, 2};
+// GF(79^3) = GF(493039)
+// x^3 = 3 + 3x^2
+else if (q == primes::ipow(79,3)) xtn = {3, 0, 3};
+// GF(79^4) = GF(38950081)
+// x^4 = 2 + 10x^3
+else if (q == primes::ipow(79,4)) xtn = {2, 0, 0, 10};
+// GF(83^2) = GF(6889)
+// x^2 = 3 + 12x
+else if (q == primes::ipow(83,2)) xtn = {3, 12};
+// GF(83^3) = GF(571787)
+// x^3 = 2 + 2x^2
+else if (q == primes::ipow(83,3)) xtn = {2, 0, 2};
+// GF(83^4) = GF(47458321)
+// x^4 = 3 + 16x^3
+else if (q == primes::ipow(83,4)) xtn = {3, 0, 0, 16};
+// GF(89^2) = GF(7921)
+// x^2 = 3 + 5x
+else if (q == primes::ipow(89,2)) xtn = {3, 5};
+// GF(89^3) = GF(704969)
+// x^3 = 3 + 4x^2
+else if (q == primes::ipow(89,3)) xtn = {3, 0, 4};
+// GF(89^4) = GF(62742241)
+// x^4 = 3 + 14x^3
+else if (q == primes::ipow(89,4)) xtn = {3, 0, 0, 14};
+// GF(97^2) = GF(9409)
+// x^2 = 5 + 3x
+else if (q == primes::ipow(97,2)) xtn = {5, 3};
+// GF(97^3) = GF(912673)
+// x^3 = 5 + x^2
+else if (q == primes::ipow(97,3)) xtn = {5, 0, 1};
+// GF(97^4) = GF(88529281)
+// x^4 = 5 + 14x^3
+else if (q == primes::ipow(97,4)) xtn = {5, 0, 0, 14};
+// GF(101^2) = GF(10201)
+// x^2 = 2 + 6x
+else if (q == primes::ipow(101,2)) xtn = {2, 6};
+// GF(101^3) = GF(1030301)
+// x^3 = 2 + 2x^2
+else if (q == primes::ipow(101,3)) xtn = {2, 0, 2};
+// GF(101^4) = GF(104060401)
+// x^4 = 2 + 3x^3
+else if (q == primes::ipow(101,4)) xtn = {2, 0, 0, 3};
+// GF(103^2) = GF(10609)
+// x^2 = 2 + 2x
+else if (q == primes::ipow(103,2)) xtn = {2, 2};
+// GF(103^3) = GF(1092727)
+// x^3 = 5 + 4x^2
+else if (q == primes::ipow(103,3)) xtn = {5, 0, 4};
+// GF(103^4) = GF(112550881)
+// x^4 = 2 + 2x^3
+else if (q == primes::ipow(103,4)) xtn = {2, 0, 0, 2};
+// GF(107^2) = GF(11449)
+// x^2 = 3 + 3x
+else if (q == primes::ipow(107,2)) xtn = {3, 3};
+// GF(107^3) = GF(1225043)
+// x^3 = 2 + 5x^2
+else if (q == primes::ipow(107,3)) xtn = {2, 0, 5};
+// GF(107^4) = GF(131079601)
+// x^4 = 3 + 27x^3
+else if (q == primes::ipow(107,4)) xtn = {3, 0, 0, 27};
+// GF(109^2) = GF(11881)
+// x^2 = 6 + 3x
+else if (q == primes::ipow(109,2)) xtn = {6, 3};
+// GF(109^3) = GF(1295029)
+// x^3 = 6 + x^2
+else if (q == primes::ipow(109,3)) xtn = {6, 0, 1};
+// GF(109^4) = GF(141158161)
+// x^4 = 6 + x^3
+else if (q == primes::ipow(109,4)) xtn = {6, 0, 0, 1};
+// GF(113^2) = GF(12769)
+// x^2 = 3 + 3x
+else if (q == primes::ipow(113,2)) xtn = {3, 3};
+// GF(113^3) = GF(1442897)
+// x^3 = 3 + 3x^2
+else if (q == primes::ipow(113,3)) xtn = {3, 0, 3};
+// GF(113^4) = GF(163047361)
+// x^4 = 3 + 3x^3
+else if (q == primes::ipow(113,4)) xtn = {3, 0, 0, 3};
+// GF(127^2) = GF(16129)
+// x^2 = 9 + 2x
+else if (q == primes::ipow(127,2)) xtn = {9, 2};
+// GF(127^3) = GF(2048383)
+// x^3 = 3 + 3x^2
+else if (q == primes::ipow(127,3)) xtn = {3, 0, 3};
+// GF(127^4) = GF(260144641)
+// x^4 = 9 + 2x^3
+else if (q == primes::ipow(127,4)) xtn = {9, 0, 0, 2};
+
 #endif
