@@ -110,6 +110,28 @@ dim(W16)
 
     ## [1] 16  3
 
+Generate a design and transform each margin to a distribution, factor, or
+integer range in a single call:
+
+``` r
+set.seed(42)
+D <- lhs_design(8, variables = list(
+  temperature = list(dist = "qnorm", mean = 350, sd = 10),
+  material    = list(type = "factor", levels = c("steel", "alloy", "ti")),
+  cycles      = list(type = "integer", min = 1L, max = 100L)
+), type = "maximin")
+dim(D)
+```
+
+    ## [1] 8 3
+
+``` r
+sapply(D, class)
+```
+
+    ## temperature    material      cycles
+    ##   "numeric"    "factor"   "numeric"
+
 ## Help
 
 R-Help Examples of using the LHS package

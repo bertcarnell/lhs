@@ -131,6 +131,20 @@ W16 <- create_oalhs(10, 3, bChooseLargerDesign = TRUE, bverbose = FALSE)
 dim(W16)
 ```
 
+Generate a design and transform each margin to a distribution, factor, or
+integer range in a single call:
+
+```{r design, echo=TRUE}
+set.seed(42)
+D <- lhs_design(8, variables = list(
+  temperature = list(dist = "qnorm", mean = 350, sd = 10),
+  material    = list(type = "factor", levels = c("steel", "alloy", "ti")),
+  cycles      = list(type = "integer", min = 1L, max = 100L)
+), type = "maximin")
+dim(D)
+sapply(D, class)
+```
+
 ## Help
 
 R-Help Examples of using the LHS package
