@@ -1,21 +1,26 @@
 <div>
 
 <table>
+
 <tr>
+
 <td>
+
 <img align="left" width="200" height="200" src="logo.svg"/>
 </td>
+
 </tr>
+
 </table>
 
 </div>
 
-|                                                         <sub>Actions</sub>                                                          |                                                              <sub>Code Coverage</sub>                                                              |                                      <sub>Website</sub>                                      |                                             <sub>Doxygen</sub>                                              |                              <sub>CRAN Downloads</sub>                               |                                          <sub>CRAN</sub>                                           |
-|:-----------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------:|
+| <sub>Actions</sub> | <sub>Code Coverage</sub> | <sub>Website</sub> | <sub>Doxygen</sub> | <sub>CRAN Downloads</sub> | <sub>CRAN</sub> |
+|:--:|:--:|:--:|:--:|:--:|:--:|
 | [![R build status](https://github.com/bertcarnell/lhs/workflows/R-CMD-check/badge.svg)](https://github.com/bertcarnell/lhs/actions) | [![Coverage status](https://codecov.io/gh/bertcarnell/lhs/branch/master/graph/badge.svg)](https://codecov.io/github/bertcarnell/lhs?branch=master) | [![](https://img.shields.io/badge/pkgdown-lhs-blue.svg)](https://bertcarnell.github.io/lhs/) | [![](https://img.shields.io/badge/Doxygen-lhs-blue.svg)](https://bertcarnell.github.io/lhs/html/index.html) | [![](https://cranlogs.r-pkg.org/badges/lhs)](https://cran.r-project.org/package=lhs) | [![CRAN status](https://www.r-pkg.org/badges/version/lhs)](https://cran.r-project.org/package=lhs) |
 
-|                                            <sub>R-Universe</sub>                                             |                                                                 <sub>CRAN Packages</sub>                                                                  |                                                        <sub>DOI</sub>                                                        |
-|:------------------------------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------:|
+| <sub>R-Universe</sub> | <sub>CRAN Packages</sub> | <sub>DOI</sub> |
+|:--:|:--:|:--:|
 | [![name status badge](https://bertcarnell.r-universe.dev/badges/:name)](https://bertcarnell.r-universe.dev/) | [![Static Badge](https://img.shields.io/badge/CRAN-All_Packages-blue)](https://cran.r-project.org/web/checks/check_results_bertcarnell_at_gmail.com.html) | [![Static Badge](https://img.shields.io/badge/DOI-10.32614%2FCRAN.package.lhs-blue)](https://cran.r-project.org/package=lhs) |
 
 # lhs
@@ -109,6 +114,28 @@ dim(W16)
 ```
 
     ## [1] 16  3
+
+Generate a design and transform each margin to a distribution, factor,
+or integer range in a single call:
+
+``` r
+set.seed(42)
+D <- lhs_design(8, variables = list(
+  temperature = list(dist = "qnorm", mean = 350, sd = 10),
+  material    = list(type = "factor", levels = c("steel", "alloy", "ti")),
+  cycles      = list(type = "integer", min = 1L, max = 100L)
+), type = "maximin")
+dim(D)
+```
+
+    ## [1] 8 3
+
+``` r
+sapply(D, class)
+```
+
+    ## temperature    material      cycles 
+    ##   "numeric"    "factor"   "numeric"
 
 ## Help
 
