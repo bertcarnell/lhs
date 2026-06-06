@@ -140,3 +140,10 @@ Changes in version 1.3.0 (2026-04-19)
 
 - Added ability to interrupt from long running C++ code processes
 - Updated R dependency to 4.0.0 and C++ to 17
+
+Changes in version 1.4.0 (2026-06-06)
+
+- Extended the Galois field power-cycle table (src/xtn.h) to cover prime power
+  bases up to 127, so create_galois_field() now supports GF(53^2), GF(59^2),
+  and other larger prime powers (issue #61).  Restored the generator script
+  etc/CreatePowerCycle.R used to build the table.
