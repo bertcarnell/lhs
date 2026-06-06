@@ -131,6 +131,22 @@ W16 <- create_oalhs(10, 3, bChooseLargerDesign = TRUE, bverbose = FALSE)
 dim(W16)
 ```
 
+Create a sliced design where each slice is a Latin hypercube and the union is a Latin hypercube:
+
+```{r sliced, echo=TRUE}
+S <- slicedLHS(m = 4, t = 3, k = 2)
+dim(S)
+attr(S, "slices")
+```
+
+Create a nested design where the small design is a subset of the large design:
+
+```{r nested, echo=TRUE}
+N <- nestedLHS(small = 4, large = 12, k = 2)
+dim(N$large)
+all(N$small == N$large[1:4, ])
+```
+
 ## Help
 
 R-Help Examples of using the LHS package

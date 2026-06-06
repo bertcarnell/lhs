@@ -140,3 +140,8 @@ Changes in version 1.3.0 (2026-04-19)
 
 - Added ability to interrupt from long running C++ code processes
 - Updated R dependency to 4.0.0 and C++ to 17
+
+Changes in version 1.4.0 (2026-06-06)
+
+- Added slicedLHS to create sliced Latin hypercube designs (Qian, 2012)
+- Added nestedLHS to create nested Latin hypercube designs (Qian, 2009)
