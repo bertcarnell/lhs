@@ -17,12 +17,13 @@ test_that("slicedLHS works", {
   expect_equal(attr(A, "slices"), rep(1:t, each = m))
 
   # the union of all slices is a Latin hypercube design
-  expect_true(checkLatinHypercube(A[, , drop = FALSE]))
+  expect_true(checkLatinHypercube(A))
 
   # each slice is itself a Latin hypercube design
   slices <- attr(A, "slices")
-  for (s in seq_len(t))
-    expect_true(checkLatinHypercube(A[slices == s, , drop = FALSE]))
+  for (s in seq_len(t)) {
+    expect_true(checkLatinHypercube(A[slices == s, ]))
+  }
 
   # a single slice reduces to a random Latin hypercube
   set.seed(5678)
